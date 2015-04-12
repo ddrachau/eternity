@@ -12,6 +12,7 @@
 
     <interceptors>
         <class>com.prodyna.pac.eternity.server.common.logging.LoggingInterceptor</class>
+        <class>com.prodyna.pac.eternity.server.common.profiling.ProfilingInterceptor</class>
     </interceptors>
 
 </beans>

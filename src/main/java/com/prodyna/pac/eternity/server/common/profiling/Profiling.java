@@ -1,13 +1,13 @@
-package com.prodyna.pac.eternity.server.common.logging;
+package com.prodyna.pac.eternity.server.common.profiling;
 
 import javax.interceptor.InterceptorBinding;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * Annotation interface for marking a class to be logged.
+ * Annotation interface for marking a class to be profiled.
  */
 @InterceptorBinding
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Logging {
+public @interface Profiling {
 }

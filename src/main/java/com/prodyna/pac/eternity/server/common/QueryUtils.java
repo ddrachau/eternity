@@ -25,7 +25,7 @@ public abstract class QueryUtils {
         }
 
         return result;
-        
+
     }
 
 }

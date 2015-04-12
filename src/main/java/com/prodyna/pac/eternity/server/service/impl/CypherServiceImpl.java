@@ -1,6 +1,7 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
 import com.prodyna.pac.eternity.server.common.logging.Logging;
+import com.prodyna.pac.eternity.server.common.profiling.Profiling;
 import com.prodyna.pac.eternity.server.service.CypherService;
 import org.slf4j.Logger;
 
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Logging
+@Profiling
 @Stateless
 public class CypherServiceImpl implements CypherService {
 
