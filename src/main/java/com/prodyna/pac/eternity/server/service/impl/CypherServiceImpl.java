@@ -28,9 +28,11 @@ public class CypherServiceImpl implements CypherService {
     @Override
     public List<Map<String, Object>> query(final String query, final Map<Integer, Object> params) {
 
+        Connection connection = null;
+
         try {
 
-            final Connection connection = dataSource.getConnection();
+            connection = dataSource.getConnection();
             final PreparedStatement statement = connection.prepareStatement(query);
 
             setParameters(statement, params);
@@ -49,6 +51,13 @@ public class CypherServiceImpl implements CypherService {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception exception) {
+                // if it cannot be closed, so be it we gave it a try
+                logger.error("Cannot close connection", exception);
+            }
         }
 
     }

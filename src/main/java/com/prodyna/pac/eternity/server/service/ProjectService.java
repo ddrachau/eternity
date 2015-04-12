@@ -43,9 +43,10 @@ public interface ProjectService {
      *
      * @param project the project to be updated
      * @return the updated project
+     * @throws NoSuchElementException        if the element to be updated cannot be found
      * @throws ElementAlreadyExistsException if a project with the same identifier already exists
      */
-    Project update(@NotNull Project project) throws ElementAlreadyExistsException;
+    Project update(@NotNull Project project) throws NoSuchElementException, ElementAlreadyExistsException;
 
     /**
      * Removes the given project from the database.

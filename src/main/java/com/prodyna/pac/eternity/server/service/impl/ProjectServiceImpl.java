@@ -24,6 +24,7 @@ public class ProjectServiceImpl implements ProjectService {
     private static final String QUERY_CREATE_PROJECT = "CREATE (p:Project {id:{1}, identifier:{2}, description:{3}}) RETURN p.id, p.identifier, p.description";
     private static final String QUERY_GET_PROJECT_BY_IDENTIFIER = "MATCH (p:Project {identifier:{1}}) RETURN p.id, p.identifier, p.description";
     private static final String QUERY_FIND_ALL_PROJECTS = "MATCH (p:Project) RETURN p.id, p.identifier, p.description";
+    private static final String QUERY_UPDATE_PROJECT = "MATCH (p:Project {id:{1}}) SET p.identifier={2}, p.description={3} RETURN p.id, p.identifier, p.description";
     private static final String QUERY_DELETE_PROJECT_BY_IDENTIFIER = "MATCH (p:Project {identifier:{1}}) DELETE p";
 
     @Inject
@@ -80,8 +81,23 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project update(@NotNull Project project) throws ElementAlreadyExistsException {
-        return null;
+    public Project update(@NotNull Project project) throws NoSuchElementException, ElementAlreadyExistsException {
+
+        // Check for already present project with the new identifier
+        Project check = this.get(project.getIdentifer());
+        if (check != null && !check.getId().equals(project.getId())) {
+            throw new ElementAlreadyExistsException();
+        }
+
+        final Map<String, Object> queryResult = cypherService.querySingle(
+                QUERY_UPDATE_PROJECT, map(1, project.getId(), 2, project.getIdentifer(), 3, project.getDescription()));
+
+        if (queryResult == null) {
+            throw new NoSuchElementException();
+        } else {
+            return this.getProject(queryResult);
+        }
+
     }
 
     @Override

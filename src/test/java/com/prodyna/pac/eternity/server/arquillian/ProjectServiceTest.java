@@ -109,13 +109,74 @@ public class ProjectServiceTest {
         Assert.assertEquals(identifier, p.getIdentifer());
         Assert.assertEquals(description, p.getDescription());
 
+    }
+
+    @Test
+    @InSequence(6)
+    public void getProjectUnknown() {
+
         Assert.assertNull(projectService.get("unknownId"));
 
     }
 
+    @Test
+    @InSequence(7)
+    public void updateProject() throws ElementAlreadyExistsException, NoSuchElementException {
+
+
+        String identifier = "P00754";
+        String description = "KiBucDu Final (Phase II)";
+        String newDescription = "demo";
+
+        Project p = projectService.get(identifier);
+        Assert.assertNotNull(p);
+
+        Assert.assertEquals(description, p.getDescription());
+        p.setDescription(newDescription);
+
+        p = projectService.update(p);
+
+        Assert.assertNotNull(p);
+        Assert.assertEquals(newDescription, p.getDescription());
+
+        p = projectService.get(identifier);
+
+        Assert.assertNotNull(p);
+        Assert.assertEquals(newDescription, p.getDescription());
+
+    }
+
+    @Test(expected = ElementAlreadyExistsException.class)
+    @InSequence(8)
+    public void updateProjectExistingIdentifier() throws ElementAlreadyExistsException, NoSuchElementException {
+
+        String identifier = "P00754";
+        String newIdentifier = "P00843";
+
+        Project p = projectService.get(identifier);
+        Assert.assertNotNull(p);
+
+        p.setIdentifer(newIdentifier);
+
+        projectService.update(p);
+
+        Assert.fail("Changing to an already present identifier should not be possible");
+
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    @InSequence(9)
+    public void updateProjectNonExistingNode() throws ElementAlreadyExistsException, NoSuchElementException {
+
+        Project p = new Project("unknow", "P00755", "desc");
+        projectService.update(p);
+
+        Assert.fail("Changing an not present element should not be possible");
+
+    }
 
     @Test
-    @InSequence(6)
+    @InSequence(10)
     public void deleteProject() throws NoSuchElementException {
 
         String identifier = "P01244";
@@ -132,7 +193,7 @@ public class ProjectServiceTest {
     }
 
     @Test(expected = NoSuchElementException.class)
-    @InSequence(6)
+    @InSequence(11)
     public void deleteProjectNoSuchProject() throws NoSuchElementException {
 
         String identifier = "P01244";
@@ -143,32 +204,6 @@ public class ProjectServiceTest {
 
         projectService.delete(identifier);
         Assert.fail("Node should not be present any more");
-
-    }
-
-    @Test
-    @InSequence(7)
-    public void updateProject() {
-
-        Assert.fail("not implemented yet");
-
-//        String identifier = "P01244";
-//
-//        Project p = projectService.get(identifier);
-//
-//        Assert.assertNotNull(p.getId());
-//        Assert.assertEquals(identifier, p.getIdentifer());
-//
-//        projectService.delete(p);
-//
-//        Assert.assertNull(projectService.get(identifier));
-//
-//        try {
-//            projectService.delete(p);
-//            Assert.fail("Node should not be present any more");
-//        } catch (EntityNotFoundException e) {
-//            // expected
-//        }
 
     }
 
