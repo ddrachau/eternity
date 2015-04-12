@@ -8,10 +8,10 @@
 
     <!--<decorators>
         <class>com.prodyna.pac.notification.NotifyingAbteilungServiceDecorator</class>
-    </decorators>
+    </decorators>-->
 
     <interceptors>
-        <class>com.prodyna.pac.common.logging.LoggingInterceptor</class>
-    </interceptors>-->
+        <class>com.prodyna.pac.eternity.server.common.logging.LoggingInterceptor</class>
+    </interceptors>
 
 </beans>

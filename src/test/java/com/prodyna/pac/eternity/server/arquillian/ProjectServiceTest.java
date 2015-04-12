@@ -1,0 +1,175 @@
+package com.prodyna.pac.eternity.server.arquillian;
+
+
+import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsException;
+import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
+import com.prodyna.pac.eternity.server.model.Project;
+import com.prodyna.pac.eternity.server.service.CypherService;
+import com.prodyna.pac.eternity.server.service.ProjectService;
+import junit.framework.Assert;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.junit.InSequence;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+
+import javax.inject.Inject;
+
+@RunWith(Arquillian.class)
+public class ProjectServiceTest {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Deployment
+    public static JavaArchive createDeployment() {
+        JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "eternity-arq.jar").addPackages(true, "com.prodyna.pac");
+        jar.addAsResource("META-INF/beans.xml");
+        jar.addAsResource("META-INF/persistence.xml");
+        System.out.println(jar.toString(true));
+        return jar;
+    }
+
+    @Inject
+    private ProjectService projectService;
+
+    @Inject
+    private CypherService cypherService;
+
+    @Test
+    @InSequence(1)
+    public void createDemoData() throws Exception {
+
+        // clean DB from nodes and relations
+        cypherService.query("MATCH(n) OPTIONAL MATCH (n)-[r]-() DELETE n,r", null);
+
+        projectService.create(new Project("P00754", "KiBucDu Final (Phase II)"));
+        projectService.create(new Project("P00843", "IT-/Prozessharmonisierung im Handel"));
+        projectService.create(new Project("P00998", "Bosch - ST-IPP"));
+        projectService.create(new Project("P01110", "Glory Times"));
+        projectService.create(new Project("P01244", "Phoenix Classic"));
+        projectService.create(new Project("P01140", "Liferay Unterstützung"));
+
+    }
+
+    @Test
+    @InSequence(2)
+    public void getAllProjects() {
+        Assert.assertEquals(6, projectService.findAll().size());
+    }
+
+    @Test
+    @InSequence(3)
+    public void createProject() throws Exception {
+
+        String identifier = "new Project";
+        String description = "new description";
+
+        Project p = new Project(identifier, description);
+
+        Assert.assertNull(p.getId());
+
+        Project p2 = projectService.create(p);
+
+        Assert.assertSame(p, p2);
+        Assert.assertNotNull(p2.getId());
+        Assert.assertEquals(identifier, p2.getIdentifer());
+        Assert.assertEquals(description, p2.getDescription());
+
+    }
+
+    @Test(expected = ElementAlreadyExistsException.class)
+    @InSequence(4)
+    public void createProjectWhichExists() throws ElementAlreadyExistsException {
+
+        String identifier = "new Project2";
+        String description = "new description2";
+
+        Project p = new Project(identifier, description);
+
+        projectService.create(p);
+        projectService.create(p);
+        Assert.fail("Unique constraint has to prohibit the creation");
+
+    }
+
+    @Test
+    @InSequence(5)
+    public void getProject() {
+
+        String identifier = "P00754";
+        String description = "KiBucDu Final (Phase II)";
+
+        Project p = projectService.get(identifier);
+        Assert.assertNotNull(p);
+        Assert.assertEquals(identifier, p.getIdentifer());
+        Assert.assertEquals(description, p.getDescription());
+
+        Assert.assertNull(projectService.get("unknownId"));
+
+    }
+
+
+    @Test
+    @InSequence(6)
+    public void deleteProject() throws NoSuchElementException {
+
+        String identifier = "P01244";
+
+        Project p = projectService.get(identifier);
+
+        Assert.assertNotNull(p.getId());
+        Assert.assertEquals(identifier, p.getIdentifer());
+
+        projectService.delete(identifier);
+
+        Assert.assertNull(projectService.get(identifier));
+
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    @InSequence(6)
+    public void deleteProjectNoSuchProject() throws NoSuchElementException {
+
+        String identifier = "P01244";
+
+        Project p = projectService.get(identifier);
+
+        Assert.assertNull(p);
+
+        projectService.delete(identifier);
+        Assert.fail("Node should not be present any more");
+
+    }
+
+    @Test
+    @InSequence(7)
+    public void updateProject() {
+
+        Assert.fail("not implemented yet");
+
+//        String identifier = "P01244";
+//
+//        Project p = projectService.get(identifier);
+//
+//        Assert.assertNotNull(p.getId());
+//        Assert.assertEquals(identifier, p.getIdentifer());
+//
+//        projectService.delete(p);
+//
+//        Assert.assertNull(projectService.get(identifier));
+//
+//        try {
+//            projectService.delete(p);
+//            Assert.fail("Node should not be present any more");
+//        } catch (EntityNotFoundException e) {
+//            // expected
+//        }
+
+    }
+
+}

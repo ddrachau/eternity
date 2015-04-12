@@ -1,19 +1,58 @@
 package com.prodyna.pac.eternity.server.service;
 
-import com.prodyna.pac.eternity.server.entity.Project;
+import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsException;
+import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
+import com.prodyna.pac.eternity.server.model.Project;
 
 import javax.ejb.Local;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
+/**
+ * Basic service for operating on projects.
+ */
 @Local
 public interface ProjectService {
 
-    public Project create(Project project);
+    /**
+     * Creates a new project.
+     *
+     * @param project the project to create
+     * @return the created project with the generated id
+     * @throws ElementAlreadyExistsException if a project with the same identifier already exists
+     */
+    Project create(@NotNull Project project) throws ElementAlreadyExistsException;
 
-    public List<Project> findAll();
+    /**
+     * Searches for a single project.
+     *
+     * @param identifier the identifier to search for
+     * @return the found project or null if none was found
+     */
+    Project get(@NotNull String identifier);
 
-    public void update(Project abteilung);
+    /**
+     * Searches for all projects.
+     *
+     * @return a list of all found projects.
+     */
+    List<Project> findAll();
 
-    public void delete(Project abteilung);
+    /**
+     * Updates the given project in the database.
+     *
+     * @param project the project to be updated
+     * @return the updated project
+     * @throws ElementAlreadyExistsException if a project with the same identifier already exists
+     */
+    Project update(@NotNull Project project) throws ElementAlreadyExistsException;
+
+    /**
+     * Removes the given project from the database.
+     *
+     * @param identifier the project to be deleted
+     * @throws NoSuchElementException if the given project cannot be found
+     */
+    void delete(@NotNull String identifier) throws NoSuchElementException;
 
 }
