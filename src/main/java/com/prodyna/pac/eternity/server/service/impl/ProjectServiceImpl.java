@@ -110,6 +110,12 @@ public class ProjectServiceImpl implements ProjectService {
 
     }
 
+    @Override
+    public List<Project> findAllAssignedUser(User user) {
+        throw new UnsupportedOperationException();
+    }
+
+
     private Project getProject(Map<String, Object> values) {
 
         Project result = new Project();
@@ -123,10 +129,5 @@ public class ProjectServiceImpl implements ProjectService {
         result.setDescription(readDescription);
 
         return result;
-    }
-
-    @Override
-    public List<Project> findAllAssignedUser(User user) {
-        throw new UnsupportedOperationException();
     }
 }
