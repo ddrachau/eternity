@@ -33,7 +33,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Project create(@NotNull Project project) throws ElementAlreadyExistsException {
 
-        Project result = this.get(project.getIdentifer());
+        Project result = this.get(project.getIdentifier());
 
         if (result != null) {
             throw new ElementAlreadyExistsException();
@@ -43,7 +43,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         final Map<String, Object> queryResult = cypherService.querySingle(
                 QUERY_CREATE_PROJECT,
-                map(1, project.getId(), 2, project.getIdentifer(), 3, project.getDescription()));
+                map(1, project.getId(), 2, project.getIdentifier(), 3, project.getDescription()));
 
         return project;
 
@@ -84,13 +84,13 @@ public class ProjectServiceImpl implements ProjectService {
     public Project update(@NotNull Project project) throws NoSuchElementException, ElementAlreadyExistsException {
 
         // Check for already present project with the new identifier
-        Project check = this.get(project.getIdentifer());
+        Project check = this.get(project.getIdentifier());
         if (check != null && !check.getId().equals(project.getId())) {
             throw new ElementAlreadyExistsException();
         }
 
         final Map<String, Object> queryResult = cypherService.querySingle(
-                QUERY_UPDATE_PROJECT, map(1, project.getId(), 2, project.getIdentifer(), 3, project.getDescription()));
+                QUERY_UPDATE_PROJECT, map(1, project.getId(), 2, project.getIdentifier(), 3, project.getDescription()));
 
         if (queryResult == null) {
             throw new NoSuchElementException();
@@ -120,7 +120,7 @@ public class ProjectServiceImpl implements ProjectService {
         String readDescription = (String) values.get("p.description");
 
         result.setId(readId);
-        result.setIdentifer(readIdentifier);
+        result.setIdentifier(readIdentifier);
         result.setDescription(readDescription);
 
         return result;

@@ -77,7 +77,7 @@ public class ProjectServiceTest {
 
         Assert.assertSame(p, p2);
         Assert.assertNotNull(p2.getId());
-        Assert.assertEquals(identifier, p2.getIdentifer());
+        Assert.assertEquals(identifier, p2.getIdentifier());
         Assert.assertEquals(description, p2.getDescription());
 
     }
@@ -106,7 +106,7 @@ public class ProjectServiceTest {
 
         Project p = projectService.get(identifier);
         Assert.assertNotNull(p);
-        Assert.assertEquals(identifier, p.getIdentifer());
+        Assert.assertEquals(identifier, p.getIdentifier());
         Assert.assertEquals(description, p.getDescription());
 
     }
@@ -156,7 +156,7 @@ public class ProjectServiceTest {
         Project p = projectService.get(identifier);
         Assert.assertNotNull(p);
 
-        p.setIdentifer(newIdentifier);
+        p.setIdentifier(newIdentifier);
 
         projectService.update(p);
 
@@ -184,7 +184,7 @@ public class ProjectServiceTest {
         Project p = projectService.get(identifier);
 
         Assert.assertNotNull(p.getId());
-        Assert.assertEquals(identifier, p.getIdentifer());
+        Assert.assertEquals(identifier, p.getIdentifier());
 
         projectService.delete(identifier);
 
