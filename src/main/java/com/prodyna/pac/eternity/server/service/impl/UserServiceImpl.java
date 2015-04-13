@@ -9,8 +9,9 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
+
     @Override
-    public User create(@NotNull User project) throws ElementAlreadyExistsException {
+    public User create(@NotNull User user) throws ElementAlreadyExistsException {
         return null;
     }
 
@@ -25,7 +26,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(@NotNull User project) throws NoSuchElementException, ElementAlreadyExistsException {
+    public User update(@NotNull User user) throws NoSuchElementException, ElementAlreadyExistsException {
         return null;
     }
 

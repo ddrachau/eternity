@@ -1,6 +1,5 @@
 package com.prodyna.pac.eternity.server.arquillian;
 
-
 import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
 import com.prodyna.pac.eternity.server.model.Project;
@@ -12,18 +11,13 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 
 @RunWith(Arquillian.class)
 public class ProjectServiceTest {
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     @Deployment
     public static JavaArchive createDeployment() {

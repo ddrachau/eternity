@@ -29,6 +29,18 @@ public class User extends AbstractNode {
 
     }
 
+    public User(String id, String identifier, String forename, String surname, String password) {
+        super(id);
+        this.identifier = identifier;
+        this.forename = forename;
+        this.surname = surname;
+        this.password = password;
+    }
+
+    public User(String identifier, String forename, String surname, String password) {
+        this(null, identifier, forename, surname, password);
+    }
+
     /**
      * Basic Getter
      *
