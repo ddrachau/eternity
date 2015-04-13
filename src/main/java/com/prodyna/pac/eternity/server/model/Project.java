@@ -1,45 +1,81 @@
 package com.prodyna.pac.eternity.server.model;
 
-public class Project {
+/**
+ * A project is a representation of a real work project. Users can book times on it.
+ */
+public class Project extends AbstractNode {
 
-    private String id;
-    private String identifer;
+    /**
+     * the functional identifier for the project
+     */
+    private String identifier;
+    /**
+     * the description for the project
+     */
     private String description;
 
+    /**
+     * Empty default constructor *
+     */
     public Project() {
 
     }
 
-    public Project(String id, String identifer, String description) {
-        this.id = id;
-        this.identifer = identifer;
+    /**
+     * Creates a project and initialize the following properties:
+     *
+     * @param id          the technical identifier
+     * @param identifier  the functional identifier
+     * @param description the project description
+     */
+    public Project(String id, String identifier, String description) {
+        super(id);
+        this.identifier = identifier;
         this.description = description;
     }
 
-    public Project(String identifer, String description) {
-        this(null, identifer, description);
+    /**
+     * Creates a project and initialize the following properties:
+     *
+     * @param identifier  the functional identifier
+     * @param description the project description
+     */
+    public Project(String identifier, String description) {
+        this(null, identifier, description);
     }
 
-    public String getId() {
-        return id;
+    /**
+     * Basic Getter
+     *
+     * @return the identifier
+     */
+    public String getIdentifier() {
+        return identifier;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    /**
+     * Basic Setter
+     *
+     * @param identifier to be set
+     */
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 
-    public String getIdentifer() {
-        return identifer;
-    }
-
-    public void setIdentifer(String identifer) {
-        this.identifer = identifer;
-    }
-
+    /**
+     * Basic Getter
+     *
+     * @return the description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Basic Setter
+     *
+     * @param description to be set
+     */
     public void setDescription(String description) {
         this.description = description;
     }
@@ -51,22 +87,17 @@ public class Project {
 
         Project project = (Project) o;
 
-        if (id != project.id) return false;
-        if (identifer != null ? !identifer.equals(project.identifer) : project.identifer != null) return false;
-        return !(description != null ? !description.equals(project.description) : project.description != null);
+        if (description != null ? !description.equals(project.description) : project.description != null) return false;
+        if (!identifier.equals(project.identifier)) return false;
 
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return super.equals(o);
     }
 
     @Override
     public String toString() {
         return "Project{" +
-                "id=" + id +
-                ", identifer='" + identifer + '\'' +
+                "id='" + this.getId() + '\'' +
+                ", identifier='" + identifier + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }

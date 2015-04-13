@@ -1,41 +1,102 @@
 package com.prodyna.pac.eternity.server.model;
 
+/**
+ * Represents a person which can login to the system and book times or administer.
+ */
+public class User extends AbstractNode {
 
-public class User {
-
-    private String id;
+    /**
+     * the functional identifier for the user
+     */
+    private String identifier;
+    /**
+     * the forename of the user
+     */
     private String forename;
+    /**
+     * the surname of the user
+     */
     private String surname;
+    /**
+     * the password of the user
+     */
     private String password;
 
-    public String getId() {
-        return id;
+    /**
+     * Empty default constructor *
+     */
+    public User() {
+
     }
 
-    public void setId(String id) {
-        this.id = id;
+    /**
+     * Basic Getter
+     *
+     * @return the identifier
+     */
+    public String getIdentifier() {
+        return identifier;
     }
 
+    /**
+     * Basic Setter
+     *
+     * @param identifier to be set
+     */
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
+    }
+
+    /**
+     * Basic Getter
+     *
+     * @return the forename
+     */
     public String getForename() {
         return forename;
     }
 
+    /**
+     * Basic Setter
+     *
+     * @param forename to be set
+     */
     public void setForename(String forename) {
         this.forename = forename;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
+    /**
+     * Basic Getter
+     *
+     * @return the surname
+     */
     public String getSurname() {
         return surname;
     }
 
+    /**
+     * Basic Setter
+     *
+     * @param surname to be set
+     */
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    /**
+     * Basic Getter
+     *
+     * @return the password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Basic Setter
+     *
+     * @param password to be set
+     */
     public void setPassword(String password) {
         this.password = password;
     }
@@ -44,27 +105,27 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
         User user = (User) o;
 
-        if (!id.equals(user.id)) return false;
-        if (!forename.equals(user.forename)) return false;
-        if (!surname.equals(user.surname)) return false;
-        return !(password != null ? !password.equals(user.password) : user.password != null);
+        if (forename != null ? !forename.equals(user.forename) : user.forename != null) return false;
+        if (!identifier.equals(user.identifier)) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
 
-    }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
+        return super.equals(o);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id='" + id + '\'' +
+                "id='" + this.getId() + '\'' +
+                ", identifier='" + identifier + '\'' +
                 ", forename='" + forename + '\'' +
                 ", surname='" + surname + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
+
 }
