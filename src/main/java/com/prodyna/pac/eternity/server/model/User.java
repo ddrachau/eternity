@@ -29,6 +29,15 @@ public class User extends AbstractNode {
 
     }
 
+    /**
+     * Creates a user and initialize the following properties:
+     *
+     * @param id         the technical identifier
+     * @param identifier the functional identifier
+     * @param forename   the user's forename
+     * @param surname    the user's surname
+     * @param password   the user's password
+     */
     public User(String id, String identifier, String forename, String surname, String password) {
         super(id);
         this.identifier = identifier;
@@ -37,6 +46,14 @@ public class User extends AbstractNode {
         this.password = password;
     }
 
+    /**
+     * Creates a user and initialize the following properties:
+     *
+     * @param identifier the functional identifier
+     * @param forename   the user's forename
+     * @param surname    the user's surname
+     * @param password   the user's password
+     */
     public User(String identifier, String forename, String surname, String password) {
         this(null, identifier, forename, surname, password);
     }

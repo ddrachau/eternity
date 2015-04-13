@@ -21,12 +21,6 @@ import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
 @Stateless
 public class ProjectServiceImpl implements ProjectService {
 
-    private static final String QUERY_CREATE_PROJECT = "CREATE (p:Project {id:{1}, identifier:{2}, description:{3}}) RETURN p.id, p.identifier, p.description";
-    private static final String QUERY_GET_PROJECT_BY_IDENTIFIER = "MATCH (p:Project {identifier:{1}}) RETURN p.id, p.identifier, p.description";
-    private static final String QUERY_FIND_ALL_PROJECTS = "MATCH (p:Project) RETURN p.id, p.identifier, p.description";
-    private static final String QUERY_UPDATE_PROJECT = "MATCH (p:Project {id:{1}}) SET p.identifier={2}, p.description={3} RETURN p.id, p.identifier, p.description";
-    private static final String QUERY_DELETE_PROJECT_BY_IDENTIFIER = "MATCH (p:Project {identifier:{1}}) DELETE p";
-
     @Inject
     private CypherService cypherService;
 
@@ -42,7 +36,7 @@ public class ProjectServiceImpl implements ProjectService {
         project.setId(UUID.randomUUID().toString());
 
         final Map<String, Object> queryResult = cypherService.querySingle(
-                QUERY_CREATE_PROJECT,
+                "CREATE (p:Project {id:{1}, identifier:{2}, description:{3}}) RETURN p.id, p.identifier, p.description",
                 map(1, project.getId(), 2, project.getIdentifier(), 3, project.getDescription()));
 
         return project;
@@ -55,7 +49,8 @@ public class ProjectServiceImpl implements ProjectService {
         Project result = null;
 
         final Map<String, Object> queryResult = cypherService.querySingle(
-                QUERY_GET_PROJECT_BY_IDENTIFIER, map(1, identifier));
+                "MATCH (p:Project {identifier:{1}}) RETURN p.id, p.identifier, p.description",
+                map(1, identifier));
 
         if (queryResult != null) {
             result = this.getProject(queryResult);
@@ -71,7 +66,8 @@ public class ProjectServiceImpl implements ProjectService {
         List<Project> result = new ArrayList<>();
 
         final List<Map<String, Object>> queryResult = cypherService.query(
-                QUERY_FIND_ALL_PROJECTS, null);
+                "MATCH (p:Project) RETURN p.id, p.identifier, p.description",
+                null);
 
         for (Map<String, Object> values : queryResult) {
             result.add(this.getProject(values));
@@ -90,7 +86,8 @@ public class ProjectServiceImpl implements ProjectService {
         }
 
         final Map<String, Object> queryResult = cypherService.querySingle(
-                QUERY_UPDATE_PROJECT, map(1, project.getId(), 2, project.getIdentifier(), 3, project.getDescription()));
+                "MATCH (p:Project {id:{1}}) SET p.identifier={2}, p.description={3} RETURN p.id, p.identifier, p.description",
+                map(1, project.getId(), 2, project.getIdentifier(), 3, project.getDescription()));
 
         if (queryResult == null) {
             throw new NoSuchElementException();
@@ -103,11 +100,12 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void delete(@NotNull String identifier) throws NoSuchElementException {
 
-        if (cypherService.querySingle(QUERY_GET_PROJECT_BY_IDENTIFIER, map(1, identifier)) == null) {
+        if (this.get(identifier) == null) {
             throw new NoSuchElementException();
         }
 
-        cypherService.query(QUERY_DELETE_PROJECT_BY_IDENTIFIER, map(1, identifier));
+        cypherService.query("MATCH (p:Project {identifier:{1}}) DELETE p",
+                map(1, identifier));
 
     }
 

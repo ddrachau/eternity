@@ -38,13 +38,10 @@ public class UserServiceTest {
         // clean DB from nodes and relations
         cypherService.query("MATCH(n) OPTIONAL MATCH (n)-[r]-() DELETE n,r", null);
 
-        userService.create(new User("khansen","Knut","Hansen","pw"));
-//        projectService.create(new Project("P00843", "IT-/Prozessharmonisierung im Handel"));
-//        projectService.create(new Project("P00998", "Bosch - ST-IPP"));
-//        projectService.create(new Project("P01110", "Glory Times"));
-//        projectService.create(new Project("P01244", "Phoenix Classic"));
-//        projectService.create(new Project("P01140", "Liferay Unterstützung"));
+        userService.create(new User("khansen", "Knut", "Hansen", "pw"));
+        userService.create(new User("aeich", "Alexanger", null, "pw2"));
 
+        // TODO test create with null values
     }
 
 //    @Test
