@@ -130,7 +130,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAllAssignedToProject(Project project) {
-        return null;
+
+        return new ArrayList<>();
+
     }
 
     private User getUser(Map<String, Object> values) {

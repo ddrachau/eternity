@@ -6,6 +6,7 @@ import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.CypherService;
 import com.prodyna.pac.eternity.server.service.ProjectService;
+import com.prodyna.pac.eternity.server.service.UserService;
 import junit.framework.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -31,10 +32,13 @@ public class ProjectServiceTest {
     }
 
     @Inject
+    private CypherService cypherService;
+
+    @Inject
     private ProjectService projectService;
 
     @Inject
-    private CypherService cypherService;
+    private UserService userService;
 
     @Test
     @InSequence(1)
@@ -43,12 +47,28 @@ public class ProjectServiceTest {
         // clean DB from nodes and relations
         cypherService.query("MATCH(n) OPTIONAL MATCH (n)-[r]-() DELETE n,r", null);
 
-        projectService.create(new Project("P00754", "KiBucDu Final (Phase II)"));
-        projectService.create(new Project("P00843", "IT-/Prozessharmonisierung im Handel"));
-        projectService.create(new Project("P00998", "Bosch - ST-IPP"));
-        projectService.create(new Project("P01110", "Glory Times"));
-        projectService.create(new Project("P01244", "Phoenix Classic"));
+        Project project1 = new Project("P00754", "KiBucDu Final (Phase II)");
+        Project project2 = new Project("P00843", "IT-/Prozessharmonisierung im Handel");
+        Project project3 = new Project("P00998", "Bosch - ST-IPP");
+        Project project4 = new Project("P01110", "Glory Times");
+        Project project5 = new Project("P01244", "Phoenix Classic");
+        projectService.create(project1);
+        projectService.create(project2);
+        projectService.create(project3);
+        projectService.create(project4);
+        projectService.create(project5);
         projectService.create(new Project("P01140", "Liferay Unterstützung"));
+
+        User user1 = new User("khansen", "Knut", "Hansen", "pw");
+        User user2 = new User("aeich", "Alexander", null, "pw2");
+        User user3 = new User("rvoeller", "Rudi", "Völler", "pw3");
+        userService.create(user1);
+        userService.create(user2);
+        userService.create(user3);
+
+        userService.assignUserToProject(user1, project1);
+        userService.assignUserToProject(user1, project2);
+        userService.assignUserToProject(user2, project1);
 
     }
 
@@ -206,7 +226,16 @@ public class ProjectServiceTest {
     @InSequence(12)
     public void testFindAllAssignedUser() {
 
-        Assert.fail("not implemented");
+        User user1 = userService.get("khansen");
+        User user2 = userService.get("aeich");
+        User user3 = userService.get("rvoeller");
+
+        Assert.assertEquals(2, projectService.findAllAssignedToUser(user1).size());
+        List<Project> list = projectService.findAllAssignedToUser(user2);
+        Assert.assertEquals(1, list.size());
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user3).size());
+
+        Assert.assertEquals("P00843", list.get(0).getIdentifier());
 
     }
 

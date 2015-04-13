@@ -5,6 +5,7 @@ import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.CypherService;
+import com.prodyna.pac.eternity.server.service.ProjectService;
 import com.prodyna.pac.eternity.server.service.UserService;
 import junit.framework.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -31,10 +32,14 @@ public class UserServiceTest {
     }
 
     @Inject
+    private CypherService cypherService;
+
+    @Inject
     private UserService userService;
 
     @Inject
-    private CypherService cypherService;
+    private ProjectService projectService;
+
 
     @Test
     @InSequence(1)
@@ -43,10 +48,31 @@ public class UserServiceTest {
         // clean DB from nodes and relations
         cypherService.query("MATCH(n) OPTIONAL MATCH (n)-[r]-() DELETE n,r", null);
 
-        userService.create(new User("khansen", "Knut", "Hansen", "pw"));
-        userService.create(new User("aeich", "Alexander", null, "pw2"));
-        userService.create(new User("rvoeller", "Rudi", "Völler", "pw3"));
-        userService.create(new User("bborg", "Bjönr", "Borg", "pw"));
+        User user1 = new User("khansen", "Knut", "Hansen", "pw");
+        User user2 = new User("aeich", "Alexander", null, "pw2");
+        User user3 = new User("rvoeller", "Rudi", "Völler", "pw3");
+        User user4 = new User("bborg", "Björn", "Borg", "pw");
+        User user5 = new User("hmeiser", "Hans", "Meiser", "pw");
+        userService.create(user1);
+        userService.create(user2);
+        userService.create(user3);
+        userService.create(user4);
+        userService.create(user5);
+
+        Project project1 = new Project("P00754", "KiBucDu Final (Phase II)");
+        Project project2 = new Project("P00843", "IT-/Prozessharmonisierung im Handel");
+        Project project3 = new Project("P00998", "Bosch - ST-IPP");
+        Project project4 = new Project("P01110", "Glory Times");
+        Project project5 = new Project("P01244", "Phoenix Classic");
+        projectService.create(project1);
+        projectService.create(project2);
+        projectService.create(project3);
+        projectService.create(project4);
+        projectService.create(project5);
+
+        userService.assignUserToProject(user1, project1);
+        userService.assignUserToProject(user2, project1);
+        userService.assignUserToProject(user2, project2);
 
     }
 
@@ -208,25 +234,123 @@ public class UserServiceTest {
 
     @Test
     @InSequence(12)
-    public void testAssignUserToProject() throws NoSuchElementException {
+    public void testFindAllAssignedToProject() throws NoSuchElementException {
 
-        Assert.fail("not implemented");
+        Project project1 = projectService.get("P00754");
+        Project project2 = projectService.get("P00843");
+        Project project3 = projectService.get("P00998");
 
+        Assert.assertEquals(2, userService.findAllAssignedToProject(project1).size());
+        List<User> list = userService.findAllAssignedToProject(project2);
+        Assert.assertEquals(1, list.size());
+        Assert.assertEquals(0, userService.findAllAssignedToProject(project3).size());
+
+        Assert.assertEquals("aeich", list.get(0).getIdentifier());
     }
 
     @Test
     @InSequence(13)
-    public void testUnassignUserFromProject() throws NoSuchElementException {
+    public void testAssignUserToProject() throws NoSuchElementException {
 
-        Assert.fail("not implemented");
+        Project project3 = projectService.get("P00998");
+        Project project4 = projectService.get("P01110");
+        User user3 = userService.get("rvoeller");
+        User user4 = userService.get("bborg");
+
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user3).size());
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user4).size());
+        Assert.assertEquals(0, userService.findAllAssignedToProject(project3).size());
+        Assert.assertEquals(0, userService.findAllAssignedToProject(project4).size());
+
+        userService.assignUserToProject(user3, project3);
+        Assert.assertEquals(1, projectService.findAllAssignedToUser(user3).size());
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user4).size());
+        Assert.assertEquals(1, userService.findAllAssignedToProject(project3).size());
+        Assert.assertEquals(0, userService.findAllAssignedToProject(project4).size());
+
+        userService.assignUserToProject(user4, project3);
+        Assert.assertEquals(1, projectService.findAllAssignedToUser(user3).size());
+        Assert.assertEquals(1, projectService.findAllAssignedToUser(user4).size());
+        Assert.assertEquals(2, userService.findAllAssignedToProject(project3).size());
+        Assert.assertEquals(0, userService.findAllAssignedToProject(project4).size());
+
+        userService.assignUserToProject(user3, project4);
+        Assert.assertEquals(2, projectService.findAllAssignedToUser(user3).size());
+        Assert.assertEquals(1, projectService.findAllAssignedToUser(user4).size());
+        Assert.assertEquals(2, userService.findAllAssignedToProject(project3).size());
+        Assert.assertEquals(1, userService.findAllAssignedToProject(project4).size());
 
     }
 
     @Test
     @InSequence(14)
-    public void testFindAllAssignedToProject() throws NoSuchElementException {
+    public void testAssignUserToProjectAlreadyUnassigned() throws NoSuchElementException {
 
-        Assert.fail("not implemented");
+        Project project5 = projectService.get("P01244");
+        User user5 = userService.get("hmeiser");
+
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user5).size());
+        Assert.assertEquals(0, userService.findAllAssignedToProject(project5).size());
+        userService.assignUserToProject(user5, project5);
+
+        Assert.assertEquals(1, projectService.findAllAssignedToUser(user5).size());
+        Assert.assertEquals(1, userService.findAllAssignedToProject(project5).size());
+
+        userService.assignUserToProject(user5, project5);
+        Assert.fail("assign a project twice to an user should not be possible");
+
+    }
+
+    @Test
+    @InSequence(15)
+    public void testUnassignUserFromProject() throws NoSuchElementException {
+
+        Project project3 = projectService.get("P00998");
+        Project project4 = projectService.get("P01110");
+        User user3 = userService.get("rvoeller");
+        User user4 = userService.get("bborg");
+
+        Assert.assertEquals(2, projectService.findAllAssignedToUser(user3).size());
+        Assert.assertEquals(1, projectService.findAllAssignedToUser(user4).size());
+        Assert.assertEquals(2, userService.findAllAssignedToProject(project3).size());
+        Assert.assertEquals(1, userService.findAllAssignedToProject(project4).size());
+
+        userService.unassignUserFromProject(user3, project3);
+        Assert.assertEquals(1, projectService.findAllAssignedToUser(user3).size());
+        Assert.assertEquals(1, projectService.findAllAssignedToUser(user4).size());
+        Assert.assertEquals(1, userService.findAllAssignedToProject(project3).size());
+        Assert.assertEquals(1, userService.findAllAssignedToProject(project4).size());
+
+        userService.unassignUserFromProject(user3, project4);
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user3).size());
+        Assert.assertEquals(1, projectService.findAllAssignedToUser(user4).size());
+        Assert.assertEquals(1, userService.findAllAssignedToProject(project3).size());
+        Assert.assertEquals(0, userService.findAllAssignedToProject(project4).size());
+
+        userService.unassignUserFromProject(user4, project3);
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user3).size());
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user4).size());
+        Assert.assertEquals(0, userService.findAllAssignedToProject(project3).size());
+        Assert.assertEquals(0, userService.findAllAssignedToProject(project4).size());
+
+    }
+
+    @Test
+    @InSequence(16)
+    public void testUnassignUserFromProjectAlreadyUnassigned() throws NoSuchElementException {
+
+        Project project3 = projectService.get("P00998");
+        Project project4 = projectService.get("P01110");
+        User user3 = userService.get("rvoeller");
+        User user4 = userService.get("bborg");
+
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user3).size());
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user4).size());
+        Assert.assertEquals(0, userService.findAllAssignedToProject(project3).size());
+        Assert.assertEquals(0, userService.findAllAssignedToProject(project4).size());
+
+        userService.unassignUserFromProject(user4, project3);
+        Assert.fail("unassign a user from a not assigned project should not be possible");
 
     }
 

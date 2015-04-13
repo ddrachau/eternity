@@ -111,8 +111,10 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Project> findAllAssignedUser(User user) {
-        throw new UnsupportedOperationException();
+    public List<Project> findAllAssignedToUser(User user) {
+
+        return new ArrayList<>();
+
     }
 
 
