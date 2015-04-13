@@ -62,16 +62,18 @@ public interface UserService {
      *
      * @param user    the user to be assigned
      * @param project the target project
+     * @throws NoSuchElementException if the given user or project cannot be found
      */
-    void assignUserToProject(User user, Project project);
+    void assignUserToProject(User user, Project project) throws NoSuchElementException;
 
     /**
      * Unassign the given project from the given user.
      *
      * @param user    the user to be unassigned
      * @param project the target project
+     * @throws NoSuchElementException if the given user or project cannot be found
      */
-    void unassignUserFromProject(User user, Project project);
+    void unassignUserFromProject(User user, Project project) throws NoSuchElementException;
 
     /**
      * Search for all the users assigned to the given project.

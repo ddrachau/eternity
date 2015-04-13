@@ -113,7 +113,18 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<Project> findAllAssignedToUser(User user) {
 
-        return new ArrayList<>();
+        List<Project> result = new ArrayList<>();
+
+        final List<Map<String, Object>> queryResult = cypherService.query(
+                "MATCH (p:Project)<-[:ASSIGNED_TO]-(u:User {identifier:{1}}) " +
+                        "RETURN p.id, p.identifier, p.description",
+                map(1, user.getIdentifier()));
+
+        for (Map<String, Object> values : queryResult) {
+            result.add(this.getProject(values));
+        }
+
+        return result;
 
     }
 

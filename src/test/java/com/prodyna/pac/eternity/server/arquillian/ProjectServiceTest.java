@@ -235,7 +235,7 @@ public class ProjectServiceTest {
         Assert.assertEquals(1, list.size());
         Assert.assertEquals(0, projectService.findAllAssignedToUser(user3).size());
 
-        Assert.assertEquals("P00843", list.get(0).getIdentifier());
+        Assert.assertEquals("P00754", list.get(0).getIdentifier());
 
     }
 

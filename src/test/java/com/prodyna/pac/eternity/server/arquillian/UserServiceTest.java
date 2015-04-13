@@ -53,11 +53,13 @@ public class UserServiceTest {
         User user3 = new User("rvoeller", "Rudi", "Völler", "pw3");
         User user4 = new User("bborg", "Björn", "Borg", "pw");
         User user5 = new User("hmeiser", "Hans", "Meiser", "pw");
+        User user6 = new User("ttester", "Test", "Tester", "pw");
         userService.create(user1);
         userService.create(user2);
         userService.create(user3);
         userService.create(user4);
         userService.create(user5);
+        userService.create(user6);
 
         Project project1 = new Project("P00754", "KiBucDu Final (Phase II)");
         Project project2 = new Project("P00843", "IT-/Prozessharmonisierung im Handel");
@@ -79,7 +81,7 @@ public class UserServiceTest {
     @Test
     @InSequence(2)
     public void testGetAllUsers() {
-        Assert.assertEquals(4, userService.findAll().size());
+        Assert.assertEquals(6, userService.findAll().size());
     }
 
     @Test
@@ -254,28 +256,28 @@ public class UserServiceTest {
 
         Project project3 = projectService.get("P00998");
         Project project4 = projectService.get("P01110");
-        User user3 = userService.get("rvoeller");
+        User user6 = userService.get("ttester");
         User user4 = userService.get("bborg");
 
-        Assert.assertEquals(0, projectService.findAllAssignedToUser(user3).size());
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user6).size());
         Assert.assertEquals(0, projectService.findAllAssignedToUser(user4).size());
         Assert.assertEquals(0, userService.findAllAssignedToProject(project3).size());
         Assert.assertEquals(0, userService.findAllAssignedToProject(project4).size());
 
-        userService.assignUserToProject(user3, project3);
-        Assert.assertEquals(1, projectService.findAllAssignedToUser(user3).size());
+        userService.assignUserToProject(user6, project3);
+        Assert.assertEquals(1, projectService.findAllAssignedToUser(user6).size());
         Assert.assertEquals(0, projectService.findAllAssignedToUser(user4).size());
         Assert.assertEquals(1, userService.findAllAssignedToProject(project3).size());
         Assert.assertEquals(0, userService.findAllAssignedToProject(project4).size());
 
         userService.assignUserToProject(user4, project3);
-        Assert.assertEquals(1, projectService.findAllAssignedToUser(user3).size());
+        Assert.assertEquals(1, projectService.findAllAssignedToUser(user6).size());
         Assert.assertEquals(1, projectService.findAllAssignedToUser(user4).size());
         Assert.assertEquals(2, userService.findAllAssignedToProject(project3).size());
         Assert.assertEquals(0, userService.findAllAssignedToProject(project4).size());
 
-        userService.assignUserToProject(user3, project4);
-        Assert.assertEquals(2, projectService.findAllAssignedToUser(user3).size());
+        userService.assignUserToProject(user6, project4);
+        Assert.assertEquals(2, projectService.findAllAssignedToUser(user6).size());
         Assert.assertEquals(1, projectService.findAllAssignedToUser(user4).size());
         Assert.assertEquals(2, userService.findAllAssignedToProject(project3).size());
         Assert.assertEquals(1, userService.findAllAssignedToProject(project4).size());
@@ -297,7 +299,8 @@ public class UserServiceTest {
         Assert.assertEquals(1, userService.findAllAssignedToProject(project5).size());
 
         userService.assignUserToProject(user5, project5);
-        Assert.fail("assign a project twice to an user should not be possible");
+        Assert.assertEquals(1, projectService.findAllAssignedToUser(user5).size());
+        Assert.assertEquals(1, userService.findAllAssignedToProject(project5).size());
 
     }
 
@@ -307,28 +310,28 @@ public class UserServiceTest {
 
         Project project3 = projectService.get("P00998");
         Project project4 = projectService.get("P01110");
-        User user3 = userService.get("rvoeller");
+        User user6 = userService.get("ttester");
         User user4 = userService.get("bborg");
 
-        Assert.assertEquals(2, projectService.findAllAssignedToUser(user3).size());
+        Assert.assertEquals(2, projectService.findAllAssignedToUser(user6).size());
         Assert.assertEquals(1, projectService.findAllAssignedToUser(user4).size());
         Assert.assertEquals(2, userService.findAllAssignedToProject(project3).size());
         Assert.assertEquals(1, userService.findAllAssignedToProject(project4).size());
 
-        userService.unassignUserFromProject(user3, project3);
-        Assert.assertEquals(1, projectService.findAllAssignedToUser(user3).size());
+        userService.unassignUserFromProject(user6, project3);
+        Assert.assertEquals(1, projectService.findAllAssignedToUser(user6).size());
         Assert.assertEquals(1, projectService.findAllAssignedToUser(user4).size());
         Assert.assertEquals(1, userService.findAllAssignedToProject(project3).size());
         Assert.assertEquals(1, userService.findAllAssignedToProject(project4).size());
 
-        userService.unassignUserFromProject(user3, project4);
-        Assert.assertEquals(0, projectService.findAllAssignedToUser(user3).size());
+        userService.unassignUserFromProject(user6, project4);
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user6).size());
         Assert.assertEquals(1, projectService.findAllAssignedToUser(user4).size());
         Assert.assertEquals(1, userService.findAllAssignedToProject(project3).size());
         Assert.assertEquals(0, userService.findAllAssignedToProject(project4).size());
 
         userService.unassignUserFromProject(user4, project3);
-        Assert.assertEquals(0, projectService.findAllAssignedToUser(user3).size());
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user6).size());
         Assert.assertEquals(0, projectService.findAllAssignedToUser(user4).size());
         Assert.assertEquals(0, userService.findAllAssignedToProject(project3).size());
         Assert.assertEquals(0, userService.findAllAssignedToProject(project4).size());
@@ -341,16 +344,19 @@ public class UserServiceTest {
 
         Project project3 = projectService.get("P00998");
         Project project4 = projectService.get("P01110");
-        User user3 = userService.get("rvoeller");
+        User user6 = userService.get("ttester");
         User user4 = userService.get("bborg");
 
-        Assert.assertEquals(0, projectService.findAllAssignedToUser(user3).size());
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user6).size());
         Assert.assertEquals(0, projectService.findAllAssignedToUser(user4).size());
         Assert.assertEquals(0, userService.findAllAssignedToProject(project3).size());
         Assert.assertEquals(0, userService.findAllAssignedToProject(project4).size());
 
         userService.unassignUserFromProject(user4, project3);
-        Assert.fail("unassign a user from a not assigned project should not be possible");
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user6).size());
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user4).size());
+        Assert.assertEquals(0, userService.findAllAssignedToProject(project3).size());
+        Assert.assertEquals(0, userService.findAllAssignedToProject(project4).size());
 
     }
 

@@ -6,6 +6,7 @@ import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.AuthenticationService;
 import com.prodyna.pac.eternity.server.service.CypherService;
+import com.prodyna.pac.eternity.server.service.ProjectService;
 import com.prodyna.pac.eternity.server.service.UserService;
 
 import javax.inject.Inject;
@@ -21,6 +22,9 @@ public class UserServiceImpl implements UserService {
 
     @Inject
     private CypherService cypherService;
+
+    @Inject
+    private ProjectService projectService;
 
     @Inject
     private AuthenticationService authenticationService;
@@ -119,19 +123,60 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void assignUserToProject(User user, Project project) {
+    public void assignUserToProject(User user, Project project) throws NoSuchElementException {
+
+        String query = "MATCH (u:User {identifier:{1}}),(p:Project {identifier:{2}}) " +
+                "CREATE UNIQUE (u)-[:ASSIGNED_TO]->(p)";
+        this.assignQuery(query, user, project);
 
     }
 
     @Override
-    public void unassignUserFromProject(User user, Project project) {
+    public void unassignUserFromProject(User user, Project project) throws NoSuchElementException {
+
+        String query = "MATCH (u:User {identifier:{1}})-[a:ASSIGNED_TO]->(p:Project {identifier:{2}}) " +
+                "DELETE a";
+        this.assignQuery(query, user, project);
+
+    }
+
+    /**
+     * Helper method to reuse the code for assign and unassign user from and to projects
+     *
+     * @param query   the concrete query to execute
+     * @param user    the user of the assignment
+     * @param project the project of the assignment
+     * @throws NoSuchElementException if the given user or project cannot be found
+     */
+    private void assignQuery(String query, User user, Project project) throws NoSuchElementException {
+
+        user = this.get(user.getIdentifier());
+        project = projectService.get(project.getIdentifier());
+
+        if (user == null || project == null) {
+            throw new NoSuchElementException("user or project unknown");
+        }
+
+        final Map<String, Object> queryResult = cypherService.querySingle(
+                query, map(1, user.getIdentifier(), 2, project.getIdentifier()));
 
     }
 
     @Override
     public List<User> findAllAssignedToProject(Project project) {
 
-        return new ArrayList<>();
+        List<User> result = new ArrayList<>();
+
+        final List<Map<String, Object>> queryResult = cypherService.query(
+                "MATCH (u:User)-[:ASSIGNED_TO]->(p:Project {identifier:{1}}) " +
+                        "RETURN u.id, u.identifier, u.forename, u.surname",
+                map(1, project.getIdentifier()));
+
+        for (Map<String, Object> values : queryResult) {
+            result.add(this.getUser(values));
+        }
+
+        return result;
 
     }
 
