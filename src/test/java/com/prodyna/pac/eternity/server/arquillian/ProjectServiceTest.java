@@ -3,6 +3,7 @@ package com.prodyna.pac.eternity.server.arquillian;
 import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
 import com.prodyna.pac.eternity.server.model.Project;
+import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.CypherService;
 import com.prodyna.pac.eternity.server.service.ProjectService;
 import junit.framework.Assert;
@@ -15,6 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @RunWith(Arquillian.class)
 public class ProjectServiceTest {
@@ -52,13 +54,13 @@ public class ProjectServiceTest {
 
     @Test
     @InSequence(2)
-    public void getAllProjects() {
+    public void testGetAllProjects() {
         Assert.assertEquals(6, projectService.findAll().size());
     }
 
     @Test
     @InSequence(3)
-    public void createProject() throws Exception {
+    public void testCreateProject() throws Exception {
 
         String identifier = "new Project";
         String description = "new description";
@@ -78,7 +80,7 @@ public class ProjectServiceTest {
 
     @Test(expected = ElementAlreadyExistsException.class)
     @InSequence(4)
-    public void createProjectWhichExists() throws ElementAlreadyExistsException {
+    public void testCreateProjectWhichExists() throws ElementAlreadyExistsException {
 
         String identifier = "new Project2";
         String description = "new description2";
@@ -93,7 +95,7 @@ public class ProjectServiceTest {
 
     @Test
     @InSequence(5)
-    public void getProject() {
+    public void testGetProject() {
 
         String identifier = "P00754";
         String description = "KiBucDu Final (Phase II)";
@@ -107,7 +109,7 @@ public class ProjectServiceTest {
 
     @Test
     @InSequence(6)
-    public void getProjectUnknown() {
+    public void testGetProjectUnknown() {
 
         Assert.assertNull(projectService.get("unknownId"));
 
@@ -115,8 +117,7 @@ public class ProjectServiceTest {
 
     @Test
     @InSequence(7)
-    public void updateProject() throws ElementAlreadyExistsException, NoSuchElementException {
-
+    public void testUpdateProject() throws ElementAlreadyExistsException, NoSuchElementException {
 
         String identifier = "P00754";
         String description = "KiBucDu Final (Phase II)";
@@ -142,7 +143,7 @@ public class ProjectServiceTest {
 
     @Test(expected = ElementAlreadyExistsException.class)
     @InSequence(8)
-    public void updateProjectExistingIdentifier() throws ElementAlreadyExistsException, NoSuchElementException {
+    public void testUpdateProjectExistingIdentifier() throws ElementAlreadyExistsException, NoSuchElementException {
 
         String identifier = "P00754";
         String newIdentifier = "P00843";
@@ -160,7 +161,7 @@ public class ProjectServiceTest {
 
     @Test(expected = NoSuchElementException.class)
     @InSequence(9)
-    public void updateProjectNonExistingNode() throws ElementAlreadyExistsException, NoSuchElementException {
+    public void testUpdateProjectNonExistingNode() throws ElementAlreadyExistsException, NoSuchElementException {
 
         Project p = new Project("unknow", "P00755", "desc");
         projectService.update(p);
@@ -171,7 +172,7 @@ public class ProjectServiceTest {
 
     @Test
     @InSequence(10)
-    public void deleteProject() throws NoSuchElementException {
+    public void testDeleteProject() throws NoSuchElementException {
 
         String identifier = "P01244";
 
@@ -188,7 +189,7 @@ public class ProjectServiceTest {
 
     @Test(expected = NoSuchElementException.class)
     @InSequence(11)
-    public void deleteProjectNoSuchProject() throws NoSuchElementException {
+    public void testDeleteProjectNoSuchProject() throws NoSuchElementException {
 
         String identifier = "P01244";
 
@@ -198,6 +199,14 @@ public class ProjectServiceTest {
 
         projectService.delete(identifier);
         Assert.fail("Node should not be present any more");
+
+    }
+
+    @Test()
+    @InSequence(12)
+    public void testFindAllAssignedUser() {
+
+        Assert.fail("not implemented");
 
     }
 

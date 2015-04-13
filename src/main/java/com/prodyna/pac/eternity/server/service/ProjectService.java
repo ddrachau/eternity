@@ -3,6 +3,7 @@ package com.prodyna.pac.eternity.server.service;
 import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
 import com.prodyna.pac.eternity.server.model.Project;
+import com.prodyna.pac.eternity.server.model.User;
 
 import javax.ejb.Local;
 import javax.validation.constraints.NotNull;
@@ -55,5 +56,13 @@ public interface ProjectService {
      * @throws NoSuchElementException if the given project cannot be found
      */
     void delete(@NotNull String identifier) throws NoSuchElementException;
+
+    /**
+     * Search for all the projects a user is assigned to.
+     *
+     * @param user the source user
+     * @return projects which are assigned to the user
+     */
+    List<Project> findAllAssignedUser(User user);
 
 }

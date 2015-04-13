@@ -1,5 +1,8 @@
 package com.prodyna.pac.eternity.server.arquillian;
 
+import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsException;
+import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
+import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.CypherService;
 import com.prodyna.pac.eternity.server.service.UserService;
@@ -13,6 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @RunWith(Arquillian.class)
 public class UserServiceTest {
@@ -40,160 +44,190 @@ public class UserServiceTest {
         cypherService.query("MATCH(n) OPTIONAL MATCH (n)-[r]-() DELETE n,r", null);
 
         userService.create(new User("khansen", "Knut", "Hansen", "pw"));
-        userService.create(new User("aeich", "Alexanger", null, "pw2"));
+        userService.create(new User("aeich", "Alexander", null, "pw2"));
+        userService.create(new User("rvoeller", "Rudi", "Völler", "pw3"));
+        userService.create(new User("bborg", "Bjönr", "Borg", "pw"));
 
-        // TODO test create with null values
     }
 
     @Test
     @InSequence(2)
-    public void getAllProjects() {
-        Assert.assertEquals(6, userService.findAll().size());
+    public void testGetAllUsers() {
+        Assert.assertEquals(4, userService.findAll().size());
     }
 
     @Test
     @InSequence(3)
-    public void createProject() throws Exception {
+    public void testCreateUser() throws Exception {
 
-        String identifier = "new Project";
-        String description = "new description";
+        String identifier = "ddemo";
+        String forename = "Dirk";
+        String surname = "Demo";
 
-        Project p = new Project(identifier, description);
+        User u = new User(identifier, forename, surname, "pw");
 
-        Assert.assertNull(p.getId());
+        Assert.assertNull(u.getId());
 
-        Project p2 = projectService.create(p);
+        User u2 = userService.create(u);
 
-        Assert.assertSame(p, p2);
-        Assert.assertNotNull(p2.getId());
-        Assert.assertEquals(identifier, p2.getIdentifier());
-        Assert.assertEquals(description, p2.getDescription());
+        Assert.assertSame(u, u2);
+        Assert.assertNotNull(u2.getId());
+        Assert.assertEquals(identifier, u2.getIdentifier());
+        Assert.assertEquals(forename, u2.getForename());
+        Assert.assertEquals(surname, u2.getSurname());
 
     }
-//
-//    @Test(expected = ElementAlreadyExistsException.class)
-//    @InSequence(4)
-//    public void createProjectWhichExists() throws ElementAlreadyExistsException {
-//
-//        String identifier = "new Project2";
-//        String description = "new description2";
-//
-//        Project p = new Project(identifier, description);
-//
-//        projectService.create(p);
-//        projectService.create(p);
-//        Assert.fail("Unique constraint has to prohibit the creation");
-//
-//    }
-//
-//    @Test
-//    @InSequence(5)
-//    public void getProject() {
-//
-//        String identifier = "P00754";
-//        String description = "KiBucDu Final (Phase II)";
-//
-//        Project p = projectService.get(identifier);
-//        Assert.assertNotNull(p);
-//        Assert.assertEquals(identifier, p.getIdentifier());
-//        Assert.assertEquals(description, p.getDescription());
-//
-//    }
-//
-//    @Test
-//    @InSequence(6)
-//    public void getProjectUnknown() {
-//
-//        Assert.assertNull(projectService.get("unknownId"));
-//
-//    }
-//
-//    @Test
-//    @InSequence(7)
-//    public void updateProject() throws ElementAlreadyExistsException, NoSuchElementException {
-//
-//
-//        String identifier = "P00754";
-//        String description = "KiBucDu Final (Phase II)";
-//        String newDescription = "demo";
-//
-//        Project p = projectService.get(identifier);
-//        Assert.assertNotNull(p);
-//
-//        Assert.assertEquals(description, p.getDescription());
-//        p.setDescription(newDescription);
-//
-//        p = projectService.update(p);
-//
-//        Assert.assertNotNull(p);
-//        Assert.assertEquals(newDescription, p.getDescription());
-//
-//        p = projectService.get(identifier);
-//
-//        Assert.assertNotNull(p);
-//        Assert.assertEquals(newDescription, p.getDescription());
-//
-//    }
-//
-//    @Test(expected = ElementAlreadyExistsException.class)
-//    @InSequence(8)
-//    public void updateProjectExistingIdentifier() throws ElementAlreadyExistsException, NoSuchElementException {
-//
-//        String identifier = "P00754";
-//        String newIdentifier = "P00843";
-//
-//        Project p = projectService.get(identifier);
-//        Assert.assertNotNull(p);
-//
-//        p.setIdentifier(newIdentifier);
-//
-//        projectService.update(p);
-//
-//        Assert.fail("Changing to an already present identifier should not be possible");
-//
-//    }
-//
-//    @Test(expected = NoSuchElementException.class)
-//    @InSequence(9)
-//    public void updateProjectNonExistingNode() throws ElementAlreadyExistsException, NoSuchElementException {
-//
-//        Project p = new Project("unknow", "P00755", "desc");
-//        projectService.update(p);
-//
-//        Assert.fail("Changing an not present element should not be possible");
-//
-//    }
-//
-//    @Test
-//    @InSequence(10)
-//    public void deleteProject() throws NoSuchElementException {
-//
-//        String identifier = "P01244";
-//
-//        Project p = projectService.get(identifier);
-//
-//        Assert.assertNotNull(p.getId());
-//        Assert.assertEquals(identifier, p.getIdentifier());
-//
-//        projectService.delete(identifier);
-//
-//        Assert.assertNull(projectService.get(identifier));
-//
-//    }
-//
-//    @Test(expected = NoSuchElementException.class)
-//    @InSequence(11)
-//    public void deleteProjectNoSuchProject() throws NoSuchElementException {
-//
-//        String identifier = "P01244";
-//
-//        Project p = projectService.get(identifier);
-//
-//        Assert.assertNull(p);
-//
-//        projectService.delete(identifier);
-//        Assert.fail("Node should not be present any more");
-//
-//    }
+
+    @Test(expected = ElementAlreadyExistsException.class)
+    @InSequence(4)
+    public void testCreateUserWhichExists() throws ElementAlreadyExistsException {
+
+        String identifier = "new identifier";
+
+        User u = new User(identifier, null, null, null);
+
+        userService.create(u);
+        userService.create(u);
+        Assert.fail("Unique constraint has to prohibit the creation");
+
+    }
+
+    @Test
+    @InSequence(5)
+    public void testGetUser() {
+
+        String identifier = "ddemo";
+        String forename = "Dirk";
+        String surname = "Demo";
+
+        User u = userService.get(identifier);
+        Assert.assertNotNull(u);
+        Assert.assertEquals(identifier, u.getIdentifier());
+        Assert.assertEquals(identifier, u.getIdentifier());
+        Assert.assertEquals(forename, u.getForename());
+        Assert.assertEquals(surname, u.getSurname());
+
+    }
+
+    @Test
+    @InSequence(6)
+    public void testGetUserUnknown() {
+
+        Assert.assertNull(userService.get("unknownId"));
+
+    }
+
+    @Test
+    @InSequence(7)
+    public void testUpdateUser() throws ElementAlreadyExistsException, NoSuchElementException {
+
+        String identifier = "aeich";
+        String forename = "Alexander";
+        String newForename = "Alexandar";
+
+        User u = userService.get(identifier);
+        Assert.assertNotNull(u);
+
+        Assert.assertEquals(forename, u.getForename());
+        Assert.assertNull(u.getSurname());
+        u.setForename(newForename);
+
+        u = userService.update(u);
+
+        Assert.assertNotNull(u);
+        Assert.assertEquals(newForename, u.getForename());
+
+        u = userService.get(identifier);
+
+        Assert.assertNotNull(u);
+        Assert.assertEquals(newForename, u.getForename());
+
+    }
+
+    @Test(expected = ElementAlreadyExistsException.class)
+    @InSequence(8)
+    public void testUpdateUserExistingIdentifier() throws ElementAlreadyExistsException, NoSuchElementException {
+
+        String identifier = "aeich";
+        String newIdentifier = "khansen";
+
+        User u = userService.get(identifier);
+        Assert.assertNotNull(u);
+
+        u.setIdentifier(newIdentifier);
+
+        userService.update(u);
+
+        Assert.fail("Changing to an already present identifier should not be possible");
+
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    @InSequence(9)
+    public void testUpdateUserNonExistingNode() throws ElementAlreadyExistsException, NoSuchElementException {
+
+        User u = new User("unknow", null, null, null);
+        userService.update(u);
+
+        Assert.fail("Changing an not present element should not be possible");
+
+    }
+
+    @Test
+    @InSequence(10)
+    public void testDeleteUser() throws NoSuchElementException {
+
+        String identifier = "rvoeller";
+
+        User u = userService.get(identifier);
+
+        Assert.assertNotNull(u.getId());
+        Assert.assertEquals(identifier, u.getIdentifier());
+
+        userService.delete(identifier);
+
+        Assert.assertNull(userService.get(identifier));
+
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    @InSequence(11)
+    public void testDeleteUserNoSuchUser() throws NoSuchElementException {
+
+        String identifier = "P01244";
+
+        User u = userService.get(identifier);
+
+        Assert.assertNull(u);
+
+        userService.delete(identifier);
+
+        Assert.fail("Node should not be present any more");
+
+    }
+
+    @Test
+    @InSequence(12)
+    public void testAssignUserToProject() throws NoSuchElementException {
+
+        Assert.fail("not implemented");
+
+    }
+
+    @Test
+    @InSequence(13)
+    public void testUnassignUserFromProject() throws NoSuchElementException {
+
+        Assert.fail("not implemented");
+
+    }
+
+    @Test
+    @InSequence(14)
+    public void testFindAllAssignedToProject() throws NoSuchElementException {
+
+        Assert.fail("not implemented");
+
+    }
 
 }

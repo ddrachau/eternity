@@ -4,6 +4,7 @@ import com.prodyna.pac.eternity.server.common.logging.Logging;
 import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
 import com.prodyna.pac.eternity.server.model.Project;
+import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.CypherService;
 import com.prodyna.pac.eternity.server.service.ProjectService;
 
@@ -124,4 +125,8 @@ public class ProjectServiceImpl implements ProjectService {
         return result;
     }
 
+    @Override
+    public List<Project> findAllAssignedUser(User user) {
+        throw new UnsupportedOperationException();
+    }
 }
