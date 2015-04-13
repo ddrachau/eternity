@@ -3,6 +3,7 @@ package com.prodyna.pac.eternity.server.arquillian;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.CypherService;
 import com.prodyna.pac.eternity.server.service.UserService;
+import junit.framework.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -44,31 +45,31 @@ public class UserServiceTest {
         // TODO test create with null values
     }
 
-//    @Test
-//    @InSequence(2)
-//    public void getAllProjects() {
-//        Assert.assertEquals(6, projectService.findAll().size());
-//    }
-//
-//    @Test
-//    @InSequence(3)
-//    public void createProject() throws Exception {
-//
-//        String identifier = "new Project";
-//        String description = "new description";
-//
-//        Project p = new Project(identifier, description);
-//
-//        Assert.assertNull(p.getId());
-//
-//        Project p2 = projectService.create(p);
-//
-//        Assert.assertSame(p, p2);
-//        Assert.assertNotNull(p2.getId());
-//        Assert.assertEquals(identifier, p2.getIdentifier());
-//        Assert.assertEquals(description, p2.getDescription());
-//
-//    }
+    @Test
+    @InSequence(2)
+    public void getAllProjects() {
+        Assert.assertEquals(6, userService.findAll().size());
+    }
+
+    @Test
+    @InSequence(3)
+    public void createProject() throws Exception {
+
+        String identifier = "new Project";
+        String description = "new description";
+
+        Project p = new Project(identifier, description);
+
+        Assert.assertNull(p.getId());
+
+        Project p2 = projectService.create(p);
+
+        Assert.assertSame(p, p2);
+        Assert.assertNotNull(p2.getId());
+        Assert.assertEquals(identifier, p2.getIdentifier());
+        Assert.assertEquals(description, p2.getDescription());
+
+    }
 //
 //    @Test(expected = ElementAlreadyExistsException.class)
 //    @InSequence(4)

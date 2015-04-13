@@ -4,6 +4,7 @@ import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
+import com.prodyna.pac.eternity.server.service.AuthenticationService;
 import com.prodyna.pac.eternity.server.service.CypherService;
 import com.prodyna.pac.eternity.server.service.UserService;
 
@@ -20,6 +21,9 @@ public class UserServiceImpl implements UserService {
     @Inject
     private CypherService cypherService;
 
+    @Inject
+    private AuthenticationService authenticationService;
+
     @Override
     public User create(@NotNull User user) throws ElementAlreadyExistsException {
 
@@ -32,10 +36,14 @@ public class UserServiceImpl implements UserService {
         user.setId(UUID.randomUUID().toString());
 
         final Map<String, Object> queryResult = cypherService.querySingle(
-                "CREATE (u:User {id:{1}, identifier:{2}, forename:{3}, surname:{4}, password: {5}}) " +
-                        "RETURN u.id, u.identifier, u.forename, u.surname, u.password",
+                "CREATE (u:User {id:{1}, identifier:{2}, forename:{3}, surname:{4}}) " +
+                        "RETURN u.id, u.identifier, u.forename, u.surname",
                 map(1, user.getId(), 2, user.getIdentifier(), 3, user.getForename(),
-                        4, user.getSurname(), 5, user.getPassword()));
+                        4, user.getSurname()));
+
+        if (user.getPassword() != null) {
+            user = authenticationService.storePassword(user, user.getPassword());
+        }
 
         return user;
     }
@@ -74,4 +82,5 @@ public class UserServiceImpl implements UserService {
     public List<User> findAllAssignedToProject(Project project) {
         return null;
     }
+
 }
