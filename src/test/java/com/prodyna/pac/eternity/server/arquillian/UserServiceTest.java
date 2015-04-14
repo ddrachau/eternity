@@ -20,16 +20,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @RunWith(Arquillian.class)
-public class UserServiceTest {
-
-    @Deployment
-    public static JavaArchive createDeployment() {
-        JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "eternity-arq.jar").addPackages(true, "com.prodyna.pac");
-        jar.addAsResource("META-INF/beans.xml");
-        jar.addAsResource("META-INF/persistence.xml");
-        System.out.println(jar.toString(true));
-        return jar;
-    }
+public class UserServiceTest extends AbstractArquillianTest {
 
     @Inject
     private CypherService cypherService;
@@ -39,7 +30,6 @@ public class UserServiceTest {
 
     @Inject
     private ProjectService projectService;
-
 
     @Test
     @InSequence(1)
