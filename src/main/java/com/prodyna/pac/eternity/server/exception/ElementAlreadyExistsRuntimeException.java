@@ -1,14 +1,14 @@
 package com.prodyna.pac.eternity.server.exception;
 
 /**
- * Functional Exception signaling that a password for a user is not correct.
+ * Persistence exception signaling that an element already exists for the id or an identifier.
  */
-public class InvalidPasswordException extends Exception {
+public class ElementAlreadyExistsRuntimeException extends RuntimeException {
 
     /**
      * Default constructor.
      */
-    public InvalidPasswordException() {
+    public ElementAlreadyExistsRuntimeException() {
     }
 
     /**
@@ -16,7 +16,7 @@ public class InvalidPasswordException extends Exception {
      *
      * @param cause the root cause
      */
-    public InvalidPasswordException(Throwable cause) {
+    public ElementAlreadyExistsRuntimeException(Throwable cause) {
         super(cause);
     }
 
@@ -25,7 +25,7 @@ public class InvalidPasswordException extends Exception {
      *
      * @param message the exception message
      */
-    public InvalidPasswordException(String message) {
+    public ElementAlreadyExistsRuntimeException(String message) {
         super(message);
     }
 
@@ -35,7 +35,7 @@ public class InvalidPasswordException extends Exception {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public InvalidPasswordException(String message, Throwable cause) {
+    public ElementAlreadyExistsRuntimeException(String message, Throwable cause) {
         super(message, cause);
     }
 }

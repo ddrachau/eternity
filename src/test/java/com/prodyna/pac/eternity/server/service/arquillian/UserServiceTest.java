@@ -1,7 +1,7 @@
 package com.prodyna.pac.eternity.server.service.arquillian;
 
-import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsException;
-import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
+import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsRuntimeException;
+import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.CypherService;
@@ -13,6 +13,7 @@ import org.jboss.arquillian.junit.InSequence;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ejb.EJBException;
 import javax.inject.Inject;
 import java.util.List;
 
@@ -93,17 +94,25 @@ public class UserServiceTest extends AbstractArquillianTest {
 
     }
 
-    @Test(expected = ElementAlreadyExistsException.class)
+    @Test
     @InSequence(4)
-    public void testCreateUserWhichExists() throws ElementAlreadyExistsException {
+    public void testCreateUserWhichExists() {
 
         String identifier = "new identifier";
 
         User u = new User(identifier, null, null, null);
 
         userService.create(u);
-        userService.create(u);
-        Assert.fail("Unique constraint has to prohibit the creation");
+
+        try {
+            userService.create(u);
+            Assert.fail("Unique constraint has to prohibit the creation");
+        } catch (EJBException ex) {
+            if (ex.getCause() instanceof ElementAlreadyExistsRuntimeException) {
+                return;
+            }
+            Assert.fail("Unexpected exception: " + ex);
+        }
 
     }
 
@@ -134,7 +143,7 @@ public class UserServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(7)
-    public void testUpdateUser() throws ElementAlreadyExistsException, NoSuchElementException {
+    public void testUpdateUser() throws ElementAlreadyExistsRuntimeException, NoSuchElementRuntimeException {
 
         String identifier = "aeich";
         String forename = "Alexander";
@@ -159,9 +168,9 @@ public class UserServiceTest extends AbstractArquillianTest {
 
     }
 
-    @Test(expected = ElementAlreadyExistsException.class)
+    @Test
     @InSequence(8)
-    public void testUpdateUserExistingIdentifier() throws ElementAlreadyExistsException, NoSuchElementException {
+    public void testUpdateUserExistingIdentifier() {
 
         String identifier = "aeich";
         String newIdentifier = "khansen";
@@ -171,26 +180,38 @@ public class UserServiceTest extends AbstractArquillianTest {
 
         u.setIdentifier(newIdentifier);
 
-        userService.update(u);
-
-        Assert.fail("Changing to an already present identifier should not be possible");
-
-    }
-
-    @Test(expected = NoSuchElementException.class)
-    @InSequence(9)
-    public void testUpdateUserNonExistingNode() throws ElementAlreadyExistsException, NoSuchElementException {
-
-        User u = new User("unknow", null, null, null);
-        userService.update(u);
-
-        Assert.fail("Changing an not present element should not be possible");
+        try {
+            userService.update(u);
+            Assert.fail("Changing to an already present identifier should not be possible");
+        } catch (EJBException ex) {
+            if (ex.getCause() instanceof ElementAlreadyExistsRuntimeException) {
+                return;
+            }
+            Assert.fail("Unexpected exception: " + ex);
+        }
 
     }
 
     @Test
+    @InSequence(9)
+    public void testUpdateUserNonExistingNode() {
+
+        User u = new User("unknow", null, null, null);
+
+        try {
+            userService.update(u);
+            Assert.fail("Changing an not present element should not be possible");
+        } catch (EJBException ex) {
+            if (ex.getCause() instanceof NoSuchElementRuntimeException) {
+                return;
+            }
+            Assert.fail("Unexpected exception: " + ex);
+        }
+    }
+
+    @Test
     @InSequence(10)
-    public void testDeleteUser() throws NoSuchElementException {
+    public void testDeleteUser() throws NoSuchElementRuntimeException {
 
         String identifier = "rvoeller";
 
@@ -205,9 +226,9 @@ public class UserServiceTest extends AbstractArquillianTest {
 
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     @InSequence(11)
-    public void testDeleteUserNoSuchUser() throws NoSuchElementException {
+    public void testDeleteUserNoSuchUser() {
 
         String identifier = "P01244";
 
@@ -215,15 +236,21 @@ public class UserServiceTest extends AbstractArquillianTest {
 
         Assert.assertNull(u);
 
-        userService.delete(identifier);
-
-        Assert.fail("Node should not be present any more");
+        try {
+            userService.delete(identifier);
+            Assert.fail("Node should not be present any more");
+        } catch (EJBException ex) {
+            if (ex.getCause() instanceof NoSuchElementRuntimeException) {
+                return;
+            }
+            Assert.fail("Unexpected exception: " + ex);
+        }
 
     }
 
     @Test
     @InSequence(12)
-    public void testFindAllAssignedToProject() throws NoSuchElementException {
+    public void testFindAllAssignedToProject() throws NoSuchElementRuntimeException {
 
         Project project1 = projectService.get("P00754");
         Project project2 = projectService.get("P00843");
@@ -239,7 +266,7 @@ public class UserServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(13)
-    public void testAssignUserToProject() throws NoSuchElementException {
+    public void testAssignUserToProject() throws NoSuchElementRuntimeException {
 
         Project project3 = projectService.get("P00998");
         Project project4 = projectService.get("P01110");
@@ -273,7 +300,7 @@ public class UserServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(14)
-    public void testAssignUserToProjectAlreadyUnassigned() throws NoSuchElementException {
+    public void testAssignUserToProjectAlreadyUnassigned() throws NoSuchElementRuntimeException {
 
         Project project5 = projectService.get("P01244");
         User user5 = userService.get("hmeiser");
@@ -293,7 +320,7 @@ public class UserServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(15)
-    public void testUnassignUserFromProject() throws NoSuchElementException {
+    public void testUnassignUserFromProject() throws NoSuchElementRuntimeException {
 
         Project project3 = projectService.get("P00998");
         Project project4 = projectService.get("P01110");
@@ -327,7 +354,7 @@ public class UserServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(16)
-    public void testUnassignUserFromProjectAlreadyUnassigned() throws NoSuchElementException {
+    public void testUnassignUserFromProjectAlreadyUnassigned() throws NoSuchElementRuntimeException {
 
         Project project3 = projectService.get("P00998");
         Project project4 = projectService.get("P01110");

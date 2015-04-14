@@ -1,11 +1,13 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
+import com.prodyna.pac.eternity.server.common.logging.Logging;
 import com.prodyna.pac.eternity.server.exception.InvalidPasswordException;
-import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
+import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.AuthenticationService;
 import com.prodyna.pac.eternity.server.service.CypherService;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.Map;
@@ -13,6 +15,8 @@ import java.util.Map;
 import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
 import static com.prodyna.pac.eternity.server.common.PasswordHash.*;
 
+@Logging
+@Stateless
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Inject
@@ -20,7 +24,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public void login(@NotNull User user, @NotNull String plainPassword)
-            throws InvalidPasswordException, NoSuchElementException {
+            throws InvalidPasswordException, NoSuchElementRuntimeException {
 
         // return session? Invalidate potential open session
         this.checkIfPasswordIsValid(user, plainPassword);
@@ -36,7 +40,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public User storePassword(@NotNull User user, @NotNull String plainPassword) throws NoSuchElementException {
+    public User storePassword(@NotNull User user, @NotNull String plainPassword) throws NoSuchElementRuntimeException {
 
         String passwordHash = createHash(plainPassword);
 
@@ -45,7 +49,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 map(1, user.getId(), 2, passwordHash));
 
         if (queryResult == null) {
-            throw new NoSuchElementException(user.toString());
+            throw new NoSuchElementRuntimeException(user.toString());
         }
 
         user.setPassword(passwordHash);
@@ -55,7 +59,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public User changePassword(@NotNull User user, @NotNull String oldPlainPassword, @NotNull String newPlainPassword)
-            throws InvalidPasswordException, NoSuchElementException {
+            throws InvalidPasswordException, NoSuchElementRuntimeException {
 
         this.checkIfPasswordIsValid(user, oldPlainPassword);
 
@@ -68,11 +72,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      *
      * @param user          the user to check against
      * @param plainPassword the users password to check
-     * @throws NoSuchElementException   if the user does not exists
+     * @throws NoSuchElementRuntimeException   if the user does not exists
      * @throws InvalidPasswordException if the old password is incorrect
      */
     private void checkIfPasswordIsValid(@NotNull User user, @NotNull String plainPassword)
-            throws InvalidPasswordException, NoSuchElementException {
+            throws InvalidPasswordException, NoSuchElementRuntimeException {
 
         String RETURN_PASSWORD = "u.password";
 
@@ -81,7 +85,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 map(1, user.getId()));
 
         if (oldPasswordQueryResult == null) {
-            throw new NoSuchElementException(user.toString());
+            throw new NoSuchElementRuntimeException(user.toString());
         }
 
         String currentPasswordHash = (String) oldPasswordQueryResult.get(RETURN_PASSWORD);

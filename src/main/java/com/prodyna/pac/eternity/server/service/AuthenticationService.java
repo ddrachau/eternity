@@ -1,14 +1,11 @@
 package com.prodyna.pac.eternity.server.service;
 
-import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.InvalidPasswordException;
-import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
-import com.prodyna.pac.eternity.server.model.Project;
+import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.User;
 
 import javax.ejb.Local;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  * Authentication service provides service for operating with passwords and logins.
@@ -21,11 +18,11 @@ public interface AuthenticationService {
      *
      * @param user          the user to be logged in
      * @param plainPassword the users password
-     * @throws NoSuchElementException   if the user does not exists
+     * @throws NoSuchElementRuntimeException   if the user does not exists
      * @throws InvalidPasswordException if the old password is incorrect
      */
     void login(@NotNull User user, @NotNull String plainPassword)
-            throws NoSuchElementException, InvalidPasswordException;
+            throws NoSuchElementRuntimeException, InvalidPasswordException;
 
     /**
      * Log out the current connected user.
@@ -38,9 +35,9 @@ public interface AuthenticationService {
      * @param user          the user which gets a new password
      * @param plainPassword the new password to set
      * @return the user with its new password
-     * @throws NoSuchElementException if the user does not exists
+     * @throws NoSuchElementRuntimeException if the user does not exists
      */
-    User storePassword(@NotNull User user, @NotNull String plainPassword) throws NoSuchElementException;
+    User storePassword(@NotNull User user, @NotNull String plainPassword) throws NoSuchElementRuntimeException;
 
     /**
      * Updates the users password
@@ -49,10 +46,10 @@ public interface AuthenticationService {
      * @param oldPlainPassword the users old password
      * @param newPlainPassword the users new password
      * @return the User with the updated password
-     * @throws NoSuchElementException   if the user does not exists
+     * @throws NoSuchElementRuntimeException   if the user does not exists
      * @throws InvalidPasswordException if the old password is incorrect
      */
     User changePassword(@NotNull User user, @NotNull String oldPlainPassword, @NotNull String newPlainPassword)
-            throws NoSuchElementException, InvalidPasswordException;
+            throws NoSuchElementRuntimeException, InvalidPasswordException;
 
 }

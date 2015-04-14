@@ -1,14 +1,14 @@
 package com.prodyna.pac.eternity.server.exception;
 
 /**
- * Persistence exception signaling that an element for the id or identifier could not be found.
+ * Function exception signaling that the user is not allowed to book on this project..
  */
-public class NoSuchElementException extends Exception {
+public class UserNotAssignedToProjectException extends Exception {
 
     /**
      * Default constructor.
      */
-    public NoSuchElementException() {
+    public UserNotAssignedToProjectException() {
     }
 
     /**
@@ -16,7 +16,7 @@ public class NoSuchElementException extends Exception {
      *
      * @param cause the root cause
      */
-    public NoSuchElementException(Throwable cause) {
+    public UserNotAssignedToProjectException(Throwable cause) {
         super(cause);
     }
 
@@ -25,7 +25,7 @@ public class NoSuchElementException extends Exception {
      *
      * @param message the exception message
      */
-    public NoSuchElementException(String message) {
+    public UserNotAssignedToProjectException(String message) {
         super(message);
     }
 
@@ -35,7 +35,7 @@ public class NoSuchElementException extends Exception {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public NoSuchElementException(String message, Throwable cause) {
+    public UserNotAssignedToProjectException(String message, Throwable cause) {
         super(message, cause);
     }
 }

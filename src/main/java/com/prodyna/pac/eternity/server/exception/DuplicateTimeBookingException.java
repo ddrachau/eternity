@@ -1,14 +1,14 @@
 package com.prodyna.pac.eternity.server.exception;
 
 /**
- * Persistence exception signaling that an element already exists for the id or an identifier.
+ * Functional exception signaling that a time booking (partially) exists for a user and project.
  */
-public class ElementAlreadyExistsException extends Exception {
+public class DuplicateTimeBookingException extends Exception {
 
     /**
      * Default constructor.
      */
-    public ElementAlreadyExistsException() {
+    public DuplicateTimeBookingException() {
     }
 
     /**
@@ -16,7 +16,7 @@ public class ElementAlreadyExistsException extends Exception {
      *
      * @param cause the root cause
      */
-    public ElementAlreadyExistsException(Throwable cause) {
+    public DuplicateTimeBookingException(Throwable cause) {
         super(cause);
     }
 
@@ -25,7 +25,7 @@ public class ElementAlreadyExistsException extends Exception {
      *
      * @param message the exception message
      */
-    public ElementAlreadyExistsException(String message) {
+    public DuplicateTimeBookingException(String message) {
         super(message);
     }
 
@@ -35,7 +35,7 @@ public class ElementAlreadyExistsException extends Exception {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public ElementAlreadyExistsException(String message, Throwable cause) {
+    public DuplicateTimeBookingException(String message, Throwable cause) {
         super(message, cause);
     }
 }

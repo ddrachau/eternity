@@ -1,7 +1,7 @@
 package com.prodyna.pac.eternity.server.service;
 
-import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsException;
-import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
+import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsRuntimeException;
+import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 
@@ -20,9 +20,9 @@ public interface ProjectService {
      *
      * @param project the project to create
      * @return the created project with the generated id
-     * @throws ElementAlreadyExistsException if a project with the same identifier already exists
+     * @throws ElementAlreadyExistsRuntimeException if a project with the same identifier already exists
      */
-    Project create(@NotNull Project project) throws ElementAlreadyExistsException;
+    Project create(@NotNull Project project) throws ElementAlreadyExistsRuntimeException;
 
     /**
      * Searches for a single project.
@@ -44,18 +44,18 @@ public interface ProjectService {
      *
      * @param project the project to be updated
      * @return the updated project
-     * @throws NoSuchElementException        if the element to be updated cannot be found
-     * @throws ElementAlreadyExistsException if a project with the same identifier already exists
+     * @throws NoSuchElementRuntimeException        if the element to be updated cannot be found
+     * @throws ElementAlreadyExistsRuntimeException if a project with the same identifier already exists
      */
-    Project update(@NotNull Project project) throws NoSuchElementException, ElementAlreadyExistsException;
+    Project update(@NotNull Project project) throws NoSuchElementRuntimeException, ElementAlreadyExistsRuntimeException;
 
     /**
      * Removes the given project from the database.
      *
      * @param identifier the project to be deleted
-     * @throws NoSuchElementException if the given project cannot be found
+     * @throws NoSuchElementRuntimeException if the given project cannot be found
      */
-    void delete(@NotNull String identifier) throws NoSuchElementException;
+    void delete(@NotNull String identifier) throws NoSuchElementRuntimeException;
 
     /**
      * Search for all the projects a user is assigned to.

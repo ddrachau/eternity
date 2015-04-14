@@ -1,8 +1,8 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
 import com.prodyna.pac.eternity.server.common.logging.Logging;
-import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsException;
-import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
+import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsRuntimeException;
+import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.CypherService;
@@ -26,12 +26,12 @@ public class ProjectServiceImpl implements ProjectService {
     private CypherService cypherService;
 
     @Override
-    public Project create(@NotNull Project project) throws ElementAlreadyExistsException {
+    public Project create(@NotNull Project project) throws ElementAlreadyExistsRuntimeException {
 
         Project result = this.get(project.getIdentifier());
 
         if (result != null) {
-            throw new ElementAlreadyExistsException();
+            throw new ElementAlreadyExistsRuntimeException();
         }
 
         project.setId(UUID.randomUUID().toString());
@@ -78,12 +78,12 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project update(@NotNull Project project) throws NoSuchElementException, ElementAlreadyExistsException {
+    public Project update(@NotNull Project project) throws NoSuchElementRuntimeException, ElementAlreadyExistsRuntimeException {
 
         // Check for already present project with the new identifier
         Project check = this.get(project.getIdentifier());
         if (check != null && !check.getId().equals(project.getId())) {
-            throw new ElementAlreadyExistsException();
+            throw new ElementAlreadyExistsRuntimeException();
         }
 
         final Map<String, Object> queryResult = cypherService.querySingle(
@@ -91,7 +91,7 @@ public class ProjectServiceImpl implements ProjectService {
                 map(1, project.getId(), 2, project.getIdentifier(), 3, project.getDescription()));
 
         if (queryResult == null) {
-            throw new NoSuchElementException();
+            throw new NoSuchElementRuntimeException();
         } else {
             return this.getProject(queryResult);
         }
@@ -99,10 +99,10 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void delete(@NotNull String identifier) throws NoSuchElementException {
+    public void delete(@NotNull String identifier) throws NoSuchElementRuntimeException {
 
         if (this.get(identifier) == null) {
-            throw new NoSuchElementException();
+            throw new NoSuchElementRuntimeException();
         }
 
         cypherService.query("MATCH (p:Project {identifier:{1}}) DELETE p",

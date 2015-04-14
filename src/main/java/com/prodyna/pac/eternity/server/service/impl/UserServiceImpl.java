@@ -1,7 +1,8 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
-import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsException;
-import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
+import com.prodyna.pac.eternity.server.common.logging.Logging;
+import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsRuntimeException;
+import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.AuthenticationService;
@@ -9,6 +10,7 @@ import com.prodyna.pac.eternity.server.service.CypherService;
 import com.prodyna.pac.eternity.server.service.ProjectService;
 import com.prodyna.pac.eternity.server.service.UserService;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ import java.util.UUID;
 
 import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
 
+@Logging
+@Stateless
 public class UserServiceImpl implements UserService {
 
     private static String USER_RETURN_PROPERTIES = "u.id, u.identifier, u.forename, u.surname, u.password";
@@ -31,12 +35,12 @@ public class UserServiceImpl implements UserService {
     private AuthenticationService authenticationService;
 
     @Override
-    public User create(@NotNull User user) throws ElementAlreadyExistsException {
+    public User create(@NotNull User user) throws ElementAlreadyExistsRuntimeException {
 
         User result = this.get(user.getIdentifier());
 
         if (result != null) {
-            throw new ElementAlreadyExistsException();
+            throw new ElementAlreadyExistsRuntimeException();
         }
 
         user.setId(UUID.randomUUID().toString());
@@ -50,7 +54,7 @@ public class UserServiceImpl implements UserService {
         if (user.getPassword() != null) {
             try {
                 user = authenticationService.storePassword(user, user.getPassword());
-            } catch (NoSuchElementException e) {
+            } catch (NoSuchElementRuntimeException e) {
                 // User was just created, should never happen
                 throw new RuntimeException(e);
             }
@@ -94,12 +98,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(@NotNull User user) throws NoSuchElementException, ElementAlreadyExistsException {
+    public User update(@NotNull User user) throws NoSuchElementRuntimeException, ElementAlreadyExistsRuntimeException {
 
         // Check for already present project with the new identifier
         User check = this.get(user.getIdentifier());
         if (check != null && !check.getId().equals(user.getId())) {
-            throw new ElementAlreadyExistsException();
+            throw new ElementAlreadyExistsRuntimeException();
         }
 
         final Map<String, Object> queryResult = cypherService.querySingle(
@@ -109,7 +113,7 @@ public class UserServiceImpl implements UserService {
                         4, user.getSurname()));
 
         if (queryResult == null) {
-            throw new NoSuchElementException();
+            throw new NoSuchElementRuntimeException();
         } else {
             return this.getUser(queryResult);
         }
@@ -117,10 +121,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(@NotNull String identifier) throws NoSuchElementException {
+    public void delete(@NotNull String identifier) throws NoSuchElementRuntimeException {
 
         if (this.get(identifier) == null) {
-            throw new NoSuchElementException();
+            throw new NoSuchElementRuntimeException();
         }
 
         cypherService.query("MATCH (u:User {identifier:{1}}) DELETE u",
@@ -129,7 +133,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void assignUserToProject(User user, Project project) throws NoSuchElementException {
+    public void assignUserToProject(User user, Project project) throws NoSuchElementRuntimeException {
 
         String query = "MATCH (u:User {identifier:{1}}),(p:Project {identifier:{2}}) " +
                 "CREATE UNIQUE (u)-[:ASSIGNED_TO]->(p)";
@@ -138,7 +142,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void unassignUserFromProject(User user, Project project) throws NoSuchElementException {
+    public void unassignUserFromProject(User user, Project project) throws NoSuchElementRuntimeException {
 
         String query = "MATCH (u:User {identifier:{1}})-[a:ASSIGNED_TO]->(p:Project {identifier:{2}}) " +
                 "DELETE a";
@@ -152,15 +156,15 @@ public class UserServiceImpl implements UserService {
      * @param query   the concrete query to execute
      * @param user    the user of the assignment
      * @param project the project of the assignment
-     * @throws NoSuchElementException if the given user or project cannot be found
+     * @throws NoSuchElementRuntimeException if the given user or project cannot be found
      */
-    private void assignQuery(String query, User user, Project project) throws NoSuchElementException {
+    private void assignQuery(String query, User user, Project project) throws NoSuchElementRuntimeException {
 
         user = this.get(user.getIdentifier());
         project = projectService.get(project.getIdentifier());
 
         if (user == null || project == null) {
-            throw new NoSuchElementException("user or project unknown");
+            throw new NoSuchElementRuntimeException("user or project unknown");
         }
 
         final Map<String, Object> queryResult = cypherService.querySingle(

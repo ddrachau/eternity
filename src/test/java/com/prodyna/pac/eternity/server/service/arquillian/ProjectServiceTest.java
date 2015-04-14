@@ -1,7 +1,7 @@
 package com.prodyna.pac.eternity.server.service.arquillian;
 
-import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsException;
-import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
+import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsRuntimeException;
+import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.CypherService;
@@ -13,11 +13,12 @@ import org.jboss.arquillian.junit.InSequence;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ejb.EJBException;
 import javax.inject.Inject;
 import java.util.List;
 
 @RunWith(Arquillian.class)
-public class ProjectServiceTest extends AbstractArquillianTest{
+public class ProjectServiceTest extends AbstractArquillianTest {
 
     @Inject
     private CypherService cypherService;
@@ -86,9 +87,9 @@ public class ProjectServiceTest extends AbstractArquillianTest{
 
     }
 
-    @Test(expected = ElementAlreadyExistsException.class)
+    @Test
     @InSequence(4)
-    public void testCreateProjectWhichExists() throws ElementAlreadyExistsException {
+    public void testCreateProjectWhichExists() throws ElementAlreadyExistsRuntimeException {
 
         String identifier = "new Project2";
         String description = "new description2";
@@ -96,8 +97,16 @@ public class ProjectServiceTest extends AbstractArquillianTest{
         Project p = new Project(identifier, description);
 
         projectService.create(p);
-        projectService.create(p);
-        Assert.fail("Unique constraint has to prohibit the creation");
+
+        try {
+            projectService.create(p);
+            Assert.fail("Unique constraint has to prohibit the creation");
+        } catch (EJBException ex) {
+            if (ex.getCause() instanceof ElementAlreadyExistsRuntimeException) {
+                return;
+            }
+            Assert.fail("Unexpected exception: " + ex);
+        }
 
     }
 
@@ -125,7 +134,7 @@ public class ProjectServiceTest extends AbstractArquillianTest{
 
     @Test
     @InSequence(7)
-    public void testUpdateProject() throws ElementAlreadyExistsException, NoSuchElementException {
+    public void testUpdateProject() throws ElementAlreadyExistsRuntimeException, NoSuchElementRuntimeException {
 
         String identifier = "P00754";
         String description = "KiBucDu Final (Phase II)";
@@ -149,9 +158,9 @@ public class ProjectServiceTest extends AbstractArquillianTest{
 
     }
 
-    @Test(expected = ElementAlreadyExistsException.class)
+    @Test
     @InSequence(8)
-    public void testUpdateProjectExistingIdentifier() throws ElementAlreadyExistsException, NoSuchElementException {
+    public void testUpdateProjectExistingIdentifier() throws ElementAlreadyExistsRuntimeException, NoSuchElementRuntimeException {
 
         String identifier = "P00754";
         String newIdentifier = "P00843";
@@ -161,26 +170,41 @@ public class ProjectServiceTest extends AbstractArquillianTest{
 
         p.setIdentifier(newIdentifier);
 
-        projectService.update(p);
 
-        Assert.fail("Changing to an already present identifier should not be possible");
+        try {
+            projectService.update(p);
+            Assert.fail("Changing to an already present identifier should not be possible");
+        } catch (EJBException ex) {
+            if (ex.getCause() instanceof ElementAlreadyExistsRuntimeException) {
+                return;
+            }
+            Assert.fail("Unexpected exception: " + ex);
+        }
 
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     @InSequence(9)
-    public void testUpdateProjectNonExistingNode() throws ElementAlreadyExistsException, NoSuchElementException {
+    public void testUpdateProjectNonExistingNode() throws ElementAlreadyExistsRuntimeException, NoSuchElementRuntimeException {
 
         Project p = new Project("unknow", "P00755", "desc");
-        projectService.update(p);
 
-        Assert.fail("Changing an not present element should not be possible");
+
+        try {
+            projectService.update(p);
+            Assert.fail("Changing an not present element should not be possible");
+        } catch (EJBException ex) {
+            if (ex.getCause() instanceof NoSuchElementRuntimeException) {
+                return;
+            }
+            Assert.fail("Unexpected exception: " + ex);
+        }
 
     }
 
     @Test
     @InSequence(10)
-    public void testDeleteProject() throws NoSuchElementException {
+    public void testDeleteProject() throws NoSuchElementRuntimeException {
 
         String identifier = "P01244";
 
@@ -195,9 +219,9 @@ public class ProjectServiceTest extends AbstractArquillianTest{
 
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     @InSequence(11)
-    public void testDeleteProjectNoSuchProject() throws NoSuchElementException {
+    public void testDeleteProjectNoSuchProject() {
 
         String identifier = "P01244";
 
@@ -205,8 +229,15 @@ public class ProjectServiceTest extends AbstractArquillianTest{
 
         Assert.assertNull(p);
 
-        projectService.delete(identifier);
-        Assert.fail("Node should not be present any more");
+        try {
+            projectService.delete(identifier);
+            Assert.fail("Node should not be present any more");
+        } catch (EJBException ex) {
+            if (ex.getCause() instanceof NoSuchElementRuntimeException) {
+                return;
+            }
+            Assert.fail("Unexpected exception: " + ex);
+        }
 
     }
 

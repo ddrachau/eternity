@@ -1,7 +1,7 @@
 package com.prodyna.pac.eternity.server.service;
 
-import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsException;
-import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
+import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsRuntimeException;
+import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 
@@ -20,9 +20,9 @@ public interface UserService {
      *
      * @param user the user to create
      * @return the created project with the generated id
-     * @throws ElementAlreadyExistsException if a user with the same identifier already exists
+     * @throws ElementAlreadyExistsRuntimeException if a user with the same identifier already exists
      */
-    User create(@NotNull User user) throws ElementAlreadyExistsException;
+    User create(@NotNull User user) throws ElementAlreadyExistsRuntimeException;
 
     /**
      * Searches for a single user.
@@ -44,36 +44,36 @@ public interface UserService {
      *
      * @param user the project to be updated
      * @return the updated user
-     * @throws NoSuchElementException        if the element to be updated cannot be found
-     * @throws ElementAlreadyExistsException if a user with the same identifier already exists
+     * @throws NoSuchElementRuntimeException        if the element to be updated cannot be found
+     * @throws ElementAlreadyExistsRuntimeException if a user with the same identifier already exists
      */
-    User update(@NotNull User user) throws NoSuchElementException, ElementAlreadyExistsException;
+    User update(@NotNull User user) throws NoSuchElementRuntimeException, ElementAlreadyExistsRuntimeException;
 
     /**
      * Removes the given user from the database.
      *
      * @param identifier the user to be deleted
-     * @throws NoSuchElementException if the given user cannot be found
+     * @throws NoSuchElementRuntimeException if the given user cannot be found
      */
-    void delete(@NotNull String identifier) throws NoSuchElementException;
+    void delete(@NotNull String identifier) throws NoSuchElementRuntimeException;
 
     /**
      * Assigns the given project to the given user.
      *
      * @param user    the user to be assigned
      * @param project the target project
-     * @throws NoSuchElementException if the given user or project cannot be found
+     * @throws NoSuchElementRuntimeException if the given user or project cannot be found
      */
-    void assignUserToProject(User user, Project project) throws NoSuchElementException;
+    void assignUserToProject(User user, Project project) throws NoSuchElementRuntimeException;
 
     /**
      * Unassign the given project from the given user.
      *
      * @param user    the user to be unassigned
      * @param project the target project
-     * @throws NoSuchElementException if the given user or project cannot be found
+     * @throws NoSuchElementRuntimeException if the given user or project cannot be found
      */
-    void unassignUserFromProject(User user, Project project) throws NoSuchElementException;
+    void unassignUserFromProject(User user, Project project) throws NoSuchElementRuntimeException;
 
     /**
      * Search for all the users assigned to the given project.

@@ -1,5 +1,6 @@
 package com.prodyna.pac.eternity.server.service;
 
+import javax.ejb.Local;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Map;
 /**
  * Wrapper service for executing cypher queries against the database.
  */
+@Local
 public interface CypherService {
 
     /**

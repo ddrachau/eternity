@@ -1,8 +1,11 @@
 package com.prodyna.pac.eternity.server.service;
 
-import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsException;
-import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
+import com.prodyna.pac.eternity.server.exception.DuplicateTimeBookingException;
+import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.server.exception.UserNotAssignedToProjectException;
 import com.prodyna.pac.eternity.server.model.Booking;
+import com.prodyna.pac.eternity.server.model.Project;
+import com.prodyna.pac.eternity.server.model.User;
 
 import javax.ejb.Local;
 import javax.validation.constraints.NotNull;
@@ -15,45 +18,68 @@ import java.util.List;
 public interface BookingService {
 
     /**
-     * Creates a new project.
+     * Creates a time booking for the given user and project.
      *
-     * @param project the project to create
-     * @return the created project with the generated id
-     * @throws ElementAlreadyExistsException if a project with the same identifier already exists
+     * @param booking the booking to be created
+     * @param user    the user who spent the time
+     * @param project the project the user spent his time on
+     * @return the created Booking
+     * @throws NoSuchElementRuntimeException     if the user or project cannot be found
+     * @throws DuplicateTimeBookingException     if there already exists a booking which would overlap with this new one for the user and project
+     * @throws UserNotAssignedToProjectException if the user is not allowed to book on this project
      */
-    Booking create(@NotNull Booking project) throws ElementAlreadyExistsException;
+    Booking create(@NotNull Booking booking, @NotNull User user, @NotNull Project project)
+            throws NoSuchElementRuntimeException, DuplicateTimeBookingException, UserNotAssignedToProjectException;
 
     /**
-     * Searches for a single project.
+     * Searches for a single booking.
      *
-     * @param identifier the identifier to search for
-     * @return the found project or null if none was found
+     * @param id the if to search for
+     * @return the found booking or null if none was found
      */
-    Booking get(@NotNull String identifier);
+    Booking get(String id);
 
     /**
-     * Searches for all projects.
+     * Search for all the bookings of an user.
      *
-     * @return a list of all found projects.
+     * @param user the source user
+     * @return bookings which are assigned to the user, empty list if the user does not exists or no booking was made
      */
-    List<Booking> findAll();
+    List<Booking> findByUser(@NotNull User user);
 
     /**
-     * Updates the given project in the database.
+     * Search for all the bookings for a project.
      *
-     * @param project the project to be updated
-     * @return the updated project
-     * @throws NoSuchElementException        if the element to be updated cannot be found
-     * @throws ElementAlreadyExistsException if a project with the same identifier already exists
+     * @param project the source project
+     * @return bookings which are assigned to the project, empty list if the project does not exists or no booking was made
      */
-    Booking update(@NotNull Booking project) throws NoSuchElementException, ElementAlreadyExistsException;
+    List<Booking> findByProject(@NotNull Project project);
 
     /**
-     * Removes the given project from the database.
+     * Search for the bookings made by a user for a project.
      *
-     * @param identifier the project to be deleted
-     * @throws NoSuchElementException if the given project cannot be found
+     * @param user    the source user
+     * @param project the source project
+     * @return bookings for the user and project, empty list if the user or project do not exist or no booking was made
      */
-    void delete(@NotNull String identifier) throws NoSuchElementException;
+    List<Booking> findByUserAndProject(@NotNull User user, @NotNull Project project);
+
+    /**
+     * Updates the given booking in the database.
+     *
+     * @param booking the booking to be updated
+     * @return the updated booking
+     * @throws NoSuchElementRuntimeException if the element to be updated cannot be found
+     * @throws DuplicateTimeBookingException if there already exists a booking which would overlap with this new one for the user and project
+     */
+    Booking update(@NotNull Booking booking) throws NoSuchElementRuntimeException, DuplicateTimeBookingException;
+
+    /**
+     * Removes the given booking from the database.
+     *
+     * @param id the id of the booking to be deleted
+     * @throws NoSuchElementRuntimeException if the given booking cannot be found
+     */
+    void delete(@NotNull String id) throws NoSuchElementRuntimeException;
 
 }
