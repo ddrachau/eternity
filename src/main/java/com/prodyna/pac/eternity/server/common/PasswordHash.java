@@ -41,16 +41,16 @@ import java.security.spec.InvalidKeySpecException;
  */
 public class PasswordHash {
 
-    public static final String PBKDF2_ALGORITHM = "PBKDF2WithHmacSHA1";
+    private static final String PBKDF2_ALGORITHM = "PBKDF2WithHmacSHA1";
 
     // The following constants may be changed without breaking existing hashes.
-    public static final int SALT_BYTE_SIZE = 24;
-    public static final int HASH_BYTE_SIZE = 24;
-    public static final int PBKDF2_ITERATIONS = 1000;
+    private static final int SALT_BYTE_SIZE = 24;
+    private static final int HASH_BYTE_SIZE = 24;
+    private static final int PBKDF2_ITERATIONS = 1000;
 
-    public static final int ITERATION_INDEX = 0;
-    public static final int SALT_INDEX = 1;
-    public static final int PBKDF2_INDEX = 2;
+    private static final int ITERATION_INDEX = 0;
+    private static final int SALT_INDEX = 1;
+    private static final int PBKDF2_INDEX = 2;
 
     /**
      * Returns a salted PBKDF2 hash of the password.
@@ -58,8 +58,7 @@ public class PasswordHash {
      * @param password the password to hash
      * @return a salted PBKDF2 hash of the password
      */
-    public static String createHash(String password)
-            throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static String createHash(String password) {
         return createHash(password.toCharArray());
     }
 
@@ -69,17 +68,23 @@ public class PasswordHash {
      * @param password the password to hash
      * @return a salted PBKDF2 hash of the password
      */
-    public static String createHash(char[] password)
-            throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static String createHash(char[] password) {
+
         // Generate a random salt
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[SALT_BYTE_SIZE];
         random.nextBytes(salt);
 
-        // Hash the password
-        byte[] hash = pbkdf2(password, salt, PBKDF2_ITERATIONS, HASH_BYTE_SIZE);
-        // format iterations:salt:hash
-        return PBKDF2_ITERATIONS + ":" + toHex(salt) + ":" + toHex(hash);
+        try {
+
+            // Hash the password
+            byte[] hash = pbkdf2(password, salt, PBKDF2_ITERATIONS, HASH_BYTE_SIZE);
+            // format iterations:salt:hash
+            return PBKDF2_ITERATIONS + ":" + toHex(salt) + ":" + toHex(hash);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -89,8 +94,7 @@ public class PasswordHash {
      * @param correctHash the hash of the valid password
      * @return true if the password is correct, false if not
      */
-    public static boolean validatePassword(String password, String correctHash)
-            throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static boolean validatePassword(String password, String correctHash) {
         return validatePassword(password.toCharArray(), correctHash);
     }
 
@@ -101,19 +105,23 @@ public class PasswordHash {
      * @param correctHash the hash of the valid password
      * @return true if the password is correct, false if not
      */
-    public static boolean validatePassword(char[] password, String correctHash)
-            throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static boolean validatePassword(char[] password, String correctHash) {
         // Decode the hash into its parameters
         String[] params = correctHash.split(":");
         int iterations = Integer.parseInt(params[ITERATION_INDEX]);
         byte[] salt = fromHex(params[SALT_INDEX]);
         byte[] hash = fromHex(params[PBKDF2_INDEX]);
-        // Compute the hash of the provided password, using the same salt, 
-        // iteration count, and hash length
-        byte[] testHash = pbkdf2(password, salt, iterations, hash.length);
-        // Compare the hashes in constant time. The password is correct if
-        // both hashes match.
-        return slowEquals(hash, testHash);
+
+        try {
+            // Compute the hash of the provided password, using the same salt,
+            // iteration count, and hash length
+            byte[] testHash = pbkdf2(password, salt, iterations, hash.length);
+            // Compare the hashes in constant time. The password is correct if
+            // both hashes match.
+            return slowEquals(hash, testHash);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -172,50 +180,10 @@ public class PasswordHash {
         BigInteger bi = new BigInteger(1, array);
         String hex = bi.toString(16);
         int paddingLength = (array.length * 2) - hex.length();
-        if (paddingLength > 0)
+        if (paddingLength > 0) {
             return String.format("%0" + paddingLength + "d", 0) + hex;
-        else
+        } else {
             return hex;
-    }
-
-    /**
-     * Tests the basic functionality of the PasswordHash class
-     *
-     * @param args ignored
-     */
-    public static void main(String[] args) {
-        try {
-            // Print out 10 hashes
-            for (int i = 0; i < 10; i++)
-                System.out.println(PasswordHash.createHash("p\r\nassw0Rd!"));
-
-            // Test password validation
-            boolean failure = false;
-            System.out.println("Running tests...");
-            for (int i = 0; i < 100; i++) {
-                String password = "" + i;
-                String hash = createHash(password);
-                String secondHash = createHash(password);
-                if (hash.equals(secondHash)) {
-                    System.out.println("FAILURE: TWO HASHES ARE EQUAL!");
-                    failure = true;
-                }
-                String wrongPassword = "" + (i + 1);
-                if (validatePassword(wrongPassword, hash)) {
-                    System.out.println("FAILURE: WRONG PASSWORD ACCEPTED!");
-                    failure = true;
-                }
-                if (!validatePassword(password, hash)) {
-                    System.out.println("FAILURE: GOOD PASSWORD NOT ACCEPTED!");
-                    failure = true;
-                }
-            }
-            if (failure)
-                System.out.println("TESTS FAILED!");
-            else
-                System.out.println("TESTS PASSED!");
-        } catch (Exception ex) {
-            System.out.println("ERROR: " + ex);
         }
     }
 

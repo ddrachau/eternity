@@ -1,4 +1,4 @@
-package com.prodyna.pac.eternity.server.arquillian;
+package com.prodyna.pac.eternity.server.service.arquillian;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
