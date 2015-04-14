@@ -13,9 +13,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Inject
     private CypherService cypherService;
 
-    @Inject
-    private UserService userService;
-
     @Override
     public void login(@NotNull User user, @NotNull String plainPassword) {
         // return session? Invalidate potential open session
@@ -36,7 +33,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public User storePassword(@NotNull User user, @NotNull String plainPassword) {
         // only admins can set the pw, normal users have to ask admin or use change
-        throw new UnsupportedOperationException();
+        return user;
     }
 
     @Override
