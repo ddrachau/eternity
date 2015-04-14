@@ -1,12 +1,17 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
+import com.prodyna.pac.eternity.server.exception.InvalidPasswordException;
+import com.prodyna.pac.eternity.server.exception.NoSuchElementException;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.AuthenticationService;
 import com.prodyna.pac.eternity.server.service.CypherService;
-import com.prodyna.pac.eternity.server.service.UserService;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
+import java.util.Map;
+
+import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
+import static com.prodyna.pac.eternity.server.common.PasswordHash.*;
 
 public class AuthenticationServiceImpl implements AuthenticationService {
 
@@ -14,13 +19,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private CypherService cypherService;
 
     @Override
-    public void login(@NotNull User user, @NotNull String plainPassword) {
+    public void login(@NotNull User user, @NotNull String plainPassword)
+            throws InvalidPasswordException, NoSuchElementException {
+
         // return session? Invalidate potential open session
-        //        Retrieve the user's salt and hash from the database.
-        //        Prepend the salt to the given password and hash it using the same hash function.
-        //        Compare the hash of the given password with the hash from the database. If they match, the password is correct. Otherwise, the password is incorrect.
+        this.checkIfPasswordIsValid(user, plainPassword);
         // build session
-        throw new UnsupportedOperationException();
+
     }
 
     @Override
@@ -31,14 +36,60 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public User storePassword(@NotNull User user, @NotNull String plainPassword) {
-        // only admins can set the pw, normal users have to ask admin or use change
+    public User storePassword(@NotNull User user, @NotNull String plainPassword) throws NoSuchElementException {
+
+        String passwordHash = createHash(plainPassword);
+
+        final Map<String, Object> queryResult = cypherService.querySingle(
+                "MATCH (u:User {id:{1}}) SET u.password={2} RETURN u.id",
+                map(1, user.getId(), 2, passwordHash));
+
+        if (queryResult == null) {
+            throw new NoSuchElementException(user.toString());
+        }
+
+        user.setPassword(passwordHash);
+
         return user;
     }
 
     @Override
-    public User changePassword(@NotNull User user, @NotNull String oldPlainPassword, @NotNull String newPlainPassword) {
-        throw new UnsupportedOperationException();
+    public User changePassword(@NotNull User user, @NotNull String oldPlainPassword, @NotNull String newPlainPassword)
+            throws InvalidPasswordException, NoSuchElementException {
+
+        this.checkIfPasswordIsValid(user, oldPlainPassword);
+
+        return this.storePassword(user, newPlainPassword);
+
+    }
+
+    /**
+     * Checks if the given password checks against the given user.
+     *
+     * @param user          the user to check against
+     * @param plainPassword the users password to check
+     * @throws NoSuchElementException   if the user does not exists
+     * @throws InvalidPasswordException if the old password is incorrect
+     */
+    private void checkIfPasswordIsValid(@NotNull User user, @NotNull String plainPassword)
+            throws InvalidPasswordException, NoSuchElementException {
+
+        String RETURN_PASSWORD = "u.password";
+
+        final Map<String, Object> oldPasswordQueryResult = cypherService.querySingle(
+                "MATCH (u:User {id:{1}}) RETURN " + RETURN_PASSWORD,
+                map(1, user.getId()));
+
+        if (oldPasswordQueryResult == null) {
+            throw new NoSuchElementException(user.toString());
+        }
+
+        String currentPasswordHash = (String) oldPasswordQueryResult.get(RETURN_PASSWORD);
+
+        if (!validatePassword(plainPassword, currentPasswordHash)) {
+            throw new InvalidPasswordException();
+        }
+
     }
 
 }

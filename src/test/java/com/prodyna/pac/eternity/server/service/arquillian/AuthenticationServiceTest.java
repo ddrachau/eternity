@@ -50,7 +50,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
     }
 
     @Test
-    public void testLogin() {
+    public void testLogin() throws NoSuchElementException, InvalidPasswordException {
 
         User user1 = userService.get("khansen");
 
@@ -61,7 +61,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
     }
 
     @Test(expected = InvalidPasswordException.class)
-    public void testLoginWithWrongPassword() throws InvalidPasswordException {
+    public void testLoginWithWrongPassword() throws NoSuchElementException, InvalidPasswordException {
 
         User user1 = userService.get("khansen");
 
@@ -73,8 +73,8 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
 
     }
 
-    @Test
-    public void testLoginWithUnknownUser() {
+    @Test(expected = NoSuchElementException.class)
+    public void testLoginWithUnknownUser() throws NoSuchElementException, InvalidPasswordException {
 
         User notValidUser = new User("unknown", "fore", "sur", "pw");
         authenticationService.login(notValidUser, "pw-irrelevant");
@@ -91,7 +91,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
     }
 
     @Test
-    public void testStorePassword() {
+    public void testStorePassword() throws NoSuchElementException {
 
         User user2 = userService.get("aeich");
         User user3 = userService.get("rvoeller");
@@ -101,10 +101,6 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
 
         Assert.assertTrue(validatePassword("pw2", user2.getPassword()));
         Assert.assertFalse(validatePassword("pw", user2.getPassword()));
-
-        Assert.assertFalse(validatePassword("pw2", user3.getPassword()));
-        Assert.assertFalse(validatePassword("", user3.getPassword()));
-        Assert.assertFalse(validatePassword((String) null, user3.getPassword()));
 
         String newPassword = "new";
 
@@ -128,16 +124,16 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
     }
 
     @Test
-    public void testChangePassword() {
+    public void testChangePassword() throws InvalidPasswordException, NoSuchElementException {
 
         String newPassword = "boom";
         String oldPassword = "pw";
         User user4 = userService.get("bborg");
 
         Assert.assertTrue(validatePassword(oldPassword, user4.getPassword()));
-        user4 = authenticationService.storePassword(user4, newPassword);
+        user4 = authenticationService.changePassword(user4, oldPassword, newPassword);
         Assert.assertFalse(validatePassword(oldPassword, user4.getPassword()));
-        Assert.assertFalse(validatePassword(newPassword, user4.getPassword()));
+        Assert.assertTrue(validatePassword(newPassword, user4.getPassword()));
 
     }
 

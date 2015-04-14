@@ -21,8 +21,11 @@ public interface AuthenticationService {
      *
      * @param user          the user to be logged in
      * @param plainPassword the users password
+     * @throws NoSuchElementException   if the user does not exists
+     * @throws InvalidPasswordException if the old password is incorrect
      */
-    void login(@NotNull User user, @NotNull String plainPassword);
+    void login(@NotNull User user, @NotNull String plainPassword)
+            throws NoSuchElementException, InvalidPasswordException;
 
     /**
      * Log out the current connected user.
@@ -34,9 +37,10 @@ public interface AuthenticationService {
      *
      * @param user          the user which gets a new password
      * @param plainPassword the new password to set
-     * @return
+     * @return the user with its new password
+     * @throws NoSuchElementException if the user does not exists
      */
-    User storePassword(@NotNull User user, @NotNull String plainPassword);
+    User storePassword(@NotNull User user, @NotNull String plainPassword) throws NoSuchElementException;
 
     /**
      * Updates the users password
@@ -45,8 +49,10 @@ public interface AuthenticationService {
      * @param oldPlainPassword the users old password
      * @param newPlainPassword the users new password
      * @return the User with the updated password
+     * @throws NoSuchElementException   if the user does not exists
      * @throws InvalidPasswordException if the old password is incorrect
      */
-    User changePassword(@NotNull User user, @NotNull String oldPlainPassword, @NotNull String newPlainPassword) throws InvalidPasswordException;
+    User changePassword(@NotNull User user, @NotNull String oldPlainPassword, @NotNull String newPlainPassword)
+            throws NoSuchElementException, InvalidPasswordException;
 
 }

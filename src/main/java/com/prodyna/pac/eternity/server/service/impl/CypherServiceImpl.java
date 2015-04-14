@@ -46,9 +46,6 @@ public class CypherServiceImpl implements CypherService {
             resultSet.close();
             statement.close();
 
-            // TODO find better way to work with the connection
-            connection.close();
-
             return result;
 
         } catch (SQLException e) {
@@ -118,8 +115,6 @@ public class CypherServiceImpl implements CypherService {
         boolean hasNext = resultSet.next();
 
         while (hasNext) {
-
-            logger.info("found entry");
 
             Map<String, Object> map = new LinkedHashMap<>();
             for (String col : cols) {

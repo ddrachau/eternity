@@ -20,6 +20,7 @@ import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
 
 public class UserServiceImpl implements UserService {
 
+    private static String USER_RETURN_PROPERTIES = "u.id, u.identifier, u.forename, u.surname, u.password";
     @Inject
     private CypherService cypherService;
 
@@ -42,12 +43,17 @@ public class UserServiceImpl implements UserService {
 
         final Map<String, Object> queryResult = cypherService.querySingle(
                 "CREATE (u:User {id:{1}, identifier:{2}, forename:{3}, surname:{4}}) " +
-                        "RETURN u.id, u.identifier, u.forename, u.surname",
+                        "RETURN " + USER_RETURN_PROPERTIES,
                 map(1, user.getId(), 2, user.getIdentifier(), 3, user.getForename(),
                         4, user.getSurname()));
 
         if (user.getPassword() != null) {
-            user = authenticationService.storePassword(user, user.getPassword());
+            try {
+                user = authenticationService.storePassword(user, user.getPassword());
+            } catch (NoSuchElementException e) {
+                // User was just created, should never happen
+                throw new RuntimeException(e);
+            }
         }
 
         return user;
@@ -59,7 +65,7 @@ public class UserServiceImpl implements UserService {
         User result = null;
 
         final Map<String, Object> queryResult = cypherService.querySingle(
-                "MATCH (u:User {identifier:{1}}) RETURN u.id, u.identifier, u.forename, u.surname",
+                "MATCH (u:User {identifier:{1}}) RETURN " + USER_RETURN_PROPERTIES,
                 map(1, identifier));
 
         if (queryResult != null) {
@@ -76,7 +82,7 @@ public class UserServiceImpl implements UserService {
         List<User> result = new ArrayList<>();
 
         final List<Map<String, Object>> queryResult = cypherService.query(
-                "MATCH (u:User) RETURN u.id, u.identifier, u.forename, u.surname, u.password",
+                "MATCH (u:User) RETURN " + USER_RETURN_PROPERTIES,
                 null);
 
         for (Map<String, Object> values : queryResult) {
@@ -98,7 +104,7 @@ public class UserServiceImpl implements UserService {
 
         final Map<String, Object> queryResult = cypherService.querySingle(
                 "MATCH (u:User {id:{1}}) SET u.identifier={2}, u.forename={3}, u.surname={4} " +
-                        "RETURN u.id, u.identifier, u.forename, u.surname",
+                        "RETURN " + USER_RETURN_PROPERTIES,
                 map(1, user.getId(), 2, user.getIdentifier(), 3, user.getForename(),
                         4, user.getSurname()));
 
@@ -169,7 +175,7 @@ public class UserServiceImpl implements UserService {
 
         final List<Map<String, Object>> queryResult = cypherService.query(
                 "MATCH (u:User)-[:ASSIGNED_TO]->(p:Project {identifier:{1}}) " +
-                        "RETURN u.id, u.identifier, u.forename, u.surname",
+                        "RETURN " + USER_RETURN_PROPERTIES,
                 map(1, project.getIdentifier()));
 
         for (Map<String, Object> values : queryResult) {
