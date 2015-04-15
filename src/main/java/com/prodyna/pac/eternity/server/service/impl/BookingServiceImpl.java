@@ -22,7 +22,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Inject
     private CypherService cypherService;
-    
+
     @Override
     public Booking create(@NotNull Booking booking, @NotNull User user, @NotNull Project project) throws NoSuchElementRuntimeException, DuplicateTimeBookingException, UserNotAssignedToProjectException {
         return null;
