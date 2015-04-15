@@ -65,6 +65,27 @@ public class UserServiceTest extends AbstractArquillianTest {
         userService.assignUserToProject(user2, project2);
     }
 
+    @Test()
+    @InSequence(2)
+    public void testIsAssignedTo() {
+
+        User user1 = userService.get("khansen");
+        User user2 = userService.get("aeich");
+        User user3 = userService.get("rvoeller");
+        Project project1 = projectService.get("P00754");
+        Project project2 = projectService.get("P00843");
+        Project project3 = projectService.get("P00998");
+
+        Assert.assertTrue(userService.isAssignedTo(user1, project1));
+        Assert.assertTrue(userService.isAssignedTo(user2, project1));
+        Assert.assertTrue(userService.isAssignedTo(user2, project2));
+
+        Assert.assertFalse(userService.isAssignedTo(user1, project2));
+        Assert.assertFalse(userService.isAssignedTo(user2, project3));
+        Assert.assertFalse(userService.isAssignedTo(user3, project3));
+
+    }
+
     @Test
     @InSequence(2)
     public void testGetAllUsers() {

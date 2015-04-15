@@ -82,4 +82,13 @@ public interface UserService {
      * @return users which are assigned to the project
      */
     List<User> findAllAssignedToProject(Project project);
+
+    /**
+     * Checks if the given user is assigned to the given project
+     *
+     * @param user    the user to check
+     * @param project the project to check
+     * @return true if the user is assigned to the project, false otherwise
+     */
+    boolean isAssignedTo(@NotNull User user, @NotNull Project project);
 }

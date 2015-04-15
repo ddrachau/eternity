@@ -47,20 +47,25 @@ public class BookingServiceTest extends AbstractArquillianTest {
         User user1 = new User("khansen", "Knut", "Hansen", "pw");
         User user2 = new User("aeich", "Alexander", null, "pw2");
         User user3 = new User("rvoeller", "Rudi", "Völler", null);
+        User user4 = new User("bborg", "Björn", "Borg", "pw");
         userService.create(user1);
         userService.create(user2);
         userService.create(user3);
+        userService.create(user4);
 
         Project project1 = new Project("P00754", "KiBucDu Final (Phase II)");
         Project project2 = new Project("P00843", "IT-/Prozessharmonisierung im Handel");
         Project project3 = new Project("P00998", "Bosch - ST-IPP");
+        Project project4 = new Project("P01110", "Glory Times");
         projectService.create(project1);
         projectService.create(project2);
         projectService.create(project3);
+        projectService.create(project4);
 
         userService.assignUserToProject(user1, project1);
         userService.assignUserToProject(user2, project1);
         userService.assignUserToProject(user2, project2);
+        userService.assignUserToProject(user3, project3);
 
         Booking booking1 = new Booking(getUTCDate(2015, 03, 02, 10, 0), getUTCDate(2015, 03, 02, 14, 0), 5);
         Booking booking2 = new Booking(getUTCDate(2015, 03, 03, 9, 0), getUTCDate(2015, 03, 02, 14, 30), 15);
@@ -129,11 +134,11 @@ public class BookingServiceTest extends AbstractArquillianTest {
         Project project1 = projectService.get("P00754");
         Project project2 = projectService.get("P00843");
         Project project3 = projectService.get("P00998");
-        Project projectU = new Project("unknonw",null);
+        Project projectU = new Project("unknonw", null);
         User user1 = userService.get("khansen");
         User user2 = userService.get("aeich");
         User user3 = userService.get("rvoeller");
-        User userU = new User("unknown",null,null,null);
+        User userU = new User("unknown", null, null, null);
 
         Assert.assertEquals(2, bookingService.findByUserAndProject(user1, project1).size());
         Assert.assertEquals(1, bookingService.findByUserAndProject(user2, project1).size());
@@ -153,16 +158,106 @@ public class BookingServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(6)
-    public void testCreate() {
+    public void testCreate() throws InvalidBookingException, DuplicateTimeBookingException, UserNotAssignedToProjectException {
 
-        Assert.fail();
+        Project project3 = projectService.get("P00998");
+        User user3 = userService.get("rvoeller");
 
-//    Booking create(@NotNull Booking booking, @NotNull User user, @NotNull Project project)
-//            throws NoSuchElementRuntimeException, DuplicateTimeBookingException, UserNotAssignedToProjectException;
+        Assert.assertTrue(userService.isAssignedTo(user3, project3));
+
+        Assert.assertEquals(0, bookingService.findByUserAndProject(user3, project3).size());
+        Assert.assertEquals(0, bookingService.findByUser(user3).size());
+        Assert.assertEquals(0, bookingService.findByProject(project3).size());
+
+        Booking b = new Booking(getUTCDate(2015, 03, 10, 10, 0), getUTCDate(2015, 03, 10, 16, 0), 45);
+        Assert.assertNull(b.getId());
+
+        Booking createdB = bookingService.create(b, user3, project3);
+        Assert.assertNotNull(createdB.getId());
+        Assert.assertEquals(b, createdB);
+        Assert.assertEquals(1, bookingService.findByUserAndProject(user3, project3).size());
+        Assert.assertEquals(1, bookingService.findByUser(user3).size());
+        Assert.assertEquals(1, bookingService.findByProject(project3).size());
+
+        Booking secondB = new Booking(getUTCDate(2015, 03, 11, 10, 0), getUTCDate(2015, 03, 11, 16, 0), 45);
+        bookingService.create(secondB, user3, project3);
+        Assert.assertEquals(2, bookingService.findByUserAndProject(user3, project3).size());
+        Assert.assertEquals(2, bookingService.findByUser(user3).size());
+        Assert.assertEquals(2, bookingService.findByProject(project3).size());
+
+    }
+
+    @Test(expected = UserNotAssignedToProjectException.class)
+    @InSequence(7)
+    public void testCreateUnassignedUser() throws InvalidBookingException, DuplicateTimeBookingException, UserNotAssignedToProjectException {
+
+        Project project2 = projectService.get("P00843");
+        User user3 = userService.get("rvoeller");
+
+        Assert.assertFalse(userService.isAssignedTo(user3, project2));
+        Booking b = new Booking(getUTCDate(2015, 03, 10, 10, 0), getUTCDate(2015, 03, 10, 16, 0), 45);
+
+        Booking createdB = bookingService.create(b, user3, project2);
+
+        Assert.fail("Should not create booking on not assigned project");
+
+    }
+
+    @Test(expected = DuplicateTimeBookingException.class)
+    @InSequence(8)
+    public void testCreateDuplicateBooking() throws InvalidBookingException, DuplicateTimeBookingException, UserNotAssignedToProjectException {
+
+        Project project4 = projectService.get("P01110");
+        User user4 = userService.get("bborg");
+
+        userService.assignUserToProject(user4,project4);
+        Booking b = new Booking(getUTCDate(2015, 03, 10, 10, 0), getUTCDate(2015, 03, 10, 16, 0), 45);
+        bookingService.create(b, user4, project4);
+
+        Booking secondB = new Booking(getUTCDate(2015, 03, 10, 15, 0), getUTCDate(2015, 03, 10, 17, 0), 0);
+        bookingService.create(secondB, user4, project4);
+
+        Assert.fail("Booking with overlapping time is not allowed");
+
+    }
+
+
+    @Test(expected = InvalidBookingException.class)
+    @InSequence(8)
+    public void testCreateInvalidBooking() throws DuplicateTimeBookingException, UserNotAssignedToProjectException {
+
+        Project project4 = projectService.get("P01110");
+        User user4 = userService.get("bborg");
+
+        try {
+            bookingService.create(new Booking(getUTCDate(2015, 3, 10, 10, 0), getUTCDate(2015, 3, 9, 16, 0), 45), user4, project4);
+            Assert.fail("Second date before first");
+        } catch (InvalidBookingException e) {
+            // expected
+        }
+        try {
+            bookingService.create(new Booking(getUTCDate(2015, 3, 10, 10, 0), getUTCDate(2015, 3, 10, 9, 0), 45), user4, project4);
+            Assert.fail("Second date before first");
+        } catch (InvalidBookingException e) {
+            // expected
+        }
+        try {
+            bookingService.create(new Booking(getUTCDate(2015, 3, 10, 11, 0), getUTCDate(2015, 3, 10, 13, 0), 180), user4, project4);
+            Assert.fail("Break too long");
+        } catch (InvalidBookingException e) {
+            // expected
+        }
+        try {
+            bookingService.create(new Booking(getUTCDate(2015, 3, 10, 10, 0), getUTCDate(2015, 3, 11, 16, 0), 45), user4, project4);
+            Assert.fail("Second date different day");
+        } catch (InvalidBookingException e) {
+            // expected
+        }
+
     }
 
     @Test
-    @InSequence(7)
+    @InSequence(9)
     public void testUpdate() {
 
         Assert.fail();
@@ -171,7 +266,7 @@ public class BookingServiceTest extends AbstractArquillianTest {
     }
 
     @Test
-    @InSequence(8)
+    @InSequence(10)
     public void testDelete() {
 
         Assert.fail();

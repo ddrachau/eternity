@@ -11,6 +11,7 @@ import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.BookingService;
 import com.prodyna.pac.eternity.server.service.CypherService;
+import com.prodyna.pac.eternity.server.service.UserService;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -28,12 +29,23 @@ public class BookingServiceImpl implements BookingService {
     @Inject
     private CypherService cypherService;
 
+    @Inject
+    private UserService userService;
+
     @Override
     public Booking create(@NotNull Booking booking, @NotNull User user, @NotNull Project project)
             throws DuplicateTimeBookingException, UserNotAssignedToProjectException, InvalidBookingException {
 
-        // TODO check if the user is allowed to book
-        // TODO check if end is after start, same day, break is not greater than work, work, at least 5min
+        this.checkIfBookingIsValid(booking);
+
+        if (booking.getId() != null) {
+            throw new InvalidBookingException("Booking already have an id");
+        }
+
+        if (!userService.isAssignedTo(user, project)) {
+            throw new UserNotAssignedToProjectException(user.toString());
+        }
+
         // TODO check if a booking for overlaps exists
 
         booking.setId(UUID.randomUUID().toString());
@@ -126,11 +138,60 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Booking update(@NotNull Booking booking) throws NoSuchElementRuntimeException, DuplicateTimeBookingException {
+
+//        // TODO get the user and project for the given booking , get other bookings and check
+//        this.checkIfBookingIsValid(booking, user, project);
+//
+//        final Map<String, Object> queryResult = cypherService.querySingle(
+//                "MATCH (b:Booking {id:{1}}) SET p.identifier={2}, p.description={3} RETURN p.id, p.identifier, p.description",
+//                map(1, booking.getId(), 2, project.getIdentifier(), 3, project.getDescription()));
+//
+//        if (queryResult == null) {
+//            throw new NoSuchElementRuntimeException();
+//        } else {
+//            return this.getBooking(queryResult);
+//        }
         return null;
+
     }
 
     @Override
     public void delete(@NotNull String id) throws NoSuchElementRuntimeException {
+
+    }
+
+    /**
+     * Validates if the booking is in the correct format.
+     *
+     * @param booking the booking to be checked
+     * @throws InvalidBookingException if the given booking is inconsistent.
+     */
+    private void checkIfBookingIsValid(@NotNull Booking booking) throws InvalidBookingException {
+
+        Date startTime = booking.getStartTime();
+        Date endTime = booking.getEndTime();
+
+        if (startTime == null || endTime == null) {
+            throw new InvalidBookingException("Times not set");
+        }
+
+        if (endTime.getTime() - startTime.getTime() > 300000) {
+            throw new InvalidBookingException("Start has to be at least 5min before end");
+        }
+
+        if ((endTime.getTime() - startTime.getTime()) / 60000 > booking.getBreakDuration()) {
+            throw new InvalidBookingException("Work has to be greater thand break");
+        }
+
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        cal1.setTime(startTime);
+        cal2.setTime(endTime);
+        boolean timesAtTheSameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+        if (!timesAtTheSameDay) {
+            throw new InvalidBookingException("Bookings have to be at the same day");
+        }
 
     }
 

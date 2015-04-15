@@ -196,6 +196,17 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public boolean isAssignedTo(@NotNull User user, @NotNull Project project) {
+
+        final List<Map<String, Object>> queryResult = cypherService.query(
+                "MATCH (u:User{id:{1}})-[r:ASSIGNED_TO]->(p:Project {id:{2}}) RETURN r",
+                map(1, user.getId(), 2, project.getId()));
+
+        return queryResult.size() > 0;
+
+    }
+
     /**
      * Helper method to construct a User from a query response
      *

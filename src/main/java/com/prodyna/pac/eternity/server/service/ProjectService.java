@@ -63,6 +63,6 @@ public interface ProjectService {
      * @param user the source user
      * @return projects which are assigned to the user
      */
-    List<Project> findAllAssignedToUser(User user);
+    List<Project> findAllAssignedToUser(@NotNull User user);
 
 }

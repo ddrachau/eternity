@@ -116,7 +116,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Project> findAllAssignedToUser(User user) {
+    public List<Project> findAllAssignedToUser(@NotNull User user) {
 
         List<Project> result = new ArrayList<>();
 
@@ -133,8 +133,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     }
 
-
-    private Project getProject(Map<String, Object> values) {
+    private Project getProject(@NotNull Map<String, Object> values) {
 
         Project result = new Project();
 

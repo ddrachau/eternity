@@ -61,14 +61,16 @@ public class ProjectServiceTest extends AbstractArquillianTest {
 
     }
 
+
+
     @Test
-    @InSequence(2)
+    @InSequence(3)
     public void testGetAllProjects() {
         Assert.assertEquals(6, projectService.findAll().size());
     }
 
     @Test
-    @InSequence(3)
+    @InSequence(4)
     public void testCreateProject() throws Exception {
 
         String identifier = "new Project";
@@ -88,7 +90,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
     }
 
     @Test
-    @InSequence(4)
+    @InSequence(5)
     public void testCreateProjectWhichExists() throws ElementAlreadyExistsRuntimeException {
 
         String identifier = "new Project2";
@@ -111,7 +113,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
     }
 
     @Test
-    @InSequence(5)
+    @InSequence(6)
     public void testGetProject() {
 
         String identifier = "P00754";
@@ -125,7 +127,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
     }
 
     @Test
-    @InSequence(6)
+    @InSequence(7)
     public void testGetProjectUnknown() {
 
         Assert.assertNull(projectService.get("unknownId"));
@@ -133,7 +135,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
     }
 
     @Test
-    @InSequence(7)
+    @InSequence(8)
     public void testUpdateProject() throws ElementAlreadyExistsRuntimeException, NoSuchElementRuntimeException {
 
         String identifier = "P00754";
@@ -159,7 +161,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
     }
 
     @Test
-    @InSequence(8)
+    @InSequence(9)
     public void testUpdateProjectExistingIdentifier() throws ElementAlreadyExistsRuntimeException, NoSuchElementRuntimeException {
 
         String identifier = "P00754";
@@ -184,7 +186,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
     }
 
     @Test
-    @InSequence(9)
+    @InSequence(10)
     public void testUpdateProjectNonExistingNode() throws ElementAlreadyExistsRuntimeException, NoSuchElementRuntimeException {
 
         Project p = new Project("unknow", "P00755", "desc");
@@ -202,7 +204,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
     }
 
     @Test
-    @InSequence(10)
+    @InSequence(11)
     public void testDeleteProject() throws NoSuchElementRuntimeException {
 
         String identifier = "P01244";
@@ -219,7 +221,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
     }
 
     @Test
-    @InSequence(11)
+    @InSequence(12)
     public void testDeleteProjectNoSuchProject() {
 
         String identifier = "P01244";
@@ -241,7 +243,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
     }
 
     @Test()
-    @InSequence(12)
+    @InSequence(13)
     public void testFindAllAssignedUser() {
 
         User user1 = userService.get("khansen");
