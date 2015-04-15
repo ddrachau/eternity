@@ -10,6 +10,7 @@ import com.prodyna.pac.eternity.server.service.UserService;
 import junit.framework.Assert;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -31,7 +32,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(1)
-    public void createDemoData() throws Exception {
+    public void createDemoData() {
 
         // clean DB from nodes and relations
         cypherService.query("MATCH(n) OPTIONAL MATCH (n)-[r]-() DELETE n,r", null);
@@ -188,7 +189,6 @@ public class ProjectServiceTest extends AbstractArquillianTest {
     public void testUpdateProjectNonExistingNode() throws ElementAlreadyExistsRuntimeException, NoSuchElementRuntimeException {
 
         Project p = new Project("unknow", "P00755", "desc");
-
 
         try {
             projectService.update(p);

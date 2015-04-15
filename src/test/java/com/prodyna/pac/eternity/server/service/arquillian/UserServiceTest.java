@@ -10,6 +10,7 @@ import com.prodyna.pac.eternity.server.service.UserService;
 import junit.framework.Assert;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -31,7 +32,7 @@ public class UserServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(1)
-    public void createDemoData() throws Exception {
+    public void createDemoData() {
 
         // clean DB from nodes and relations
         cypherService.query("MATCH(n) OPTIONAL MATCH (n)-[r]-() DELETE n,r", null);
@@ -63,7 +64,6 @@ public class UserServiceTest extends AbstractArquillianTest {
         userService.assignUserToProject(user1, project1);
         userService.assignUserToProject(user2, project1);
         userService.assignUserToProject(user2, project2);
-
     }
 
     @Test

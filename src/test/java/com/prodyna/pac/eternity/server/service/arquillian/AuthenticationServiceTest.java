@@ -1,6 +1,5 @@
 package com.prodyna.pac.eternity.server.service.arquillian;
 
-import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsRuntimeException;
 import com.prodyna.pac.eternity.server.exception.InvalidPasswordException;
 import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.User;
@@ -12,7 +11,6 @@ import junit.framework.Assert;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -37,28 +35,26 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
     @Inject
     private AuthenticationService authenticationService;
 
-    @Before
-    public void createDemoData() throws Exception {
+    @Test
+    @InSequence(1)
+    public void createDemoData() {
 
-        if (!demoDataCreated) {
+        // clean DB from nodes and relations
+        cypherService.query("MATCH(n) OPTIONAL MATCH (n)-[r]-() DELETE n,r", null);
 
-            demoDataCreated = true;
-            // clean DB from nodes and relations
-            cypherService.query("MATCH(n) OPTIONAL MATCH (n)-[r]-() DELETE n,r", null);
-
-            User user1 = new User("khansen", "Knut", "Hansen", "pw");
-            User user2 = new User("aeich", "Alexander", null, "pw2");
-            User user3 = new User("rvoeller", "Rudi", "Völler", null);
-            User user4 = new User("bborg", "Björn", "Borg", "pw");
-            userService.create(user1);
-            userService.create(user2);
-            userService.create(user3);
-            userService.create(user4);
-        }
+        User user1 = new User("khansen", "Knut", "Hansen", "pw");
+        User user2 = new User("aeich", "Alexander", null, "pw2");
+        User user3 = new User("rvoeller", "Rudi", "Völler", null);
+        User user4 = new User("bborg", "Björn", "Borg", "pw");
+        userService.create(user1);
+        userService.create(user2);
+        userService.create(user3);
+        userService.create(user4);
 
     }
 
     @Test
+    @InSequence(2)
     public void testLogin() throws NoSuchElementRuntimeException, InvalidPasswordException {
 
         User user1 = userService.get("khansen");
@@ -70,6 +66,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
     }
 
     @Test(expected = InvalidPasswordException.class)
+    @InSequence(3)
     public void testLoginWithWrongPassword() throws NoSuchElementRuntimeException, InvalidPasswordException {
 
         User user1 = userService.get("khansen");
@@ -83,6 +80,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
     }
 
     @Test
+    @InSequence(4)
     public void testLoginWithUnknownUser() throws InvalidPasswordException {
 
         User notValidUser = new User("unknown", "fore", "sur", "pw");
@@ -100,6 +98,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
     }
 
     @Test
+    @InSequence(5)
     public void testLogout() {
 
         Assert.fail();
@@ -107,6 +106,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
     }
 
     @Test
+    @InSequence(6)
     public void testStorePassword() throws NoSuchElementRuntimeException {
 
         User user2 = userService.get("aeich");
@@ -130,6 +130,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
     }
 
     @Test
+    @InSequence(7)
     public void testStorePasswordWithUnkownUser() {
 
         User notValidUser = new User("unknown", "fore", "sur", "pw");
@@ -147,6 +148,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
     }
 
     @Test
+    @InSequence(8)
     public void testChangePassword() throws InvalidPasswordException, NoSuchElementRuntimeException {
 
         String newPassword = "boom";
@@ -161,6 +163,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
     }
 
     @Test(expected = InvalidPasswordException.class)
+    @InSequence(9)
     public void testChangeWithInvalidPassword() throws InvalidPasswordException, NoSuchElementRuntimeException {
 
         User user1 = userService.get("khansen");
@@ -171,6 +174,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
     }
 
     @Test
+    @InSequence(10)
     public void testChangeWithUnknownUser() throws InvalidPasswordException {
 
         User notValidUser = new User("unknown", "fore", "sur", "pw");
