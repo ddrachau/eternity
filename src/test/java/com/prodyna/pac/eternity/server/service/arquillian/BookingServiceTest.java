@@ -48,36 +48,43 @@ public class BookingServiceTest extends AbstractArquillianTest {
         User user2 = new User("aeich", "Alexander", null, "pw2");
         User user3 = new User("rvoeller", "Rudi", "Völler", null);
         User user4 = new User("bborg", "Björn", "Borg", "pw");
+        User user5 = new User("hmeiser", "Hans", "Meiser", "pw");
         userService.create(user1);
         userService.create(user2);
         userService.create(user3);
         userService.create(user4);
+        userService.create(user5);
 
         Project project1 = new Project("P00754", "KiBucDu Final (Phase II)");
         Project project2 = new Project("P00843", "IT-/Prozessharmonisierung im Handel");
         Project project3 = new Project("P00998", "Bosch - ST-IPP");
         Project project4 = new Project("P01110", "Glory Times");
+        Project project5 = new Project("P01244", "Phoenix Classic");
         projectService.create(project1);
         projectService.create(project2);
         projectService.create(project3);
         projectService.create(project4);
+        projectService.create(project5);
 
         userService.assignUserToProject(user1, project1);
         userService.assignUserToProject(user2, project1);
         userService.assignUserToProject(user2, project2);
         userService.assignUserToProject(user3, project3);
+        userService.assignUserToProject(user5, project5);
 
         Booking booking1 = new Booking(DateUtils.getCalendar(2015, 3, 2, 10, 0), DateUtils.getCalendar(2015, 3, 2, 14, 0), 5);
         Booking booking2 = new Booking(DateUtils.getCalendar(2015, 3, 3, 9, 0), DateUtils.getCalendar(2015, 3, 3, 14, 30), 15);
         Booking booking3 = new Booking(DateUtils.getCalendar(2015, 3, 5, 9, 0), DateUtils.getCalendar(2015, 3, 5, 18, 10), 60);
         Booking booking4 = new Booking(DateUtils.getCalendar(2015, 3, 6, 10, 0), DateUtils.getCalendar(2015, 3, 6, 15, 0), 30);
         Booking booking5 = new Booking(DateUtils.getCalendar(2015, 3, 7, 10, 0), DateUtils.getCalendar(2015, 3, 7, 16, 0), 45);
+        Booking booking6 = new Booking(DateUtils.getCalendar(2015, 3, 7, 10, 0), DateUtils.getCalendar(2015, 3, 7, 16, 0), 45);
 
         bookingService.create(booking1, user1, project1);
         bookingService.create(booking2, user1, project1);
         bookingService.create(booking3, user2, project1);
         bookingService.create(booking4, user2, project2);
         bookingService.create(booking5, user2, project2);
+        bookingService.create(booking6, user5, project5);
 
     }
 
@@ -430,9 +437,29 @@ public class BookingServiceTest extends AbstractArquillianTest {
     @InSequence(13)
     public void testDelete() {
 
-        Assert.fail();
+        Project project5 = projectService.get("P01244");
+        User user5 = userService.get("hmeiser");
 
-//    void delete(@NotNull String id) throws NoSuchElementRuntimeException;
+        Assert.assertTrue(userService.isAssignedTo(user5, project5));
+
+        List<Booking> byProject = bookingService.findByProject(project5);
+        List<Booking> byUser = bookingService.findByUser(user5);
+
+        Assert.assertEquals(1, byProject.size());
+        Assert.assertEquals(1, byUser.size());
+        Assert.assertNotNull(byProject.get(0));
+        Assert.assertEquals(byProject.get(0), byUser.get(0));
+
+        Booking b = byProject.get(0);
+
+        Assert.assertNotNull(bookingService.get(b.getId()));
+
+        bookingService.delete(b.getId());
+
+        Assert.assertNull(bookingService.get(b.getId()));
+        Assert.assertTrue(bookingService.findByProject(project5).isEmpty());
+        Assert.assertTrue(bookingService.findByUser(user5).isEmpty());
+
     }
 
 }

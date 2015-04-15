@@ -1,7 +1,6 @@
 package com.prodyna.pac.eternity.server.model;
 
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * A booking is a concrete time booking with a start and end date (at the same day) for a project.

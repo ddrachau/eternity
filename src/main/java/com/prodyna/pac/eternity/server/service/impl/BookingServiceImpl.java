@@ -26,6 +26,9 @@ import static com.prodyna.pac.eternity.server.common.DateUtils.*;
 @Stateless
 public class BookingServiceImpl implements BookingService {
 
+    /**
+     * Default return properties, to make object creation easier.
+     */
     private static String BOOKING_RETURN_PROPERTIES = "b.id, b.startTime, b.endTime, b.breakDuration";
 
     @Inject
@@ -168,6 +171,15 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public void delete(@NotNull String id) throws NoSuchElementRuntimeException {
+
+        if (this.get(id) == null) {
+            throw new NoSuchElementRuntimeException();
+        }
+
+        cypherService.query(
+                "MATCH ()<-[r1]-(b:Booking {id:{1}})-[r2]->() " +
+                        "DELETE r1,b,r2",
+                map(1, id));
 
     }
 

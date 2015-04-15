@@ -24,6 +24,9 @@ import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
 @Stateless
 public class ProjectServiceImpl implements ProjectService {
 
+    /**
+     * Default return properties, to make object creation easier.
+     */
     private static String PROJECT_RETURN_PROPERTIES = "p.id, p.identifier, p.description";
 
     @Inject

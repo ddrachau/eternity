@@ -26,6 +26,9 @@ import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
 @Stateless
 public class UserServiceImpl implements UserService {
 
+    /**
+     * Default return properties, to make object creation easier.
+     */
     private static String USER_RETURN_PROPERTIES = "u.id, u.identifier, u.forename, u.surname, u.password";
 
     @Inject
@@ -175,28 +178,6 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    /**
-     * Helper method to reuse the code for assign and unassign user from and to projects
-     *
-     * @param query   the concrete query to execute
-     * @param user    the user of the assignment
-     * @param project the project of the assignment
-     * @throws NoSuchElementRuntimeException if the given user or project cannot be found
-     */
-    private void assignQuery(String query, User user, Project project) throws NoSuchElementRuntimeException {
-
-        user = this.get(user.getIdentifier());
-        project = projectService.get(project.getIdentifier());
-
-        if (user == null || project == null) {
-            throw new NoSuchElementRuntimeException("user or project unknown");
-        }
-
-        final Map<String, Object> queryResult = cypherService.querySingle(
-                query, map(1, user.getIdentifier(), 2, project.getIdentifier()));
-
-    }
-
     @Override
     public List<User> findAllAssignedToProject(Project project) {
 
@@ -223,6 +204,28 @@ public class UserServiceImpl implements UserService {
                 map(1, user.getId(), 2, project.getId()));
 
         return queryResult.size() > 0;
+
+    }
+
+    /**
+     * Helper method to reuse the code for assign and unassign user from and to projects
+     *
+     * @param query   the concrete query to execute
+     * @param user    the user of the assignment
+     * @param project the project of the assignment
+     * @throws NoSuchElementRuntimeException if the given user or project cannot be found
+     */
+    private void assignQuery(String query, User user, Project project) throws NoSuchElementRuntimeException {
+
+        user = this.get(user.getIdentifier());
+        project = projectService.get(project.getIdentifier());
+
+        if (user == null || project == null) {
+            throw new NoSuchElementRuntimeException("user or project unknown");
+        }
+
+        final Map<String, Object> queryResult = cypherService.querySingle(
+                query, map(1, user.getIdentifier(), 2, project.getIdentifier()));
 
     }
 
