@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 
 import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
-import static com.prodyna.pac.eternity.server.common.DateUtils.getUTCDate;
+import static com.prodyna.pac.eternity.server.common.DateUtils.*;
 
 @Logging
 @Stateless
@@ -60,7 +60,8 @@ public class BookingServiceImpl implements BookingService {
                         "CREATE (u)<-[:PERFORMED_BY]-(b:Booking {id:{3}, startTime:{4}, endTime: {5}, breakDuration: {6}})-[:PERFORMED_FOR]->(p) " +
                         "RETURN " + BOOKING_RETURN_PROPERTIES,
                 map(1, user.getId(), 2, project.getId(), 3, booking.getId(),
-                        4, booking.getStartTime().getTime(), 5, booking.getEndTime().getTime(), 6, booking.getBreakDuration()));
+                        4, booking.getStartTime().getTimeInMillis(), 5, booking.getEndTime().getTimeInMillis(),
+                        6, booking.getBreakDuration()));
 
         if (queryResult == null) {
             throw new NotCreatedRuntimeException(booking.toString());
@@ -154,8 +155,8 @@ public class BookingServiceImpl implements BookingService {
         final Map<String, Object> queryResult = cypherService.querySingle(
                 "MATCH (b:Booking {id:{1}}) SET b.startTime={2}, b.endTime={3}, b.breakDuration={4} " +
                         "RETURN " + BOOKING_RETURN_PROPERTIES,
-                map(1, booking.getId(), 2, booking.getStartTime().getTime(),
-                        3, booking.getEndTime().getTime(), 4, booking.getBreakDuration()));
+                map(1, booking.getId(), 2, booking.getStartTime().getTimeInMillis(),
+                        3, booking.getEndTime().getTimeInMillis(), 4, booking.getBreakDuration()));
 
         if (queryResult == null) {
             throw new NoSuchElementRuntimeException();
@@ -178,27 +179,23 @@ public class BookingServiceImpl implements BookingService {
      */
     private void checkIfBookingIsValid(@NotNull Booking booking) throws InvalidBookingException {
 
-        Date startTime = booking.getStartTime();
-        Date endTime = booking.getEndTime();
+        Calendar startTime = booking.getStartTime();
+        Calendar endTime = booking.getEndTime();
 
         if (startTime == null || endTime == null) {
             throw new InvalidBookingException("Times not set");
         }
 
-        if ((endTime.getTime() - startTime.getTime()) < 300000) {
+        if ((endTime.getTimeInMillis() - startTime.getTimeInMillis()) < 300000) {
             throw new InvalidBookingException("Start has to be at least 5min before end");
         }
 
-        if ((endTime.getTime() - startTime.getTime()) / 60000 < booking.getBreakDuration()) {
+        if ((endTime.getTimeInMillis() - startTime.getTimeInMillis()) / 60000 < booking.getBreakDuration()) {
             throw new InvalidBookingException("Work has to be greater thand break");
         }
 
-        Calendar cal1 = Calendar.getInstance();
-        Calendar cal2 = Calendar.getInstance();
-        cal1.setTime(startTime);
-        cal2.setTime(endTime);
-        boolean timesAtTheSameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
-                cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+        boolean timesAtTheSameDay = startTime.get(Calendar.YEAR) == endTime.get(Calendar.YEAR) &&
+                startTime.get(Calendar.DAY_OF_YEAR) == endTime.get(Calendar.DAY_OF_YEAR);
         if (!timesAtTheSameDay) {
             throw new InvalidBookingException("Bookings have to be at the same day");
         }
@@ -223,9 +220,8 @@ public class BookingServiceImpl implements BookingService {
                         "(b.endTime > {3} AND b.endTime <= {4}) OR" +
                         "(b.startTime <= {3} AND b.endTime >= {4}) " +
                         "RETURN " + BOOKING_RETURN_PROPERTIES,
-                map(1, user.getId(), 2, project.getId(), 3, booking.getStartTime().getTime(),
-                        4, booking.getEndTime().getTime()));
-
+                map(1, user.getId(), 2, project.getId(), 3, booking.getStartTime().getTimeInMillis(),
+                        4, booking.getEndTime().getTimeInMillis()));
         if (queryResult.size() > 0) {
             throw new DuplicateTimeBookingException();
         }
@@ -248,8 +244,8 @@ public class BookingServiceImpl implements BookingService {
         int readBreakDuration = (int) values.get("b.breakDuration");
 
         result.setId(readId);
-        result.setStartTime(getUTCDate(readStartTime));
-        result.setEndTime(getUTCDate(readEndTime));
+        result.setStartTime(getCalendar(readStartTime));
+        result.setEndTime(getCalendar(readEndTime));
         result.setBreakDuration(readBreakDuration);
 
         return result;

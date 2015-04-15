@@ -1,5 +1,6 @@
 package com.prodyna.pac.eternity.server.service.arquillian;
 
+import com.prodyna.pac.eternity.server.common.DateUtils;
 import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
@@ -21,8 +22,6 @@ import org.junit.runner.RunWith;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
 import java.util.List;
-
-import static com.prodyna.pac.eternity.server.common.DateUtils.getUTCDate;
 
 @RunWith(Arquillian.class)
 public class UserServiceTest extends AbstractArquillianTest {
@@ -414,7 +413,7 @@ public class UserServiceTest extends AbstractArquillianTest {
         Project project5 = projectService.get("P01244");
 
         userService.assignUserToProject(user5, project5);
-        Booking booking5 = new Booking(getUTCDate(2015, 3, 7, 10, 0), getUTCDate(2015, 3, 7, 16, 0), 45);
+        Booking booking5 = new Booking(DateUtils.getCalendar(2015, 3, 7, 10, 0), DateUtils.getCalendar(2015, 3, 7, 16, 0), 45);
         bookingService.create(booking5, user5, project5);
 
         Assert.assertEquals(user5, userService.get(booking5));

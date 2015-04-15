@@ -1,5 +1,6 @@
 package com.prodyna.pac.eternity.server.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -10,11 +11,11 @@ public class Booking extends AbstractNode {
     /**
      * The start time.
      */
-    private Date startTime;
+    private Calendar startTime;
     /**
      * The end time.
      */
-    private Date endTime;
+    private Calendar endTime;
     /**
      * The break duration in minutes.
      */
@@ -35,7 +36,7 @@ public class Booking extends AbstractNode {
      * @param endTime       the end time
      * @param breakDuration the break duration in minutes
      */
-    public Booking(String id, Date startTime, Date endTime, int breakDuration) {
+    public Booking(String id, Calendar startTime, Calendar endTime, int breakDuration) {
         super(id);
         this.startTime = startTime;
         this.endTime = endTime;
@@ -49,7 +50,7 @@ public class Booking extends AbstractNode {
      * @param endTime       the end time
      * @param breakDuration the break duration in minutes
      */
-    public Booking(Date startTime, Date endTime, int breakDuration) {
+    public Booking(Calendar startTime, Calendar endTime, int breakDuration) {
         this(null, startTime, endTime, breakDuration);
     }
 
@@ -58,7 +59,7 @@ public class Booking extends AbstractNode {
      *
      * @return the startTime
      */
-    public Date getStartTime() {
+    public Calendar getStartTime() {
         return startTime;
     }
 
@@ -67,7 +68,7 @@ public class Booking extends AbstractNode {
      *
      * @param startTime to be set
      */
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Calendar startTime) {
         this.startTime = startTime;
     }
 
@@ -76,7 +77,7 @@ public class Booking extends AbstractNode {
      *
      * @return the endTime
      */
-    public Date getEndTime() {
+    public Calendar getEndTime() {
         return endTime;
     }
 
@@ -85,7 +86,7 @@ public class Booking extends AbstractNode {
      *
      * @param endTime to be set
      */
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Calendar endTime) {
         this.endTime = endTime;
     }
 
