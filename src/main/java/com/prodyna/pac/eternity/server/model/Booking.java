@@ -7,11 +7,18 @@ import java.util.Date;
  */
 public class Booking extends AbstractNode {
 
+    /**
+     * The start time.
+     */
     private Date startTime;
+    /**
+     * The end time.
+     */
     private Date endTime;
+    /**
+     * The break duration in minutes.
+     */
     private int breakDuration;
-    private Project bookedFor;
-    private User bookedBy;
 
     /**
      * Empty default constructor *
@@ -20,48 +27,89 @@ public class Booking extends AbstractNode {
 
     }
 
+    /**
+     * Creates a booking and initialize the following properties:
+     *
+     * @param id            the technical identifier
+     * @param startTime     the start time
+     * @param endTime       the end time
+     * @param breakDuration the break duration in minutes
+     */
+    public Booking(String id, Date startTime, Date endTime, int breakDuration) {
+        super(id);
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.breakDuration = breakDuration;
+    }
+
+    /**
+     * Creates a booking and initialize the following properties:
+     *
+     * @param startTime     the start time
+     * @param endTime       the end time
+     * @param breakDuration the break duration in minutes
+     */
+    public Booking(Date startTime, Date endTime, int breakDuration) {
+        this(null, startTime, endTime, breakDuration);
+    }
+
+    /**
+     * Basic Getter
+     *
+     * @return the startTime
+     */
     public Date getStartTime() {
         return startTime;
     }
 
+    /**
+     * Basic Setter
+     *
+     * @param startTime to be set
+     */
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
+    /**
+     * Basic Getter
+     *
+     * @return the endTime
+     */
     public Date getEndTime() {
         return endTime;
     }
 
+    /**
+     * Basic Setter
+     *
+     * @param endTime to be set
+     */
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
+    /**
+     * Basic Getter
+     *
+     * @return the breakDuration
+     */
     public int getBreakDuration() {
         return breakDuration;
     }
 
+    /**
+     * Basic Setter
+     *
+     * @param breakDuration to be set
+     */
     public void setBreakDuration(int breakDuration) {
         this.breakDuration = breakDuration;
     }
 
-    public Project getBookedFor() {
-        return bookedFor;
-    }
-
-    public void setBookedFor(Project bookedFor) {
-        this.bookedFor = bookedFor;
-    }
-
-    public User getBookedBy() {
-        return bookedBy;
-    }
-
-    public void setBookedBy(User bookedBy) {
-        this.bookedBy = bookedBy;
-    }
-
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
@@ -69,8 +117,6 @@ public class Booking extends AbstractNode {
         Booking booking = (Booking) o;
 
         if (breakDuration != booking.breakDuration) return false;
-        if (bookedBy != null ? !bookedBy.equals(booking.bookedBy) : booking.bookedBy != null) return false;
-        if (bookedFor != null ? !bookedFor.equals(booking.bookedFor) : booking.bookedFor != null) return false;
         if (endTime != null ? !endTime.equals(booking.endTime) : booking.endTime != null) return false;
         if (startTime != null ? !startTime.equals(booking.startTime) : booking.startTime != null) return false;
 
@@ -84,8 +130,6 @@ public class Booking extends AbstractNode {
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", breakDuration=" + breakDuration +
-                ", bookedFor=" + bookedFor +
-                ", bookedBy=" + bookedBy +
                 '}';
     }
 

@@ -9,6 +9,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
  */
 public abstract class AbstractArquillianTest {
 
+    protected boolean demoDataCreated = false;
     private static JavaArchive archive = null;
 
     @Deployment
