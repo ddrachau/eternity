@@ -1,8 +1,9 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
 import com.prodyna.pac.eternity.server.common.logging.Logging;
-import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsRuntimeException;
-import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
+import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.server.exception.technical.NotCreatedRuntimeException;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.CypherService;
@@ -39,6 +40,10 @@ public class ProjectServiceImpl implements ProjectService {
         final Map<String, Object> queryResult = cypherService.querySingle(
                 "CREATE (p:Project {id:{1}, identifier:{2}, description:{3}}) RETURN p.id, p.identifier, p.description",
                 map(1, project.getId(), 2, project.getIdentifier(), 3, project.getDescription()));
+
+        if (queryResult == null) {
+            throw new NotCreatedRuntimeException(project.toString());
+        }
 
         return project;
 

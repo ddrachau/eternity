@@ -1,14 +1,14 @@
-package com.prodyna.pac.eternity.server.exception;
+package com.prodyna.pac.eternity.server.exception.functional;
 
 /**
- * Function exception signaling that the user is not allowed to book on this project..
+ * Functional exception signaling that a time booking (partially) exists for a user and project.
  */
-public class UserNotAssignedToProjectException extends Exception {
+public class DuplicateTimeBookingException extends Exception {
 
     /**
      * Default constructor.
      */
-    public UserNotAssignedToProjectException() {
+    public DuplicateTimeBookingException() {
     }
 
     /**
@@ -16,7 +16,7 @@ public class UserNotAssignedToProjectException extends Exception {
      *
      * @param cause the root cause
      */
-    public UserNotAssignedToProjectException(Throwable cause) {
+    public DuplicateTimeBookingException(Throwable cause) {
         super(cause);
     }
 
@@ -25,7 +25,7 @@ public class UserNotAssignedToProjectException extends Exception {
      *
      * @param message the exception message
      */
-    public UserNotAssignedToProjectException(String message) {
+    public DuplicateTimeBookingException(String message) {
         super(message);
     }
 
@@ -35,7 +35,7 @@ public class UserNotAssignedToProjectException extends Exception {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public UserNotAssignedToProjectException(String message, Throwable cause) {
+    public DuplicateTimeBookingException(String message, Throwable cause) {
         super(message, cause);
     }
 }

@@ -1,14 +1,14 @@
-package com.prodyna.pac.eternity.server.exception;
+package com.prodyna.pac.eternity.server.exception.technical;
 
 /**
- * Persistence exception signaling that an element for the id or identifier could not be found.
+ * Persistence exception signaling that an element already exists for the id or an identifier.
  */
-public class NoSuchElementRuntimeException extends RuntimeException {
+public class ElementAlreadyExistsRuntimeException extends RuntimeException {
 
     /**
      * Default constructor.
      */
-    public NoSuchElementRuntimeException() {
+    public ElementAlreadyExistsRuntimeException() {
     }
 
     /**
@@ -16,7 +16,7 @@ public class NoSuchElementRuntimeException extends RuntimeException {
      *
      * @param cause the root cause
      */
-    public NoSuchElementRuntimeException(Throwable cause) {
+    public ElementAlreadyExistsRuntimeException(Throwable cause) {
         super(cause);
     }
 
@@ -25,7 +25,7 @@ public class NoSuchElementRuntimeException extends RuntimeException {
      *
      * @param message the exception message
      */
-    public NoSuchElementRuntimeException(String message) {
+    public ElementAlreadyExistsRuntimeException(String message) {
         super(message);
     }
 
@@ -35,7 +35,7 @@ public class NoSuchElementRuntimeException extends RuntimeException {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public NoSuchElementRuntimeException(String message, Throwable cause) {
+    public ElementAlreadyExistsRuntimeException(String message, Throwable cause) {
         super(message, cause);
     }
 }

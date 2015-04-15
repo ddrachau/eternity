@@ -1,14 +1,14 @@
-package com.prodyna.pac.eternity.server.exception;
+package com.prodyna.pac.eternity.server.exception.functional;
 
 /**
- * Functional exception signaling that a time booking (partially) exists for a user and project.
+ * Functional Exception signaling that a password for a user is not correct.
  */
-public class DuplicateTimeBookingException extends Exception {
+public class InvalidPasswordException extends Exception {
 
     /**
      * Default constructor.
      */
-    public DuplicateTimeBookingException() {
+    public InvalidPasswordException() {
     }
 
     /**
@@ -16,7 +16,7 @@ public class DuplicateTimeBookingException extends Exception {
      *
      * @param cause the root cause
      */
-    public DuplicateTimeBookingException(Throwable cause) {
+    public InvalidPasswordException(Throwable cause) {
         super(cause);
     }
 
@@ -25,7 +25,7 @@ public class DuplicateTimeBookingException extends Exception {
      *
      * @param message the exception message
      */
-    public DuplicateTimeBookingException(String message) {
+    public InvalidPasswordException(String message) {
         super(message);
     }
 
@@ -35,7 +35,7 @@ public class DuplicateTimeBookingException extends Exception {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public DuplicateTimeBookingException(String message, Throwable cause) {
+    public InvalidPasswordException(String message, Throwable cause) {
         super(message, cause);
     }
 }

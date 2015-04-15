@@ -1,8 +1,9 @@
 package com.prodyna.pac.eternity.server.service;
 
-import com.prodyna.pac.eternity.server.exception.DuplicateTimeBookingException;
-import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
-import com.prodyna.pac.eternity.server.exception.UserNotAssignedToProjectException;
+import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
+import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
+import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.Booking;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
@@ -24,12 +25,12 @@ public interface BookingService {
      * @param user    the user who spent the time
      * @param project the project the user spent his time on
      * @return the created Booking
-     * @throws NoSuchElementRuntimeException     if the user or project cannot be found
      * @throws DuplicateTimeBookingException     if there already exists a booking which would overlap with this new one for the user and project
      * @throws UserNotAssignedToProjectException if the user is not allowed to book on this project
+     * @throws InvalidBookingException           if the booking is inconsistent
      */
     Booking create(@NotNull Booking booking, @NotNull User user, @NotNull Project project)
-            throws NoSuchElementRuntimeException, DuplicateTimeBookingException, UserNotAssignedToProjectException;
+            throws DuplicateTimeBookingException, UserNotAssignedToProjectException, InvalidBookingException;
 
     /**
      * Searches for a single booking.
@@ -69,10 +70,10 @@ public interface BookingService {
      *
      * @param booking the booking to be updated
      * @return the updated booking
-     * @throws NoSuchElementRuntimeException if the element to be updated cannot be found
      * @throws DuplicateTimeBookingException if there already exists a booking which would overlap with this new one for the user and project
+     * @throws InvalidBookingException       if the booking is inconsistent
      */
-    Booking update(@NotNull Booking booking) throws NoSuchElementRuntimeException, DuplicateTimeBookingException;
+    Booking update(@NotNull Booking booking) throws DuplicateTimeBookingException, InvalidBookingException;
 
     /**
      * Removes the given booking from the database.

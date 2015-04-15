@@ -1,14 +1,14 @@
-package com.prodyna.pac.eternity.server.exception;
+package com.prodyna.pac.eternity.server.exception.technical;
 
 /**
- * Persistence exception signaling that an element already exists for the id or an identifier.
+ * Persistence exception signaling that a creation did not return a new element.
  */
-public class ElementAlreadyExistsRuntimeException extends RuntimeException {
+public class NotCreatedRuntimeException extends RuntimeException {
 
     /**
      * Default constructor.
      */
-    public ElementAlreadyExistsRuntimeException() {
+    public NotCreatedRuntimeException() {
     }
 
     /**
@@ -16,7 +16,7 @@ public class ElementAlreadyExistsRuntimeException extends RuntimeException {
      *
      * @param cause the root cause
      */
-    public ElementAlreadyExistsRuntimeException(Throwable cause) {
+    public NotCreatedRuntimeException(Throwable cause) {
         super(cause);
     }
 
@@ -25,7 +25,7 @@ public class ElementAlreadyExistsRuntimeException extends RuntimeException {
      *
      * @param message the exception message
      */
-    public ElementAlreadyExistsRuntimeException(String message) {
+    public NotCreatedRuntimeException(String message) {
         super(message);
     }
 
@@ -35,7 +35,7 @@ public class ElementAlreadyExistsRuntimeException extends RuntimeException {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public ElementAlreadyExistsRuntimeException(String message, Throwable cause) {
+    public NotCreatedRuntimeException(String message, Throwable cause) {
         super(message, cause);
     }
 }

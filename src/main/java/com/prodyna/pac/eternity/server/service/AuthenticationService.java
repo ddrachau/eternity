@@ -1,7 +1,7 @@
 package com.prodyna.pac.eternity.server.service;
 
-import com.prodyna.pac.eternity.server.exception.InvalidPasswordException;
-import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
+import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.User;
 
 import javax.ejb.Local;

@@ -1,7 +1,7 @@
 package com.prodyna.pac.eternity.server.service.arquillian;
 
-import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsRuntimeException;
-import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
+import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.CypherService;
@@ -10,7 +10,6 @@ import com.prodyna.pac.eternity.server.service.UserService;
 import junit.framework.Assert;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

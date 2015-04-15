@@ -1,8 +1,9 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
 import com.prodyna.pac.eternity.server.common.logging.Logging;
-import com.prodyna.pac.eternity.server.exception.InvalidPasswordException;
-import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
+import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.AuthenticationService;
 import com.prodyna.pac.eternity.server.service.CypherService;
@@ -12,8 +13,9 @@ import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 
+import static com.prodyna.pac.eternity.server.common.PasswordHash.createHash;
+import static com.prodyna.pac.eternity.server.common.PasswordHash.validatePassword;
 import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
-import static com.prodyna.pac.eternity.server.common.PasswordHash.*;
 
 @Logging
 @Stateless
@@ -72,8 +74,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      *
      * @param user          the user to check against
      * @param plainPassword the users password to check
-     * @throws NoSuchElementRuntimeException   if the user does not exists
-     * @throws InvalidPasswordException if the old password is incorrect
+     * @throws NoSuchElementRuntimeException if the user does not exists
+     * @throws InvalidPasswordException      if the old password is incorrect
      */
     private void checkIfPasswordIsValid(@NotNull User user, @NotNull String plainPassword)
             throws InvalidPasswordException, NoSuchElementRuntimeException {

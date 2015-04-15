@@ -1,8 +1,9 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
 import com.prodyna.pac.eternity.server.common.logging.Logging;
-import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsRuntimeException;
-import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
+import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.server.exception.technical.NotCreatedRuntimeException;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.AuthenticationService;
@@ -25,6 +26,7 @@ import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
 public class UserServiceImpl implements UserService {
 
     private static String USER_RETURN_PROPERTIES = "u.id, u.identifier, u.forename, u.surname, u.password";
+
     @Inject
     private CypherService cypherService;
 
@@ -50,6 +52,10 @@ public class UserServiceImpl implements UserService {
                         "RETURN " + USER_RETURN_PROPERTIES,
                 map(1, user.getId(), 2, user.getIdentifier(), 3, user.getForename(),
                         4, user.getSurname()));
+
+        if (queryResult == null) {
+            throw new NotCreatedRuntimeException(user.toString());
+        }
 
         if (user.getPassword() != null) {
             try {
@@ -190,6 +196,12 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * Helper method to construct a User from a query response
+     *
+     * @param values the available values
+     * @return a filled User
+     */
     private User getUser(Map<String, Object> values) {
 
         User result = new User();

@@ -1,7 +1,7 @@
 package com.prodyna.pac.eternity.server.service;
 
-import com.prodyna.pac.eternity.server.exception.ElementAlreadyExistsRuntimeException;
-import com.prodyna.pac.eternity.server.exception.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
+import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 
