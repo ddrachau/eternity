@@ -4,6 +4,7 @@ import com.prodyna.pac.eternity.server.common.logging.Logging;
 import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NotCreatedRuntimeException;
+import com.prodyna.pac.eternity.server.model.Booking;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.AuthenticationService;
@@ -77,6 +78,24 @@ public class UserServiceImpl implements UserService {
         final Map<String, Object> queryResult = cypherService.querySingle(
                 "MATCH (u:User {identifier:{1}}) RETURN " + USER_RETURN_PROPERTIES,
                 map(1, identifier));
+
+        if (queryResult != null) {
+            result = this.getUser(queryResult);
+        }
+
+        return result;
+
+    }
+
+    @Override
+    public User get(@NotNull Booking booking) throws NoSuchElementRuntimeException {
+
+        User result = null;
+
+        final Map<String, Object> queryResult = cypherService.querySingle(
+                "MATCH (u:User)<-[:PERFORMED_BY]-(b:Booking {id:{1}}) " +
+                        "RETURN " + USER_RETURN_PROPERTIES,
+                map(1, booking.getId()));
 
         if (queryResult != null) {
             result = this.getUser(queryResult);

@@ -1,9 +1,14 @@
 package com.prodyna.pac.eternity.server.service.arquillian;
 
+import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
+import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
 import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.server.model.Booking;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
+import com.prodyna.pac.eternity.server.service.BookingService;
 import com.prodyna.pac.eternity.server.service.CypherService;
 import com.prodyna.pac.eternity.server.service.ProjectService;
 import com.prodyna.pac.eternity.server.service.UserService;
@@ -15,7 +20,10 @@ import org.junit.runner.RunWith;
 
 import javax.ejb.EJBException;
 import javax.inject.Inject;
+import java.awt.print.Book;
 import java.util.List;
+
+import static com.prodyna.pac.eternity.server.common.DateUtils.getUTCDate;
 
 @RunWith(Arquillian.class)
 public class ProjectServiceTest extends AbstractArquillianTest {
@@ -28,6 +36,9 @@ public class ProjectServiceTest extends AbstractArquillianTest {
 
     @Inject
     private UserService userService;
+
+    @Inject
+    private BookingService bookingService;
 
     @Test
     @InSequence(1)
@@ -51,16 +62,19 @@ public class ProjectServiceTest extends AbstractArquillianTest {
         User user1 = new User("khansen", "Knut", "Hansen", "pw");
         User user2 = new User("aeich", "Alexander", null, "pw2");
         User user3 = new User("rvoeller", "Rudi", "Völler", "pw3");
+        User user4 = new User("bborg", "Björn", "Borg", "pw");
+        User user5 = new User("hmeiser", "Hans", "Meiser", "pw");
         userService.create(user1);
         userService.create(user2);
         userService.create(user3);
+        userService.create(user4);
+        userService.create(user5);
 
         userService.assignUserToProject(user1, project1);
         userService.assignUserToProject(user1, project2);
         userService.assignUserToProject(user2, project1);
 
     }
-
 
 
     @Test
@@ -256,6 +270,21 @@ public class ProjectServiceTest extends AbstractArquillianTest {
         Assert.assertEquals(0, projectService.findAllAssignedToUser(user3).size());
 
         Assert.assertEquals("P00754", list.get(0).getIdentifier());
+
+    }
+
+    @Test
+    @InSequence(14)
+    public void testGetForBooking() throws InvalidBookingException, DuplicateTimeBookingException, UserNotAssignedToProjectException {
+
+        User user5 = userService.get("hmeiser");
+        Project project4 = projectService.get("P01110");
+
+        userService.assignUserToProject(user5, project4);
+        Booking booking5 = new Booking(getUTCDate(2015, 3, 7, 10, 0), getUTCDate(2015, 3, 7, 16, 0), 45);
+        bookingService.create(booking5, user5, project4);
+
+        Assert.assertEquals(project4, projectService.get(booking5));
 
     }
 

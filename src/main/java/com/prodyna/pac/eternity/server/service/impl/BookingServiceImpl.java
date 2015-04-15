@@ -11,6 +11,7 @@ import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.BookingService;
 import com.prodyna.pac.eternity.server.service.CypherService;
+import com.prodyna.pac.eternity.server.service.ProjectService;
 import com.prodyna.pac.eternity.server.service.UserService;
 
 import javax.ejb.Stateless;
@@ -19,6 +20,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 
 import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
+import static com.prodyna.pac.eternity.server.common.DateUtils.getUTCDate;
 
 @Logging
 @Stateless
@@ -31,6 +33,9 @@ public class BookingServiceImpl implements BookingService {
 
     @Inject
     private UserService userService;
+
+    @Inject
+    private ProjectService projectService;
 
     @Override
     public Booking create(@NotNull Booking booking, @NotNull User user, @NotNull Project project)
@@ -46,7 +51,7 @@ public class BookingServiceImpl implements BookingService {
             throw new UserNotAssignedToProjectException(user.toString());
         }
 
-        // TODO check if a booking for overlaps exists
+        this.checkForOverlapping(booking, user, project);
 
         booking.setId(UUID.randomUUID().toString());
 
@@ -137,21 +142,26 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Booking update(@NotNull Booking booking) throws NoSuchElementRuntimeException, DuplicateTimeBookingException {
+    public Booking update(@NotNull Booking booking) throws DuplicateTimeBookingException, InvalidBookingException {
 
-//        // TODO get the user and project for the given booking , get other bookings and check
-//        this.checkIfBookingIsValid(booking, user, project);
-//
-//        final Map<String, Object> queryResult = cypherService.querySingle(
-//                "MATCH (b:Booking {id:{1}}) SET p.identifier={2}, p.description={3} RETURN p.id, p.identifier, p.description",
-//                map(1, booking.getId(), 2, project.getIdentifier(), 3, project.getDescription()));
-//
-//        if (queryResult == null) {
-//            throw new NoSuchElementRuntimeException();
-//        } else {
-//            return this.getBooking(queryResult);
-//        }
-        return null;
+        this.checkIfBookingIsValid(booking);
+
+        User user = userService.get(booking);
+        Project project = projectService.get(booking);
+
+        this.checkForOverlapping(booking, user, project);
+
+        final Map<String, Object> queryResult = cypherService.querySingle(
+                "MATCH (b:Booking {id:{1}}) SET b.startTime={2}, b.endTime={3}, b.breakDuration={4} " +
+                        "RETURN " + BOOKING_RETURN_PROPERTIES,
+                map(1, booking.getId(), 2, booking.getStartTime().getTime(),
+                        3, booking.getEndTime().getTime(), 4, booking.getBreakDuration()));
+
+        if (queryResult == null) {
+            throw new NoSuchElementRuntimeException();
+        } else {
+            return this.getBooking(queryResult);
+        }
 
     }
 
@@ -175,11 +185,11 @@ public class BookingServiceImpl implements BookingService {
             throw new InvalidBookingException("Times not set");
         }
 
-        if (endTime.getTime() - startTime.getTime() > 300000) {
+        if ((endTime.getTime() - startTime.getTime()) < 300000) {
             throw new InvalidBookingException("Start has to be at least 5min before end");
         }
 
-        if ((endTime.getTime() - startTime.getTime()) / 60000 > booking.getBreakDuration()) {
+        if ((endTime.getTime() - startTime.getTime()) / 60000 < booking.getBreakDuration()) {
             throw new InvalidBookingException("Work has to be greater thand break");
         }
 
@@ -191,6 +201,33 @@ public class BookingServiceImpl implements BookingService {
                 cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
         if (!timesAtTheSameDay) {
             throw new InvalidBookingException("Bookings have to be at the same day");
+        }
+
+    }
+
+    /**
+     * Checks if the booking range overlaps with bookings found for the user project combination
+     *
+     * @param booking the times to check against
+     * @param user    the source user
+     * @param project the target user
+     * @throws DuplicateTimeBookingException if there is an overlapping
+     */
+    private void checkForOverlapping(@NotNull Booking booking, @NotNull User user, @NotNull Project project)
+            throws DuplicateTimeBookingException {
+
+        final List<Map<String, Object>> queryResult = cypherService.query(
+                "MATCH (u:User {id:{1}})<-[:PERFORMED_BY]-(b:Booking)-[:PERFORMED_FOR]->(p:Project {id:{2}}) " +
+                        "WHERE " +
+                        "(b.startTime >= {3} AND b.startTime < {4}) OR" +
+                        "(b.endTime > {3} AND b.endTime <= {4}) OR" +
+                        "(b.startTime <= {3} AND b.endTime >= {4}) " +
+                        "RETURN " + BOOKING_RETURN_PROPERTIES,
+                map(1, user.getId(), 2, project.getId(), 3, booking.getStartTime().getTime(),
+                        4, booking.getEndTime().getTime()));
+
+        if (queryResult.size() > 0) {
+            throw new DuplicateTimeBookingException();
         }
 
     }
@@ -210,10 +247,9 @@ public class BookingServiceImpl implements BookingService {
         long readEndTime = (long) values.get("b.endTime");
         int readBreakDuration = (int) values.get("b.breakDuration");
 
-
         result.setId(readId);
-        result.setStartTime(new Date(readStartTime));
-        result.setEndTime(new Date(readEndTime));
+        result.setStartTime(getUTCDate(readStartTime));
+        result.setEndTime(getUTCDate(readEndTime));
         result.setBreakDuration(readBreakDuration);
 
         return result;

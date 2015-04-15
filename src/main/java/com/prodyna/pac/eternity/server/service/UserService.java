@@ -2,6 +2,7 @@ package com.prodyna.pac.eternity.server.service;
 
 import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.server.model.Booking;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 
@@ -31,6 +32,15 @@ public interface UserService {
      * @return the found user or null if none was found
      */
     User get(@NotNull String identifier);
+
+    /**
+     * Searches for a single user.
+     *
+     * @param booking the booking the user is mapped to
+     * @return the found user
+     * @throws NoSuchElementRuntimeException if no User can be found
+     */
+    User get(@NotNull Booking booking) throws NoSuchElementRuntimeException;
 
     /**
      * Searches for all users.

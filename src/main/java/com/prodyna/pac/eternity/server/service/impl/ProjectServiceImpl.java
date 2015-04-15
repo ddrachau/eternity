@@ -4,6 +4,7 @@ import com.prodyna.pac.eternity.server.common.logging.Logging;
 import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NotCreatedRuntimeException;
+import com.prodyna.pac.eternity.server.model.Booking;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.CypherService;
@@ -23,6 +24,8 @@ import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
 @Stateless
 public class ProjectServiceImpl implements ProjectService {
 
+    private static String PROJECT_RETURN_PROPERTIES = "p.id, p.identifier, p.description";
+
     @Inject
     private CypherService cypherService;
 
@@ -38,7 +41,8 @@ public class ProjectServiceImpl implements ProjectService {
         project.setId(UUID.randomUUID().toString());
 
         final Map<String, Object> queryResult = cypherService.querySingle(
-                "CREATE (p:Project {id:{1}, identifier:{2}, description:{3}}) RETURN p.id, p.identifier, p.description",
+                "CREATE (p:Project {id:{1}, identifier:{2}, description:{3}}) " +
+                        "RETURN " + PROJECT_RETURN_PROPERTIES,
                 map(1, project.getId(), 2, project.getIdentifier(), 3, project.getDescription()));
 
         if (queryResult == null) {
@@ -55,8 +59,27 @@ public class ProjectServiceImpl implements ProjectService {
         Project result = null;
 
         final Map<String, Object> queryResult = cypherService.querySingle(
-                "MATCH (p:Project {identifier:{1}}) RETURN p.id, p.identifier, p.description",
+                "MATCH (p:Project {identifier:{1}}) " +
+                        "RETURN " + PROJECT_RETURN_PROPERTIES,
                 map(1, identifier));
+
+        if (queryResult != null) {
+            result = this.getProject(queryResult);
+        }
+
+        return result;
+
+    }
+
+    @Override
+    public Project get(@NotNull Booking booking) throws NoSuchElementRuntimeException {
+
+        Project result = null;
+
+        final Map<String, Object> queryResult = cypherService.querySingle(
+                "MATCH (p:Project)<-[:PERFORMED_FOR]-(b:Booking {id:{1}}) " +
+                        "RETURN " + PROJECT_RETURN_PROPERTIES,
+                map(1, booking.getId()));
 
         if (queryResult != null) {
             result = this.getProject(queryResult);
@@ -72,7 +95,7 @@ public class ProjectServiceImpl implements ProjectService {
         List<Project> result = new ArrayList<>();
 
         final List<Map<String, Object>> queryResult = cypherService.query(
-                "MATCH (p:Project) RETURN p.id, p.identifier, p.description",
+                "MATCH (p:Project) RETURN " + PROJECT_RETURN_PROPERTIES,
                 null);
 
         for (Map<String, Object> values : queryResult) {
@@ -92,7 +115,8 @@ public class ProjectServiceImpl implements ProjectService {
         }
 
         final Map<String, Object> queryResult = cypherService.querySingle(
-                "MATCH (p:Project {id:{1}}) SET p.identifier={2}, p.description={3} RETURN p.id, p.identifier, p.description",
+                "MATCH (p:Project {id:{1}}) SET p.identifier={2}, p.description={3} " +
+                        "RETURN " + PROJECT_RETURN_PROPERTIES,
                 map(1, project.getId(), 2, project.getIdentifier(), 3, project.getDescription()));
 
         if (queryResult == null) {
@@ -122,7 +146,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         final List<Map<String, Object>> queryResult = cypherService.query(
                 "MATCH (p:Project)<-[:ASSIGNED_TO]-(u:User {identifier:{1}}) " +
-                        "RETURN p.id, p.identifier, p.description",
+                        "RETURN " + PROJECT_RETURN_PROPERTIES,
                 map(1, user.getIdentifier()));
 
         for (Map<String, Object> values : queryResult) {
