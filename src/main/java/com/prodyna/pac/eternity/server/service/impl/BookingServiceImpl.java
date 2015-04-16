@@ -29,7 +29,7 @@ public class BookingServiceImpl implements BookingService {
     /**
      * Default return properties, to make object creation easier.
      */
-    private static String BOOKING_RETURN_PROPERTIES = "b.id, b.startTime, b.endTime, b.breakDuration";
+    private static String BOOKING_RETURN_PROPERTIES = "b.id, b.startTime, b.endTime, b.breakDuration, b.description";
 
     @Inject
     private CypherService cypherService;
@@ -60,11 +60,11 @@ public class BookingServiceImpl implements BookingService {
 
         final Map<String, Object> queryResult = cypherService.querySingle(
                 "MATCH (u:User {id:{1}}), (p:Project {id:{2}}) " +
-                        "CREATE (u)<-[:PERFORMED_BY]-(b:Booking {id:{3}, startTime:{4}, endTime: {5}, breakDuration: {6}})-[:PERFORMED_FOR]->(p) " +
+                        "CREATE (u)<-[:PERFORMED_BY]-(b:Booking {id:{3}, startTime:{4}, endTime:{5}, breakDuration:{6}, description:{7}})-[:PERFORMED_FOR]->(p) " +
                         "RETURN " + BOOKING_RETURN_PROPERTIES,
                 map(1, user.getId(), 2, project.getId(), 3, booking.getId(),
                         4, booking.getStartTime().getTimeInMillis(), 5, booking.getEndTime().getTimeInMillis(),
-                        6, booking.getBreakDuration()));
+                        6, booking.getBreakDuration(), 7, booking.getDescription()));
 
         if (queryResult == null) {
             throw new NotCreatedRuntimeException(booking.toString());
@@ -156,10 +156,11 @@ public class BookingServiceImpl implements BookingService {
         this.checkForOverlapping(booking, user, project);
 
         final Map<String, Object> queryResult = cypherService.querySingle(
-                "MATCH (b:Booking {id:{1}}) SET b.startTime={2}, b.endTime={3}, b.breakDuration={4} " +
+                "MATCH (b:Booking {id:{1}}) SET b.startTime={2}, b.endTime={3}, b.breakDuration={4}, b.description={5} " +
                         "RETURN " + BOOKING_RETURN_PROPERTIES,
                 map(1, booking.getId(), 2, booking.getStartTime().getTimeInMillis(),
-                        3, booking.getEndTime().getTimeInMillis(), 4, booking.getBreakDuration()));
+                        3, booking.getEndTime().getTimeInMillis(), 4, booking.getBreakDuration(),
+                        5, booking.getDescription()));
 
         if (queryResult == null) {
             throw new NoSuchElementRuntimeException();
@@ -254,11 +255,13 @@ public class BookingServiceImpl implements BookingService {
         long readStartTime = (long) values.get("b.startTime");
         long readEndTime = (long) values.get("b.endTime");
         int readBreakDuration = (int) values.get("b.breakDuration");
+        String readDescription = (String) values.get("b.description");
 
         result.setId(readId);
         result.setStartTime(getCalendar(readStartTime));
         result.setEndTime(getCalendar(readEndTime));
         result.setBreakDuration(readBreakDuration);
+        result.setDescription(readDescription);
 
         return result;
 

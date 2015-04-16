@@ -73,11 +73,11 @@ public class BookingServiceTest extends AbstractArquillianTest {
         userService.assignUserToProject(user5, project5);
 
         Booking booking1 = new Booking(DateUtils.getCalendar(2015, 3, 2, 10, 0), DateUtils.getCalendar(2015, 3, 2, 14, 0), 5);
-        Booking booking2 = new Booking(DateUtils.getCalendar(2015, 3, 3, 9, 0), DateUtils.getCalendar(2015, 3, 3, 14, 30), 15);
+        Booking booking2 = new Booking(DateUtils.getCalendar(2015, 3, 3, 9, 0), DateUtils.getCalendar(2015, 3, 3, 14, 30), 15, "work1");
         Booking booking3 = new Booking(DateUtils.getCalendar(2015, 3, 5, 9, 0), DateUtils.getCalendar(2015, 3, 5, 18, 10), 60);
-        Booking booking4 = new Booking(DateUtils.getCalendar(2015, 3, 6, 10, 0), DateUtils.getCalendar(2015, 3, 6, 15, 0), 30);
+        Booking booking4 = new Booking(DateUtils.getCalendar(2015, 3, 6, 10, 0), DateUtils.getCalendar(2015, 3, 6, 15, 0), 30, "work2");
         Booking booking5 = new Booking(DateUtils.getCalendar(2015, 3, 7, 10, 0), DateUtils.getCalendar(2015, 3, 7, 16, 0), 45);
-        Booking booking6 = new Booking(DateUtils.getCalendar(2015, 3, 7, 10, 0), DateUtils.getCalendar(2015, 3, 7, 16, 0), 45);
+        Booking booking6 = new Booking(DateUtils.getCalendar(2015, 3, 7, 10, 0), DateUtils.getCalendar(2015, 3, 7, 16, 0), 45, "work3");
 
         bookingService.create(booking1, user1, project1);
         bookingService.create(booking2, user1, project1);
@@ -176,7 +176,9 @@ public class BookingServiceTest extends AbstractArquillianTest {
         Assert.assertEquals(0, bookingService.findByUser(user3).size());
         Assert.assertEquals(0, bookingService.findByProject(project3).size());
 
-        Booking b = new Booking(DateUtils.getCalendar(2015, 3, 10, 10, 0), DateUtils.getCalendar(2015, 3, 10, 16, 0), 45);
+        String description = "desc";
+
+        Booking b = new Booking(DateUtils.getCalendar(2015, 3, 10, 10, 0), DateUtils.getCalendar(2015, 3, 10, 16, 0), 45, description);
         Assert.assertNull(b.getId());
 
         Booking createdB = bookingService.create(b, user3, project3);
@@ -185,6 +187,7 @@ public class BookingServiceTest extends AbstractArquillianTest {
         Assert.assertEquals(1, bookingService.findByUserAndProject(user3, project3).size());
         Assert.assertEquals(1, bookingService.findByUser(user3).size());
         Assert.assertEquals(1, bookingService.findByProject(project3).size());
+        Assert.assertEquals(description, createdB.getDescription());
 
         Booking secondB = new Booking(DateUtils.getCalendar(2015, 3, 11, 10, 0), DateUtils.getCalendar(2015, 3, 11, 16, 0), 45);
         bookingService.create(secondB, user3, project3);
@@ -346,9 +349,11 @@ public class BookingServiceTest extends AbstractArquillianTest {
         Assert.assertEquals(startMinute, cal1.get(Calendar.MINUTE));
         Assert.assertEquals(endHour, cal2.get(Calendar.HOUR_OF_DAY));
         Assert.assertEquals(endMinute, cal2.get(Calendar.MINUTE));
+        Assert.assertNull(b.getDescription());
 
         b.setStartTime(DateUtils.getCalendar(2015, 4, 11, newStartHour, newStartMinute));
         b.setEndTime(DateUtils.getCalendar(2015, 4, 11, newEndHour, newEndMinute));
+        b.setDescription("demo");
 
         b = bookingService.update(b);
 
@@ -359,6 +364,7 @@ public class BookingServiceTest extends AbstractArquillianTest {
         Assert.assertEquals(newStartMinute, cal3.get(Calendar.MINUTE));
         Assert.assertEquals(newEndHour, cal4.get(Calendar.HOUR_OF_DAY));
         Assert.assertEquals(newEndMinute, cal4.get(Calendar.MINUTE));
+        Assert.assertNotNull(b.getDescription());
 
         b = bookingService.get(b.getId());
 
@@ -369,6 +375,7 @@ public class BookingServiceTest extends AbstractArquillianTest {
         Assert.assertEquals(newStartMinute, cal5.get(Calendar.MINUTE));
         Assert.assertEquals(newEndHour, cal6.get(Calendar.HOUR_OF_DAY));
         Assert.assertEquals(newEndMinute, cal6.get(Calendar.MINUTE));
+        Assert.assertNotNull(b.getDescription());
 
     }
 

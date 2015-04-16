@@ -19,6 +19,10 @@ public class Booking extends AbstractNode {
      * The break duration in minutes.
      */
     private int breakDuration;
+    /**
+     * An optional descript of the work
+     */
+    private String description;
 
     /**
      * Empty default constructor *
@@ -34,12 +38,26 @@ public class Booking extends AbstractNode {
      * @param startTime     the start time
      * @param endTime       the end time
      * @param breakDuration the break duration in minutes
+     * @param description   the description of the work done
      */
-    public Booking(String id, Calendar startTime, Calendar endTime, int breakDuration) {
+    public Booking(String id, Calendar startTime, Calendar endTime, int breakDuration, String description) {
         super(id);
         this.startTime = startTime;
         this.endTime = endTime;
         this.breakDuration = breakDuration;
+        this.description = description;
+    }
+
+    /**
+     * Creates a booking and initialize the following properties:
+     *
+     * @param startTime     the start time
+     * @param endTime       the end time
+     * @param breakDuration the break duration in minutes
+     * @param description   the description of the work done
+     */
+    public Booking(Calendar startTime, Calendar endTime, int breakDuration, String description) {
+        this(null, startTime, endTime, breakDuration, description);
     }
 
     /**
@@ -50,7 +68,7 @@ public class Booking extends AbstractNode {
      * @param breakDuration the break duration in minutes
      */
     public Booking(Calendar startTime, Calendar endTime, int breakDuration) {
-        this(null, startTime, endTime, breakDuration);
+        this(null, startTime, endTime, breakDuration, null);
     }
 
     /**
@@ -107,9 +125,26 @@ public class Booking extends AbstractNode {
         this.breakDuration = breakDuration;
     }
 
+    /**
+     * Basic Getter
+     *
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Basic Setter
+     *
+     * @param description to be set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public boolean equals(Object o) {
-
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
@@ -117,8 +152,9 @@ public class Booking extends AbstractNode {
         Booking booking = (Booking) o;
 
         if (breakDuration != booking.breakDuration) return false;
-        if (endTime != null ? !endTime.equals(booking.endTime) : booking.endTime != null) return false;
         if (startTime != null ? !startTime.equals(booking.startTime) : booking.startTime != null) return false;
+        if (endTime != null ? !endTime.equals(booking.endTime) : booking.endTime != null) return false;
+        if (description != null ? !description.equals(booking.description) : booking.description != null) return false;
 
         return super.equals(o);
     }
@@ -130,6 +166,7 @@ public class Booking extends AbstractNode {
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", breakDuration=" + breakDuration +
+                ", description=" + description +
                 '}';
     }
 
