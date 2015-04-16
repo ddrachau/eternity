@@ -27,7 +27,7 @@ public abstract class AbstractArquillianTest {
             JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "eternity-arq.jar").addPackages(true, "com.prodyna.pac");
             jar.addAsResource("META-INF/beans.xml");
             jar.addAsResource("META-INF/persistence.xml");
-            System.out.println(jar.toString(true));
+            //System.out.println(jar.toString(true));
             AbstractArquillianTest.archive = jar;
         }
 
