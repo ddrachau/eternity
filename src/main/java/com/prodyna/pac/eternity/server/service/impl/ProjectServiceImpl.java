@@ -137,9 +137,13 @@ public class ProjectServiceImpl implements ProjectService {
             throw new NoSuchElementRuntimeException();
         }
 
-        cypherService.query("MATCH (p:Project {identifier:{1}}) DELETE p",
+        cypherService.query(
+                "MATCH (p:Project {identifier:{1}})" +
+                        "OPTIONAL MATCH (p)<-[a:ASSIGNED_TO]-(:User)" +
+                        "OPTIONAL MATCH (p)<-[p1:PERFORMED_FOR]-(b:Booking)-[p2:PERFORMED_BY]->(:User) " +
+                        "DELETE a,p,p1,b,p2",
                 map(1, identifier));
-
+        
     }
 
     @Override

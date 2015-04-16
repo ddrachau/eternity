@@ -286,4 +286,38 @@ public class ProjectServiceTest extends AbstractArquillianTest {
 
     }
 
+    @Test
+    @InSequence(15)
+    public void testDeleteProjectWithRelations() throws NoSuchElementRuntimeException, InvalidBookingException,
+            DuplicateTimeBookingException, UserNotAssignedToProjectException {
+
+        User user = userService.create(new User("mmon", "Mike", "Mon", "secret"));
+        Project project = projectService.create(new Project("P01123", "DB All new", ""));
+        userService.assignUserToProject(user, project);
+        Booking booking = bookingService.create(
+                new Booking(DateUtils.getCalendar(2015, 3, 3, 9, 0), DateUtils.getCalendar(2015, 3, 3, 14, 30), 15, "work1"), user, project);
+
+        Assert.assertNotNull(user);
+        Assert.assertNotNull(project);
+        Assert.assertNotNull(booking);
+        Assert.assertTrue(userService.isAssignedTo(user, project));
+
+        Assert.assertEquals(1, bookingService.findByProject(project).size());
+        Assert.assertEquals(1, bookingService.findByUser(user).size());
+
+        projectService.delete(project.getIdentifier());
+
+        Assert.assertEquals(0, bookingService.findByUser(user).size());
+        Assert.assertNull(projectService.get(project.getIdentifier()));
+        Assert.assertNotNull(userService.get(user.getIdentifier()));
+
+        project = projectService.create(new Project("P01123", "DB All new", ""));
+        userService.assignUserToProject(user, project);
+        Assert.assertTrue(userService.isAssignedTo(user, project));
+        Assert.assertNotNull(projectService.get(project.getIdentifier()));
+        projectService.delete(project.getIdentifier());
+        Assert.assertNull(projectService.get(project.getIdentifier()));
+
+    }
+
 }
