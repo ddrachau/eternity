@@ -1,15 +1,20 @@
-<project>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>root.project</groupId>
+
+    <groupId>com.prodyna.pac.eternity</groupId>
     <artifactId>eternity-server-ejb</artifactId>
     <packaging>ejb</packaging>
     <version>1.0</version>
-    <name>enterprise java beans</name>
+
+    <name>Assembly EJBs</name>
 
     <parent>
-        <groupId>root</groupId>
-        <artifactId>project</artifactId>
+        <groupId>com.prodyna.pac.eternity</groupId>
+        <artifactId>eternity-server</artifactId>
         <version>1.0</version>
     </parent>
 
@@ -18,6 +23,7 @@
     </properties>
 
     <repositories>
+
         <repository>
             <id>neo4j-public</id>
             <url>http://m2.neo4j.org/content/groups/public</url>
@@ -26,10 +32,13 @@
                 <checksumPolicy>warn</checksumPolicy>
             </releases>
         </repository>
+
     </repositories>
 
     <dependencyManagement>
+
         <dependencies>
+
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
@@ -37,34 +46,53 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
+
         </dependencies>
+
     </dependencyManagement>
 
     <dependencies>
+
         <dependency>
-            <groupId>root.project</groupId>
-            <artifactId>primary-source</artifactId>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-server-api</artifactId>
+            <type>jar</type>
+            <version>1.0</version>
         </dependency>
+
         <dependency>
-            <groupId>root.project.projects</groupId>
+            <groupId>com.prodyna.pac.eternity.components</groupId>
             <artifactId>logging</artifactId>
+            <type>jar</type>
+            <version>1.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity.components</groupId>
+            <artifactId>profiling</artifactId>
+            <type>jar</type>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity.components</groupId>
+            <artifactId>utils</artifactId>
+            <type>jar</type>
+            <version>1.0</version>
+        </dependency>
+
         <dependency>
             <groupId>org.neo4j</groupId>
             <artifactId>neo4j-jdbc</artifactId>
             <version>2.0.2</version>
         </dependency>
+
         <dependency>
             <groupId>org.neo4j</groupId>
             <artifactId>neo4j</artifactId>
             <version>2.0.3</version>
         </dependency>
-        <!--<dependency>
-            <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-kernel</artifactId>
-            <version>2.0.3</version>
-            <type>test-jar</type>
-        </dependency>-->
+
         <dependency>
             <groupId>org.jboss.spec</groupId>
             <artifactId>jboss-javaee-7.0</artifactId>
@@ -72,42 +100,47 @@
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.8.1</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.wildfly</groupId>
             <artifactId>wildfly-arquillian-container-remote</artifactId>
             <version>8.2.0.Final</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.7</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.7</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
-
-
-
     <build>
+
         <plugins>
+
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
@@ -116,24 +149,33 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-<!--                <artifactId>maven-ejb-plugin</artifactId>
+
+            <!--                <artifactId>maven-ejb-plugin</artifactId>
+                            <configuration>
+                                <archive>
+                                    <manifest>
+                                        <addClasspath>true</addClasspath>
+                                    </manifest>
+                                </archive>
+                            </configuration>
+            -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <version>2.5</version>
                 <configuration>
+                    <ejbVersion>3.0</ejbVersion>
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
                         </manifest>
                     </archive>
                 </configuration>
--->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-ejb-plugin</artifactId>
-                    <version>2.5</version>
-                    <configuration>
-                        <ejbVersion>3.0</ejbVersion>
-                    </configuration>
             </plugin>
 
         </plugins>
+
     </build>
+
 </project>

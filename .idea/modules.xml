@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/api/api.iml" filepath="$PROJECT_DIR$/api/api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/components/components.iml" filepath="$PROJECT_DIR$/components/components.iml" />
       <module fileurl="file://$PROJECT_DIR$/ear/ear.iml" filepath="$PROJECT_DIR$/ear/ear.iml" />
       <module fileurl="file://$PROJECT_DIR$/ejbs/ejbs.iml" filepath="$PROJECT_DIR$/ejbs/ejbs.iml" />
-      <module fileurl="file://$PROJECT_DIR$/projects/logging/logging.iml" filepath="$PROJECT_DIR$/projects/logging/logging.iml" />
-      <module fileurl="file://$PROJECT_DIR$/primary-source/primary-source.iml" filepath="$PROJECT_DIR$/primary-source/primary-source.iml" />
-      <module fileurl="file://$PROJECT_DIR$/projects/projects.iml" filepath="$PROJECT_DIR$/projects/projects.iml" />
-      <module fileurl="file://$PROJECT_DIR$/servlets/servlet/servlet.iml" filepath="$PROJECT_DIR$/servlets/servlet/servlet.iml" />
-      <module fileurl="file://$PROJECT_DIR$/servlets/servlets.iml" filepath="$PROJECT_DIR$/servlets/servlets.iml" />
+      <module fileurl="file://$PROJECT_DIR$/components/logging/logging.iml" filepath="$PROJECT_DIR$/components/logging/logging.iml" />
+      <module fileurl="file://$PROJECT_DIR$/components/profiling/profiling.iml" filepath="$PROJECT_DIR$/components/profiling/profiling.iml" />
+      <module fileurl="file://$PROJECT_DIR$/components/utils/utils.iml" filepath="$PROJECT_DIR$/components/utils/utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/war/war.iml" filepath="$PROJECT_DIR$/war/war.iml" />
     </modules>
   </component>
 </project>

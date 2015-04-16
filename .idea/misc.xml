@@ -6,7 +6,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="ejb" url="file://$PROJECT_DIR$/ejbs" />
     <file type="javaeeApplication" url="file://$PROJECT_DIR$" />
-    <file type="web" url="file://$PROJECT_DIR$/servlets/servlet" />
+    <file type="web" url="file://$PROJECT_DIR$/war" />
   </component>
   <component name="IdProvider" IDEtalkID="A2726A1EA75906CE148A63FE1190078C" />
   <component name="MavenProjectsManager">
@@ -18,6 +18,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/servlets/pom.xml" />
       </set>
     </option>
   </component>

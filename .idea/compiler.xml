@@ -23,22 +23,31 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="api" />
         <module name="ear" />
         <module name="ejbs" />
         <module name="logging" />
         <module name="primary-source" />
+        <module name="profiling" />
         <module name="servlet" />
+        <module name="utils" />
+        <module name="war" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="api" target="1.8" />
+      <module name="components" target="1.5" />
       <module name="ear" target="1.5" />
       <module name="ejbs" target="1.8" />
       <module name="eternity-server" target="1.5" />
-      <module name="logging" target="1.5" />
+      <module name="logging" target="1.8" />
       <module name="primary-source" target="1.5" />
+      <module name="profiling" target="1.8" />
       <module name="projects" target="1.5" />
       <module name="servlet" target="1.8" />
       <module name="servlets" target="1.5" />
+      <module name="utils" target="1.8" />
+      <module name="war" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

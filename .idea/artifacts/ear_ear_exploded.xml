@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-ear" name="ear:ear exploded">
-    <output-path>$PROJECT_DIR$/ear/target/eternity-server-1.0</output-path>
+    <output-path>$PROJECT_DIR$/ear/target/eternity-server-ear-1.0</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="ear/javaeeApplication/JavaEE" />
       <element id="directory" name="META-INF">
@@ -42,14 +42,20 @@
       <element id="library" level="project" name="Maven: com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.3.1" />
       <element id="library" level="project" name="Maven: org.scala-lang:scala-library:2.10.3" />
       <element id="library" level="project" name="Maven: org.neo4j:neo4j-jmx:2.0.3" />
-      <element id="archive" name="eternity-server-1.0.war">
-        <element id="artifact" artifact-name="servlet:war exploded" />
+      <element id="archive" name="eternity-server-war-1.0.war">
+        <element id="artifact" artifact-name="war:war exploded" />
       </element>
-      <element id="archive" name="primary-source-1.0.jar">
-        <element id="module-output" name="primary-source" />
+      <element id="archive" name="eternity-server-api-1.0.jar">
+        <element id="module-output" name="api" />
       </element>
       <element id="archive" name="logging-1.0.jar">
         <element id="module-output" name="logging" />
+      </element>
+      <element id="archive" name="profiling-1.0.jar">
+        <element id="module-output" name="profiling" />
+      </element>
+      <element id="archive" name="utils-1.0.jar">
+        <element id="module-output" name="utils" />
       </element>
     </root>
   </artifact>
