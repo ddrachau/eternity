@@ -56,7 +56,7 @@
 
     </properties>
 
-    <!--<repositories>
+    <repositories>
 
         <repository>
             <id>neo4j-public</id>
@@ -67,7 +67,7 @@
             </releases>
         </repository>
 
-    </repositories>-->
+    </repositories>
 
     <dependencyManagement>
 
