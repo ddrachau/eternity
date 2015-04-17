@@ -5,61 +5,163 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.prodyna.pac.eternity</groupId>
-    <version>1.0</version>
+    <groupId>com.prodyna.pac.eternity.server</groupId>
     <artifactId>eternity-server</artifactId>
+    <version>1.0</version>
     <packaging>pom</packaging>
 
     <name>Eternity Server Project</name>
+    <description>Eternity Server Meta Project configuring the build</description>
 
     <modules>
+        <module>ejb-api</module>
         <module>components</module>
-        <module>api</module>
-        <module>war</module>
-        <module>ejbs</module>
+        <module>ejb</module>
+        <module>web</module>
         <module>ear</module>
     </modules>
+
+    <properties>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Define the version of JBoss' Java EE 7 APIs we want to import.
+            Any dependencies from org.jboss.spec will have their version defined by this
+            BOM -->
+        <!-- Define the version of JBoss' Java EE 7 APIs and Tools we want
+            to import. -->
+        <version.jboss.bom>8.2.0.Final</version.jboss.bom>
+
+        <!-- JBoss dependency versions -->
+        <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
+        <version.wildfly>9.0.0.Alpha1</version.wildfly>
+        <version.jboss.spec.javaee.7.0>1.0.0.Final</version.jboss.spec.javaee.7.0>
+        <version.org.jboss.logging>3.1.4.GA</version.org.jboss.logging>
+        <version.org.jboss.logging.processor>1.2.0.Final</version.org.jboss.logging.processor>
+
+        <!-- other plugin versions -->
+        <version.compiler.plugin>3.3</version.compiler.plugin>
+        <version.ear.plugin>2.10</version.ear.plugin>
+        <version.ejb.plugin>2.5</version.ejb.plugin>
+        <version.war.plugin>2.6</version.war.plugin>
+        <version.jar.plugin>2.6</version.jar.plugin>
+
+        <!-- maven-compiler-plugin -->
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+
+        <!-- other versions -->
+        <version.javaee>7</version.javaee>
+        <version.ejb>3.1</version.ejb>
+
+    </properties>
+
+    <!--<repositories>
+
+        <repository>
+            <id>neo4j-public</id>
+            <url>http://m2.neo4j.org/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+        </repository>
+
+    </repositories>-->
 
     <dependencyManagement>
 
         <dependencies>
 
             <dependency>
-                <groupId>com.prodyna.pac.eternity.components</groupId>
-                <artifactId>components</artifactId>
-                <version>1.0</version>
+                <groupId>com.prodyna.pac.eternity.server.components</groupId>
+                <artifactId>eternity-server-components-utils</artifactId>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.prodyna.pac.eternity</groupId>
-                <artifactId>eternity-server-api</artifactId>
-                <version>1.0</version>
-                <type>jar</type>
+                <groupId>com.prodyna.pac.eternity.server</groupId>
+                <artifactId>eternity-server-ejb-api</artifactId>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.prodyna.pac.eternity</groupId>
+                <groupId>com.prodyna.pac.eternity.server</groupId>
                 <artifactId>eternity-server-war</artifactId>
-                <version>1.0</version>
+                <version>${project.version}</version>
                 <type>war</type>
             </dependency>
 
             <dependency>
-                <groupId>com.prodyna.pac.eternity</groupId>
+                <groupId>com.prodyna.pac.eternity.server</groupId>
                 <artifactId>eternity-server-ejb</artifactId>
-                <version>1.0</version>
+                <version>${project.version}</version>
                 <type>ejb</type>
             </dependency>
 
             <dependency>
-                <groupId>com.prodyna.pac.eternity</groupId>
-                <artifactId>eternity-server-ear</artifactId>
-                <version>1.0</version>
-                <type>ear</type>
+                <groupId>org.jboss.spec</groupId>
+                <artifactId>jboss-javaee-7.0</artifactId>
+                <version>${version.jboss.spec.javaee.7.0}</version>
+                <type>pom</type>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.7</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.8.1</version>
+                <scope>test</scope>
             </dependency>
 
         </dependencies>
 
     </dependencyManagement>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+        <pluginManagement>
+
+            <plugins>
+
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${version.compiler.plugin}</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
+                </plugin>
+
+                <!-- disabled by default, deploy only ear -->
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-maven-plugin</artifactId>
+                    <version>${version.wildfly.maven.plugin}</version>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+            </plugins>
+
+        </pluginManagement>
+
+    </build>
 
 </project>

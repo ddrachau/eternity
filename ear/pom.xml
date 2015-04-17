@@ -5,81 +5,73 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.prodyna.pac.eternity</groupId>
+    <groupId>com.prodyna.pac.eternity.server</groupId>
     <artifactId>eternity-server-ear</artifactId>
     <packaging>ear</packaging>
-    <version>1.0</version>
 
     <name>Assembly EAR</name>
 
     <parent>
-        <groupId>com.prodyna.pac.eternity</groupId>
+        <groupId>com.prodyna.pac.eternity.server</groupId>
         <artifactId>eternity-server</artifactId>
         <version>1.0</version>
     </parent>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
 
         <dependency>
-            <groupId>com.prodyna.pac.eternity</groupId>
+            <groupId>com.prodyna.pac.eternity.server</groupId>
             <artifactId>eternity-server-ejb</artifactId>
             <type>ejb</type>
-            <version>1.0</version>
         </dependency>
 
         <dependency>
-            <groupId>com.prodyna.pac.eternity</groupId>
+            <groupId>com.prodyna.pac.eternity.server</groupId>
             <artifactId>eternity-server-war</artifactId>
             <type>war</type>
-            <version>1.0</version>
         </dependency>
 
         <dependency>
-            <groupId>com.prodyna.pac.eternity</groupId>
-            <artifactId>eternity-server-api</artifactId>
-            <type>jar</type>
-            <version>1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.prodyna.pac.eternity.components</groupId>
-            <artifactId>logging</artifactId>
-            <version>1.0</version>
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>com.prodyna.pac.eternity.components</groupId>
-            <artifactId>profiling</artifactId>
-            <version>1.0</version>
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>com.prodyna.pac.eternity.components</groupId>
-            <artifactId>utils</artifactId>
-            <version>1.0</version>
-            <type>jar</type>
+            <groupId>com.prodyna.pac.eternity.server</groupId>
+            <artifactId>eternity-server-ejb-api</artifactId>
         </dependency>
 
     </dependencies>
 
     <build>
 
+        <finalName>${project.artifactId}</finalName>
+
         <plugins>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ear-plugin</artifactId>
+                <version>${version.ear.plugin}</version>
                 <configuration>
-                    <archive>
+                    <!-- Tell Maven we are using Java EE 7 -->
+                    <version>${version.javaee}</version>
+                    <!-- Use Java EE ear libraries as needed. Java EE ear
+                        libraries are in easy way to package any libraries needed in the ear, and
+                        automatically have any modules (EJB-JARs and WARs) use them -->
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <fileNameMapping>no-version</fileNameMapping>
+                    <!--<archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
                         </manifest>
-                    </archive>
+                    </archive>-->
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <configuration>
+                    <username>admin</username>
+                    <password>admin</password>
+                    <filename>${project.artifactId}.ear</filename>
+                    <skip>false</skip>
                 </configuration>
             </plugin>
 

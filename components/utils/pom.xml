@@ -4,57 +4,31 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.prodyna.pac.eternity.components</groupId>
-    <artifactId>utils</artifactId>
+    <groupId>com.prodyna.pac.eternity.server.components</groupId>
+    <artifactId>eternity-server-components-utils</artifactId>
     <packaging>jar</packaging>
-    <version>1.0</version>
 
     <name>Assembly Component Utils</name>
 
     <parent>
-        <groupId>com.prodyna.pac.eternity.components</groupId>
+        <groupId>com.prodyna.pac.eternity.server.components</groupId>
         <artifactId>components</artifactId>
         <version>1.0</version>
     </parent>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
 
         <dependency>
             <groupId>org.jboss.spec</groupId>
             <artifactId>jboss-javaee-7.0</artifactId>
-            <version>1.0.0.Final</version>
             <type>pom</type>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.8.1</version>
-            <scope>test</scope>
         </dependency>
 
     </dependencies>
-
-    <build>
-
-        <plugins>
-
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-
-        </plugins>
-
-    </build>
 
 </project>
