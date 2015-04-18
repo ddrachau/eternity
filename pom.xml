@@ -41,6 +41,7 @@
 
         <!-- other plugin versions -->
         <version.compiler.plugin>3.3</version.compiler.plugin>
+        <version.surefire.plugin>2.18.1</version.surefire.plugin>
         <version.ear.plugin>2.10</version.ear.plugin>
         <version.ejb.plugin>2.5</version.ejb.plugin>
         <version.war.plugin>2.6</version.war.plugin>
@@ -53,6 +54,12 @@
         <!-- other versions -->
         <version.javaee>7</version.javaee>
         <version.ejb>3.1</version.ejb>
+        <version.arquillian>1.1.8.Final</version.arquillian>
+        <version.arquillian.wildfly.remote>1.0.0.Alpha5</version.arquillian.wildfly.remote>
+        <version.neo4j>2.0.3</version.neo4j>
+        <version.neo4j.jdbc>2.0.2</version.neo4j.jdbc>
+        <version.sl4j>1.7.7</version.sl4j>
+        <version.junit>4.8.1</version.junit>
 
     </properties>
 
@@ -110,14 +117,14 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.7.7</version>
+                <version>${version.sl4j}</version>
                 <scope>provided</scope>
             </dependency>
 
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.8.1</version>
+                <version>${version.junit}</version>
                 <scope>test</scope>
             </dependency>
 
@@ -158,6 +165,13 @@
                         <skip>true</skip>
                     </configuration>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${version.surefire.plugin}</version>
+                </plugin>
+
             </plugins>
 
         </pluginManagement>

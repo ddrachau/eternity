@@ -49,18 +49,25 @@
                 <artifactId>maven-ear-plugin</artifactId>
                 <version>${version.ear.plugin}</version>
                 <configuration>
+
                     <!-- Tell Maven we are using Java EE 7 -->
                     <version>${version.javaee}</version>
+
                     <!-- Use Java EE ear libraries as needed. Java EE ear
                         libraries are in easy way to package any libraries needed in the ear, and
                         automatically have any modules (EJB-JARs and WARs) use them -->
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
+
                     <fileNameMapping>no-version</fileNameMapping>
-                    <!--<archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                        </manifest>
-                    </archive>-->
+
+                    <modules>
+                        <webModule>
+                            <groupId>com.prodyna.pac.eternity.server</groupId>
+                            <artifactId>eternity-server-war</artifactId>
+                            <contextRoot>/eternity-server</contextRoot>
+                        </webModule>
+                    </modules>
+
                 </configuration>
             </plugin>
 

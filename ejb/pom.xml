@@ -24,7 +24,7 @@
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.1.7.Final</version>
+                <version>${version.arquillian}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -47,14 +47,14 @@
 
         <dependency>
             <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-jdbc</artifactId>
-            <version>2.0.2</version>
+            <artifactId>neo4j</artifactId>
+            <version>${version.neo4j}</version>
         </dependency>
 
         <dependency>
             <groupId>org.neo4j</groupId>
-            <artifactId>neo4j</artifactId>
-            <version>2.0.3</version>
+            <artifactId>neo4j-jdbc</artifactId>
+            <version>${version.neo4j.jdbc}</version>
         </dependency>
 
         <dependency>
@@ -75,9 +75,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.wildfly</groupId>
+            <groupId>org.wildfly.arquillian</groupId>
             <artifactId>wildfly-arquillian-container-remote</artifactId>
-            <version>8.2.0.Final</version>
+            <version>${version.arquillian.wildfly.remote}</version>
             <scope>test</scope>
         </dependency>
 
@@ -90,12 +90,15 @@
         <plugins>
 
             <plugin>
+
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ejb-plugin</artifactId>
                 <version>${version.ejb.plugin}</version>
                 <configuration>
                     <!-- Tell Maven we are using EJB 3.1 -->
                     <ejbVersion>${version.ejb}</ejbVersion>
                 </configuration>
+
             </plugin>
 
         </plugins>
