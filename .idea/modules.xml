@@ -5,10 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/eternity.iml" filepath="$PROJECT_DIR$/eternity.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-client/eternity-client.iml" filepath="$PROJECT_DIR$/eternity-client/eternity-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-components/eternity-components.iml" filepath="$PROJECT_DIR$/eternity-components/eternity-components.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eternity-components/eternity-components-utils/eternity-components-utils.iml" filepath="$PROJECT_DIR$/eternity-components/eternity-components-utils/eternity-components-utils.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-server-ear/eternity-server-ear.iml" filepath="$PROJECT_DIR$/eternity-server-ear/eternity-server-ear.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-server-ejb/eternity-server-ejb.iml" filepath="$PROJECT_DIR$/eternity-server-ejb/eternity-server-ejb.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-server-ejb-api/eternity-server-ejb-api.iml" filepath="$PROJECT_DIR$/eternity-server-ejb-api/eternity-server-ejb-api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/eternity-components/utils/utils.iml" filepath="$PROJECT_DIR$/eternity-components/utils/utils.iml" />
     </modules>
   </component>
 </project>

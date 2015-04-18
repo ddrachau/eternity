@@ -23,7 +23,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="eternity-server-ejb-api" />
     <orderEntry type="module" module-name="eternity-server-ejb" />
-    <orderEntry type="module" module-name="utils" />
+    <orderEntry type="module" module-name="eternity-components-utils" />
     <orderEntry type="library" name="Maven: org.neo4j:neo4j:2.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.neo4j:neo4j-kernel:2.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1" level="project" />

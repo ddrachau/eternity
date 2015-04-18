@@ -14,7 +14,7 @@
             <element id="module-output" name="eternity-server-ejb" />
           </element>
           <element id="archive" name="eternity-components-utils-1.0.jar">
-            <element id="module-output" name="utils" />
+            <element id="module-output" name="eternity-components-utils" />
           </element>
           <element id="library" level="project" name="Maven: org.neo4j:neo4j:2.0.3" />
           <element id="library" level="project" name="Maven: org.neo4j:neo4j-kernel:2.0.3" />

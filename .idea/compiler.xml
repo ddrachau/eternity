@@ -30,6 +30,7 @@
         <module name="ejb-api" />
         <module name="ejbs" />
         <module name="eternity-client" />
+        <module name="eternity-components-utils" />
         <module name="eternity-server-ear" />
         <module name="eternity-server-ejb" />
         <module name="eternity-server-ejb-api" />
@@ -51,6 +52,7 @@
       <module name="eternity" target="1.8" />
       <module name="eternity-client" target="1.8" />
       <module name="eternity-components" target="1.8" />
+      <module name="eternity-components-utils" target="1.8" />
       <module name="eternity-server" target="1.5" />
       <module name="eternity-server-ear" target="1.8" />
       <module name="eternity-server-ejb" target="1.8" />

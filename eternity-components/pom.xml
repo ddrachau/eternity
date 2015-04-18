@@ -17,7 +17,7 @@
     </parent>
 
     <modules>
-        <module>utils</module>
+        <module>eternity-components-utils</module>
     </modules>
 
     <dependencyManagement>
