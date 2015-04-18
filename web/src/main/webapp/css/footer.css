@@ -1,0 +1,30 @@
+body {
+    /* footer height and 10px for a better separation */
+    padding-bottom: 120px;
+}
+
+.footer {
+    color: floralwhite;
+    background-color: #333;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 110px;
+}
+
+.footer a {
+    color: #a0c52a;
+}
+
+/* hide footer on ultra small devices */
+@media (max-height: 400px) {
+
+    body {
+        padding-bottom: 10px;
+    }
+
+    footer {
+        visibility: hidden;
+    }
+}

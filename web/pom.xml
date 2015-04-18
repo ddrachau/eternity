@@ -22,7 +22,12 @@
         <dependency>
             <groupId>com.prodyna.pac.eternity.server</groupId>
             <artifactId>eternity-server-ejb-api</artifactId>
-            <type>jar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity.server</groupId>
+            <artifactId>eternity-server-ejb</artifactId>
+            <type>ejb</type>
         </dependency>
 
         <dependency>
@@ -40,13 +45,13 @@
         <plugins>
 
             <plugin>
-
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${version.war.plugin}</version>
                 <configuration>
+                    <webappDirectory>${project.build.directory}/exploded/eternity-server-war.war
+                    </webappDirectory>
                 </configuration>
-
             </plugin>
 
         </plugins>

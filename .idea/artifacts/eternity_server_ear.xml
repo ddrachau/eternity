@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="ear" name="eternity-server:ear">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="eternity-server-0.1.ear">
-      <element id="artifact" artifact-name="eternity-server:ear exploded" />
-    </root>
-  </artifact>
-</component>

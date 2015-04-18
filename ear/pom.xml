@@ -19,11 +19,11 @@
 
     <dependencies>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.prodyna.pac.eternity.server</groupId>
             <artifactId>eternity-server-ejb</artifactId>
             <type>ejb</type>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>com.prodyna.pac.eternity.server</groupId>
@@ -31,10 +31,10 @@
             <type>war</type>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.prodyna.pac.eternity.server</groupId>
             <artifactId>eternity-server-ejb-api</artifactId>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 
@@ -64,10 +64,11 @@
                         <webModule>
                             <groupId>com.prodyna.pac.eternity.server</groupId>
                             <artifactId>eternity-server-war</artifactId>
-                            <contextRoot>/eternity-server</contextRoot>
+                            <contextRoot>/eternity</contextRoot>
                         </webModule>
                     </modules>
 
+                    <workDirectory>${project.build.directory}/myapp.ear</workDirectory>
                 </configuration>
             </plugin>
 

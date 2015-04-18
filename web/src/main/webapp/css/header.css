@@ -1,0 +1,44 @@
+body {
+    padding-top: 73px;
+}
+
+.applicationLogo {
+    height: 57px;
+    width: 57px;
+    background: url(../images/application-57.png);
+}
+
+.navbar-toggle {
+    margin-top: 20px;
+    margin-bottom: 19px;
+}
+
+.navbar-brand-logo {
+    padding: 8px 8px;
+}
+
+.navbar-brand {
+    height: 73px;
+    margin: 0;
+}
+
+.navbar-brand.navbar-brand-text {
+    color: #a0c52a;
+}
+
+.navbar-brand-text {
+    padding: 24px 0px;
+    font-size: 25px;
+}
+
+@media (min-width: 768px) {
+    .navbar-brand-text {
+        padding: 24px 16px
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar-nav > li > a {
+        padding: 27px 15px 26px 15px;
+    }
+}
