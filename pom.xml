@@ -19,7 +19,6 @@
         <module>ejb</module>
         <module>web</module>
         <module>ear</module>
-        <module>coverage</module>
     </modules>
 
     <properties>
@@ -49,7 +48,6 @@
         <version.jar.plugin>2.6</version.jar.plugin>
         <version.javadoc.plugin>2.10.3</version.javadoc.plugin>
 
-
         <!-- maven-compiler-plugin -->
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -57,14 +55,14 @@
         <!-- other versions -->
         <version.javaee>7</version.javaee>
         <version.ejb>3.1</version.ejb>
-        <version.arquillian>1.1.8.Final</version.arquillian>
+        <version.arquillian>1.1.5.Final</version.arquillian>
         <version.arquillian.wildfly.remote>1.0.0.Alpha5</version.arquillian.wildfly.remote>
         <version.arquillian.jacoco>1.0.0.Alpha7</version.arquillian.jacoco>
+        <version.jacoco>0.7.1.201405082137</version.jacoco>
         <version.neo4j>2.0.3</version.neo4j>
         <version.neo4j.jdbc>2.0.2</version.neo4j.jdbc>
         <version.sl4j>1.7.7</version.sl4j>
         <version.junit>4.8.1</version.junit>
-        <version.jacoco>0.7.1.201405082137</version.jacoco>
 
     </properties>
 
@@ -195,11 +193,6 @@
                 <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
-                    <!--                    <configuration>
-                                            <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
-                                            <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
-                                        </configuration>
-                    -->
                     <executions>
                         <execution>
                             <id>jacoco-initialize</id>
@@ -207,13 +200,6 @@
                                 <goal>prepare-agent</goal>
                             </goals>
                         </execution>
-                        <!--<execution>
-                            <id>jacoco-site</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                        </execution>-->
                     </executions>
                 </plugin>
 

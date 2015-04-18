@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/components/components.iml" filepath="$PROJECT_DIR$/components/components.iml" />
-      <module fileurl="file://$PROJECT_DIR$/coverage/coverage.iml" filepath="$PROJECT_DIR$/coverage/coverage.iml" />
       <module fileurl="file://$PROJECT_DIR$/ear/ear.iml" filepath="$PROJECT_DIR$/ear/ear.iml" />
       <module fileurl="file://$PROJECT_DIR$/ejb/ejb.iml" filepath="$PROJECT_DIR$/ejb/ejb.iml" />
       <module fileurl="file://$PROJECT_DIR$/ejb-api/ejb-api.iml" filepath="$PROJECT_DIR$/ejb-api/ejb-api.iml" />
