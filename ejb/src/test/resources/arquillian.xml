@@ -11,11 +11,10 @@
     <container qualifier="jboss" default="true">
 
         <configuration>
-            <property name="host">localhost</property>
             <property name="managementAddress">127.0.0.1</property>
             <property name="managementPort">9990</property>
             <property name="username">admin</property>
-            <property name="password">admin2</property>
+            <property name="password">admin</property>
         </configuration>
 
     </container>
