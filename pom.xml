@@ -19,6 +19,7 @@
         <module>ejb</module>
         <module>web</module>
         <module>ear</module>
+        <module>coverage</module>
     </modules>
 
     <properties>
@@ -46,6 +47,8 @@
         <version.ejb.plugin>2.5</version.ejb.plugin>
         <version.war.plugin>2.6</version.war.plugin>
         <version.jar.plugin>2.6</version.jar.plugin>
+        <version.javadoc.plugin>2.10.3</version.javadoc.plugin>
+
 
         <!-- maven-compiler-plugin -->
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -56,10 +59,12 @@
         <version.ejb>3.1</version.ejb>
         <version.arquillian>1.1.8.Final</version.arquillian>
         <version.arquillian.wildfly.remote>1.0.0.Alpha5</version.arquillian.wildfly.remote>
+        <version.arquillian.jacoco>1.0.0.Alpha7</version.arquillian.jacoco>
         <version.neo4j>2.0.3</version.neo4j>
         <version.neo4j.jdbc>2.0.2</version.neo4j.jdbc>
         <version.sl4j>1.7.7</version.sl4j>
         <version.junit>4.8.1</version.junit>
+        <version.jacoco>0.7.4.201502262128</version.jacoco>
 
     </properties>
 
@@ -153,23 +158,46 @@
                     <configuration>
                         <source>${maven.compiler.source}</source>
                         <target>${maven.compiler.target}</target>
+                        <debug>true</debug>
+                        <debuglevel>lines,vars,source</debuglevel>
                     </configuration>
                 </plugin>
 
-                <!-- disabled by default, deploy only ear -->
-                <plugin>
-                    <groupId>org.wildfly.plugins</groupId>
-                    <artifactId>wildfly-maven-plugin</artifactId>
-                    <version>${version.wildfly.maven.plugin}</version>
-                    <configuration>
-                        <skip>true</skip>
-                    </configuration>
-                </plugin>
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${version.surefire.plugin}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-maven-plugin</artifactId>
+                    <version>${version.wildfly.maven.plugin}</version>
+                    <configuration>
+                        <!-- disabled by default, deploy only ear -->
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${version.jacoco}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>report</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
 
             </plugins>

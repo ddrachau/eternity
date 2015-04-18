@@ -24,6 +24,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="api" />
+        <module name="coverage" />
         <module name="ear" />
         <module name="ejb" />
         <module name="ejb-api" />
@@ -38,6 +39,7 @@
     <bytecodeTargetLevel>
       <module name="api" target="1.8" />
       <module name="components" target="1.8" />
+      <module name="coverage" target="1.8" />
       <module name="ear" target="1.8" />
       <module name="ejb" target="1.8" />
       <module name="ejb-api" target="1.8" />
