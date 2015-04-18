@@ -4,15 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.prodyna.pac.eternity.server.components</groupId>
+    <groupId>com.prodyna.pac.eternity.components</groupId>
     <artifactId>components</artifactId>
     <packaging>pom</packaging>
 
-    <name>Assembly Components</name>
+    <name>Assembly Eternity Components</name>
 
     <parent>
-        <groupId>com.prodyna.pac.eternity.server</groupId>
-        <artifactId>eternity-server</artifactId>
+        <groupId>com.prodyna.pac.eternity</groupId>
+        <artifactId>eternity</artifactId>
         <version>1.0</version>
     </parent>
 
@@ -25,8 +25,8 @@
         <dependencies>
 
             <dependency>
-                <groupId>com.prodyna.pac.eternity.server.components</groupId>
-                <artifactId>eternity-server-components-utils</artifactId>
+                <groupId>com.prodyna.pac.eternity.components</groupId>
+                <artifactId>eternity-components-utils</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

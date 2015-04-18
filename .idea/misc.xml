@@ -4,9 +4,9 @@
     <entry_points version="2.0" />
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="ejb" url="file://$PROJECT_DIR$/ejb" />
+    <file type="ejb" url="file://$PROJECT_DIR$/eternity-server-ejb" />
     <file type="javaeeApplication" url="file://$PROJECT_DIR$" />
-    <file type="web" url="file://$PROJECT_DIR$/web" />
+    <file type="web" url="file://$PROJECT_DIR$/eternity-client" />
   </component>
   <component name="IdProvider" IDEtalkID="A2726A1EA75906CE148A63FE1190078C" />
   <component name="MavenProjectsManager">

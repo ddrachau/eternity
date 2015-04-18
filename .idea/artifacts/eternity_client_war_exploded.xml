@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="web:war exploded">
-    <output-path>$PROJECT_DIR$/web/target/exploded/eternity-server-war.war</output-path>
+  <artifact type="exploded-war" name="eternity-client:war exploded">
+    <output-path>$PROJECT_DIR$/eternity-client/target/exploded/eternity-server-war.war</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -13,7 +13,7 @@
           <element id="archive" name="eternity-server-ejb-1.0.jar">
             <element id="module-output" name="eternity-server-ejb" />
           </element>
-          <element id="archive" name="eternity-server-components-utils-1.0.jar">
+          <element id="archive" name="eternity-components-utils-1.0.jar">
             <element id="module-output" name="utils" />
           </element>
           <element id="library" level="project" name="Maven: org.neo4j:neo4j:2.0.3" />

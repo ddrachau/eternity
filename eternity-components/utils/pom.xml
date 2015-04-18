@@ -4,15 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.prodyna.pac.eternity.server</groupId>
-    <artifactId>eternity-server-ejb-api</artifactId>
+    <groupId>com.prodyna.pac.eternity.components</groupId>
+    <artifactId>eternity-components-utils</artifactId>
     <packaging>jar</packaging>
 
-    <name>Assembly EJB API</name>
+    <name>Assembly Component Utils</name>
 
     <parent>
-        <groupId>com.prodyna.pac.eternity.server</groupId>
-        <artifactId>eternity-server</artifactId>
+        <groupId>com.prodyna.pac.eternity.components</groupId>
+        <artifactId>components</artifactId>
         <version>1.0</version>
     </parent>
 
@@ -24,21 +24,20 @@
             <type>pom</type>
         </dependency>
 
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
 
-        <finalName>${project.artifactId}</finalName>
-
         <plugins>
 
             <plugin>
-
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>${version.jar.plugin}</version>
-                <configuration>
-                </configuration>
-                
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
             </plugin>
 
         </plugins>

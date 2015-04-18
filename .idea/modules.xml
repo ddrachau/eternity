@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/components/components.iml" filepath="$PROJECT_DIR$/components/components.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ear/ear.iml" filepath="$PROJECT_DIR$/ear/ear.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ejb/ejb.iml" filepath="$PROJECT_DIR$/ejb/ejb.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ejb-api/ejb-api.iml" filepath="$PROJECT_DIR$/ejb-api/ejb-api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/components/utils/utils.iml" filepath="$PROJECT_DIR$/components/utils/utils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eternity.iml" filepath="$PROJECT_DIR$/eternity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eternity-client/eternity-client.iml" filepath="$PROJECT_DIR$/eternity-client/eternity-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eternity-components/eternity-components.iml" filepath="$PROJECT_DIR$/eternity-components/eternity-components.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eternity-server-ear/eternity-server-ear.iml" filepath="$PROJECT_DIR$/eternity-server-ear/eternity-server-ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eternity-server-ejb/eternity-server-ejb.iml" filepath="$PROJECT_DIR$/eternity-server-ejb/eternity-server-ejb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eternity-server-ejb-api/eternity-server-ejb-api.iml" filepath="$PROJECT_DIR$/eternity-server-ejb-api/eternity-server-ejb-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eternity-components/utils/utils.iml" filepath="$PROJECT_DIR$/eternity-components/utils/utils.iml" />
     </modules>
   </component>
 </project>

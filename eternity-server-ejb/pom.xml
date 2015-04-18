@@ -9,11 +9,11 @@
     <artifactId>eternity-server-ejb</artifactId>
     <packaging>ejb</packaging>
 
-    <name>Assembly EJB</name>
+    <name>Assembly Eternity Server EJB</name>
 
     <parent>
-        <groupId>com.prodyna.pac.eternity.server</groupId>
-        <artifactId>eternity-server</artifactId>
+        <groupId>com.prodyna.pac.eternity</groupId>
+        <artifactId>eternity</artifactId>
         <version>1.0</version>
     </parent>
 
@@ -41,8 +41,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.prodyna.pac.eternity.server.components</groupId>
-            <artifactId>eternity-server-components-utils</artifactId>
+            <groupId>com.prodyna.pac.eternity.components</groupId>
+            <artifactId>eternity-components-utils</artifactId>
         </dependency>
 
         <dependency>

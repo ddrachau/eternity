@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-ejb" name="ejb:ejb exploded">
-    <output-path>$PROJECT_DIR$/ejb/target/eternity-server-ejb</output-path>
+  <artifact type="exploded-ejb" name="eternity-server-ejb:ejb exploded">
+    <output-path>$PROJECT_DIR$/eternity-server-ejb/target/eternity-server-ejb</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="eternity-server-ejb/ejb/EJB" />
       <element id="directory" name="META-INF">

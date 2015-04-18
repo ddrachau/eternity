@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-ear" name="ear:ear exploded">
-    <output-path>$PROJECT_DIR$/ear/target/myapp.ear</output-path>
+  <artifact type="exploded-ear" name="eternity-server-ear:ear exploded">
+    <output-path>$PROJECT_DIR$/eternity-server-ear/target/myapp.ear</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="eternity-server-ear/javaeeApplication/JavaEE" />
       <element id="directory" name="META-INF">

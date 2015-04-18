@@ -21,8 +21,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="ejb-api" />
-    <orderEntry type="module" module-name="ejb" />
+    <orderEntry type="module" module-name="eternity-server-ejb-api" />
+    <orderEntry type="module" module-name="eternity-server-ejb" />
     <orderEntry type="module" module-name="utils" />
     <orderEntry type="library" name="Maven: org.neo4j:neo4j:2.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.neo4j:neo4j-kernel:2.0.3" level="project" />

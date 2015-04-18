@@ -9,11 +9,11 @@
     <artifactId>eternity-server-war</artifactId>
     <packaging>war</packaging>
 
-    <name>Assembly WEB</name>
+    <name>Assembly Eternity Webclient</name>
 
     <parent>
-        <groupId>com.prodyna.pac.eternity.server</groupId>
-        <artifactId>eternity-server</artifactId>
+        <groupId>com.prodyna.pac.eternity</groupId>
+        <artifactId>eternity</artifactId>
         <version>1.0</version>
     </parent>
 

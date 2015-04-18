@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="eternity-client:war">
+    <output-path>$PROJECT_DIR$/eternity-client/target</output-path>
+    <root id="archive" name="eternity-server-war-1.0.war">
+      <element id="artifact" artifact-name="eternity-client:war exploded" />
+    </root>
+  </artifact>
+</component>
