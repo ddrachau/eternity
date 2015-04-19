@@ -853,9 +853,18 @@ if (typeof jQuery === 'undefined') {
       selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
     }
 
-    var $parent = selector && $(selector)
+    /* old    var $parent = selector && $(selector)
+     * https://github.com/twbs/bootstrap/pull/7692
+     */
+    if (selector === "#"){
+        var $parent = $("")
+    } else {
+        var $parent = selector && $(selector)
+    }
+    /* fix end */
 
-    return $parent && $parent.length ? $parent : $this.parent()
+
+      return $parent && $parent.length ? $parent : $this.parent()
   }
 
 

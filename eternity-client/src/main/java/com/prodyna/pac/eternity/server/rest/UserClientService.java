@@ -9,13 +9,12 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-import java.util.ArrayList;
 import java.util.UUID;
 
 @Stateless
 @Logging
-@Path("/auth")
-public class AuthenticationClientService {
+@Path("/user")
+public class UserClientService {
 
     @Inject
     private Logger logger;
@@ -24,41 +23,38 @@ public class AuthenticationClientService {
     private UserService userService;
 
     @GET
-    public Response ping() {
-        return Response.ok().build();
-    }
-
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response login(@Context SecurityContext sc, User user) {
-
-        logger.info("login:\n" + user);
-
-        NewCookie session = new NewCookie("XSRF-TOKEN",UUID.randomUUID().toString(),"/",null,"comment",45,false);
-
-        // TODO verify? create session?
-        if (user.getIdentifier().equals("admin")) {
-
-//            public NewCookie(String name, String value, String path, String domain, String comment, int maxAge, boolean secure, boolean httpOnly) {
-
-            return Response.status(Response.Status.UNAUTHORIZED).build();
-        }
-
-
-        logger.info("login:\n" + session);
-
-        return Response.ok().cookie(session).build();
-
+    public Response get() {
+        return Response.ok(userService.findAll()).build();
     }
 
-    @DELETE
-    public Response logout(@Context Request req) {
-
-        // TODO delete session
-        return Response.status(200).build();
-
-    }
+//    @POST
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response login(@Context SecurityContext sc, User user) {
+//
+//        logger.info("login:\n" + user);
+//
+//        // TODO verify? create session?
+//        if (user.getIdentifier().equals("admin")) {
+//            return Response.status(Response.Status.UNAUTHORIZED).build();
+//        }
+//
+//        NewCookie session = new NewCookie("XSRF-TOKEN", UUID.randomUUID().toString());
+//
+//        logger.info("login:\n" + session);
+//
+//        return Response.ok().cookie(session).build();
+//
+//    }
+//
+//    @DELETE
+//    public Response logout(@Context Request req) {
+//
+//        // TODO delete session
+//        return Response.status(200).build();
+//
+//    }
 
 //
 //    @GET
