@@ -1,11 +1,11 @@
 angular.module('Eternity').controller('UserCtrl', function($scope, $rootScope, $location, UserService) {
 
-    $scope.user={a:'124'};
+    $scope.users = [];
 
     UserService.find(function(success) {
-        $scope.user = success;
+        $scope.users = success;
     }, function(error) {
-        $scope.user = error;
+        $scope.users = error;
     });
 
 });

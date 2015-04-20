@@ -44,6 +44,15 @@ var PING_LOCATION = "rest/auth/";
 
     });
 
+    angular.module('Eternity').factory('ProjectService', function ($resource) {
+
+        return $resource('rest/project/', [],
+            {
+                find: {method: 'GET', isArray: true}
+            });
+
+    });
+
     angular.module('Eternity').factory('SessionService', function ($resource) {
 
         return $resource('rest/auth/');
