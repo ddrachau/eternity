@@ -43,7 +43,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
     public void createDemoData() {
 
         // clean DB from nodes and relations
-        cypherService.query("MATCH(n) OPTIONAL MATCH (n)-[r]-() DELETE n,r", null);
+        cypherService.query(CLEANUP_QUERY, null);
 
         Project project1 = new Project("P00754", "KiBucDu Final (Phase II)");
         Project project2 = new Project("P00843", "IT-/Prozessharmonisierung im Handel");

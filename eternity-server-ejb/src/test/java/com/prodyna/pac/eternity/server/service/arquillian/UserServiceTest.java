@@ -3,16 +3,15 @@ package com.prodyna.pac.eternity.server.service.arquillian;
 import com.prodyna.pac.eternity.server.common.DateUtils;
 import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
 import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
 import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.Booking;
 import com.prodyna.pac.eternity.server.model.Project;
+import com.prodyna.pac.eternity.server.model.Session;
 import com.prodyna.pac.eternity.server.model.User;
-import com.prodyna.pac.eternity.server.service.BookingService;
-import com.prodyna.pac.eternity.server.service.CypherService;
-import com.prodyna.pac.eternity.server.service.ProjectService;
-import com.prodyna.pac.eternity.server.service.UserService;
+import com.prodyna.pac.eternity.server.service.*;
 import junit.framework.Assert;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -38,12 +37,15 @@ public class UserServiceTest extends AbstractArquillianTest {
     @Inject
     private BookingService bookingService;
 
+    @Inject
+    private AuthenticationService authenticationService;
+
     @Test
     @InSequence(1)
     public void createDemoData() throws InvalidBookingException, DuplicateTimeBookingException, UserNotAssignedToProjectException {
 
         // clean DB from nodes and relations
-        cypherService.query("MATCH(n) OPTIONAL MATCH (n)-[r]-() DELETE n,r", null);
+        cypherService.query(CLEANUP_QUERY, null);
 
         User user1 = new User("khansen", "Knut", "Hansen", "pw");
         User user2 = new User("aeich", "Alexander", null, "pw2");
@@ -423,7 +425,7 @@ public class UserServiceTest extends AbstractArquillianTest {
     @Test
     @InSequence(18)
     public void testDeleteUserWithRelations() throws NoSuchElementRuntimeException, InvalidBookingException,
-            DuplicateTimeBookingException, UserNotAssignedToProjectException {
+            DuplicateTimeBookingException, UserNotAssignedToProjectException, InvalidPasswordException {
 
         User user = userService.create(new User("mmon", "Mike", "Mon", "secret"));
         Project project = projectService.create(new Project("P01123", "DB All new", ""));
@@ -449,6 +451,14 @@ public class UserServiceTest extends AbstractArquillianTest {
         userService.assignUserToProject(user, project);
         Assert.assertTrue(userService.isAssignedTo(user, project));
         Assert.assertNotNull(userService.get(user.getIdentifier()));
+        userService.delete(user.getIdentifier());
+        Assert.assertNull(userService.get(user.getIdentifier()));
+
+        user = userService.create(new User("mmon", "Mike", "Mon", "secret"));
+        Session s = authenticationService.login(user, "secret");
+        Assert.assertNotNull(s);
+        Assert.assertNotNull(authenticationService.getSession(s.getId()));
+
         userService.delete(user.getIdentifier());
         Assert.assertNull(userService.get(user.getIdentifier()));
 

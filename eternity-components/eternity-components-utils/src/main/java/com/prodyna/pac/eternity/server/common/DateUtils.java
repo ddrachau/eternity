@@ -30,6 +30,7 @@ public abstract class DateUtils {
         calendar.set(Calendar.MILLISECOND, 0);
 
         return calendar;
+
     }
 
     /**
@@ -44,6 +45,20 @@ public abstract class DateUtils {
         calendar.setTimeInMillis(milliseconds);
 
         return calendar;
+
+    }
+
+    /**
+     * Get a calendar for now.
+     *
+     * @return the created calendar
+     */
+    public static Calendar getNow() {
+
+        Calendar calendar = Calendar.getInstance();
+
+        return calendar;
+
     }
 
 }

@@ -157,9 +157,10 @@ public class UserServiceImpl implements UserService {
 
         cypherService.query(
                 "MATCH (u:User {identifier:{1}})" +
-                        "OPTIONAL MATCH (:Project)<-[a:ASSIGNED_TO]-(u)" +
+                        "OPTIONAL MATCH (s:Session)-[a1:ASSIGNED_TO]->(u)" +
+                        "OPTIONAL MATCH (:Project)<-[a2:ASSIGNED_TO]-(u)" +
                         "OPTIONAL MATCH (u)<-[p1:PERFORMED_BY]-(b:Booking)-[p2:PERFORMED_FOR]->(:Project) " +
-                        "DELETE a,u,p1,b,p2",
+                        "DELETE s,a1,a2,u,p1,b,p2",
                 map(1, identifier));
 
     }

@@ -2,6 +2,7 @@ package com.prodyna.pac.eternity.server.service.arquillian;
 
 import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.server.model.Session;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.AuthenticationService;
 import com.prodyna.pac.eternity.server.service.CypherService;
@@ -39,7 +40,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
     public void createDemoData() {
 
         // clean DB from nodes and relations
-        cypherService.query("MATCH(n) OPTIONAL MATCH (n)-[r]-() DELETE n,r", null);
+        cypherService.query(CLEANUP_QUERY, null);
 
         User user1 = new User("khansen", "Knut", "Hansen", "pw");
         User user2 = new User("aeich", "Alexander", null, "pw2");
@@ -60,7 +61,15 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
 
         Assert.assertNotNull(user1.getPassword());
         Assert.assertTrue(validatePassword("pw", user1.getPassword()));
-        authenticationService.login(user1, "pw");
+        Session s = authenticationService.login(user1, "pw");
+        Assert.assertNotNull(s);
+        String sId = s.getId();
+        Assert.assertNotNull(sId);
+        Assert.assertEquals(s, authenticationService.getSession(s.getId()));
+
+        s = authenticationService.login(user1, "pw");
+        Assert.assertNotNull(s);
+        Assert.assertFalse(sId.equals(s.getId()));
 
     }
 
@@ -98,9 +107,15 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(5)
-    public void testLogout() {
+    public void testLogout() throws InvalidPasswordException {
 
-        //Assert.fail();
+        User user1 = userService.get("khansen");
+
+        Session s = authenticationService.login(user1, "pw");
+        Assert.assertNotNull(s);
+        Assert.assertEquals(s, authenticationService.getSession(s.getId()));
+        authenticationService.logout(s.getId());
+        Assert.assertNull(authenticationService.getSession(s.getId()));
 
     }
 

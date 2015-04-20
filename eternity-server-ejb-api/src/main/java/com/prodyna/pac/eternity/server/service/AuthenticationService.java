@@ -1,14 +1,14 @@
 package com.prodyna.pac.eternity.server.service;
 
 import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
-import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.server.model.Session;
 import com.prodyna.pac.eternity.server.model.User;
 
 import javax.ejb.Local;
 import javax.validation.constraints.NotNull;
 
 /**
- * Authentication service provides service for operating with passwords and logins.
+ * Authentication service provides service for operating with passwords, logins ans sessions.
  */
 @Local
 public interface AuthenticationService {
@@ -18,16 +18,26 @@ public interface AuthenticationService {
      *
      * @param user          the user to be logged in
      * @param plainPassword the users password
-     * @throws NoSuchElementRuntimeException   if the user does not exists
+     * @return the new created session
      * @throws InvalidPasswordException if the old password is incorrect
      */
-    void login(@NotNull User user, @NotNull String plainPassword)
-            throws NoSuchElementRuntimeException, InvalidPasswordException;
+    Session login(@NotNull User user, @NotNull String plainPassword)
+            throws InvalidPasswordException;
+
+    /**
+     * Retrieves a session for a given session id.
+     *
+     * @param sessionId the id to search for
+     * @return the session for the id or null if no session can be found.
+     */
+    Session getSession(@NotNull String sessionId);
 
     /**
      * Log out the current connected user.
+     *
+     * @param sessionId the user's session id to be removed
      */
-    void logout();
+    void logout(@NotNull String sessionId);
 
     /**
      * Stores the given password for the user.
@@ -35,9 +45,8 @@ public interface AuthenticationService {
      * @param user          the user which gets a new password
      * @param plainPassword the new password to set
      * @return the user with its new password
-     * @throws NoSuchElementRuntimeException if the user does not exists
      */
-    User storePassword(@NotNull User user, @NotNull String plainPassword) throws NoSuchElementRuntimeException;
+    User storePassword(@NotNull User user, @NotNull String plainPassword);
 
     /**
      * Updates the users password
@@ -46,10 +55,9 @@ public interface AuthenticationService {
      * @param oldPlainPassword the users old password
      * @param newPlainPassword the users new password
      * @return the User with the updated password
-     * @throws NoSuchElementRuntimeException   if the user does not exists
      * @throws InvalidPasswordException if the old password is incorrect
      */
-    User changePassword(@NotNull User user, @NotNull String oldPlainPassword, @NotNull String newPlainPassword)
-            throws NoSuchElementRuntimeException, InvalidPasswordException;
+    User changePassword(@NotNull User user, @NotNull String oldPlainPassword, @NotNull String newPlainPassword) throws
+            InvalidPasswordException;
 
 }

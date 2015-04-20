@@ -9,6 +9,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
  */
 public abstract class AbstractArquillianTest {
 
+    public static String CLEANUP_QUERY = "MATCH(n) OPTIONAL MATCH (n)-[r]-() DELETE n,r";
     private static JavaArchive archive = null;
 
     @Deployment

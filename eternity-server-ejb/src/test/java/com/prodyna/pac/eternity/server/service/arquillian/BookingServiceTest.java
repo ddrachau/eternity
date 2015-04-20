@@ -42,7 +42,7 @@ public class BookingServiceTest extends AbstractArquillianTest {
     public void createDemoData() throws DuplicateTimeBookingException, UserNotAssignedToProjectException, InvalidBookingException {
 
         // clean DB from nodes and relations
-        cypherService.query("MATCH(n) OPTIONAL MATCH (n)-[r]-() DELETE n,r", null);
+        cypherService.query(CLEANUP_QUERY, null);
 
         User user1 = new User("khansen", "Knut", "Hansen", "pw");
         User user2 = new User("aeich", "Alexander", null, "pw2");
