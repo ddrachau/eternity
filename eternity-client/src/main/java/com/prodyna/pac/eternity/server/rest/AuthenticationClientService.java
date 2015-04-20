@@ -2,6 +2,8 @@ package com.prodyna.pac.eternity.server.rest;
 
 import com.prodyna.pac.eternity.server.logging.Logging;
 import com.prodyna.pac.eternity.server.model.User;
+import com.prodyna.pac.eternity.server.rest.utils.RestUtils;
+import com.prodyna.pac.eternity.server.service.AuthenticationService;
 import com.prodyna.pac.eternity.server.service.UserService;
 import org.slf4j.Logger;
 
@@ -9,16 +11,18 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-import java.util.ArrayList;
 import java.util.UUID;
 
-@Stateless
-@Logging
+import static com.prodyna.pac.eternity.server.rest.utils.RestUtils.*;
+
 @Path("/auth")
 public class AuthenticationClientService {
 
     @Inject
     private Logger logger;
+
+    @Inject
+    private AuthenticationService authenticationService;
 
     @Inject
     private UserService userService;
@@ -29,22 +33,16 @@ public class AuthenticationClientService {
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response login(@Context SecurityContext sc, User user) {
+    @Produces(RestUtils.JSON_UTF8)
+    public Response login(@Context UriInfo uriInfo, @Context SecurityContext sc, User user) {
 
-        logger.info("login:\n" + user);
-
-        NewCookie session = new NewCookie("XSRF-TOKEN",UUID.randomUUID().toString(),"/",null,"comment",45,false);
+        NewCookie session = createXSRFToken(uriInfo, UUID.randomUUID().toString());
 
         // TODO verify? create session?
         if (user.getIdentifier().equals("admin")) {
 
-//            public NewCookie(String name, String value, String path, String domain, String comment, int maxAge, boolean secure, boolean httpOnly) {
-
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
-
 
         logger.info("login:\n" + session);
 
@@ -53,52 +51,15 @@ public class AuthenticationClientService {
     }
 
     @DELETE
-    public Response logout(@Context Request req) {
+    public Response logout(@Context UriInfo uriInfo, @CookieParam(XSRF_TOKEN) Cookie cookie) {
 
-        // TODO delete session
-        return Response.status(200).build();
+        // TODO delete session in DB
+        //authenticationService.logout();
+
+        NewCookie session = expireToken(uriInfo, cookie);
+
+        return Response.status(200).cookie(session).build();
 
     }
 
-//
-//    @GET
-//    @Path("/hello")
-//    @Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-//    public Response sayHello() {
-//
-//        List<User> all = userService.findAll();
-//
-//        return Response.ok(all).build();
-//
-//    }
-
-
-//    @Inject
-//    HelloService helloService;
-//
-//    /**
-//     * Retrieves a JSON hello world message.
-//     * The {@link javax.ws.rs.Path} method annotation value is related to the one defined at the class level.
-//     * @return
-//     */
-//    @GET
-//    @Path("json")
-//    @Produces({ "application/json" })
-//    public JsonObject getHelloWorldJSON() {
-//        return Json.createObjectBuilder()
-//                .add("result", helloService.createHelloMessage("World"))
-//                .build();
-//    }
-//
-//    /**
-//     * Retrieves a XML hello world message.
-//     * The {@link javax.ws.rs.Path} method annotation value is related to the one defined at the class level.
-//     * @return
-//     */
-//    @GET
-//    @Path("xml")
-//    @Produces({ "application/xml" })
-//    public String getHelloWorldXML() {
-//        return "<xml><result>" + helloService.createHelloMessage("World") + "</result></xml>";
-//    }
 }

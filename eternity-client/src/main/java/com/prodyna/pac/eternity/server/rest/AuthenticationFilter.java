@@ -18,10 +18,12 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
+
         Map<String, Cookie> cookies = containerRequestContext.getCookies();
         for (Map.Entry<String, Cookie> c : cookies.entrySet()) {
             logger.info(c.getKey() + " - " + c.getValue());
         }
+
     }
 
 }
