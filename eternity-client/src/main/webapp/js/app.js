@@ -12,7 +12,7 @@ var PING_LOCATION = "rest/auth/";
             return {
                 'request': function (request) {
                     // if we're not logged-in to the AngularJS app, redirect to login page
-                    $rootScope.loggedIn = $rootScope.loggedIn || $rootScope.username;
+                    //$rootScope.loggedIn = $rootScope.loggedIn || $rootScope.username;
                     if (!$rootScope.loggedIn && $location.path() != '/login') {
                         $location.path('/login');
                     }

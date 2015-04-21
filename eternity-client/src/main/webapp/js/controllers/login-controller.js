@@ -1,6 +1,6 @@
 angular.module('Eternity').controller('LoginCtrl', function($scope, $rootScope, $location, SessionService) {
 
-    $scope.user = {identifier: '', password: ''};
+    $scope.user = {identifier: 'khansen', password: 'pw'};
 
     $scope.login = function() {
         console.log("calling login");

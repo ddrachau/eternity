@@ -3,7 +3,7 @@ package com.prodyna.pac.eternity.server.service.arquillian;
 import com.prodyna.pac.eternity.server.common.DateUtils;
 import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
-import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidLoginException;
 import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
 import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
@@ -119,7 +119,6 @@ public class UserServiceTest extends AbstractArquillianTest {
 
         User u2 = userService.create(u);
 
-        Assert.assertSame(u, u2);
         Assert.assertNotNull(u2.getId());
         Assert.assertEquals(identifier, u2.getIdentifier());
         Assert.assertEquals(forename, u2.getForename());
@@ -424,8 +423,8 @@ public class UserServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(18)
-    public void testDeleteUserWithRelations() throws NoSuchElementRuntimeException, InvalidBookingException,
-            DuplicateTimeBookingException, UserNotAssignedToProjectException, InvalidPasswordException {
+    public void testDeleteUserWithRelations() throws InvalidLoginException, InvalidBookingException,
+            DuplicateTimeBookingException, UserNotAssignedToProjectException {
 
         User user = userService.create(new User("mmon", "Mike", "Mon", "secret"));
         Project project = projectService.create(new Project("P01123", "DB All new", ""));
@@ -455,7 +454,7 @@ public class UserServiceTest extends AbstractArquillianTest {
         Assert.assertNull(userService.get(user.getIdentifier()));
 
         user = userService.create(new User("mmon", "Mike", "Mon", "secret"));
-        Session s = authenticationService.login(user, "secret");
+        Session s = authenticationService.login(user.getIdentifier(), "secret");
         Assert.assertNotNull(s);
         Assert.assertNotNull(authenticationService.getSession(s.getId()));
 

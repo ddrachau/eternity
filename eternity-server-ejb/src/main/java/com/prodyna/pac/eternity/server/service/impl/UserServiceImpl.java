@@ -1,5 +1,6 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
+import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
 import com.prodyna.pac.eternity.server.logging.Logging;
 import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
@@ -63,9 +64,10 @@ public class UserServiceImpl implements UserService {
 
         if (user.getPassword() != null) {
             try {
-                user = authenticationService.storePassword(user, user.getPassword());
-            } catch (NoSuchElementRuntimeException e) {
-                // User was just created, should never happen
+                authenticationService.storePassword(user.getIdentifier(), user.getPassword());
+                user = get(user.getIdentifier());
+            } catch (InvalidUserException e) {
+                // should never happen since it was just created
                 throw new RuntimeException(e);
             }
         }

@@ -38,4 +38,5 @@ public class NotCreatedRuntimeException extends RuntimeException {
     public NotCreatedRuntimeException(String message, Throwable cause) {
         super(message, cause);
     }
+
 }

@@ -108,7 +108,6 @@ public class CypherServiceImpl implements CypherService {
         int count = metaData.getColumnCount();
         List<String> cols = new ArrayList<>(count);
         for (int i = 1; i <= count; i++) {
-            logger.info("col:" + metaData.getColumnName(i));
             cols.add(metaData.getColumnName(i));
         }
 
@@ -121,7 +120,7 @@ public class CypherServiceImpl implements CypherService {
                 Object value = resultSet.getObject(col);
                 map.put(col, value);
 
-                logger.info("col:" + col + " value:" + value);
+                logger.debug("col:" + col + " value:" + value);
             }
             result.add(map);
 

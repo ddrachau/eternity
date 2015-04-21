@@ -38,4 +38,5 @@ public class ElementAlreadyExistsRuntimeException extends RuntimeException {
     public ElementAlreadyExistsRuntimeException(String message, Throwable cause) {
         super(message, cause);
     }
+
 }

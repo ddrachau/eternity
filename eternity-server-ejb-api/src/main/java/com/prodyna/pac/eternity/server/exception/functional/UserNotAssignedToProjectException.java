@@ -38,4 +38,5 @@ public class UserNotAssignedToProjectException extends Exception {
     public UserNotAssignedToProjectException(String message, Throwable cause) {
         super(message, cause);
     }
+
 }

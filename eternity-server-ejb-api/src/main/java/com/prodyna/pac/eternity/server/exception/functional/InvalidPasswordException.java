@@ -1,9 +1,9 @@
 package com.prodyna.pac.eternity.server.exception.functional;
 
 /**
- * Functional Exception signaling that a password for a user is not correct.
+ * Functional Exception signaling that a password or a user was invalid for a login.
  */
-public class InvalidPasswordException extends Exception {
+public class InvalidPasswordException extends InvalidLoginException {
 
     /**
      * Default constructor.
@@ -38,4 +38,5 @@ public class InvalidPasswordException extends Exception {
     public InvalidPasswordException(String message, Throwable cause) {
         super(message, cause);
     }
+
 }

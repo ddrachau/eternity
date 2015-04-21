@@ -1,14 +1,14 @@
 package com.prodyna.pac.eternity.server.exception.functional;
 
 /**
- * Functional exception signaling that a time booking (partially) exists for a user and project.
+ * Functional Exception signaling that a login was not possible.
  */
-public class DuplicateTimeBookingException extends Exception {
+public abstract class InvalidLoginException extends Exception {
 
     /**
      * Default constructor.
      */
-    public DuplicateTimeBookingException() {
+    public InvalidLoginException() {
     }
 
     /**
@@ -16,7 +16,7 @@ public class DuplicateTimeBookingException extends Exception {
      *
      * @param cause the root cause
      */
-    public DuplicateTimeBookingException(Throwable cause) {
+    public InvalidLoginException(Throwable cause) {
         super(cause);
     }
 
@@ -25,7 +25,7 @@ public class DuplicateTimeBookingException extends Exception {
      *
      * @param message the exception message
      */
-    public DuplicateTimeBookingException(String message) {
+    public InvalidLoginException(String message) {
         super(message);
     }
 
@@ -35,7 +35,7 @@ public class DuplicateTimeBookingException extends Exception {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public DuplicateTimeBookingException(String message, Throwable cause) {
+    public InvalidLoginException(String message, Throwable cause) {
         super(message, cause);
     }
 

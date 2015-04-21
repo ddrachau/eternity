@@ -1,7 +1,8 @@
 package com.prodyna.pac.eternity.server.service.arquillian;
 
+import com.prodyna.pac.eternity.server.exception.functional.InvalidLoginException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
-import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
 import com.prodyna.pac.eternity.server.model.Session;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.AuthenticationService;
@@ -14,8 +15,8 @@ import org.jboss.arquillian.junit.InSequence;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.ejb.EJBException;
 import javax.inject.Inject;
+import java.util.Calendar;
 
 import static com.prodyna.pac.eternity.server.common.PasswordHash.validatePassword;
 
@@ -55,19 +56,19 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(2)
-    public void testLogin() throws NoSuchElementRuntimeException, InvalidPasswordException {
+    public void testLogin() throws InvalidLoginException {
 
         User user1 = userService.get("khansen");
 
         Assert.assertNotNull(user1.getPassword());
         Assert.assertTrue(validatePassword("pw", user1.getPassword()));
-        Session s = authenticationService.login(user1, "pw");
+        Session s = authenticationService.login(user1.getIdentifier(), "pw");
         Assert.assertNotNull(s);
         String sId = s.getId();
         Assert.assertNotNull(sId);
-        Assert.assertEquals(s, authenticationService.getSession(s.getId()));
+        Assert.assertEquals(sId, authenticationService.getSession(s.getId()).getId());
 
-        s = authenticationService.login(user1, "pw");
+        s = authenticationService.login(user1.getIdentifier(), "pw");
         Assert.assertNotNull(s);
         Assert.assertFalse(sId.equals(s.getId()));
 
@@ -75,45 +76,34 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
 
     @Test(expected = InvalidPasswordException.class)
     @InSequence(3)
-    public void testLoginWithWrongPassword() throws NoSuchElementRuntimeException, InvalidPasswordException {
+    public void testLoginWithWrongPassword() throws InvalidLoginException {
 
         User user1 = userService.get("khansen");
 
         Assert.assertNotNull(user1.getPassword());
         Assert.assertTrue(validatePassword("pw", user1.getPassword()));
-        authenticationService.login(user1, "pw2");
+        authenticationService.login(user1.getIdentifier(), "pw2");
 
         Assert.fail("Cannot login with wrong password");
 
     }
 
-    @Test
+    @Test(expected = InvalidUserException.class)
     @InSequence(4)
-    public void testLoginWithUnknownUser() throws InvalidPasswordException {
+    public void testLoginWithUnknownUser() throws InvalidLoginException {
 
-        User notValidUser = new User("unknown", "fore", "sur", "pw");
-
-        try {
-            authenticationService.login(notValidUser, "pw-irrelevant");
-            Assert.fail("Cannot login with an unknown user");
-        } catch (EJBException ex) {
-            if (ex.getCause() instanceof NoSuchElementRuntimeException) {
-                return;
-            }
-            Assert.fail("Unexpected exception: " + ex);
-        }
+        authenticationService.login("unknown", "pw-irrelevant");
+        Assert.fail("Cannot login with an unknown user");
 
     }
 
     @Test
     @InSequence(5)
-    public void testLogout() throws InvalidPasswordException {
+    public void testLogout() throws InvalidLoginException {
 
-        User user1 = userService.get("khansen");
-
-        Session s = authenticationService.login(user1, "pw");
+        Session s = authenticationService.login("khansen", "pw");
         Assert.assertNotNull(s);
-        Assert.assertEquals(s, authenticationService.getSession(s.getId()));
+        Assert.assertNotNull(authenticationService.getSession(s.getId()));
         authenticationService.logout(s.getId());
         Assert.assertNull(authenticationService.getSession(s.getId()));
 
@@ -121,7 +111,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(6)
-    public void testStorePassword() throws NoSuchElementRuntimeException {
+    public void testStorePassword() throws InvalidUserException {
 
         User user2 = userService.get("aeich");
         User user3 = userService.get("rvoeller");
@@ -135,42 +125,37 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
         String newPassword = "new";
 
         Assert.assertFalse(validatePassword(newPassword, user2.getPassword()));
-        user2 = authenticationService.storePassword(user2, newPassword);
+        authenticationService.storePassword("aeich", newPassword);
+        user2 = userService.get("aeich");
         Assert.assertTrue(validatePassword(newPassword, user2.getPassword()));
 
-        user3 = authenticationService.storePassword(user3, newPassword);
+        authenticationService.storePassword("rvoeller", newPassword);
+        user3 = userService.get("rvoeller");
         Assert.assertTrue(validatePassword(newPassword, user3.getPassword()));
 
     }
 
-    @Test
+    @Test(expected = InvalidUserException.class)
     @InSequence(7)
-    public void testStorePasswordWithUnkownUser() {
+    public void testStorePasswordWithUnkownUser() throws InvalidUserException {
 
         User notValidUser = new User("unknown", "fore", "sur", "pw");
 
-        try {
-            authenticationService.storePassword(notValidUser, "newPw");
-            Assert.fail("Cannot set password for an unknown user");
-        } catch (EJBException ex) {
-            if (ex.getCause() instanceof NoSuchElementRuntimeException) {
-                return;
-            }
-            Assert.fail("Unexpected exception: " + ex);
-        }
+        authenticationService.storePassword("unknown", "newPw");
 
     }
 
     @Test
     @InSequence(8)
-    public void testChangePassword() throws InvalidPasswordException, NoSuchElementRuntimeException {
+    public void testChangePassword() throws InvalidLoginException {
 
         String newPassword = "boom";
         String oldPassword = "pw";
         User user4 = userService.get("bborg");
 
         Assert.assertTrue(validatePassword(oldPassword, user4.getPassword()));
-        user4 = authenticationService.changePassword(user4, oldPassword, newPassword);
+        authenticationService.changePassword("bborg", oldPassword, newPassword);
+        user4 = userService.get("bborg");
         Assert.assertFalse(validatePassword(oldPassword, user4.getPassword()));
         Assert.assertTrue(validatePassword(newPassword, user4.getPassword()));
 
@@ -178,31 +163,45 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
 
     @Test(expected = InvalidPasswordException.class)
     @InSequence(9)
-    public void testChangeWithInvalidPassword() throws InvalidPasswordException, NoSuchElementRuntimeException {
+    public void testChangeWithInvalidPassword() throws InvalidLoginException {
 
-        User user1 = userService.get("khansen");
-        authenticationService.changePassword(user1, "wronpw", "newPass");
+        authenticationService.changePassword("khansen", "wronpw", "newPass");
 
         Assert.fail("Cannot change password with an invalid password");
 
     }
 
-    @Test
+    @Test(expected = InvalidUserException.class)
     @InSequence(10)
-    public void testChangeWithUnknownUser() throws InvalidPasswordException {
+    public void testChangeWithUnknownUser() throws InvalidLoginException {
 
-        User notValidUser = new User("unknown", "fore", "sur", "pw");
-
-        try {
-            authenticationService.changePassword(notValidUser, "old", "newPw");
-            Assert.fail("Cannot change password for an unknown user");
-        } catch (EJBException ex) {
-            if (ex.getCause() instanceof NoSuchElementRuntimeException) {
-                return;
-            }
-            Assert.fail("Unexpected exception: " + ex);
-        }
+        authenticationService.changePassword("unknown", "old", "newPw");
+        Assert.fail("Cannot change password for an unknown user");
 
     }
 
+    @Test
+    @InSequence(11)
+    public void testGetSession() throws InvalidLoginException {
+
+        User user4 = userService.get("bborg");
+        Session s1 = authenticationService.login("bborg", "boom");
+
+        Assert.assertNotNull(s1);
+        Assert.assertNotNull(s1.getId());
+        Calendar c1 = s1.getCreatedTime();
+        Calendar c2 = s1.getLastAccessedTime();
+        Assert.assertNotNull(c1);
+        Assert.assertNotNull(c2);
+
+        Session s2 = authenticationService.getSession(s1.getId());
+        Assert.assertNotNull(s2);
+        Assert.assertNotNull(s2.getId());
+        Assert.assertEquals(s1.getId(), s2.getId());
+        Calendar c3 = s2.getCreatedTime();
+        Calendar c4 = s2.getLastAccessedTime();
+        Assert.assertEquals(c1, c3);
+        Assert.assertTrue(c2.getTimeInMillis() < c4.getTimeInMillis());
+
+    }
 }

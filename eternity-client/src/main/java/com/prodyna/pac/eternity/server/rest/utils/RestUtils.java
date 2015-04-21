@@ -9,8 +9,9 @@ import javax.ws.rs.core.UriInfo;
 public abstract class RestUtils {
 
     public static final String JSON_UTF8 = MediaType.APPLICATION_JSON + "; charset=UTF-8";
-    public static final String XSRF_TOKEN = "XSRF-TOKEN";
-    private static final int TOKEN_TTL = 180;
+    public static final String XSRF_HEADER_TOKEN = "X-XSRF-TOKEN";
+    public static final String XSRF_COOKIE_TOKEN = "XSRF-TOKEN";
+    private static final int TOKEN_TTL = -1;
 
     public static NewCookie createXSRFToken(@NotNull UriInfo uri, @NotNull String cookieValue) {
         return RestUtils.createXSRFToken(uri, cookieValue, TOKEN_TTL);
@@ -22,7 +23,7 @@ public abstract class RestUtils {
 
     private static NewCookie createXSRFToken(@NotNull UriInfo uri, @NotNull String cookieValue, int maxAge) {
 
-        String cookieId = XSRF_TOKEN;
+        String cookieId = XSRF_COOKIE_TOKEN;
         String restPath = uri.getBaseUri().getPath();
         String applicationPath = restPath.substring(0, restPath.indexOf("/", 1));
         String cookiePath = applicationPath;

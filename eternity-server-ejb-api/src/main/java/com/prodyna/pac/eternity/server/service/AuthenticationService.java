@@ -1,8 +1,9 @@
 package com.prodyna.pac.eternity.server.service;
 
+import com.prodyna.pac.eternity.server.exception.functional.InvalidLoginException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
 import com.prodyna.pac.eternity.server.model.Session;
-import com.prodyna.pac.eternity.server.model.User;
 
 import javax.ejb.Local;
 import javax.validation.constraints.NotNull;
@@ -16,13 +17,13 @@ public interface AuthenticationService {
     /**
      * Tries to login the user with the given password.
      *
-     * @param user          the user to be logged in
-     * @param plainPassword the users password
+     * @param userIdentifier the user to be logged in
+     * @param plainPassword  the users password
      * @return the new created session
-     * @throws InvalidPasswordException if the old password is incorrect
+     * @throws InvalidLoginException if the password or user is incorrect
      */
-    Session login(@NotNull User user, @NotNull String plainPassword)
-            throws InvalidPasswordException;
+    Session login(@NotNull String userIdentifier, @NotNull String plainPassword)
+            throws InvalidLoginException;
 
     /**
      * Retrieves a session for a given session id.
@@ -30,7 +31,7 @@ public interface AuthenticationService {
      * @param sessionId the id to search for
      * @return the session for the id or null if no session can be found.
      */
-    Session getSession(@NotNull String sessionId);
+    Session getSession(String sessionId);
 
     /**
      * Log out the current connected user.
@@ -42,22 +43,21 @@ public interface AuthenticationService {
     /**
      * Stores the given password for the user.
      *
-     * @param user          the user which gets a new password
-     * @param plainPassword the new password to set
-     * @return the user with its new password
+     * @param userIdentifier the user which gets a new password
+     * @param plainPassword  the new password to set
      */
-    User storePassword(@NotNull User user, @NotNull String plainPassword);
+    void storePassword(@NotNull String userIdentifier, @NotNull String plainPassword) throws InvalidUserException;
 
     /**
      * Updates the users password
      *
-     * @param user             the user which should get a new password
+     * @param userIdentifier   the user which should get a new password
      * @param oldPlainPassword the users old password
      * @param newPlainPassword the users new password
-     * @return the User with the updated password
-     * @throws InvalidPasswordException if the old password is incorrect
+     * @throws InvalidUserException if the user is incorrect
+     * @throws InvalidUserException if the password is incorrect
      */
-    User changePassword(@NotNull User user, @NotNull String oldPlainPassword, @NotNull String newPlainPassword) throws
-            InvalidPasswordException;
+    void changePassword(@NotNull String userIdentifier, @NotNull String oldPlainPassword, @NotNull String newPlainPassword) throws
+            InvalidUserException, InvalidPasswordException;
 
 }

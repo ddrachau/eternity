@@ -38,4 +38,5 @@ public class NoSuchElementRuntimeException extends RuntimeException {
     public NoSuchElementRuntimeException(String message, Throwable cause) {
         super(message, cause);
     }
+
 }
