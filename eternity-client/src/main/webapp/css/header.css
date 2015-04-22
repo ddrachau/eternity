@@ -1,5 +1,11 @@
 body {
     padding-top: 73px;
+
+    /*color:#777;
+    color:#555;
+    color:#333;
+    color:#5cb85c;
+    color:#c3f034;*/
 }
 
 .applicationLogo {
@@ -8,10 +14,10 @@ body {
     background: url(../images/application-57.png);
 }
 
-.navbar-toggle {
+/*.navbar-toggle {
     margin-top: 20px;
     margin-bottom: 19px;
-}
+}*/
 
 .navbar-brand-logo {
     padding: 8px 8px;

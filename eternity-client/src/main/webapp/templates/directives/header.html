@@ -4,9 +4,9 @@
 
         <div class="navbar-header">
 
-            <a href="#home" class="navbar-brand navbar-brand-logo">
+            <span class="navbar-brand navbar-brand-logo">
                 <img src="images/transparent.png" class="applicationLogo"></img>
-            </a>
+            </span>
 
             <h1 class="navbar-brand navbar-brand-text">
                 Eternity
@@ -22,29 +22,55 @@
 
         </div>
 
-        <ul class='nav navbar-nav navbar-right collapse navbar-collapse'>
+        <div class="collapse navbar-collapse">
 
-            <li><a href="#users">Users</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#login">Login</a></li>
-            <li><a href="#logout">Logout</a></li>
-            <li class="dropdown">
+            <ul class="nav navbar-nav navbar-right">
 
-                <a data-target="#" class="dropdown-toggle" data-toggle="dropdown">Demo</a>
-                <ul class='dropdown-menu' role='menu'>
+                <li><a href="#users">Benutzer</a></li>
+                <li><a href="#projects">Projekte</a></li>
+                <li><a href="#login">Anmelden</a></li>
+                <li><a href="#logout">Abmelden</a></li>
 
-                    <li>
-                        <a href="#users" data-toggle="collapse" data-target=".navbar-collapse">Users</a>
-                        <a href="#projects" data-toggle="collapse" data-target=".navbar-collapse">Projects</a>
-                        <a href="#login" data-toggle="collapse" data-target=".navbar-collapse">Login</a>
-                        <a href="#logout" data-toggle="collapse" data-target=".navbar-collapse">Logout</a>
-                    </li>
+                <li class="dropdown">
 
-                </ul>
-            </li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menü
+                        <span class="caret"></span>
+                    </a>
 
-        </ul>
+                    <ul class="dropdown-menu" role="menu">
+
+                        <li>
+                            <a href="#users"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Benutzerverwaltung</a>
+                            <a href="#projects"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Projekteverwaltung</a>
+                        </li>
+
+                        <li class='divider'></li>
+
+                        <li>
+                            <a href="#login">Anmelden</a>
+                        </li>
+
+                        <li class='divider'></li>
+
+                        <li>
+                            <a href="#logout">Abmelden</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+            </ul>
+
+        </div>
 
     </div>
 
 </nav>
+
+<script>
+    $(document).on('click', '.navbar-collapse.in', function (e) {
+        if ($(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle') {
+            $(this).collapse('hide');
+        }
+    });
+</script>
