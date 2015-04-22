@@ -2,10 +2,6 @@ body {
     background-color: #f5f5f5;
 }
 
-.btn-primary {
-    background-image: linear-gradient(to bottom, #c3f034 0%, #a0c52a 100%);
-}
-
-.padding-top {
+.margin-top {
     margin-top: 20px;
 }

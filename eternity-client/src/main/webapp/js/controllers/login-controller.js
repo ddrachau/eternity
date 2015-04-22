@@ -1,13 +1,16 @@
-angular.module('Eternity').controller('LoginCtrl', function($scope, $rootScope, $location, SessionService) {
+angular.module('Eternity').controller('LoginCtrl', function ($scope, $rootScope, $location, SessionService) {
 
-    $scope.user = {identifier: 'khansen', password: 'pw'};
+    $scope.login = {
+        username: 'khansen',
+        password: 'pw',
+        remember: false
+    };
 
-    $scope.login = function() {
-        console.log("calling login");
-        $scope.user = SessionService.save($scope.user, function(success) {
+    $scope.loginMeIn = function () {
+        $scope.user = SessionService.save($scope.login, function (success) {
             $rootScope.loggedIn = true;
             $location.path('/');
-        }, function(error) {
+        }, function (error) {
             $scope.loginError = true;
         });
     };

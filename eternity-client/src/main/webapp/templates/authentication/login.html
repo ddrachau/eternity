@@ -9,21 +9,28 @@
 </div>-->
 
 
-<div class="alert alert-danger padding-top" ng-show="loginError"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Username and/or Password Incorrect</div>
-<form class="form-signin" ng-submit="login()">
+<div class="alert alert-danger margin-top" ng-show="loginError">
+    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> <strong>Username and/or Password Incorrect</strong>
+</div>
+
+<form class="form-signin" ng-submit="loginMeIn()">
+
     <h2 class="form-signin-heading">Please sign in</h2>
+
     <label for="identifier" class="sr-only">User name</label>
-    <input type="text" id="identifier" ng-model="user.identifier" class="form-control" placeholder="Username" required
-           autofocus>
+    <input type="text" id="identifier" ng-model="login.username" class="form-control"
+           placeholder="Username" required autofocus>
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" ng-model="user.password" class="form-control" placeholder="Password"
-           required>
+    <input type="password" id="inputPassword" ng-model="login.password" class="form-control"
+           placeholder="Password" required>
 
     <div class="checkbox">
         <label>
-            <input type="checkbox" value="remember-me"> Remember me
+            <input type="checkbox" ng-model="login.remember" value="remember-me"> Remember me
         </label>
     </div>
+
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
 </form>
 
