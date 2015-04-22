@@ -1,8 +1,13 @@
-angular.module('Eternity').controller('LogoutCtrl', function ($cookies, $cookieStore, $rootScope, $location, SessionService) {
+angular.module('Eternity').controller('LogoutCtrl', function ($rootScope, $scope, SessionService) {
 
-    (new SessionService()).$delete(function ($cookies, success) {
+    (new SessionService()).$delete(function (success) {
 
         $rootScope.loggedIn = false;
+        $scope.logoutSuccess = success;
+
+    }, function (error) {
+
+        $scope.logoutError = error;
 
     });
 

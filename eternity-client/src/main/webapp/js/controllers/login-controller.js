@@ -7,12 +7,35 @@ angular.module('Eternity').controller('LoginCtrl', function ($scope, $rootScope,
     };
 
     $scope.loginMeIn = function () {
-        $scope.user = SessionService.save($scope.login, function (success) {
-            $rootScope.loggedIn = true;
-            $location.path('/');
-        }, function (error) {
-            $scope.loginError = true;
-        });
+        $scope.user = SessionService.save($scope.login,
+
+            function (success) {
+
+                // essential since the cookie is not yet available for checking
+                $rootScope.loggedIn = true;
+
+                if ($rootScope.nextRoute && $rootScope.nextRoute.indexOf('#') > 0) {
+
+                    $location.path($rootScope.nextRoute.substr($rootScope.nextRoute.indexOf('#') + 1));
+                    $rootScope.nextRoute = undefined;
+
+                } else {
+
+                    // default page
+                    $location.path('/');
+
+                }
+
+                return success;
+
+            }, function (error) {
+
+                $scope.loginError = true;
+
+                return error;
+
+            });
+
     };
 
 });
