@@ -5,8 +5,8 @@ angular.module('Eternity').config(function ($routeProvider) {
             templateUrl: 'templates/list-users.html',
             controller: 'UserCtrl',
             resolve: {
-                authorize: function ($http) {
-                    return $http.get(PING_LOCATION);
+                data: function (UserService) {
+                    return UserService.find();
                 }
             }
         })
