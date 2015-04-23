@@ -3,12 +3,9 @@ package com.prodyna.pac.eternity.server.service.arquillian;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidLoginException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
-import com.prodyna.pac.eternity.server.model.Session;
+import com.prodyna.pac.eternity.server.model.Login;
 import com.prodyna.pac.eternity.server.model.User;
-import com.prodyna.pac.eternity.server.service.AuthenticationService;
-import com.prodyna.pac.eternity.server.service.CypherService;
-import com.prodyna.pac.eternity.server.service.ProjectService;
-import com.prodyna.pac.eternity.server.service.UserService;
+import com.prodyna.pac.eternity.server.service.*;
 import junit.framework.Assert;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -16,7 +13,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
-import java.util.Calendar;
 
 import static com.prodyna.pac.eternity.server.common.PasswordHash.validatePassword;
 
@@ -35,6 +31,12 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
 
     @Inject
     private AuthenticationService authenticationService;
+
+    @Inject
+    private SessionService sessionService;
+
+    @Inject
+    private RememberMeService rememberMeService;
 
     @Test
     @InSequence(1)
@@ -62,146 +64,110 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
 
         Assert.assertNotNull(user1.getPassword());
         Assert.assertTrue(validatePassword("pw", user1.getPassword()));
-        Session s = authenticationService.login(user1.getIdentifier(), "pw");
-        Assert.assertNotNull(s);
-        String sId = s.getId();
+        Login l = authenticationService.login(new Login(user1.getIdentifier(), "pw"));
+        Assert.assertNotNull(l);
+        String sId = l.getXsrfToken();
         Assert.assertNotNull(sId);
-        Assert.assertEquals(sId, authenticationService.getSession(s.getId()).getId());
+        Assert.assertEquals(sId, sessionService.get(l.getXsrfToken()).getId());
 
-        s = authenticationService.login(user1.getIdentifier(), "pw");
-        Assert.assertNotNull(s);
-        Assert.assertFalse(sId.equals(s.getId()));
+        l = authenticationService.login(new Login(user1.getIdentifier(), "pw"));
+        Assert.assertNotNull(l);
+        Assert.assertFalse(sId.equals(l.getXsrfToken()));
+
+    }
+
+    @Test
+    @InSequence(3)
+    public void testLoginWithRememberMe() throws InvalidLoginException {
+
+        User u = userService.create(new User("loginWithRem", "for", "sur", "123"));
+
+        Assert.assertNull(rememberMeService.getByUser(u.getIdentifier()));
+
+        Login l = authenticationService.login(new Login(u.getIdentifier(), "123", false));
+
+        Assert.assertNotNull(l);
+        Assert.assertNotNull(l.getXsrfToken());
+        Assert.assertNull(l.getRememberMeToken());
+
+        Login l2 = authenticationService.login(new Login(u.getIdentifier(), "123", true));
+
+        Assert.assertNotNull(l2);
+        Assert.assertNotNull(l2.getXsrfToken());
+        Assert.assertNotNull(l2.getRememberMeToken());
+        Assert.assertFalse(l.getXsrfToken().equals(l2.getXsrfToken()));
+        Assert.assertNotNull(rememberMeService.getByUser(u.getIdentifier()));
+
+        Login l3 = authenticationService.login(new Login(u.getIdentifier(), "123", true));
+
+        Assert.assertNotNull(l3);
+        Assert.assertNotNull(l3.getXsrfToken());
+        Assert.assertNotNull(l3.getRememberMeToken());
+        Assert.assertFalse(l2.getRememberMeToken().equals(l3.getRememberMeToken()));
+        Assert.assertNotNull(rememberMeService.getByUser(u.getIdentifier()));
+
+        Login l4 = authenticationService.login(new Login(u.getIdentifier(), "123", false));
+
+        Assert.assertNotNull(l4);
+        Assert.assertNotNull(l4.getXsrfToken());
+        Assert.assertNull(l4.getRememberMeToken());
+        Assert.assertNull(rememberMeService.getByUser(u.getIdentifier()));
 
     }
 
     @Test(expected = InvalidPasswordException.class)
-    @InSequence(3)
+    @InSequence(4)
     public void testLoginWithWrongPassword() throws InvalidLoginException {
 
         User user1 = userService.get("khansen");
 
         Assert.assertNotNull(user1.getPassword());
         Assert.assertTrue(validatePassword("pw", user1.getPassword()));
-        authenticationService.login(user1.getIdentifier(), "pw2");
-
-        Assert.fail("Cannot login with wrong password");
+        authenticationService.login(new Login(user1.getIdentifier(), "pw2"));
 
     }
 
     @Test(expected = InvalidUserException.class)
-    @InSequence(4)
+    @InSequence(5)
     public void testLoginWithUnknownUser() throws InvalidLoginException {
 
-        authenticationService.login("unknown", "pw-irrelevant");
-        Assert.fail("Cannot login with an unknown user");
-
-    }
-
-    @Test
-    @InSequence(5)
-    public void testLogout() throws InvalidLoginException {
-
-        Session s = authenticationService.login("khansen", "pw");
-        Assert.assertNotNull(s);
-        Assert.assertNotNull(authenticationService.getSession(s.getId()));
-        authenticationService.logout(s.getId());
-        Assert.assertNull(authenticationService.getSession(s.getId()));
+        authenticationService.login(new Login("unknown", "pw-irrelevant"));
 
     }
 
     @Test
     @InSequence(6)
-    public void testStorePassword() throws InvalidUserException {
+    public void testLogout() throws InvalidLoginException {
 
-        User user2 = userService.get("aeich");
-        User user3 = userService.get("rvoeller");
-
-        Assert.assertNotNull(user2.getPassword());
-        Assert.assertNull(user3.getPassword());
-
-        Assert.assertTrue(validatePassword("pw2", user2.getPassword()));
-        Assert.assertFalse(validatePassword("pw", user2.getPassword()));
-
-        String newPassword = "new";
-
-        Assert.assertFalse(validatePassword(newPassword, user2.getPassword()));
-        authenticationService.storePassword("aeich", newPassword);
-        user2 = userService.get("aeich");
-        Assert.assertTrue(validatePassword(newPassword, user2.getPassword()));
-
-        authenticationService.storePassword("rvoeller", newPassword);
-        user3 = userService.get("rvoeller");
-        Assert.assertTrue(validatePassword(newPassword, user3.getPassword()));
+        Login l = authenticationService.login(new Login("khansen", "pw"));
+        Assert.assertNotNull(l);
+        Assert.assertNotNull(sessionService.get(l.getXsrfToken()));
+        authenticationService.logout(l.getXsrfToken());
+        Assert.assertNull(sessionService.get(l.getXsrfToken()));
 
     }
 
-    @Test(expected = InvalidUserException.class)
+    @Test
     @InSequence(7)
-    public void testStorePasswordWithUnkownUser() throws InvalidUserException {
+    public void testLogoutWithRememberMe() throws InvalidLoginException {
 
-        User notValidUser = new User("unknown", "fore", "sur", "pw");
+        String username = "khansen";
+        Assert.assertNull(rememberMeService.getByUser(username));
+        Login l = authenticationService.login(new Login(username, "pw"));
+        Assert.assertNull(rememberMeService.getByUser(username));
+        Assert.assertNotNull(l);
+        Assert.assertNotNull(sessionService.get(l.getXsrfToken()));
+        authenticationService.logout(l.getXsrfToken());
+        Assert.assertNull(rememberMeService.getByUser(username));
+        Assert.assertNull(sessionService.get(l.getXsrfToken()));
 
-        authenticationService.storePassword("unknown", "newPw");
-
-    }
-
-    @Test
-    @InSequence(8)
-    public void testChangePassword() throws InvalidLoginException {
-
-        String newPassword = "boom";
-        String oldPassword = "pw";
-        User user4 = userService.get("bborg");
-
-        Assert.assertTrue(validatePassword(oldPassword, user4.getPassword()));
-        authenticationService.changePassword("bborg", oldPassword, newPassword);
-        user4 = userService.get("bborg");
-        Assert.assertFalse(validatePassword(oldPassword, user4.getPassword()));
-        Assert.assertTrue(validatePassword(newPassword, user4.getPassword()));
+        l = authenticationService.login(new Login(username, "pw", true));
+        Assert.assertNotNull(rememberMeService.getByUser(username));
+        Assert.assertNotNull(sessionService.get(l.getXsrfToken()));
+        authenticationService.logout(l.getXsrfToken());
+        Assert.assertNull(rememberMeService.getByUser(username));
+        Assert.assertNull(sessionService.get(l.getXsrfToken()));
 
     }
 
-    @Test(expected = InvalidPasswordException.class)
-    @InSequence(9)
-    public void testChangeWithInvalidPassword() throws InvalidLoginException {
-
-        authenticationService.changePassword("khansen", "wronpw", "newPass");
-
-        Assert.fail("Cannot change password with an invalid password");
-
-    }
-
-    @Test(expected = InvalidUserException.class)
-    @InSequence(10)
-    public void testChangeWithUnknownUser() throws InvalidLoginException {
-
-        authenticationService.changePassword("unknown", "old", "newPw");
-        Assert.fail("Cannot change password for an unknown user");
-
-    }
-
-    @Test
-    @InSequence(11)
-    public void testGetSession() throws InvalidLoginException {
-
-        User user4 = userService.get("bborg");
-        Session s1 = authenticationService.login("bborg", "boom");
-
-        Assert.assertNotNull(s1);
-        Assert.assertNotNull(s1.getId());
-        Calendar c1 = s1.getCreatedTime();
-        Calendar c2 = s1.getLastAccessedTime();
-        Assert.assertNotNull(c1);
-        Assert.assertNotNull(c2);
-
-        Session s2 = authenticationService.getSession(s1.getId());
-        Assert.assertNotNull(s2);
-        Assert.assertNotNull(s2.getId());
-        Assert.assertEquals(s1.getId(), s2.getId());
-        Calendar c3 = s2.getCreatedTime();
-        Calendar c4 = s2.getLastAccessedTime();
-        Assert.assertEquals(c1, c3);
-        Assert.assertTrue(c2.getTimeInMillis() < c4.getTimeInMillis());
-
-    }
 }

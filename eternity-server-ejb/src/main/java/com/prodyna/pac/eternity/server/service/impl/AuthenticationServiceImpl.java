@@ -1,8 +1,9 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
 import com.prodyna.pac.eternity.server.exception.functional.InvalidLoginException;
-import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.logging.Logging;
+import com.prodyna.pac.eternity.server.model.Login;
+import com.prodyna.pac.eternity.server.model.RememberMe;
 import com.prodyna.pac.eternity.server.model.Session;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.*;
@@ -28,15 +29,26 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private RememberMeService rememberMeService;
 
     @Override
-    public Session login(@NotNull String userIdentifier, @NotNull String plainPassword)
-            throws InvalidLoginException, NoSuchElementRuntimeException {
+    public Login login(@NotNull Login login) throws InvalidLoginException {
+
+        String userIdentifier = login.getUsername();
+        String plainPassword = login.getPassword();
 
         userService.checkIfPasswordIsValid(userIdentifier, plainPassword);
 
         rememberMeService.deleteByUser(userIdentifier);
         sessionService.deleteByUser(userIdentifier);
 
-        return sessionService.create(userIdentifier);
+        Session session = sessionService.create(userIdentifier);
+
+        login.setXsrfToken(session.getId());
+
+        if (login.isRemember()) {
+            RememberMe rememberMe = rememberMeService.create(userIdentifier);
+            login.setRememberMeToken(rememberMe.getToken());
+        }
+
+        return login;
 
     }
 

@@ -51,7 +51,7 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public Session get(@NotNull String sessionId) {
+    public Session get(String sessionId) {
 
         Session result = null;
 

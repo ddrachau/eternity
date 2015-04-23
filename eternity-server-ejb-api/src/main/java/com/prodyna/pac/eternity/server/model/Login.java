@@ -5,8 +5,22 @@ public class Login {
     String username;
     String password;
     boolean remember;
-    String sessionToken;
-    String rememberToken;
+    String xsrfToken;
+    String rememberMeToken;
+
+    public Login() {
+
+    }
+
+    public Login(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Login(String username, String password, boolean remember) {
+        this(username, password);
+        this.remember = remember;
+    }
 
     public String getUsername() {
         return username;
@@ -32,28 +46,19 @@ public class Login {
         this.remember = remember;
     }
 
-    public String getSessionToken() {
-        return sessionToken;
+    public String getRememberMeToken() {
+        return rememberMeToken;
     }
 
-    public void setSessionToken(String sessionToken) {
-        this.sessionToken = sessionToken;
+    public void setRememberMeToken(String rememberMeToken) {
+        this.rememberMeToken = rememberMeToken;
     }
 
-    public String getRememberToken() {
-        return rememberToken;
+    public String getXsrfToken() {
+        return xsrfToken;
     }
 
-    public void setRememberToken(String rememberToken) {
-        this.rememberToken = rememberToken;
-    }
-
-    public Login() {
-
-    }
-
-    public Login(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public void setXsrfToken(String xsrfToken) {
+        this.xsrfToken = xsrfToken;
     }
 }

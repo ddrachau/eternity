@@ -19,7 +19,9 @@ public interface RememberMeService {
      */
     RememberMe create(@NotNull String userIdentifier);
 
-    //RememberMe get(@NotNull String identifier);
+    RememberMe get(@NotNull String identifier);
+
+    RememberMe getByUser(@NotNull String identifier);
 
     void deleteByUser(@NotNull String userIdentifier);
 

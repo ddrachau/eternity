@@ -27,7 +27,7 @@ public class ProjectServiceImpl implements ProjectService {
     /**
      * Default return properties, to make object creation easier.
      */
-    private static String PROJECT_RETURN_PROPERTIES = "p.id, p.identifier, p.description";
+    private static final String PROJECT_RETURN_PROPERTIES = "p.id, p.identifier, p.description";
 
     @Inject
     private CypherService cypherService;

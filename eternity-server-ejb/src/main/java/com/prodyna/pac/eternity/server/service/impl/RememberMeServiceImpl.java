@@ -22,7 +22,7 @@ public class RememberMeServiceImpl implements RememberMeService {
     /**
      * Default return properties, to make object creation easier.
      */
-    private static String REMEMBER_ME_RETURN_PROPERTIES = "r.id, r.token";
+    private static final String REMEMBER_ME_RETURN_PROPERTIES = "r.id, r.hashedToken";
 
     @Inject
     private CypherService cypherService;
@@ -32,25 +32,60 @@ public class RememberMeServiceImpl implements RememberMeService {
 
         this.deleteByUser(userIdentifier);
 
-        String token = UUID.randomUUID().toString();
-        String password = PasswordHash.createHash(token);
+        String password = UUID.randomUUID().toString();
+        String hashedToken = PasswordHash.createHash(password);
 
         final Map<String, Object> queryResult = cypherService.querySingle(
                 "MATCH (u:User {identifier:{1}}) " +
-                        "CREATE (r:RememberMe {id:{2}, password:{3}}) " +
+                        "CREATE (r:RememberMe {id:{2}, hashedToken:{3}}) " +
                         "-[:ASSIGNED_TO]->(u) " +
                         "RETURN " + REMEMBER_ME_RETURN_PROPERTIES,
-                map(1, userIdentifier, 2, UUID.randomUUID().toString(), 3, password));
+                map(1, userIdentifier, 2, UUID.randomUUID().toString(), 3, hashedToken));
 
         if (queryResult == null) {
             throw new NotCreatedRuntimeException();
         }
 
-        RememberMe result = new RememberMe();
+        RememberMe result = this.getRememberMe(queryResult);
+        result.setToken(result.getId() + ":" + password);
 
-        String readId = (String) queryResult.get("r.id");
-        result.setId(readId);
-        result.setToken(token);
+        return result;
+
+    }
+
+    @Override
+    public RememberMe get(@NotNull String identifier) {
+
+        RememberMe result = null;
+
+        if (identifier != null) {
+            final Map<String, Object> queryResult = cypherService.querySingle(
+                    "MATCH (r:RememberMe {id:{1}}) " +
+                            "RETURN " + REMEMBER_ME_RETURN_PROPERTIES,
+                    map(1, identifier));
+
+            if (queryResult != null) {
+                result = this.getRememberMe(queryResult);
+            }
+        }
+
+        return result;
+
+    }
+
+    @Override
+    public RememberMe getByUser(@NotNull String userIdentifier) {
+
+        RememberMe result = null;
+
+        final Map<String, Object> queryResult = cypherService.querySingle(
+                "MATCH (u:User {identifier:{1}})<-[:ASSIGNED_TO]-(r:RememberMe) " +
+                        "RETURN " + REMEMBER_ME_RETURN_PROPERTIES,
+                map(1, userIdentifier));
+
+        if (queryResult != null) {
+            result = this.getRememberMe(queryResult);
+        }
 
         return result;
 
@@ -64,6 +99,26 @@ public class RememberMeServiceImpl implements RememberMeService {
                 "MATCH (r:RememberMe)-[a:ASSIGNED_TO]->(u:User {identifier:{1}})" +
                         "DELETE r,a",
                 map(1, userIdentifier));
+
+    }
+
+    /**
+     * Helper method to construct a RememberMe from a query response
+     *
+     * @param values the available values
+     * @return a filled RememberMe
+     */
+    private RememberMe getRememberMe(Map<String, Object> values) {
+
+        RememberMe result = new RememberMe();
+
+        String readId = (String) values.get("r.id");
+        String readHashedToken = (String) values.get("r.hashedToken");
+
+        result.setId(readId);
+        result.setHashedToken(readHashedToken);
+
+        return result;
 
     }
 

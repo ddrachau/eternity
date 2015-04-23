@@ -1,16 +1,10 @@
 package com.prodyna.pac.eternity.server.service.arquillian;
 
 import com.prodyna.pac.eternity.server.common.DateUtils;
-import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
-import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
-import com.prodyna.pac.eternity.server.exception.functional.InvalidLoginException;
-import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
+import com.prodyna.pac.eternity.server.exception.functional.*;
 import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
-import com.prodyna.pac.eternity.server.model.Booking;
-import com.prodyna.pac.eternity.server.model.Project;
-import com.prodyna.pac.eternity.server.model.Session;
-import com.prodyna.pac.eternity.server.model.User;
+import com.prodyna.pac.eternity.server.model.*;
 import com.prodyna.pac.eternity.server.service.*;
 import junit.framework.Assert;
 import org.jboss.arquillian.junit.Arquillian;
@@ -21,6 +15,8 @@ import org.junit.runner.RunWith;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
 import java.util.List;
+
+import static com.prodyna.pac.eternity.server.common.PasswordHash.validatePassword;
 
 @RunWith(Arquillian.class)
 public class UserServiceTest extends AbstractArquillianTest {
@@ -56,12 +52,18 @@ public class UserServiceTest extends AbstractArquillianTest {
         User user4 = new User("bborg", "Björn", "Borg", "pw");
         User user5 = new User("hmeiser", "Hans", "Meiser", "pw");
         User user6 = new User("ttester", "Test", "Tester", "pw");
+        User user7 = new User("ttester2", "Test2", "Tester", "pw");
+        User user8 = new User("ttester3", "Test3", "Tester", null);
+        User user9 = new User("ttester4", "Test4", "Tester", "pw");
         userService.create(user1);
         userService.create(user2);
         userService.create(user3);
         userService.create(user4);
         userService.create(user5);
         userService.create(user6);
+        userService.create(user7);
+        userService.create(user8);
+        userService.create(user9);
 
         Project project1 = new Project("P00754", "KiBucDu Final (Phase II)");
         Project project2 = new Project("P00843", "IT-/Prozessharmonisierung im Handel");
@@ -105,7 +107,7 @@ public class UserServiceTest extends AbstractArquillianTest {
     @Test
     @InSequence(2)
     public void testGetAllUsers() {
-        Assert.assertEquals(6, userService.findAll().size());
+        Assert.assertEquals(9, userService.findAll().size());
     }
 
     @Test
@@ -457,12 +459,97 @@ public class UserServiceTest extends AbstractArquillianTest {
         Assert.assertNull(userService.get(user.getIdentifier()));
 
         user = userService.create(new User("mmon", "Mike", "Mon", "secret"));
-        Session s = authenticationService.login(user.getIdentifier(), "secret");
-        Assert.assertNotNull(s);
-        Assert.assertNotNull(sessionService.get(s.getId()));
+        Login l= authenticationService.login(new Login(user.getIdentifier(), "secret"));
+        Assert.assertNotNull(l);
+        Assert.assertNotNull(sessionService.get(l.getXsrfToken()));
 
         userService.delete(user.getIdentifier());
         Assert.assertNull(userService.get(user.getIdentifier()));
+
+    }
+
+    @Test
+    @InSequence(19)
+    public void testStorePassword() throws InvalidUserException {
+
+        User user7 = userService.get("ttester2");
+        User user8 = userService.get("ttester3");
+
+        Assert.assertNotNull(user7.getPassword());
+        Assert.assertNull(user8.getPassword());
+
+        Assert.assertTrue(validatePassword("pw", user7.getPassword()));
+        Assert.assertFalse(validatePassword("pw2", user7.getPassword()));
+
+        String newPassword = "new";
+
+        Assert.assertFalse(validatePassword(newPassword, user7.getPassword()));
+        userService.storePassword("ttester2", newPassword);
+        user7 = userService.get("ttester2");
+        Assert.assertTrue(validatePassword(newPassword, user7.getPassword()));
+
+        userService.storePassword("ttester3", newPassword);
+        user8 = userService.get("ttester3");
+        Assert.assertTrue(validatePassword(newPassword, user8.getPassword()));
+
+    }
+
+    @Test(expected = InvalidUserException.class)
+    @InSequence(20)
+    public void testStorePasswordWithUnkownUser() throws InvalidUserException {
+
+        User notValidUser = new User("unknown", "fore", "sur", "pw");
+
+        userService.storePassword("unknown", "newPw");
+
+    }
+
+    @Test
+    @InSequence(21)
+    public void testChangePassword() throws InvalidLoginException {
+
+        String newPassword = "boom";
+        String oldPassword = "pw";
+        User user9 = userService.get("ttester4");
+
+        Assert.assertTrue(validatePassword(oldPassword, user9.getPassword()));
+        userService.changePassword("ttester4", oldPassword, newPassword);
+        user9 = userService.get("ttester4");
+        Assert.assertFalse(validatePassword(oldPassword, user9.getPassword()));
+        Assert.assertTrue(validatePassword(newPassword, user9.getPassword()));
+
+    }
+
+    @Test(expected = InvalidPasswordException.class)
+    @InSequence(22)
+    public void testChangeWithInvalidPassword() throws InvalidLoginException {
+
+        userService.changePassword("khansen", "wrongpw", "newPass");
+
+        Assert.fail("Cannot change password with an invalid password");
+
+    }
+
+    @Test(expected = InvalidUserException.class)
+    @InSequence(23)
+    public void testChangeWithUnknownUser() throws InvalidLoginException {
+
+        userService.changePassword("unknown", "old", "newPw");
+        Assert.fail("Cannot change password for an unknown user");
+
+    }
+
+    @Test
+    @InSequence(24)
+    public void testGetBySessionId() throws InvalidLoginException {
+
+        User user = userService.create(new User("gbsession", "Mike", "Mon", "secret"));
+        Login l = authenticationService.login(new Login(user.getIdentifier(), "secret"));
+
+        User user2 = userService.getBySessionId(l.getXsrfToken());
+        Assert.assertNotNull(user);
+        Assert.assertNotNull(user2);
+        Assert.assertEquals(user, user2);
 
     }
 

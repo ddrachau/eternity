@@ -139,7 +139,7 @@ public interface UserService {
      * @throws NoSuchElementRuntimeException if the user does not exists
      * @throws InvalidPasswordException      if the old password is incorrect
      */
-    public void checkIfPasswordIsValid(@NotNull String userIdentifier, @NotNull String plainPassword)
+    void checkIfPasswordIsValid(@NotNull String userIdentifier, @NotNull String plainPassword)
             throws InvalidPasswordException, InvalidUserException;
 
 }

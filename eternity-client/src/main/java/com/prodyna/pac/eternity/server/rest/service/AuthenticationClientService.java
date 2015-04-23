@@ -1,4 +1,4 @@
-package com.prodyna.pac.eternity.server.rest;
+package com.prodyna.pac.eternity.server.rest.service;
 
 import com.prodyna.pac.eternity.server.exception.functional.InvalidLoginException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
@@ -55,16 +55,14 @@ public class AuthenticationClientService {
                 throw new InvalidPasswordException();
             }
 
-            Session session = authenticationService.login(login.getUsername(), login.getPassword());
+            login = authenticationService.login(login);
 
             Response.ResponseBuilder response = Response.ok();
-            response.cookie(createXSRFToken(uriInfo, session.getId()));
+            response.cookie(createXSRFToken(uriInfo, login.getXsrfToken()));
 
             if (login.isRemember()) {
 
-                RememberMe rememberMe = rememberMeService.create(login.getUsername());
-                String cookieValue = rememberMe.getId() + ":" + rememberMe.getToken();
-                response.cookie(createRememberMeToken(uriInfo, cookieValue));
+                response.cookie(createRememberMeToken(uriInfo, login.getRememberMeToken()));
 
             } else if (rememberMeCookie != null) {
 

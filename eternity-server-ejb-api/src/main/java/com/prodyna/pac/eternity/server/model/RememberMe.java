@@ -3,6 +3,7 @@ package com.prodyna.pac.eternity.server.model;
 public class RememberMe extends AbstractNode {
 
     private String token;
+    private String hashedToken;
 
     /**
      * Empty default constructor *
@@ -14,22 +15,33 @@ public class RememberMe extends AbstractNode {
     /**
      * Creates a session and initialize the following properties:
      *
-     * @param id    the technical identifier
-     * @param token the last accessed time
+     * @param id          the technical identifier
+     * @param token       the last accessed time
+     * @param hashedToken the hashed token from the database
      */
-    public RememberMe(String id, String token) {
+    public RememberMe(String id, String hashedToken, String token) {
         super(id);
         this.token = token;
+        this.hashedToken = hashedToken;
     }
 
     /**
      * Creates a session and initialize the following properties:
      *
-     * @param token the last accessed time
+     * @param token       the last accessed time
+     * @param hashedToken the hashed token from the database
+     */
+    public RememberMe(String hashedToken, String token) {
+        this(null, hashedToken, token);
+    }
+
+    /**
+     * Creates a session and initialize the following properties:
+     *
+     * @param token       the last accessed time
      */
     public RememberMe(String token) {
-        super(null);
-        this.token = token;
+        this(null, token);
     }
 
     public String getToken() {
@@ -40,4 +52,11 @@ public class RememberMe extends AbstractNode {
         this.token = token;
     }
 
+    public String getHashedToken() {
+        return hashedToken;
+    }
+
+    public void setHashedToken(String hashedToken) {
+        this.hashedToken = hashedToken;
+    }
 }

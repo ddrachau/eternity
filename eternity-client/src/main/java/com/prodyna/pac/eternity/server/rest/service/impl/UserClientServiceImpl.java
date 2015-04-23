@@ -1,12 +1,14 @@
-package com.prodyna.pac.eternity.server.rest.impl;
+package com.prodyna.pac.eternity.server.rest.service.impl;
 
-import com.prodyna.pac.eternity.server.rest.UserClientService;
+import com.prodyna.pac.eternity.server.rest.filter.Authenticated;
+import com.prodyna.pac.eternity.server.rest.service.UserClientService;
 import com.prodyna.pac.eternity.server.service.UserService;
 
 import javax.inject.Inject;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
+@Authenticated
 @Path("/user")
 public class UserClientServiceImpl implements UserClientService {
 

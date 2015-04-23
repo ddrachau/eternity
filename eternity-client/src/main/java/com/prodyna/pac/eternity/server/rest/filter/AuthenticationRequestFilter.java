@@ -2,7 +2,7 @@ package com.prodyna.pac.eternity.server.rest.filter;
 
 import com.prodyna.pac.eternity.server.model.Session;
 import com.prodyna.pac.eternity.server.rest.utils.RestUtils;
-import com.prodyna.pac.eternity.server.service.AuthenticationService;
+import com.prodyna.pac.eternity.server.service.SessionService;
 import org.slf4j.Logger;
 
 import javax.annotation.Priority;
@@ -25,7 +25,7 @@ public class AuthenticationRequestFilter implements ContainerRequestFilter {
     private Logger logger;
 
     @Inject
-    private AuthenticationService authenticationService;
+    private SessionService sessionService;
 
     @Override
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
@@ -36,7 +36,7 @@ public class AuthenticationRequestFilter implements ContainerRequestFilter {
         logger.info("token: " + xsrfToken);
         logger.info("cookie: " + xsrfCookie);
 
-        Session session = authenticationService.getSession(xsrfToken);
+        Session session = sessionService.get(xsrfToken);
 
         if (session == null) {
             throw new WebApplicationException(

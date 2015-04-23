@@ -207,9 +207,7 @@ public class BookingServiceTest extends AbstractArquillianTest {
         Assert.assertFalse(userService.isAssignedTo(user3, project2));
         Booking b = new Booking(DateUtils.getCalendar(2015, 3, 10, 10, 0), DateUtils.getCalendar(2015, 3, 10, 16, 0), 45);
 
-        Booking createdB = bookingService.create(b, user3, project2);
-
-        Assert.fail("Should not create booking on not assigned project");
+        bookingService.create(b, user3, project2);
 
     }
 

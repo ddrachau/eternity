@@ -111,7 +111,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getBySessionId(@NotNull String sessionId) {
-        return null;
+
+        User result = null;
+
+        final Map<String, Object> queryResult = cypherService.querySingle(
+                "MATCH (u:User)<-[:ASSIGNED_TO]-(s:Session {id:{1}}) " +
+                        "RETURN " + USER_RETURN_PROPERTIES,
+                map(1, sessionId));
+
+        if (queryResult != null) {
+            result = this.getUser(queryResult);
+        }
+
+        return result;
+
     }
 
     @Override
