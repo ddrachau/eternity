@@ -40,6 +40,9 @@ public class UserServiceTest extends AbstractArquillianTest {
     @Inject
     private AuthenticationService authenticationService;
 
+    @Inject
+    private SessionService sessionService;
+
     @Test
     @InSequence(1)
     public void createDemoData() throws InvalidBookingException, DuplicateTimeBookingException, UserNotAssignedToProjectException {
@@ -417,7 +420,7 @@ public class UserServiceTest extends AbstractArquillianTest {
         Booking booking5 = new Booking(DateUtils.getCalendar(2015, 3, 7, 10, 0), DateUtils.getCalendar(2015, 3, 7, 16, 0), 45);
         bookingService.create(booking5, user5, project5);
 
-        Assert.assertEquals(user5, userService.get(booking5));
+        Assert.assertEquals(user5, userService.getByBooking(booking5));
 
     }
 
@@ -456,7 +459,7 @@ public class UserServiceTest extends AbstractArquillianTest {
         user = userService.create(new User("mmon", "Mike", "Mon", "secret"));
         Session s = authenticationService.login(user.getIdentifier(), "secret");
         Assert.assertNotNull(s);
-        Assert.assertNotNull(authenticationService.getSession(s.getId()));
+        Assert.assertNotNull(sessionService.get(s.getId()));
 
         userService.delete(user.getIdentifier());
         Assert.assertNull(userService.get(user.getIdentifier()));

@@ -1,5 +1,7 @@
 package com.prodyna.pac.eternity.server.service;
 
+import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
 import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.Booking;
@@ -21,9 +23,8 @@ public interface UserService {
      *
      * @param user the user to create
      * @return the created project with the generated id
-     * @throws ElementAlreadyExistsRuntimeException if a user with the same identifier already exists
      */
-    User create(@NotNull User user) throws ElementAlreadyExistsRuntimeException;
+    User create(@NotNull User user);
 
     /**
      * Searches for a single user.
@@ -38,9 +39,16 @@ public interface UserService {
      *
      * @param booking the booking the user is mapped to
      * @return the found user
-     * @throws NoSuchElementRuntimeException if no User can be found
      */
-    User get(@NotNull Booking booking) throws NoSuchElementRuntimeException;
+    User getByBooking(@NotNull Booking booking);
+
+    /**
+     * Searches for a single user.
+     *
+     * @param sessionId the session the user is mapped to
+     * @return the found user
+     */
+    User getBySessionId(@NotNull String sessionId);
 
     /**
      * Searches for all users.
@@ -101,4 +109,37 @@ public interface UserService {
      * @return true if the user is assigned to the project, false otherwise
      */
     boolean isAssignedTo(@NotNull User user, @NotNull Project project);
+
+
+    /**
+     * Stores the given password for the user.
+     *
+     * @param userIdentifier the user which gets a new password
+     * @param plainPassword  the new password to set
+     */
+    void storePassword(@NotNull String userIdentifier, @NotNull String plainPassword) throws InvalidUserException;
+
+    /**
+     * Updates the users password
+     *
+     * @param userIdentifier   the user which should get a new password
+     * @param oldPlainPassword the users old password
+     * @param newPlainPassword the users new password
+     * @throws InvalidUserException if the user is incorrect
+     * @throws InvalidUserException if the password is incorrect
+     */
+    void changePassword(@NotNull String userIdentifier, @NotNull String oldPlainPassword, @NotNull String newPlainPassword) throws
+            InvalidUserException, InvalidPasswordException;
+
+    /**
+     * Checks if the given password checks against the given user.
+     *
+     * @param userIdentifier the user to check against
+     * @param plainPassword  the users password to check
+     * @throws NoSuchElementRuntimeException if the user does not exists
+     * @throws InvalidPasswordException      if the old password is incorrect
+     */
+    public void checkIfPasswordIsValid(@NotNull String userIdentifier, @NotNull String plainPassword)
+            throws InvalidPasswordException, InvalidUserException;
+
 }

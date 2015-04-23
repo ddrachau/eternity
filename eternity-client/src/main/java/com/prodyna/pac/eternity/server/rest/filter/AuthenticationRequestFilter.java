@@ -30,8 +30,8 @@ public class AuthenticationRequestFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
 
-        String xsrfToken = containerRequestContext.getHeaderString(RestUtils.XSRF_HEADER_TOKEN);
-        Cookie xsrfCookie = containerRequestContext.getCookies().get(RestUtils.XSRF_COOKIE_TOKEN);
+        String xsrfToken = containerRequestContext.getHeaderString(RestUtils.HEADER_TOKEN_XSRF);
+        Cookie xsrfCookie = containerRequestContext.getCookies().get(RestUtils.COOKIE_TOKEN_XSRF);
 
         logger.info("token: " + xsrfToken);
         logger.info("cookie: " + xsrfCookie);

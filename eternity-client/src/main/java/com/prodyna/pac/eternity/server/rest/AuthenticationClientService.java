@@ -1,11 +1,15 @@
 package com.prodyna.pac.eternity.server.rest;
 
 import com.prodyna.pac.eternity.server.exception.functional.InvalidLoginException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
 import com.prodyna.pac.eternity.server.model.Login;
+import com.prodyna.pac.eternity.server.model.RememberMe;
 import com.prodyna.pac.eternity.server.model.Session;
 import com.prodyna.pac.eternity.server.rest.filter.Authenticated;
 import com.prodyna.pac.eternity.server.rest.utils.RestUtils;
 import com.prodyna.pac.eternity.server.service.AuthenticationService;
+import com.prodyna.pac.eternity.server.service.RememberMeService;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
@@ -24,6 +28,10 @@ public class AuthenticationClientService {
     @Inject
     private AuthenticationService authenticationService;
 
+    @Inject
+    private RememberMeService rememberMeService;
+    private Response.ResponseBuilder response;
+
     @GET
     @Authenticated
     public Response ping() {
@@ -35,14 +43,36 @@ public class AuthenticationClientService {
     @POST
     @Consumes(RestUtils.JSON_UTF8)
     @Produces(RestUtils.JSON_UTF8)
-    public Response login(@Context UriInfo uriInfo, @Context SecurityContext sc, Login login) {
+    public Response login(@CookieParam(COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie,
+                          @Context UriInfo uriInfo, @Context SecurityContext sc, Login login) {
 
         try {
 
+            if (login.getUsername() == null) {
+                throw new InvalidUserException();
+            }
+            if (login.getPassword() == null) {
+                throw new InvalidPasswordException();
+            }
+
             Session session = authenticationService.login(login.getUsername(), login.getPassword());
 
-            NewCookie cookie = createXSRFToken(uriInfo, session.getId());
-            return Response.ok().cookie(cookie).build();
+            Response.ResponseBuilder response = Response.ok();
+            response.cookie(createXSRFToken(uriInfo, session.getId()));
+
+            if (login.isRemember()) {
+
+                RememberMe rememberMe = rememberMeService.create(login.getUsername());
+                String cookieValue = rememberMe.getId() + ":" + rememberMe.getToken();
+                response.cookie(createRememberMeToken(uriInfo, cookieValue));
+
+            } else if (rememberMeCookie != null) {
+
+                response.cookie(expireRememberMeToken(uriInfo, rememberMeCookie.getValue()));
+
+            }
+
+            return response.build();
 
         } catch (InvalidLoginException e) {
 
@@ -54,13 +84,21 @@ public class AuthenticationClientService {
 
     @DELETE
     @Authenticated
-    public Response logout(@Context UriInfo uriInfo, @CookieParam(XSRF_COOKIE_TOKEN) Cookie cookie) {
+    public Response logout(@Context UriInfo uriInfo, @CookieParam(COOKIE_TOKEN_XSRF) Cookie xsrfCookie,
+                           @CookieParam(COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie) {
 
-        authenticationService.logout(cookie.getValue());
+        authenticationService.logout(xsrfCookie.getValue());
 
-        NewCookie session = expireToken(uriInfo, cookie);
+        Response.ResponseBuilder response = Response.ok();
 
-        return Response.status(200).cookie(session).build();
+        if (xsrfCookie != null) {
+            response.cookie(expireXSRFToken(uriInfo, xsrfCookie.getValue()));
+        }
+        if (rememberMeCookie != null) {
+            response.cookie(expireRememberMeToken(uriInfo, rememberMeCookie.getValue()));
+        }
+
+        return response.build();
 
     }
 

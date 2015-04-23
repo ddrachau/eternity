@@ -1,14 +1,14 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
+import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
-import com.prodyna.pac.eternity.server.logging.Logging;
 import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NotCreatedRuntimeException;
+import com.prodyna.pac.eternity.server.logging.Logging;
 import com.prodyna.pac.eternity.server.model.Booking;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
-import com.prodyna.pac.eternity.server.service.AuthenticationService;
 import com.prodyna.pac.eternity.server.service.CypherService;
 import com.prodyna.pac.eternity.server.service.ProjectService;
 import com.prodyna.pac.eternity.server.service.UserService;
@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import static com.prodyna.pac.eternity.server.common.PasswordHash.createHash;
+import static com.prodyna.pac.eternity.server.common.PasswordHash.validatePassword;
 import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
 
 @Logging
@@ -30,16 +32,13 @@ public class UserServiceImpl implements UserService {
     /**
      * Default return properties, to make object creation easier.
      */
-    private static String USER_RETURN_PROPERTIES = "u.id, u.identifier, u.forename, u.surname, u.password";
+    private static final String USER_RETURN_PROPERTIES = "u.id, u.identifier, u.forename, u.surname, u.password";
 
     @Inject
     private CypherService cypherService;
 
     @Inject
     private ProjectService projectService;
-
-    @Inject
-    private AuthenticationService authenticationService;
 
     @Override
     public User create(@NotNull User user) throws ElementAlreadyExistsRuntimeException {
@@ -64,7 +63,7 @@ public class UserServiceImpl implements UserService {
 
         if (user.getPassword() != null) {
             try {
-                authenticationService.storePassword(user.getIdentifier(), user.getPassword());
+                this.storePassword(user.getIdentifier(), user.getPassword());
                 user = get(user.getIdentifier());
             } catch (InvalidUserException e) {
                 // should never happen since it was just created
@@ -93,7 +92,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User get(@NotNull Booking booking) throws NoSuchElementRuntimeException {
+    public User getByBooking(@NotNull Booking booking) throws NoSuchElementRuntimeException {
 
         User result = null;
 
@@ -108,6 +107,11 @@ public class UserServiceImpl implements UserService {
 
         return result;
 
+    }
+
+    @Override
+    public User getBySessionId(@NotNull String sessionId) {
+        return null;
     }
 
     @Override
@@ -214,6 +218,53 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public void storePassword(@NotNull String userIdentifier, @NotNull String plainPassword) throws InvalidUserException {
+
+        String passwordHash = createHash(plainPassword);
+
+        final Map<String, Object> queryResult = cypherService.querySingle(
+                "MATCH (u:User {identifier:{1}}) SET u.password={2} RETURN u.id",
+                map(1, userIdentifier, 2, passwordHash));
+
+        if (queryResult == null) {
+            throw new InvalidUserException(userIdentifier);
+        }
+
+    }
+
+    @Override
+    public void changePassword(@NotNull String userIdentifier, @NotNull String oldPlainPassword,
+                               @NotNull String newPlainPassword)
+            throws InvalidPasswordException, InvalidUserException {
+
+        this.checkIfPasswordIsValid(userIdentifier, oldPlainPassword);
+        this.storePassword(userIdentifier, newPlainPassword);
+
+    }
+
+    @Override
+    public void checkIfPasswordIsValid(@NotNull String userIdentifier, @NotNull String plainPassword)
+            throws InvalidPasswordException, InvalidUserException {
+
+        String RETURN_PASSWORD = "u.password";
+
+        final Map<String, Object> oldPasswordQueryResult = cypherService.querySingle(
+                "MATCH (u:User {identifier:{1}}) RETURN " + RETURN_PASSWORD,
+                map(1, userIdentifier));
+
+        if (oldPasswordQueryResult == null) {
+            throw new InvalidUserException(userIdentifier);
+        }
+
+        String currentPasswordHash = (String) oldPasswordQueryResult.get(RETURN_PASSWORD);
+
+        if (!validatePassword(plainPassword, currentPasswordHash)) {
+            throw new InvalidPasswordException();
+        }
+
+    }
+
     /**
      * Helper method to reuse the code for assign and unassign user from and to projects
      *
@@ -231,8 +282,7 @@ public class UserServiceImpl implements UserService {
             throw new NoSuchElementRuntimeException("user or project unknown");
         }
 
-        final Map<String, Object> queryResult = cypherService.querySingle(
-                query, map(1, user.getIdentifier(), 2, project.getIdentifier()));
+        cypherService.querySingle(query, map(1, user.getIdentifier(), 2, project.getIdentifier()));
 
     }
 

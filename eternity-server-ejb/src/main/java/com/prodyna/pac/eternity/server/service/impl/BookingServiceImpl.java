@@ -150,7 +150,7 @@ public class BookingServiceImpl implements BookingService {
 
         this.checkIfBookingIsValid(booking);
 
-        User user = userService.get(booking);
+        User user = userService.getByBooking(booking);
         Project project = projectService.get(booking);
 
         this.checkForOverlapping(booking, user, project);
