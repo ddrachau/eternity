@@ -2,9 +2,9 @@ package com.prodyna.pac.eternity.server.service.arquillian;
 
 import com.prodyna.pac.eternity.server.common.DateUtils;
 import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
+import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
-import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.Booking;
 import com.prodyna.pac.eternity.server.model.Project;
@@ -40,7 +40,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(1)
-    public void createDemoData() {
+    public void createDemoData() throws ElementAlreadyExistsException {
 
         // clean DB from nodes and relations
         cypherService.query(CLEANUP_QUERY, null);
@@ -101,9 +101,9 @@ public class ProjectServiceTest extends AbstractArquillianTest {
 
     }
 
-    @Test
+    @Test(expected = ElementAlreadyExistsException.class)
     @InSequence(5)
-    public void testCreateProjectWhichExists() throws ElementAlreadyExistsRuntimeException {
+    public void testCreateProjectWhichExists() throws ElementAlreadyExistsException {
 
         String identifier = "new Project2";
         String description = "new description2";
@@ -112,15 +112,8 @@ public class ProjectServiceTest extends AbstractArquillianTest {
 
         projectService.create(p);
 
-        try {
-            projectService.create(p);
-            Assert.fail("Unique constraint has to prohibit the creation");
-        } catch (EJBException ex) {
-            if (ex.getCause() instanceof ElementAlreadyExistsRuntimeException) {
-                return;
-            }
-            Assert.fail("Unexpected exception: " + ex);
-        }
+        projectService.create(p);
+        Assert.fail("Unique constraint has to prohibit the creation");
 
     }
 
@@ -148,7 +141,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(8)
-    public void testUpdateProject() throws ElementAlreadyExistsRuntimeException, NoSuchElementRuntimeException {
+    public void testUpdateProject() throws ElementAlreadyExistsException, NoSuchElementRuntimeException {
 
         String identifier = "P00754";
         String description = "KiBucDu Final (Phase II)";
@@ -172,9 +165,9 @@ public class ProjectServiceTest extends AbstractArquillianTest {
 
     }
 
-    @Test
+    @Test(expected = ElementAlreadyExistsException.class)
     @InSequence(9)
-    public void testUpdateProjectExistingIdentifier() throws ElementAlreadyExistsRuntimeException, NoSuchElementRuntimeException {
+    public void testUpdateProjectExistingIdentifier() throws ElementAlreadyExistsException, NoSuchElementRuntimeException {
 
         String identifier = "P00754";
         String newIdentifier = "P00843";
@@ -184,22 +177,14 @@ public class ProjectServiceTest extends AbstractArquillianTest {
 
         p.setIdentifier(newIdentifier);
 
-
-        try {
-            projectService.update(p);
-            Assert.fail("Changing to an already present identifier should not be possible");
-        } catch (EJBException ex) {
-            if (ex.getCause() instanceof ElementAlreadyExistsRuntimeException) {
-                return;
-            }
-            Assert.fail("Unexpected exception: " + ex);
-        }
+        projectService.update(p);
+        Assert.fail("Changing to an already present identifier should not be possible");
 
     }
 
     @Test
     @InSequence(10)
-    public void testUpdateProjectNonExistingNode() throws ElementAlreadyExistsRuntimeException, NoSuchElementRuntimeException {
+    public void testUpdateProjectNonExistingNode() throws ElementAlreadyExistsException, NoSuchElementRuntimeException {
 
         Project p = new Project("unknow", "P00755", "desc");
 
@@ -289,7 +274,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
     @Test
     @InSequence(15)
     public void testDeleteProjectWithRelations() throws NoSuchElementRuntimeException, InvalidBookingException,
-            DuplicateTimeBookingException, UserNotAssignedToProjectException {
+            DuplicateTimeBookingException, UserNotAssignedToProjectException, ElementAlreadyExistsException {
 
         User user = userService.create(new User("mmon", "Mike", "Mon", "secret"));
         Project project = projectService.create(new Project("P01123", "DB All new", ""));

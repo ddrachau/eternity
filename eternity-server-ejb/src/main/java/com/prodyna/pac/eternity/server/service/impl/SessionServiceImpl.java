@@ -16,6 +16,9 @@ import static com.prodyna.pac.eternity.server.common.DateUtils.getCalendar;
 import static com.prodyna.pac.eternity.server.common.DateUtils.getNow;
 import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
 
+/**
+ * Default implementation for the SessionService.
+ */
 @Logging
 @Stateless
 public class SessionServiceImpl implements SessionService {

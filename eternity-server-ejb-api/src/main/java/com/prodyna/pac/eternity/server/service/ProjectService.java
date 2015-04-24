@@ -1,7 +1,6 @@
 package com.prodyna.pac.eternity.server.service;
 
-import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
-import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.model.Booking;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
@@ -21,9 +20,9 @@ public interface ProjectService {
      *
      * @param project the project to create
      * @return the created project with the generated id
-     * @throws ElementAlreadyExistsRuntimeException if a project with the same identifier already exists
+     * @throws ElementAlreadyExistsException if a project with the same identifier already exists
      */
-    Project create(@NotNull Project project) throws ElementAlreadyExistsRuntimeException;
+    Project create(@NotNull Project project) throws ElementAlreadyExistsException;
 
     /**
      * Searches for a single project.
@@ -38,9 +37,8 @@ public interface ProjectService {
      *
      * @param booking the booking the project is mapped to
      * @return the found user
-     * @throws NoSuchElementRuntimeException if no User can be found
      */
-    Project get(@NotNull Booking booking) throws NoSuchElementRuntimeException;
+    Project get(@NotNull Booking booking);
 
     /**
      * Searches for all projects.
@@ -54,18 +52,16 @@ public interface ProjectService {
      *
      * @param project the project to be updated
      * @return the updated project
-     * @throws NoSuchElementRuntimeException        if the element to be updated cannot be found
-     * @throws ElementAlreadyExistsRuntimeException if a project with the same identifier already exists
+     * @throws ElementAlreadyExistsException if a project with the same identifier already exists
      */
-    Project update(@NotNull Project project) throws NoSuchElementRuntimeException, ElementAlreadyExistsRuntimeException;
+    Project update(@NotNull Project project) throws ElementAlreadyExistsException;
 
     /**
      * Removes the given project from the database.
      *
      * @param identifier the project to be deleted
-     * @throws NoSuchElementRuntimeException if the given project cannot be found
      */
-    void delete(@NotNull String identifier) throws NoSuchElementRuntimeException;
+    void delete(@NotNull String identifier);
 
     /**
      * Search for all the projects a user is assigned to.

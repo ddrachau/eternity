@@ -8,6 +8,9 @@ import javax.inject.Inject;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
+/**
+ * Default implementation for the UserClientService.
+ */
 @Authenticated
 @Path("/user")
 public class UserClientServiceImpl implements UserClientService {

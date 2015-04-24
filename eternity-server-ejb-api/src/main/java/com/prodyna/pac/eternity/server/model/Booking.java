@@ -25,7 +25,7 @@ public class Booking extends AbstractNode {
     private String description;
 
     /**
-     * Empty default constructor *
+     * Empty default constructor
      */
     public Booking() {
 

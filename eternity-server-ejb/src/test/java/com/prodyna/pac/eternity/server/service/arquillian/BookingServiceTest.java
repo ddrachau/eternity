@@ -2,6 +2,7 @@ package com.prodyna.pac.eternity.server.service.arquillian;
 
 import com.prodyna.pac.eternity.server.common.DateUtils;
 import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
+import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
 import com.prodyna.pac.eternity.server.model.Booking;
@@ -39,7 +40,7 @@ public class BookingServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(1)
-    public void createDemoData() throws DuplicateTimeBookingException, UserNotAssignedToProjectException, InvalidBookingException {
+    public void createDemoData() throws DuplicateTimeBookingException, UserNotAssignedToProjectException, InvalidBookingException, ElementAlreadyExistsException {
 
         // clean DB from nodes and relations
         cypherService.query(CLEANUP_QUERY, null);

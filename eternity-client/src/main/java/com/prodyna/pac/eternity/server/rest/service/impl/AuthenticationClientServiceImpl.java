@@ -18,6 +18,9 @@ import javax.ws.rs.core.UriInfo;
 
 import static com.prodyna.pac.eternity.server.rest.utils.RestUtils.*;
 
+/**
+ * Default implementation for the AuthenticationClientService.
+ */
 @Path("/auth")
 public class AuthenticationClientServiceImpl implements AuthenticationClientService {
 

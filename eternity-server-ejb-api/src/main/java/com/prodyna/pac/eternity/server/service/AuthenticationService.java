@@ -7,7 +7,7 @@ import javax.ejb.Local;
 import javax.validation.constraints.NotNull;
 
 /**
- * Authentication service provides service for operating with passwords, logins ans sessions.
+ * Authentication service provides services for operating with passwords, logins ans sessions.
  */
 @Local
 public interface AuthenticationService {

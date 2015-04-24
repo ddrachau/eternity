@@ -3,7 +3,6 @@ package com.prodyna.pac.eternity.server.service;
 import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
-import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.Booking;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
@@ -79,8 +78,7 @@ public interface BookingService {
      * Removes the given booking from the database.
      *
      * @param id the id of the booking to be deleted
-     * @throws NoSuchElementRuntimeException if the given booking cannot be found
      */
-    void delete(@NotNull String id) throws NoSuchElementRuntimeException;
+    void delete(@NotNull String id);
 
 }

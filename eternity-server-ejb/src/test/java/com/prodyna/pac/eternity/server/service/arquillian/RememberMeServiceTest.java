@@ -1,5 +1,6 @@
 package com.prodyna.pac.eternity.server.service.arquillian;
 
+import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.model.RememberMe;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.*;
@@ -32,7 +33,7 @@ public class RememberMeServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(1)
-    public void createDemoData() {
+    public void createDemoData() throws ElementAlreadyExistsException {
 
         // clean DB from nodes and relations
         cypherService.query(CLEANUP_QUERY, null);
@@ -50,7 +51,7 @@ public class RememberMeServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(2)
-    public void testCreateAndGet() {
+    public void testCreateAndGet() throws ElementAlreadyExistsException {
 
 
         User u = userService.create(new User("createRememberMe", "foor", "suur", "pw123"));
@@ -68,7 +69,7 @@ public class RememberMeServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(3)
-    public void testDeleteByUser() {
+    public void testDeleteByUser() throws ElementAlreadyExistsException {
 
         User u = userService.create(new User("deleteRememberMe", "foor", "suur", "pw123"));
         RememberMe r = rememberMeService.create(u.getIdentifier());
@@ -83,7 +84,7 @@ public class RememberMeServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(4)
-    public void testGetByUser() {
+    public void testGetByUser() throws ElementAlreadyExistsException {
 
         User u = userService.create(new User("getByUser", "foor", "suur", "pw123"));
         RememberMe r = rememberMeService.create(u.getIdentifier());

@@ -1,13 +1,11 @@
 package com.prodyna.pac.eternity.server.rest.service;
 
 import com.prodyna.pac.eternity.server.model.Login;
-import com.prodyna.pac.eternity.server.rest.utils.RestUtils;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
-import static com.prodyna.pac.eternity.server.rest.utils.RestUtils.COOKIE_TOKEN_REMEMBER_ME;
-import static com.prodyna.pac.eternity.server.rest.utils.RestUtils.COOKIE_TOKEN_XSRF;
+import static com.prodyna.pac.eternity.server.rest.utils.RestUtils.*;
 
 public interface AuthenticationClientService {
 
@@ -15,8 +13,8 @@ public interface AuthenticationClientService {
     Response ping();
 
     @POST
-    @Consumes(RestUtils.JSON_UTF8)
-    @Produces(RestUtils.JSON_UTF8)
+    @Consumes(JSON_UTF8)
+    @Produces(JSON_UTF8)
     Response login(@CookieParam(COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie,
                    @Context UriInfo uriInfo, @Context SecurityContext sc, Login login);
 

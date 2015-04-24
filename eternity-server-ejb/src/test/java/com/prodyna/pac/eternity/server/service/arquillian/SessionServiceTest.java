@@ -1,5 +1,6 @@
 package com.prodyna.pac.eternity.server.service.arquillian;
 
+import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.model.Session;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.*;
@@ -41,7 +42,7 @@ public class SessionServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(2)
-    public void testGetAndCreate() {
+    public void testGetAndCreate() throws ElementAlreadyExistsException {
 
         User u = userService.create(new User("createSession", "foor", "suur", "pw123"));
         Session s = sessionService.create("createSession");
@@ -57,7 +58,7 @@ public class SessionServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(3)
-    public void testDeleteByUser() {
+    public void testDeleteByUser() throws ElementAlreadyExistsException {
 
         User u = userService.create(new User("deleteSession", "foor", "suur", "pw123"));
         Session s = sessionService.create(u.getIdentifier());

@@ -1,5 +1,6 @@
 package com.prodyna.pac.eternity.server.service.arquillian;
 
+import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidLoginException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
@@ -40,7 +41,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(1)
-    public void createDemoData() {
+    public void createDemoData() throws ElementAlreadyExistsException {
 
         // clean DB from nodes and relations
         cypherService.query(CLEANUP_QUERY, null);
@@ -78,7 +79,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(3)
-    public void testLoginWithRememberMe() throws InvalidLoginException {
+    public void testLoginWithRememberMe() throws InvalidLoginException, ElementAlreadyExistsException {
 
         User u = userService.create(new User("loginWithRem", "for", "sur", "123"));
 

@@ -15,14 +15,31 @@ public interface RememberMeService {
      * Creates a remember me for the given user ensuring that there is only one.
      *
      * @param userIdentifier the user to remember
-     * @return the created project with the generated id
+     * @return the created RememberMe with the generated id
      */
     RememberMe create(@NotNull String userIdentifier);
 
+    /**
+     * Searches for a single RememberMe.
+     *
+     * @param identifier the identifier to search for
+     * @return the found RememberMe or null if none was found
+     */
     RememberMe get(@NotNull String identifier);
 
-    RememberMe getByUser(@NotNull String identifier);
+    /**
+     * Searches for a single RememberMe assigned to the given user.
+     *
+     * @param userIdentifier the user
+     * @return the found RememberMe or null if none was found
+     */
+    RememberMe getByUser(@NotNull String userIdentifier);
 
+    /**
+     * Removes the rememberMe assigned to the given user.
+     *
+     * @param userIdentifier the user
+     */
     void deleteByUser(@NotNull String userIdentifier);
 
 }

@@ -15,6 +15,9 @@ import java.util.UUID;
 
 import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
 
+/**
+ * Default implementation for the RememberMeService.
+ */
 @Logging
 @Stateless
 public class RememberMeServiceImpl implements RememberMeService {

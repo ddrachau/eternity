@@ -1,9 +1,9 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
-import com.prodyna.pac.eternity.server.logging.Logging;
-import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
+import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NotCreatedRuntimeException;
+import com.prodyna.pac.eternity.server.logging.Logging;
 import com.prodyna.pac.eternity.server.model.Booking;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
@@ -20,6 +20,9 @@ import java.util.UUID;
 
 import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
 
+/**
+ * Default implementation for the ProjectService.
+ */
 @Logging
 @Stateless
 public class ProjectServiceImpl implements ProjectService {
@@ -33,12 +36,12 @@ public class ProjectServiceImpl implements ProjectService {
     private CypherService cypherService;
 
     @Override
-    public Project create(@NotNull Project project) throws ElementAlreadyExistsRuntimeException {
+    public Project create(@NotNull Project project) throws ElementAlreadyExistsException {
 
         Project result = this.get(project.getIdentifier());
 
         if (result != null) {
-            throw new ElementAlreadyExistsRuntimeException();
+            throw new ElementAlreadyExistsException();
         }
 
         project.setId(UUID.randomUUID().toString());
@@ -109,12 +112,12 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project update(@NotNull Project project) throws NoSuchElementRuntimeException, ElementAlreadyExistsRuntimeException {
+    public Project update(@NotNull Project project) throws NoSuchElementRuntimeException, ElementAlreadyExistsException {
 
         // Check for already present project with the new identifier
         Project check = this.get(project.getIdentifier());
         if (check != null && !check.getId().equals(project.getId())) {
-            throw new ElementAlreadyExistsRuntimeException();
+            throw new ElementAlreadyExistsException();
         }
 
         final Map<String, Object> queryResult = cypherService.querySingle(
@@ -143,7 +146,7 @@ public class ProjectServiceImpl implements ProjectService {
                         "OPTIONAL MATCH (p)<-[p1:PERFORMED_FOR]-(b:Booking)-[p2:PERFORMED_BY]->(:User) " +
                         "DELETE a,p,p1,b,p2",
                 map(1, identifier));
-        
+
     }
 
     @Override
@@ -164,6 +167,12 @@ public class ProjectServiceImpl implements ProjectService {
 
     }
 
+    /**
+     * Helper method to construct a Project from a query response
+     *
+     * @param values the available values
+     * @return a filled Project
+     */
     private Project getProject(@NotNull Map<String, Object> values) {
 
         Project result = new Project();

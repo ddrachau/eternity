@@ -10,6 +10,7 @@ import javax.interceptor.InvocationContext;
 /**
  * Profiling interceptor which wraps around method calls on classes marked for @Profiling.
  */
+@Profiling
 @Interceptor
 public class ProfilingInterceptor {
 

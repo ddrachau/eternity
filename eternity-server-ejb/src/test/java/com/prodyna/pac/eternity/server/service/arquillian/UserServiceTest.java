@@ -2,9 +2,11 @@ package com.prodyna.pac.eternity.server.service.arquillian;
 
 import com.prodyna.pac.eternity.server.common.DateUtils;
 import com.prodyna.pac.eternity.server.exception.functional.*;
-import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
-import com.prodyna.pac.eternity.server.model.*;
+import com.prodyna.pac.eternity.server.model.Booking;
+import com.prodyna.pac.eternity.server.model.Login;
+import com.prodyna.pac.eternity.server.model.Project;
+import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.*;
 import junit.framework.Assert;
 import org.jboss.arquillian.junit.Arquillian;
@@ -41,7 +43,7 @@ public class UserServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(1)
-    public void createDemoData() throws InvalidBookingException, DuplicateTimeBookingException, UserNotAssignedToProjectException {
+    public void createDemoData() throws InvalidBookingException, DuplicateTimeBookingException, UserNotAssignedToProjectException, ElementAlreadyExistsException {
 
         // clean DB from nodes and relations
         cypherService.query(CLEANUP_QUERY, null);
@@ -131,9 +133,9 @@ public class UserServiceTest extends AbstractArquillianTest {
 
     }
 
-    @Test
+    @Test(expected = ElementAlreadyExistsException.class)
     @InSequence(4)
-    public void testCreateUserWhichExists() {
+    public void testCreateUserWhichExists() throws ElementAlreadyExistsException {
 
         String identifier = "new identifier";
 
@@ -141,15 +143,8 @@ public class UserServiceTest extends AbstractArquillianTest {
 
         userService.create(u);
 
-        try {
-            userService.create(u);
-            Assert.fail("Unique constraint has to prohibit the creation");
-        } catch (EJBException ex) {
-            if (ex.getCause() instanceof ElementAlreadyExistsRuntimeException) {
-                return;
-            }
-            Assert.fail("Unexpected exception: " + ex);
-        }
+        userService.create(u);
+        Assert.fail("Unique constraint has to prohibit the creation");
 
     }
 
@@ -180,7 +175,7 @@ public class UserServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(7)
-    public void testUpdateUser() throws ElementAlreadyExistsRuntimeException, NoSuchElementRuntimeException {
+    public void testUpdateUser() throws ElementAlreadyExistsException, NoSuchElementRuntimeException {
 
         String identifier = "aeich";
         String forename = "Alexander";
@@ -205,9 +200,9 @@ public class UserServiceTest extends AbstractArquillianTest {
 
     }
 
-    @Test
+    @Test(expected = ElementAlreadyExistsException.class)
     @InSequence(8)
-    public void testUpdateUserExistingIdentifier() {
+    public void testUpdateUserExistingIdentifier() throws ElementAlreadyExistsException {
 
         String identifier = "aeich";
         String newIdentifier = "khansen";
@@ -217,21 +212,14 @@ public class UserServiceTest extends AbstractArquillianTest {
 
         u.setIdentifier(newIdentifier);
 
-        try {
-            userService.update(u);
-            Assert.fail("Changing to an already present identifier should not be possible");
-        } catch (EJBException ex) {
-            if (ex.getCause() instanceof ElementAlreadyExistsRuntimeException) {
-                return;
-            }
-            Assert.fail("Unexpected exception: " + ex);
-        }
+        userService.update(u);
+        Assert.fail("Changing to an already present identifier should not be possible");
 
     }
 
     @Test
     @InSequence(9)
-    public void testUpdateUserNonExistingNode() {
+    public void testUpdateUserNonExistingNode() throws ElementAlreadyExistsException {
 
         User u = new User("unknow", null, null, null);
 
@@ -429,7 +417,7 @@ public class UserServiceTest extends AbstractArquillianTest {
     @Test
     @InSequence(18)
     public void testDeleteUserWithRelations() throws InvalidLoginException, InvalidBookingException,
-            DuplicateTimeBookingException, UserNotAssignedToProjectException {
+            DuplicateTimeBookingException, UserNotAssignedToProjectException, ElementAlreadyExistsException {
 
         User user = userService.create(new User("mmon", "Mike", "Mon", "secret"));
         Project project = projectService.create(new Project("P01123", "DB All new", ""));
@@ -459,7 +447,7 @@ public class UserServiceTest extends AbstractArquillianTest {
         Assert.assertNull(userService.get(user.getIdentifier()));
 
         user = userService.create(new User("mmon", "Mike", "Mon", "secret"));
-        Login l= authenticationService.login(new Login(user.getIdentifier(), "secret"));
+        Login l = authenticationService.login(new Login(user.getIdentifier(), "secret"));
         Assert.assertNotNull(l);
         Assert.assertNotNull(sessionService.get(l.getXsrfToken()));
 
@@ -541,7 +529,7 @@ public class UserServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(24)
-    public void testGetBySessionId() throws InvalidLoginException {
+    public void testGetBySessionId() throws InvalidLoginException, ElementAlreadyExistsException {
 
         User user = userService.create(new User("gbsession", "Mike", "Mon", "secret"));
         Login l = authenticationService.login(new Login(user.getIdentifier(), "secret"));

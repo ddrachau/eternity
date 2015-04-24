@@ -2,7 +2,7 @@ package com.prodyna.pac.eternity.server.service.impl;
 
 import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
-import com.prodyna.pac.eternity.server.exception.technical.ElementAlreadyExistsRuntimeException;
+import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NotCreatedRuntimeException;
 import com.prodyna.pac.eternity.server.logging.Logging;
@@ -25,6 +25,9 @@ import static com.prodyna.pac.eternity.server.common.PasswordHash.createHash;
 import static com.prodyna.pac.eternity.server.common.PasswordHash.validatePassword;
 import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
 
+/**
+ * Default implementation for the UserService.
+ */
 @Logging
 @Stateless
 public class UserServiceImpl implements UserService {
@@ -41,12 +44,12 @@ public class UserServiceImpl implements UserService {
     private ProjectService projectService;
 
     @Override
-    public User create(@NotNull User user) throws ElementAlreadyExistsRuntimeException {
+    public User create(@NotNull User user) throws ElementAlreadyExistsException {
 
         User result = this.get(user.getIdentifier());
 
         if (result != null) {
-            throw new ElementAlreadyExistsRuntimeException();
+            throw new ElementAlreadyExistsException();
         }
 
         user.setId(UUID.randomUUID().toString());
@@ -145,12 +148,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(@NotNull User user) throws NoSuchElementRuntimeException, ElementAlreadyExistsRuntimeException {
+    public User update(@NotNull User user) throws NoSuchElementRuntimeException, ElementAlreadyExistsException {
 
         // Check for already present project with the new identifier
         User check = this.get(user.getIdentifier());
         if (check != null && !check.getId().equals(user.getId())) {
-            throw new ElementAlreadyExistsRuntimeException();
+            throw new ElementAlreadyExistsException();
         }
 
         final Map<String, Object> queryResult = cypherService.querySingle(

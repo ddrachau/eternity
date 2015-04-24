@@ -60,4 +60,5 @@ public abstract class AbstractNode {
     public int hashCode() {
         return id.hashCode();
     }
+
 }

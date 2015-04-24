@@ -16,6 +16,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
+/**
+ * Authentication filter implementation for rest services.
+ */
 @Provider
 @Authenticated
 @Priority(Priorities.AUTHENTICATION)

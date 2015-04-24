@@ -29,12 +29,10 @@ import java.util.logging.Logger;
 @ServerEndpoint(value = "/chatserver", encoders = {ChatMessageEncoder.class}, decoders = {ChatMessageDecoder.class})
 public class ChatServer {
 
+    private static final Logger logger = Logger.getLogger("ChatServer");
+    private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
     @Inject
     private ProjectService service;
-
-    private static final Logger logger = Logger.getLogger("ChatServer");
-
-    private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
 
     private void send(Message msg) {
         try {

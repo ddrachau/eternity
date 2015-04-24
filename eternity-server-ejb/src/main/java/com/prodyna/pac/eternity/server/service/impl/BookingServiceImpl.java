@@ -1,11 +1,11 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
-import com.prodyna.pac.eternity.server.logging.Logging;
 import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NotCreatedRuntimeException;
+import com.prodyna.pac.eternity.server.logging.Logging;
 import com.prodyna.pac.eternity.server.model.Booking;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
@@ -19,9 +19,12 @@ import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 
+import static com.prodyna.pac.eternity.server.common.DateUtils.getCalendar;
 import static com.prodyna.pac.eternity.server.common.QueryUtils.map;
-import static com.prodyna.pac.eternity.server.common.DateUtils.*;
 
+/**
+ * Default implementation for the BookingService.
+ */
 @Logging
 @Stateless
 public class BookingServiceImpl implements BookingService {
@@ -29,7 +32,7 @@ public class BookingServiceImpl implements BookingService {
     /**
      * Default return properties, to make object creation easier.
      */
-    private static String BOOKING_RETURN_PROPERTIES = "b.id, b.startTime, b.endTime, b.breakDuration, b.description";
+    private static final String BOOKING_RETURN_PROPERTIES = "b.id, b.startTime, b.endTime, b.breakDuration, b.description";
 
     @Inject
     private CypherService cypherService;

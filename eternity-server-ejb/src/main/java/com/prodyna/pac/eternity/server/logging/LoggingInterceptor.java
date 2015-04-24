@@ -19,9 +19,9 @@ public class LoggingInterceptor {
 
         Logger log = LoggerFactory.getLogger(ic.getTarget().getClass().getName() + "<Interceptor>");
 
-        log.info(">>> " + ic.getMethod().getName());
+        log.debug(">>> " + ic.getMethod().getName());
         Object ret = ic.proceed();
-        log.info("<<< " + ic.getMethod().getName());
+        log.debug("<<< " + ic.getMethod().getName());
 
         return ret;
 
