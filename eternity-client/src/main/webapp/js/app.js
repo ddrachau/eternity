@@ -2,7 +2,6 @@ var PING_LOCATION = "rest/auth/";
 
 (function () {
 
-
     'use strict';
 
     angular.module('Eternity', ['ngRoute', 'ngResource', 'ngCookies']);
@@ -37,27 +36,8 @@ var PING_LOCATION = "rest/auth/";
 
         $rootScope.$on("$locationChangeStart", function (event, nextUrl, currentUrl) {
 
-            console.log("location change:");
-
             if (currentUrl) {
                 $rootScope.nextRoute = currentUrl;
-                console.log("from:" + currentUrl);
-            }
-            if (nextUrl) {
-                console.log("to:" + nextUrl)
-            }
-
-        });
-
-        $rootScope.$on('$routeChangeStart', function (event, next, current) {
-            console.log("route change:");
-
-            if (current) {
-               // $rootScope.nextRoute = current.originalPath;
-                console.log("from:" + current.originalPath)
-            }
-            if (next) {
-                console.log("to:" + next.originalPath)
             }
 
         });
@@ -68,38 +48,5 @@ var PING_LOCATION = "rest/auth/";
         // Don't strip trailing slashes from calculated URLs
         $resourceProvider.defaults.stripTrailingSlashes = false;
     }]);
-
-    angular.module('Eternity').factory('UserService', function ($resource) {
-
-        return $resource('rest/user/', [],
-            {
-                find: {method: 'GET', isArray: true}
-            });
-
-    });
-
-    angular.module('Eternity').factory('ProjectService', function ($resource) {
-
-        return $resource('rest/project/', [],
-            {
-                find: {method: 'GET', isArray: true}
-            });
-
-    });
-
-    angular.module('Eternity').factory('SessionService', function ($resource) {
-
-        return $resource('rest/auth/');
-        //, [],
-        //    {
-        //        login: {method: 'POST', url: 'http://localhost:8080/eternity-server-war/rest/auth/login', isArray: false}
-        //    });
-
-        //var CreditCard = $resource('/user/:userId/card/:cardId',
-        //    {userId: 123, cardId: '@id'}, {
-        //        charge: {method: 'POST', params: {charge: true}}
-        //    });
-
-    });
 
 })();

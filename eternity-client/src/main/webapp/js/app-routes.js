@@ -14,8 +14,8 @@ angular.module('Eternity').config(function ($routeProvider) {
             templateUrl: 'templates/list-projects.html',
             controller: 'ProjectCtrl',
             resolve: {
-                authorize: function ($http) {
-                    return $http.get(PING_LOCATION);
+                data: function (ProjectService) {
+                    return ProjectService.find();
                 }
             }
         })

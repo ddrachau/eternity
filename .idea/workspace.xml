@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d657f7b-8d97-4b3a-bd42-2472c9edf69f" name="Default" comment="">
-      <change type="MOVED" beforePath="C:\PAC\workspace\eternity\eternity-server-ejb-api\src\main\java\com\prodyna\pac\eternity\server\exception\technical\ElementAlreadyExistsRuntimeException.java" afterPath="$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/functional/ElementAlreadyExistsException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/services/project-service.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/services/session-service.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/services/user-service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/css/fonts/glyphicons-halflings-regular.eot" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/css/fonts/glyphicons-halflings-regular.eot" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/css/fonts/glyphicons-halflings-regular.ttf" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/css/fonts/glyphicons-halflings-regular.ttf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/css/fonts/glyphicons-halflings-regular.woff2" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/css/fonts/glyphicons-halflings-regular.woff2" />
@@ -32,6 +34,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-server-ejb/src/main/java/com/prodyna/pac/eternity/server/service/impl/CypherServiceImpl.java" afterPath="$PROJECT_DIR$/eternity-server-ejb/src/main/java/com/prodyna/pac/eternity/server/service/impl/CypherServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-components/eternity-components-utils/src/main/java/com/prodyna/pac/eternity/server/common/DateUtils.java" afterPath="$PROJECT_DIR$/eternity-components/eternity-components-utils/src/main/java/com/prodyna/pac/eternity/server/common/DateUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/functional/DuplicateTimeBookingException.java" afterPath="$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/functional/DuplicateTimeBookingException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/functional/ElementAlreadyExistsException.java" afterPath="$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/functional/ElementAlreadyExistsException.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/functional/InvalidBookingException.java" afterPath="$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/functional/InvalidBookingException.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/functional/InvalidLoginException.java" afterPath="$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/functional/InvalidLoginException.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/functional/InvalidPasswordException.java" afterPath="$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/functional/InvalidPasswordException.java" />
@@ -219,6 +222,18 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/UserService.java" afterPath="$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/UserService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-server-ejb/src/main/java/com/prodyna/pac/eternity/server/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/eternity-server-ejb/src/main/java/com/prodyna/pac/eternity/server/service/impl/UserServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-server-ejb/src/test/java/com/prodyna/pac/eternity/server/service/arquillian/UserServiceTest.java" afterPath="$PROJECT_DIR$/eternity-server-ejb/src/test/java/com/prodyna/pac/eternity/server/service/arquillian/UserServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-1.3.15.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-1.3.15.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-cookies-1.3.15.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-cookies-1.3.15.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-cookies-1.3.15.min.js.map" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-cookies-1.3.15.min.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-cookies-1.3.15.min.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-cookies-1.3.15.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-resource-1.3.15.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-resource-1.3.15.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-resource.min-1.3.15.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-resource.min-1.3.15.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-resource.min.js-1.3.15.map" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-resource.min.js-1.3.15.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-route-1.3.15.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-route-1.3.15.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-route.min-1.3.15.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-route.min-1.3.15.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-route.min.js-1.3.15.map" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular-route.min.js-1.3.15.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular.min-1.3.15.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular.min-1.3.15.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular.min.js-1.3.15.map" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/angular.min.js-1.3.15.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/app-routes.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/app-routes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/app.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/css/application.css" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/css/application.css" />
@@ -242,6 +257,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/templates/directives/header.html" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/templates/directives/header.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/directives/header.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/directives/header.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/index.html" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/jquery-2.1.3.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor/jquery-2.1.3.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/templates/list-projects.html" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/templates/list-projects.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/templates/list-users.html" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/templates/list-users.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/login-controller.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/login-controller.js" />
@@ -256,6 +272,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-server-ear/pom.xml" afterPath="$PROJECT_DIR$/eternity-server-ear/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-server-ejb/pom.xml" afterPath="$PROJECT_DIR$/eternity-server-ejb/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-server-ejb-api/pom.xml" afterPath="$PROJECT_DIR$/eternity-server-ejb-api/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/project-controller.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/project-controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/user-controller.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/user-controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/WEB-INF/web.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -330,15 +348,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/logout-controller.js" />
-        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/index.html" />
-        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/app.js" />
-        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/css/application.css" />
-        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/css/header.css" />
-        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/templates/directives/header.html" />
         <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/templates/authentication/logout.html" />
-        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/user-controller.js" />
-        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/app-routes.js" />
         <option value="$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/model/Session.java" />
         <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/templates/authentication/login.html" />
         <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/login-controller.js" />
@@ -381,6 +391,14 @@
         <option value="$PROJECT_DIR$/eternity-server-ejb/src/test/java/com/prodyna/pac/eternity/server/service/arquillian/SessionServiceTest.java" />
         <option value="$PROJECT_DIR$/eternity-server-ejb/src/test/java/com/prodyna/pac/eternity/server/service/arquillian/UserServiceTest.java" />
         <option value="$PROJECT_DIR$/eternity-server-ejb/src/test/java/com/prodyna/pac/eternity/server/service/arquillian/ProjectServiceTest.java" />
+        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/services/project-service.js" />
+        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/services/user-service.js" />
+        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/services/session-service.js" />
+        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/app.js" />
+        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/index.html" />
+        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/user-controller.js" />
+        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/app-routes.js" />
+        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/project-controller.js" />
       </list>
     </option>
   </component>
@@ -574,7 +592,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="eternity-server-ejb" />
+              <option name="myItemId" value="eternity-client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -588,81 +606,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="eternity-server-ejb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="eternity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="eternity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="eternity-server-ejb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arquillian" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="eternity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="eternity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="eternity-server-ejb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="eternity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="eternity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="eternity-server-ejb" />
+              <option name="myItemId" value="eternity-client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -674,15 +618,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="impl" />
+              <option name="myItemId" value="webapp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -696,7 +632,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="eternity-server-ejb" />
+              <option name="myItemId" value="eternity-client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -705,14 +641,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -873,11 +801,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\PAC\workspace\eternity\eternity-client\src\main\webapp\js\services" />
       <recent name="$PROJECT_DIR$/eternity-client/src/main/webapp/css/bootstrap" />
       <recent name="$PROJECT_DIR$/eternity-client/src/main/webapp/templates" />
       <recent name="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers" />
       <recent name="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor" />
-      <recent name="$PROJECT_DIR$/eternity-client/src/main/webapp/templates/authentication" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\PAC\workspace\eternity\eternity-client\src\main\webapp\css" />
@@ -947,7 +875,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.All in ejb">
+  <component name="RunManager" selected="JBoss Server.Hot">
     <configuration default="false" name="All in ejb" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="eternity-server-ejb" />
@@ -1805,12 +1733,12 @@
       <workItem from="1429782743906" duration="9850000" />
       <workItem from="1429808360357" duration="11554000" />
       <workItem from="1429823356081" duration="142000" />
-      <workItem from="1429873797325" duration="3008000" />
+      <workItem from="1429873797325" duration="4618000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="336899000" />
+    <option name="totallyTimeSpent" value="338509000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1842,10 +1770,10 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32968238" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2559301" sideWeight="0.4871638" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2559301" sideWeight="0.4871638" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32958803" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25794622" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25794622" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32958803" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1911,104 +1839,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/java/com/prodyna/pac/eternity/server/rest/service/AuthenticationClientService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44973546">
-          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/java/com/prodyna/pac/eternity/server/rest/service/impl/AuthenticationClientServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/java/com/prodyna/pac/eternity/server/rest/service/impl/ProjectClientServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="12" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/java/com/prodyna/pac/eternity/server/rest/service/impl/UserClientServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.659612">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-components/eternity-components-utils/src/main/java/com/prodyna/pac/eternity/server/common/DateUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-components/eternity-components-utils/src/main/java/com/prodyna/pac/eternity/server/common/PasswordHash.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="3" selection-start-line="37" selection-start-column="3" selection-end-line="37" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-components/eternity-components-utils/src/main/java/com/prodyna/pac/eternity/server/common/QueryUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-components/eternity-components-utils/src/test/java/com/prodyna/pac/eternity/server/common/PasswordHashTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1904762">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-server-ejb/src/main/java/com/prodyna/pac/eternity/server/logging/LoggerProducer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-server-ejb/src/main/java/com/prodyna/pac/eternity/server/logging/Logging.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-server-ejb/src/main/java/com/prodyna/pac/eternity/server/profiling/Profiling.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-server-ejb/src/main/java/com/prodyna/pac/eternity/server/logging/LoggingInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53968257">
-          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eternity-server-ejb/src/main/java/com/prodyna/pac/eternity/server/profiling/ProfilingInterceptor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20987654">
@@ -2134,8 +1964,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="62" column="4" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="4" />
           <folding>
-            <element signature="e#1076#1077#0" expanded="true" />
-            <element signature="e#1112#1113#0" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="false" />
+            <element signature="e#1112#1113#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2153,28 +1983,28 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="158" column="4" selection-start-line="158" selection-start-column="4" selection-end-line="158" selection-end-column="4" />
           <folding>
-            <element signature="e#1230#1231#0" expanded="true" />
-            <element signature="e#1277#1278#0" expanded="true" />
-            <element signature="e#1383#1384#0" expanded="true" />
-            <element signature="e#1414#1415#0" expanded="true" />
-            <element signature="e#1538#1539#0" expanded="true" />
-            <element signature="e#1578#1579#0" expanded="true" />
-            <element signature="e#1684#1685#0" expanded="true" />
-            <element signature="e#1715#1716#0" expanded="true" />
-            <element signature="e#1839#1840#0" expanded="true" />
-            <element signature="e#1879#1880#0" expanded="true" />
-            <element signature="e#1984#1985#0" expanded="true" />
-            <element signature="e#2015#2016#0" expanded="true" />
-            <element signature="e#2140#2141#0" expanded="true" />
-            <element signature="e#2180#2181#0" expanded="true" />
-            <element signature="e#2300#2301#0" expanded="true" />
-            <element signature="e#2338#2339#0" expanded="true" />
-            <element signature="e#2483#2484#0" expanded="true" />
-            <element signature="e#2537#2538#0" expanded="true" />
-            <element signature="e#2645#2646#0" expanded="true" />
-            <element signature="e#2677#2678#0" expanded="true" />
-            <element signature="e#2804#2805#0" expanded="true" />
-            <element signature="e#2846#2847#0" expanded="true" />
+            <element signature="e#1538#1539#0" expanded="false" />
+            <element signature="e#1578#1579#0" expanded="false" />
+            <element signature="e#1684#1685#0" expanded="false" />
+            <element signature="e#1715#1716#0" expanded="false" />
+            <element signature="e#1839#1840#0" expanded="false" />
+            <element signature="e#1879#1880#0" expanded="false" />
+            <element signature="e#1984#1985#0" expanded="false" />
+            <element signature="e#2015#2016#0" expanded="false" />
+            <element signature="e#2140#2141#0" expanded="false" />
+            <element signature="e#2180#2181#0" expanded="false" />
+            <element signature="e#2300#2301#0" expanded="false" />
+            <element signature="e#2338#2339#0" expanded="false" />
+            <element signature="e#2483#2484#0" expanded="false" />
+            <element signature="e#2537#2538#0" expanded="false" />
+            <element signature="e#2645#2646#0" expanded="false" />
+            <element signature="e#2677#2678#0" expanded="false" />
+            <element signature="e#2804#2805#0" expanded="false" />
+            <element signature="e#2846#2847#0" expanded="false" />
+            <element signature="e#2645#2646#0" expanded="false" />
+            <element signature="e#2677#2678#0" expanded="false" />
+            <element signature="e#2804#2805#0" expanded="false" />
+            <element signature="e#2846#2847#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2192,18 +2022,18 @@
         <state vertical-scroll-proportion="0.70017636">
           <caret line="76" column="25" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
           <folding>
-            <element signature="e#914#915#0" expanded="true" />
-            <element signature="e#960#961#0" expanded="true" />
-            <element signature="e#1134#1135#0" expanded="true" />
-            <element signature="e#1167#1168#0" expanded="true" />
-            <element signature="e#1267#1268#0" expanded="true" />
-            <element signature="e#1295#1296#0" expanded="true" />
-            <element signature="e#1410#1411#0" expanded="true" />
-            <element signature="e#1444#1445#0" expanded="true" />
-            <element signature="e#1556#1557#0" expanded="true" />
-            <element signature="e#1590#1591#0" expanded="true" />
-            <element signature="e#1723#1724#0" expanded="true" />
-            <element signature="e#1769#1770#0" expanded="true" />
+            <element signature="e#914#915#0" expanded="false" />
+            <element signature="e#960#961#0" expanded="false" />
+            <element signature="e#1134#1135#0" expanded="false" />
+            <element signature="e#1167#1168#0" expanded="false" />
+            <element signature="e#1267#1268#0" expanded="false" />
+            <element signature="e#1295#1296#0" expanded="false" />
+            <element signature="e#1410#1411#0" expanded="false" />
+            <element signature="e#1444#1445#0" expanded="false" />
+            <element signature="e#1556#1557#0" expanded="false" />
+            <element signature="e#1590#1591#0" expanded="false" />
+            <element signature="e#1723#1724#0" expanded="false" />
+            <element signature="e#1769#1770#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2245,7 +2075,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2358,6 +2188,102 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4524648">
           <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/services/session-service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20950705">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/services/user-service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20950705">
+          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.94014084">
+          <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.576923">
+          <caret line="7" column="64" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/login-controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/logout-controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/app-routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50880283">
+          <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/project-controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/user-controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.089788735">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/directives/footer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/directives/header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/services/project-service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32922536">
+          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
           <folding />
         </state>
       </provider>
