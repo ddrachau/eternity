@@ -1,9 +1,11 @@
 package com.prodyna.pac.eternity.server.service;
 
+import com.prodyna.pac.eternity.server.model.RememberMe;
 import com.prodyna.pac.eternity.server.model.Session;
 
 import javax.ejb.Local;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Basic service for operating on sessions.
@@ -26,6 +28,21 @@ public interface SessionService {
      * @return the session for the id or null if no session can be found.
      */
     Session get(String sessionId);
+
+    /**
+     * Searches for sessions assigned to the given user.
+     *
+     * @param userIdentifier the user
+     * @return the found sessions
+     */
+    List<Session> getByUser(@NotNull String userIdentifier);
+
+    /**
+     * Removes the session for the given identifier.
+     *
+     * @param identifier the session identifier
+     */
+    void delete(@NotNull String identifier);
 
     /**
      * Removes the session assigned to the given user.

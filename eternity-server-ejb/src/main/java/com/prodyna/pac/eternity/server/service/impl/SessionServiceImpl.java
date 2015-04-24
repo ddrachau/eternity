@@ -9,6 +9,8 @@ import com.prodyna.pac.eternity.server.service.SessionService;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -70,6 +72,34 @@ public class SessionServiceImpl implements SessionService {
         }
 
         return result;
+
+    }
+
+    @Override
+    public List<Session> getByUser(@NotNull String userIdentifier) {
+
+        List<Session> result = new ArrayList<>();
+
+        final List<Map<String, Object>> queryResult = cypherService.query(
+                "MATCH (u:User {identifier:{1}})<-[:ASSIGNED_TO]-(s:Session) " +
+                        "RETURN " + SESSION_RETURN_PROPERTIES,
+                map(1, userIdentifier));
+
+        for (Map<String, Object> sessionParts : queryResult) {
+            result.add(this.getSession(sessionParts));
+        }
+
+        return result;
+
+    }
+
+    @Override
+    public void delete(@NotNull String identifier) {
+
+        cypherService.query(
+                "MATCH (s:Session {id:{1}})-[a:ASSIGNED_TO]->(:User)" +
+                        "DELETE s,a",
+                map(1, identifier));
 
     }
 

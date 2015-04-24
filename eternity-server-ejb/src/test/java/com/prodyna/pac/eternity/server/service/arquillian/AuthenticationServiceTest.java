@@ -1,9 +1,6 @@
 package com.prodyna.pac.eternity.server.service.arquillian;
 
-import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
-import com.prodyna.pac.eternity.server.exception.functional.InvalidLoginException;
-import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
-import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
+import com.prodyna.pac.eternity.server.exception.functional.*;
 import com.prodyna.pac.eternity.server.model.Login;
 import com.prodyna.pac.eternity.server.model.User;
 import com.prodyna.pac.eternity.server.service.*;
@@ -83,7 +80,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
 
         User u = userService.create(new User("loginWithRem", "for", "sur", "123"));
 
-        Assert.assertNull(rememberMeService.getByUser(u.getIdentifier()));
+        Assert.assertTrue(rememberMeService.getByUser(u.getIdentifier()).isEmpty());
 
         Login l = authenticationService.login(new Login(u.getIdentifier(), "123", false));
 
@@ -97,7 +94,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
         Assert.assertNotNull(l2.getXsrfToken());
         Assert.assertNotNull(l2.getRememberMeToken());
         Assert.assertFalse(l.getXsrfToken().equals(l2.getXsrfToken()));
-        Assert.assertNotNull(rememberMeService.getByUser(u.getIdentifier()));
+        Assert.assertFalse(rememberMeService.getByUser(u.getIdentifier()).isEmpty());
 
         Login l3 = authenticationService.login(new Login(u.getIdentifier(), "123", true));
 
@@ -105,14 +102,14 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
         Assert.assertNotNull(l3.getXsrfToken());
         Assert.assertNotNull(l3.getRememberMeToken());
         Assert.assertFalse(l2.getRememberMeToken().equals(l3.getRememberMeToken()));
-        Assert.assertNotNull(rememberMeService.getByUser(u.getIdentifier()));
+        Assert.assertEquals(2, rememberMeService.getByUser(u.getIdentifier()).size());
 
         Login l4 = authenticationService.login(new Login(u.getIdentifier(), "123", false));
 
         Assert.assertNotNull(l4);
         Assert.assertNotNull(l4.getXsrfToken());
         Assert.assertNull(l4.getRememberMeToken());
-        Assert.assertNull(rememberMeService.getByUser(u.getIdentifier()));
+        Assert.assertEquals(2, rememberMeService.getByUser(u.getIdentifier()).size());
 
     }
 
@@ -143,7 +140,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
         Login l = authenticationService.login(new Login("khansen", "pw"));
         Assert.assertNotNull(l);
         Assert.assertNotNull(sessionService.get(l.getXsrfToken()));
-        authenticationService.logout(l.getXsrfToken());
+        authenticationService.logout(l.getXsrfToken(), l.getRememberMeToken());
         Assert.assertNull(sessionService.get(l.getXsrfToken()));
 
     }
@@ -152,23 +149,60 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
     @InSequence(7)
     public void testLogoutWithRememberMe() throws InvalidLoginException {
 
-        String username = "khansen";
-        Assert.assertNull(rememberMeService.getByUser(username));
+        String username = "bborg";
+        Assert.assertTrue(rememberMeService.getByUser(username).isEmpty());
         Login l = authenticationService.login(new Login(username, "pw"));
-        Assert.assertNull(rememberMeService.getByUser(username));
+        Assert.assertTrue(rememberMeService.getByUser(username).isEmpty());
         Assert.assertNotNull(l);
         Assert.assertNotNull(sessionService.get(l.getXsrfToken()));
-        authenticationService.logout(l.getXsrfToken());
-        Assert.assertNull(rememberMeService.getByUser(username));
+        authenticationService.logout(l.getXsrfToken(), l.getRememberMeToken());
+        Assert.assertTrue(rememberMeService.getByUser(username).isEmpty());
         Assert.assertNull(sessionService.get(l.getXsrfToken()));
 
         l = authenticationService.login(new Login(username, "pw", true));
-        Assert.assertNotNull(rememberMeService.getByUser(username));
+        Assert.assertFalse(rememberMeService.getByUser(username).isEmpty());
         Assert.assertNotNull(sessionService.get(l.getXsrfToken()));
-        authenticationService.logout(l.getXsrfToken());
-        Assert.assertNull(rememberMeService.getByUser(username));
+        authenticationService.logout(l.getXsrfToken(), l.getRememberMeToken());
+        Assert.assertTrue(rememberMeService.getByUser(username).isEmpty());
         Assert.assertNull(sessionService.get(l.getXsrfToken()));
 
+    }
+
+    @Test
+    @InSequence(8)
+    public void testLoginWithToken() throws ElementAlreadyExistsException, InvalidLoginException {
+
+        User u = userService.create(new User("tokenUser", "Tok", "en", "1234"));
+
+        Login l = authenticationService.login(new Login(u.getIdentifier(), "1234", true));
+        Login l2 = authenticationService.login(l.getRememberMeToken());
+
+        Assert.assertNotNull(l);
+        Assert.assertNotNull(l2);
+        Assert.assertEquals(l.getUsername(), l2.getUsername());
+        Assert.assertFalse(l.getRememberMeToken().equals(l2.getRememberMeToken()));
+        Assert.assertFalse(l.getXsrfToken().equals(l2.getXsrfToken()));
+
+        try {
+            authenticationService.login("");
+            Assert.fail();
+        } catch (InvalidTokenException e) {
+            // expected
+        }
+
+        try {
+            authenticationService.login("ahjsdhakjsdkjashda");
+            Assert.fail();
+        } catch (InvalidTokenException e) {
+            // expected
+        }
+
+        try {
+            authenticationService.login("sdflijfld:sjdfsdjfl");
+            Assert.fail();
+        } catch (InvalidTokenException e) {
+            // expected
+        }
     }
 
 }

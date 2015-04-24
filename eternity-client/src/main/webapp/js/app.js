@@ -13,7 +13,6 @@ var PING_LOCATION = "rest/auth/";
                     // if we're not logged-in to the AngularJS app, redirect to login page
                     $rootScope.loggedIn = $cookies["XSRF-TOKEN"] || $rootScope.loggedIn;
                     if (!$rootScope.loggedIn && $location.path() != '/login') {
-                        //$rootScope.nextroute = request;
                         $location.path('/login');
                     }
                     return request;

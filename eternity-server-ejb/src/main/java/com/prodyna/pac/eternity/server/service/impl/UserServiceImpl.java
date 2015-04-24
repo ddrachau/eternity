@@ -1,8 +1,8 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
+import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
-import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NotCreatedRuntimeException;
 import com.prodyna.pac.eternity.server.logging.Logging;
@@ -121,6 +121,24 @@ public class UserServiceImpl implements UserService {
                 "MATCH (u:User)<-[:ASSIGNED_TO]-(s:Session {id:{1}}) " +
                         "RETURN " + USER_RETURN_PROPERTIES,
                 map(1, sessionId));
+
+        if (queryResult != null) {
+            result = this.getUser(queryResult);
+        }
+
+        return result;
+
+    }
+
+    @Override
+    public User getByRememberMe(@NotNull String rememberMeId) {
+
+        User result = null;
+
+        final Map<String, Object> queryResult = cypherService.querySingle(
+                "MATCH (u:User)<-[:ASSIGNED_TO]-(r:RememberMe {id:{1}}) " +
+                        "RETURN " + USER_RETURN_PROPERTIES,
+                map(1, rememberMeId));
 
         if (queryResult != null) {
             result = this.getUser(queryResult);

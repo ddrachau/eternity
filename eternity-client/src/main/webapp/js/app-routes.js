@@ -21,7 +21,21 @@ angular.module('Eternity').config(function ($routeProvider) {
         })
         .when('/login', {
             templateUrl: 'templates/authentication/login.html',
-            controller: 'LoginCtrl'
+            controller: 'LoginCtrl',
+            resolve: {
+                tokenLogin: function ($cookies, SessionService) {
+                    if ($cookies["REMEMBER-ME"]) {
+                        return SessionService.loginWithToken(
+                            function (success) {
+                                return success;
+                            }, function (error) {
+                                console.log(error);
+                                delete $cookies["REMEMBER-ME"];
+                                return;
+                            });
+                    }
+                }
+            }
         })
         .when('/logout', {
             templateUrl: 'templates/authentication/logout.html',

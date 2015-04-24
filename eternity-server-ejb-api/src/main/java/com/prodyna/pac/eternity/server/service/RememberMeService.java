@@ -4,6 +4,7 @@ import com.prodyna.pac.eternity.server.model.RememberMe;
 
 import javax.ejb.Local;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Basic service for operating on RememberMes.
@@ -12,7 +13,7 @@ import javax.validation.constraints.NotNull;
 public interface RememberMeService {
 
     /**
-     * Creates a remember me for the given user ensuring that there is only one.
+     * Creates a remember me for the given user.
      *
      * @param userIdentifier the user to remember
      * @return the created RememberMe with the generated id
@@ -28,12 +29,19 @@ public interface RememberMeService {
     RememberMe get(@NotNull String identifier);
 
     /**
-     * Searches for a single RememberMe assigned to the given user.
+     * Searches for RememberMes assigned to the given user.
      *
      * @param userIdentifier the user
-     * @return the found RememberMe or null if none was found
+     * @return the found RememberMes
      */
-    RememberMe getByUser(@NotNull String userIdentifier);
+    List<RememberMe> getByUser(@NotNull String userIdentifier);
+
+    /**
+     * Removes the rememberMe for the given identifier.
+     *
+     * @param identifier the rememberMe identifier
+     */
+    void delete(@NotNull String identifier);
 
     /**
      * Removes the rememberMe assigned to the given user.

@@ -52,6 +52,14 @@ public interface UserService {
     User getBySessionId(@NotNull String sessionId);
 
     /**
+     * Searches for a single user.
+     *
+     * @param rememberMeId the rememberMe the user is mapped to
+     * @return the found user
+     */
+    User getByRememberMe(@NotNull String rememberMeId);
+
+    /**
      * Searches for all users.
      *
      * @return a list of all found users.

@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
+import java.util.List;
 
 
 @RunWith(Arquillian.class)
@@ -60,7 +61,7 @@ public class SessionServiceTest extends AbstractArquillianTest {
     @InSequence(3)
     public void testDeleteByUser() throws ElementAlreadyExistsException {
 
-        User u = userService.create(new User("deleteSession", "foor", "suur", "pw123"));
+        User u = userService.create(new User("deleteByUserSession", "foor", "suur", "pw123"));
         Session s = sessionService.create(u.getIdentifier());
         Assert.assertNotNull(s);
         Assert.assertNotNull(sessionService.get(s.getId()));
@@ -69,5 +70,37 @@ public class SessionServiceTest extends AbstractArquillianTest {
 
         Assert.assertNull(sessionService.get(s.getId()));
 
+        sessionService.create(u.getIdentifier());
+        sessionService.create(u.getIdentifier());
+        Assert.assertEquals(2, sessionService.getByUser(u.getIdentifier()).size());
+
+        sessionService.deleteByUser(u.getIdentifier());
+
+        Assert.assertEquals(0, sessionService.getByUser(u.getIdentifier()).size());
+
     }
+
+    @Test
+    @InSequence(4)
+    public void testdeleteAndGetByUser() throws ElementAlreadyExistsException {
+
+        User u = userService.create(new User("deleteSession", "foor", "suur", "pw123"));
+
+        Assert.assertEquals(0, sessionService.getByUser(u.getIdentifier()).size());
+
+        Session s = sessionService.create(u.getIdentifier());
+
+        List<Session> sessions = sessionService.getByUser(u.getIdentifier());
+        Assert.assertEquals(1, sessions.size());
+        Assert.assertEquals(s, sessions.get(0));
+
+        sessionService.create(u.getIdentifier());
+        Assert.assertEquals(2, sessionService.getByUser(u.getIdentifier()).size());
+
+        sessionService.delete(s.getId());
+
+        Assert.assertEquals(1, sessionService.getByUser(u.getIdentifier()).size());
+
+    }
+
 }

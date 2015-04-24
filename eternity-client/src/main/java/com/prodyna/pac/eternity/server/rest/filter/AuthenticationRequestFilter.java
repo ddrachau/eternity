@@ -1,7 +1,7 @@
 package com.prodyna.pac.eternity.server.rest.filter;
 
 import com.prodyna.pac.eternity.server.model.Session;
-import com.prodyna.pac.eternity.server.rest.utils.RestUtils;
+import com.prodyna.pac.eternity.server.rest.utils.RestCookieUtils;
 import com.prodyna.pac.eternity.server.service.SessionService;
 import org.slf4j.Logger;
 
@@ -33,8 +33,8 @@ public class AuthenticationRequestFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
 
-        String xsrfToken = containerRequestContext.getHeaderString(RestUtils.HEADER_TOKEN_XSRF);
-        Cookie xsrfCookie = containerRequestContext.getCookies().get(RestUtils.COOKIE_TOKEN_XSRF);
+        String xsrfToken = containerRequestContext.getHeaderString(RestCookieUtils.HEADER_TOKEN_XSRF);
+        Cookie xsrfCookie = containerRequestContext.getCookies().get(RestCookieUtils.COOKIE_TOKEN_XSRF);
 
         logger.info("token: " + xsrfToken);
         logger.info("cookie: " + xsrfCookie);

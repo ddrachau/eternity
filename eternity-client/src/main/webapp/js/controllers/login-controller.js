@@ -1,4 +1,38 @@
-angular.module('Eternity').controller('LoginCtrl', function ($scope, $rootScope, $location, SessionService) {
+angular.module('Eternity').controller('LoginCtrl', function ($scope, $rootScope, $location, SessionService, tokenLogin) {
+
+    var success = function (success) {
+
+        // essential since the cookie is not yet available for checking
+        $rootScope.loggedIn = true;
+
+        if ($rootScope.nextRoute && $rootScope.nextRoute.indexOf('#') > 0
+            && $rootScope.nextRoute.indexOf('logout') < 0) {
+
+            //$location.path($rootScope.nextRoute.substr($rootScope.nextRoute.indexOf('#') + 1));
+            $rootScope.nextRoute = undefined;
+
+        } else {
+
+            // default page
+            $location.path('/');
+
+        }
+
+        return success;
+
+    };
+
+    var error = function (error) {
+
+        $scope.loginError = true;
+
+        return error;
+
+    };
+
+    if (tokenLogin) {
+        success();
+    }
 
     $scope.login = {
         username: 'khansen',
@@ -7,35 +41,8 @@ angular.module('Eternity').controller('LoginCtrl', function ($scope, $rootScope,
     };
 
     $scope.loginMeIn = function () {
-        $scope.user = SessionService.save($scope.login,
 
-            function (success) {
-
-                // essential since the cookie is not yet available for checking
-                $rootScope.loggedIn = true;
-
-                if ($rootScope.nextRoute && $rootScope.nextRoute.indexOf('#') > 0
-                    && $rootScope.nextRoute.indexOf('logout') < 0) {
-
-                    $location.path($rootScope.nextRoute.substr($rootScope.nextRoute.indexOf('#') + 1));
-                    $rootScope.nextRoute = undefined;
-
-                } else {
-
-                    // default page
-                    $location.path('/');
-
-                }
-
-                return success;
-
-            }, function (error) {
-
-                $scope.loginError = true;
-
-                return error;
-
-            });
+        $scope.user = SessionService.login($scope.login, success, error);
 
     };
 

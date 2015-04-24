@@ -71,7 +71,7 @@ public class RememberMeServiceTest extends AbstractArquillianTest {
     @InSequence(3)
     public void testDeleteByUser() throws ElementAlreadyExistsException {
 
-        User u = userService.create(new User("deleteRememberMe", "foor", "suur", "pw123"));
+        User u = userService.create(new User("deleteRememberMeByUser", "foor", "suur", "pw123"));
         RememberMe r = rememberMeService.create(u.getIdentifier());
         Assert.assertNotNull(r);
         Assert.assertNotNull(rememberMeService.get(r.getId()));
@@ -79,6 +79,17 @@ public class RememberMeServiceTest extends AbstractArquillianTest {
         rememberMeService.deleteByUser(u.getIdentifier());
 
         Assert.assertNull(rememberMeService.get(r.getId()));
+
+        Assert.assertEquals(0, rememberMeService.getByUser(u.getIdentifier()).size());
+
+        rememberMeService.create(u.getIdentifier());
+        rememberMeService.create(u.getIdentifier());
+
+        Assert.assertEquals(2, rememberMeService.getByUser(u.getIdentifier()).size());
+
+        rememberMeService.deleteByUser(u.getIdentifier());
+
+        Assert.assertEquals(0, rememberMeService.getByUser(u.getIdentifier()).size());
 
     }
 
@@ -91,9 +102,33 @@ public class RememberMeServiceTest extends AbstractArquillianTest {
         Assert.assertNotNull(r);
         Assert.assertNotNull(rememberMeService.get(r.getId()));
 
-        rememberMeService.deleteByUser(u.getIdentifier());
+        Assert.assertEquals(1, rememberMeService.getByUser(u.getIdentifier()).size());
 
+        RememberMe r2 = rememberMeService.create(u.getIdentifier());
+
+        Assert.assertEquals(2, rememberMeService.getByUser(u.getIdentifier()).size());
+
+    }
+
+    @Test
+    @InSequence(5)
+    public void testDelete() throws ElementAlreadyExistsException {
+
+        User u = userService.create(new User("deleteRememberMe", "foor", "suur", "pw123"));
+        RememberMe r = rememberMeService.create(u.getIdentifier());
+        RememberMe r2 = rememberMeService.create(u.getIdentifier());
+        Assert.assertNotNull(r);
+        Assert.assertNotNull(rememberMeService.get(r.getId()));
+        Assert.assertNotNull(r2);
+        Assert.assertNotNull(rememberMeService.get(r2.getId()));
+        Assert.assertFalse(r.equals(r2));
+
+        Assert.assertEquals(2, rememberMeService.getByUser(u.getIdentifier()).size());
+
+        rememberMeService.delete(r.getId());
         Assert.assertNull(rememberMeService.get(r.getId()));
+
+        Assert.assertEquals(1, rememberMeService.getByUser(u.getIdentifier()).size());
 
     }
 

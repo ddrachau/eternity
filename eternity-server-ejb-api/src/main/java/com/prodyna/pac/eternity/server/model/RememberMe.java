@@ -1,9 +1,24 @@
 package com.prodyna.pac.eternity.server.model;
 
+import java.util.Calendar;
+
+/**
+ * Alternative login token which can be stored for some time.
+ */
 public class RememberMe extends AbstractNode {
 
+    /**
+     * The token to authenticate against the hashedToken.
+     */
     private String token;
+    /**
+     * the stored database hash.
+     */
     private String hashedToken;
+    /**
+     * The initial creation time.
+     */
+    private Calendar createdTime;
 
     /**
      * Empty default constructor *
@@ -78,6 +93,34 @@ public class RememberMe extends AbstractNode {
      */
     public void setHashedToken(String hashedToken) {
         this.hashedToken = hashedToken;
+    }
+
+    /**
+     * Basic Getter
+     *
+     * @return the createdTime
+     */
+
+    public Calendar getCreatedTime() {
+        return createdTime;
+    }
+
+    /**
+     * Basic Setter
+     *
+     * @param createdTime to be set
+     */
+    public void setCreatedTime(Calendar createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    @Override
+    public String toString() {
+        return "RememberMe{" +
+                "token='" + token + '\'' +
+                ", hashedToken='" + hashedToken + '\'' +
+                ", createdTime=" + createdTime +
+                '}';
     }
 
 }

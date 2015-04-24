@@ -29,16 +29,40 @@
         <module name="ejb" />
         <module name="ejb-api" />
         <module name="ejbs" />
-        <module name="eternity-client" />
-        <module name="eternity-components-utils" />
         <module name="eternity-server-ear" />
-        <module name="eternity-server-ejb" />
-        <module name="eternity-server-ejb-api" />
         <module name="primary-source" />
         <module name="servlet" />
         <module name="utils" />
         <module name="war" />
         <module name="web" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-server-ejb" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-server-ejb" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-server-ejb-api" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-server-ejb-api" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-components-utils" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-components-utils" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-client" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-client" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

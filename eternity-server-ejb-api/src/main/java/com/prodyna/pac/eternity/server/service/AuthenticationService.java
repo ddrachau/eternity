@@ -22,10 +22,20 @@ public interface AuthenticationService {
     Login login(@NotNull Login login) throws InvalidLoginException;
 
     /**
+     * Tries to login with a rememberMe token.
+     *
+     * @param rememberMeToken the login data to login with
+     * @return the new created login
+     * @throws InvalidLoginException if the token cannot be used to login
+     */
+    Login login(@NotNull String rememberMeToken) throws InvalidLoginException;
+
+    /**
      * Log out the current connected user.
      *
-     * @param sessionId the user's session id to be removed
+     * @param sessionId  the user's session id to be removed
+     * @param rememberMe optional remember me to be logged out as well
      */
-    void logout(@NotNull String sessionId);
+    void logout(@NotNull String sessionId, String rememberMe);
 
 }

@@ -1,6 +1,7 @@
 package com.prodyna.pac.eternity.server.service.arquillian;
 
 import com.prodyna.pac.eternity.server.common.DateUtils;
+import com.prodyna.pac.eternity.server.common.RememberMeUtils;
 import com.prodyna.pac.eternity.server.exception.functional.*;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.Booking;
@@ -535,6 +536,20 @@ public class UserServiceTest extends AbstractArquillianTest {
         Login l = authenticationService.login(new Login(user.getIdentifier(), "secret"));
 
         User user2 = userService.getBySessionId(l.getXsrfToken());
+        Assert.assertNotNull(user);
+        Assert.assertNotNull(user2);
+        Assert.assertEquals(user, user2);
+
+    }
+
+    @Test
+    @InSequence(25)
+    public void testGetByRememberMe() throws InvalidLoginException, ElementAlreadyExistsException {
+
+        User user = userService.create(new User("gbremember", "Mike", "Mon", "secret"));
+        Login l = authenticationService.login(new Login(user.getIdentifier(), "secret", true));
+
+        User user2 = userService.getByRememberMe(RememberMeUtils.getRememberMeId(l.getRememberMeToken()));
         Assert.assertNotNull(user);
         Assert.assertNotNull(user2);
         Assert.assertEquals(user, user2);

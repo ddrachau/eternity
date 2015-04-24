@@ -1,6 +1,9 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
+import com.prodyna.pac.eternity.server.common.PasswordHash;
+import com.prodyna.pac.eternity.server.common.RememberMeUtils;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidLoginException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidTokenException;
 import com.prodyna.pac.eternity.server.logging.Logging;
 import com.prodyna.pac.eternity.server.model.Login;
 import com.prodyna.pac.eternity.server.model.RememberMe;
@@ -39,29 +42,70 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         userService.checkIfPasswordIsValid(userIdentifier, plainPassword);
 
-        rememberMeService.deleteByUser(userIdentifier);
-        sessionService.deleteByUser(userIdentifier);
-
-        Session session = sessionService.create(userIdentifier);
-
-        login.setXsrfToken(session.getId());
-
-        if (login.isRemember()) {
-            RememberMe rememberMe = rememberMeService.create(userIdentifier);
-            login.setRememberMeToken(rememberMe.getToken());
-        }
-
-        return login;
+        return this.createLogin(login);
 
     }
 
     @Override
-    public void logout(@NotNull String sessionId) {
+    public Login login(@NotNull String rememberMeToken) throws InvalidLoginException {
 
-        User user = userService.getBySessionId(sessionId);
+        if (!rememberMeToken.contains(RememberMeUtils.TOKEN_DELIMITER)) {
+            throw new InvalidTokenException();
+        }
 
-        rememberMeService.deleteByUser(user.getIdentifier());
-        sessionService.deleteByUser(user.getIdentifier());
+        String rememberMeIdentifier = RememberMeUtils.getRememberMeId(rememberMeToken);
+        String rememberMePassword = RememberMeUtils.getRememberMePassword(rememberMeToken);
+
+        RememberMe r = rememberMeService.get(rememberMeIdentifier);
+        if (r == null) {
+            throw new InvalidTokenException();
+        }
+
+        User u = userService.getByRememberMe(r.getId());
+        // no matter if the password is correct, this token is used
+        rememberMeService.delete(r.getId());
+
+        boolean valid = PasswordHash.validatePassword(rememberMePassword, r.getHashedToken());
+
+        if (valid) {
+
+            return this.createLogin(new Login(u.getIdentifier(), null, true));
+
+        } else {
+            throw new InvalidTokenException();
+        }
+
+    }
+
+    @Override
+    public void logout(@NotNull String sessionId, String rememberMeToken) {
+
+        sessionService.delete(sessionId);
+
+        if (rememberMeToken != null && rememberMeToken.contains(RememberMeUtils.TOKEN_DELIMITER)) {
+            rememberMeService.delete(RememberMeUtils.getRememberMeId(rememberMeToken));
+        }
+
+    }
+
+    /**
+     * Creates session and optionally a rememberMe for the given Login
+     *
+     * @param login the input
+     * @return the updated login
+     */
+    private Login createLogin(@NotNull Login login) {
+
+        Session session = sessionService.create(login.getUsername());
+
+        login.setXsrfToken(session.getId());
+
+        if (login.isRemember()) {
+            RememberMe rememberMe = rememberMeService.create(login.getUsername());
+            login.setRememberMeToken(rememberMe.getToken());
+        }
+
+        return login;
 
     }
 
