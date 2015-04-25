@@ -1,5 +1,3 @@
-var PING_LOCATION = "rest/auth/";
-
 (function () {
 
     'use strict';
@@ -11,7 +9,7 @@ var PING_LOCATION = "rest/auth/";
             return {
                 'request': function (request) {
                     // if we're not logged-in to the AngularJS app, redirect to login page
-                    $rootScope.loggedIn = $cookies["XSRF-TOKEN"] || $rootScope.loggedIn;
+                    $rootScope.loggedIn = $cookies["XSRF-TOKEN"] || $cookies["REMEMBER-ME"] || $rootScope.loggedIn;
                     if (!$rootScope.loggedIn && $location.path() != '/login') {
                         $location.path('/login');
                     }
@@ -19,11 +17,19 @@ var PING_LOCATION = "rest/auth/";
                 },
                 'responseError': function (rejection) {
                     // if we're not logged-in to the web service, redirect to login page
-                    if (rejection.status === 401 && $location.path() != '/login') {
-                        if ($cookies["XSRF-TOKEN"]) {
-                            $cookies["XSRF-TOKEN"] = undefined;
+                    if (rejection.status === 401) {
+
+                        // I am unauthorized
+                        // So my session sux
+                        delete $cookies["XSRF-TOKEN"];
+
+                        // do I have a remember me? use it
+                        if($cookies["REMEMBER-ME"]) {
+                            $location.path('/tokenLogin');
+                        } else if($location.path() != '/login') {
+                            $location.path('/login');
                         }
-                        $location.path('/login');
+
                     }
                     return $q.reject(rejection);
                 }

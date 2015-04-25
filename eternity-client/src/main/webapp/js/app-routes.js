@@ -21,21 +21,26 @@ angular.module('Eternity').config(function ($routeProvider) {
         })
         .when('/login', {
             templateUrl: 'templates/authentication/login.html',
-            controller: 'LoginCtrl',
-            resolve: {
+            controller: 'LoginCtrl'
+        })
+        .when('/tokenLogin', {
+            templateUrl: 'templates/authentication/login.html',
+            controller: 'TokenLoginCtrl'
+            /*resolve: {
                 tokenLogin: function ($cookies, SessionService) {
-                    if ($cookies["REMEMBER-ME"]) {
+                    if (!$cookies["XSRF-TOKEN"] && $cookies["REMEMBER-ME"]) {
                         return SessionService.loginWithToken(
                             function (success) {
+                                console.log("success: " + success)
                                 return success;
                             }, function (error) {
-                                console.log(error);
+                                console.log("error: " + success)
                                 delete $cookies["REMEMBER-ME"];
                                 return;
                             });
                     }
                 }
-            }
+            }*/
         })
         .when('/logout', {
             templateUrl: 'templates/authentication/logout.html',

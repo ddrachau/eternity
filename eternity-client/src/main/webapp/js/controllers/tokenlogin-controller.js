@@ -1,14 +1,8 @@
-angular.module('Eternity').controller('LoginCtrl', function ($scope, $rootScope, $location, SessionService) {
+angular.module('Eternity').controller('TokenLoginCtrl', function ($scope, $rootScope, $location, SessionService) {
 
-    $scope.login = {
-        username: 'khansen',
-        password: 'pw',
-        remember: false
-    };
+    (function () {
 
-    $scope.loginMeIn = function () {
-
-        $scope.user = SessionService.login($scope.login, function (success) {
+        SessionService.loginWithToken(function (success) {
 
             // essential since the cookie is not yet available for checking
             $rootScope.loggedIn = true;
@@ -34,12 +28,12 @@ angular.module('Eternity').controller('LoginCtrl', function ($scope, $rootScope,
 
         }, function (error, $q) {
 
-            $scope.loginError = true;
+            $location.path('/login');
 
             return $q.reject(error);
 
         });
 
-    };
+    })();
 
 });
