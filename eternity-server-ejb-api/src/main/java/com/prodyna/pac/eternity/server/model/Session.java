@@ -95,9 +95,8 @@ public class Session extends AbstractNode {
 
         if (lastAccessedTime != null ? !lastAccessedTime.equals(session.lastAccessedTime) : session.lastAccessedTime != null)
             return false;
-        if (createdTime != null ? !createdTime.equals(session.createdTime) : session.createdTime != null) return false;
+        return !(createdTime != null ? !createdTime.equals(session.createdTime) : session.createdTime != null);
 
-        return super.equals(o);
     }
 
     @Override

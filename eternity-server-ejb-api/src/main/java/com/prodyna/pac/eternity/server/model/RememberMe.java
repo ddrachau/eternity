@@ -115,6 +115,20 @@ public class RememberMe extends AbstractNode {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        RememberMe that = (RememberMe) o;
+
+        if (token != null ? !token.equals(that.token) : that.token != null) return false;
+        if (hashedToken != null ? !hashedToken.equals(that.hashedToken) : that.hashedToken != null) return false;
+        return !(createdTime != null ? !createdTime.equals(that.createdTime) : that.createdTime != null);
+
+    }
+
+    @Override
     public String toString() {
         return "RememberMe{" +
                 "token='" + token + '\'' +

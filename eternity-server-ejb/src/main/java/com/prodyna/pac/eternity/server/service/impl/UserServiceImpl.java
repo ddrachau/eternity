@@ -9,6 +9,7 @@ import com.prodyna.pac.eternity.server.logging.Logging;
 import com.prodyna.pac.eternity.server.model.Booking;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
+import com.prodyna.pac.eternity.server.model.UserRole;
 import com.prodyna.pac.eternity.server.service.CypherService;
 import com.prodyna.pac.eternity.server.service.ProjectService;
 import com.prodyna.pac.eternity.server.service.UserService;
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserService {
     /**
      * Default return properties, to make object creation easier.
      */
-    private static final String USER_RETURN_PROPERTIES = "u.id, u.identifier, u.forename, u.surname, u.password";
+    private static final String USER_RETURN_PROPERTIES = "u.id, u.identifier, u.forename, u.surname, u.password, u.role";
 
     @Inject
     private CypherService cypherService;
@@ -55,10 +56,10 @@ public class UserServiceImpl implements UserService {
         user.setId(UUID.randomUUID().toString());
 
         final Map<String, Object> queryResult = cypherService.querySingle(
-                "CREATE (u:User {id:{1}, identifier:{2}, forename:{3}, surname:{4}}) " +
+                "CREATE (u:User {id:{1}, identifier:{2}, forename:{3}, surname:{4}, role:{5}}) " +
                         "RETURN " + USER_RETURN_PROPERTIES,
                 map(1, user.getId(), 2, user.getIdentifier(), 3, user.getForename(),
-                        4, user.getSurname()));
+                        4, user.getSurname(), 5, user.getRole().name()));
 
         if (queryResult == null) {
             throw new NotCreatedRuntimeException(user.toString());
@@ -175,10 +176,10 @@ public class UserServiceImpl implements UserService {
         }
 
         final Map<String, Object> queryResult = cypherService.querySingle(
-                "MATCH (u:User {id:{1}}) SET u.identifier={2}, u.forename={3}, u.surname={4} " +
+                "MATCH (u:User {id:{1}}) SET u.identifier={2}, u.forename={3}, u.surname={4}, u.role={5} " +
                         "RETURN " + USER_RETURN_PROPERTIES,
                 map(1, user.getId(), 2, user.getIdentifier(), 3, user.getForename(),
-                        4, user.getSurname()));
+                        4, user.getSurname(), 5, user.getRole().name()));
 
         if (queryResult == null) {
             throw new NoSuchElementRuntimeException();
@@ -335,12 +336,14 @@ public class UserServiceImpl implements UserService {
         String readForename = (String) values.get("u.forename");
         String readSurname = (String) values.get("u.surname");
         String readPassword = (String) values.get("u.password");
+        String readRole = (String) values.get("u.role");
 
         result.setId(readId);
         result.setIdentifier(readIdentifier);
         result.setForename(readForename);
         result.setSurname(readSurname);
         result.setPassword(readPassword);
+        result.setRole(UserRole.valueOf(readRole));
 
         return result;
 

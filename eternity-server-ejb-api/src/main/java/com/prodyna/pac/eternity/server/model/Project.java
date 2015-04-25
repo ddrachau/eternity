@@ -84,13 +84,13 @@ public class Project extends AbstractNode {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
         Project project = (Project) o;
 
-        if (description != null ? !description.equals(project.description) : project.description != null) return false;
-        if (!identifier.equals(project.identifier)) return false;
+        if (identifier != null ? !identifier.equals(project.identifier) : project.identifier != null) return false;
+        return !(description != null ? !description.equals(project.description) : project.description != null);
 
-        return super.equals(o);
     }
 
     @Override

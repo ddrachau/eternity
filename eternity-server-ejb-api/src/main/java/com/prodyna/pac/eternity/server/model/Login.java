@@ -147,6 +147,21 @@ public class Login {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Login login = (Login) o;
+
+        if (remember != login.remember) return false;
+        if (username != null ? !username.equals(login.username) : login.username != null) return false;
+        if (password != null ? !password.equals(login.password) : login.password != null) return false;
+        if (xsrfToken != null ? !xsrfToken.equals(login.xsrfToken) : login.xsrfToken != null) return false;
+        return !(rememberMeToken != null ? !rememberMeToken.equals(login.rememberMeToken) : login.rememberMeToken != null);
+
+    }
+
+    @Override
     public String toString() {
         return "Login{" +
                 "username='" + username + '\'' +

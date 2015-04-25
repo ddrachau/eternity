@@ -21,6 +21,10 @@ public class User extends AbstractNode {
      * the password of the user
      */
     private String password;
+    /**
+     * the role this user has in the system
+     */
+    private UserRole role = UserRole.USER;
 
     /**
      * Empty default constructor *
@@ -37,13 +41,28 @@ public class User extends AbstractNode {
      * @param forename   the user's forename
      * @param surname    the user's surname
      * @param password   the user's password
+     * @param role       the user's role
      */
-    public User(String id, String identifier, String forename, String surname, String password) {
+    public User(String id, String identifier, String forename, String surname, String password, UserRole role) {
         super(id);
         this.identifier = identifier;
         this.forename = forename;
         this.surname = surname;
         this.password = password;
+        this.role = role;
+    }
+
+    /**
+     * Creates a user and initialize the following properties:
+     *
+     * @param id         the technical identifier
+     * @param identifier the functional identifier
+     * @param forename   the user's forename
+     * @param surname    the user's surname
+     * @param password   the user's password
+     */
+    public User(String id, String identifier, String forename, String surname, String password) {
+        this(null, identifier, forename, surname, password,UserRole.USER);
     }
 
     /**
@@ -130,6 +149,24 @@ public class User extends AbstractNode {
         this.password = password;
     }
 
+    /**
+     * Basic Getter
+     *
+     * @return the role
+     */
+    public UserRole getRole() {
+        return role;
+    }
+
+    /**
+     * Basic Setter
+     *
+     * @param role to be set
+     */
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -138,22 +175,23 @@ public class User extends AbstractNode {
 
         User user = (User) o;
 
+        if (identifier != null ? !identifier.equals(user.identifier) : user.identifier != null) return false;
         if (forename != null ? !forename.equals(user.forename) : user.forename != null) return false;
-        if (!identifier.equals(user.identifier)) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
 
-        return super.equals(o);
+        return role == user.role;
+
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id='" + this.getId() + '\'' +
-                ", identifier='" + identifier + '\'' +
+                "identifier='" + identifier + '\'' +
                 ", forename='" + forename + '\'' +
                 ", surname='" + surname + '\'' +
                 ", password='" + password + '\'' +
+                ", role=" + role +
                 '}';
     }
 

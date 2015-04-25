@@ -154,9 +154,8 @@ public class Booking extends AbstractNode {
         if (breakDuration != booking.breakDuration) return false;
         if (startTime != null ? !startTime.equals(booking.startTime) : booking.startTime != null) return false;
         if (endTime != null ? !endTime.equals(booking.endTime) : booking.endTime != null) return false;
-        if (description != null ? !description.equals(booking.description) : booking.description != null) return false;
+        return !(description != null ? !description.equals(booking.description) : booking.description != null);
 
-        return super.equals(o);
     }
 
     @Override

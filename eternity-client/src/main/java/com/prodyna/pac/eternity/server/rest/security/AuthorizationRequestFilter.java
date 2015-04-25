@@ -44,10 +44,10 @@ public class AuthorizationRequestFilter implements ContainerRequestFilter {
                 containerRequestContext.getProperty("org.jboss.resteasy.core.ResourceMethodInvoker");
         Method method = methodInvoker.getMethod();
 
-
         if (method.isAnnotationPresent(DenyAll.class)) {
 
             containerRequestContext.abortWith(ACCESS_FORBIDDEN);
+            return;
 
         } else if (method.isAnnotationPresent(RolesAllowed.class)) {
 
@@ -63,6 +63,7 @@ public class AuthorizationRequestFilter implements ContainerRequestFilter {
             }
 
             containerRequestContext.abortWith(ACCESS_FORBIDDEN);
+            return;
 
         }
 
