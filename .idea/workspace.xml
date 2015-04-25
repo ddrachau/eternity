@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d657f7b-8d97-4b3a-bd42-2472c9edf69f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/tokenlogin-controller.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/templates/authentication/token.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/app-routes.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/app-routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/app.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/index.html" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/login-controller.js" afterPath="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/login-controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -59,108 +57,7 @@
     <favorites_list name="eternity-server" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="AuthenticationClientServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-client/src/main/java/com/prodyna/pac/eternity/server/rest/service/impl/AuthenticationClientServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="125" column="13" selection-start-line="125" selection-start-column="13" selection-end-line="125" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AuthenticationServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-server-ejb/src/main/java/com/prodyna/pac/eternity/server/service/impl/AuthenticationServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app-routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/app-routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="60" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tokenlogin-controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/tokenlogin-controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="logout-controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/logout-controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-40.0">
-              <caret line="64" column="56" selection-start-line="64" selection-start-column="56" selection-end-line="64" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="KQueueArrayWrapper.class" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/rt.jar!/sun/nio/ch/KQueueArrayWrapper.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-36.96">
-              <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.31609195">
-              <caret line="11" column="89" selection-start-line="11" selection-start-column="89" selection-end-line="11" selection-end-column="89" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AuthenticationRequestFilter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-client/src/main/java/com/prodyna/pac/eternity/server/rest/filter/AuthenticationRequestFilter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="74" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="74" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login-controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/login-controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -181,7 +78,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/eternity-client/src/main/java/com/prodyna/pac/eternity/server/rest/filter/Authenticated.java" />
         <option value="$PROJECT_DIR$/eternity-client/src/main/java/com/prodyna/pac/eternity/server/rest/service/impl/ProjectClientServiceImpl.java" />
         <option value="$PROJECT_DIR$/eternity-client/src/main/java/com/prodyna/pac/eternity/server/rest/service/impl/UserClientServiceImpl.java" />
         <option value="$PROJECT_DIR$/eternity-client/src/main/java/com/prodyna/pac/eternity/server/rest/service/ProjectClientService.java" />
@@ -228,9 +124,10 @@
         <option value="$PROJECT_DIR$/eternity-client/src/main/java/com/prodyna/pac/eternity/server/rest/service/impl/AuthenticationClientServiceImpl.java" />
         <option value="$PROJECT_DIR$/eternity-client/src/main/java/com/prodyna/pac/eternity/server/rest/filter/AuthenticationRequestFilter.java" />
         <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/index.html" />
-        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/app-routes.js" />
         <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/tokenlogin-controller.js" />
         <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/login-controller.js" />
+        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/templates/authentication/token.html" />
+        <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/app-routes.js" />
         <option value="$PROJECT_DIR$/eternity-client/src/main/webapp/js/app.js" />
       </list>
     </option>
@@ -841,6 +738,70 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity-client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="authentication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity-client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1126,11 +1087,11 @@
       <recent name="com.prodyna.pac.eternity.server.service" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/eternity-client/src/main/webapp/templates/authentication" />
       <recent name="$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers" />
       <recent name="C:\PAC\workspace\eternity\eternity-client\src\main\webapp\js\services" />
       <recent name="$PROJECT_DIR$/eternity-client/src/main/webapp/css/bootstrap" />
       <recent name="$PROJECT_DIR$/eternity-client/src/main/webapp/templates" />
-      <recent name="$PROJECT_DIR$/eternity-client/src/main/webapp/js/vendor" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.prodyna.pac.eternity.server.exception.functional" />
@@ -2054,12 +2015,12 @@
       <workItem from="1429808360357" duration="11554000" />
       <workItem from="1429823356081" duration="142000" />
       <workItem from="1429873797325" duration="4618000" />
-      <workItem from="1429897893004" duration="19691000" />
+      <workItem from="1429897893004" duration="20830000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="358200000" />
+    <option name="totallyTimeSpent" value="359339000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2072,7 +2033,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1696" height="932" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2166,14 +2127,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/model/Booking.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/model/Login.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2540,7 +2493,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/eternity-client/src/main/java/com/prodyna/pac/eternity/server/rest/filter/AuthenticationRequestFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.28735632">
           <caret line="24" column="74" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="74" />
           <folding />
         </state>
@@ -2562,10 +2515,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/app-routes.js">
+    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/logout-controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="60" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="60" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/login-controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8908046">
+          <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -2578,26 +2539,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/logout-controller.js">
+    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/templates/authentication/token.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-4.375">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/controllers/login-controller.js">
+    <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/app-routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
+          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/eternity-client/src/main/webapp/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31609195">
-          <caret line="11" column="89" selection-start-line="11" selection-start-column="89" selection-end-line="11" selection-end-column="89" />
+        <state vertical-scroll-proportion="0.43103448">
+          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
           <folding />
         </state>
       </provider>
