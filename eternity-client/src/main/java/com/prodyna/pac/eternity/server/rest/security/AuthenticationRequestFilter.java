@@ -1,4 +1,4 @@
-package com.prodyna.pac.eternity.server.rest.filter;
+package com.prodyna.pac.eternity.server.rest.security;
 
 import com.prodyna.pac.eternity.server.model.Session;
 import com.prodyna.pac.eternity.server.rest.utils.RestCookieUtils;
@@ -8,10 +8,8 @@ import org.slf4j.Logger;
 import javax.annotation.Priority;
 import javax.inject.Inject;
 import javax.ws.rs.Priorities;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
-import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
@@ -34,15 +32,14 @@ public class AuthenticationRequestFilter implements ContainerRequestFilter {
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
 
         String xsrfToken = containerRequestContext.getHeaderString(RestCookieUtils.HEADER_TOKEN_XSRF);
-        Cookie xsrfCookie = containerRequestContext.getCookies().get(RestCookieUtils.COOKIE_TOKEN_XSRF);
-
-        logger.info("token: " + xsrfToken);
-        logger.info("cookie: " + xsrfCookie);
 
         Session session = sessionService.get(xsrfToken);
 
+        // TODO get User
+        containerRequestContext.setSecurityContext(new AuthorizationSecurityContext());
+
         if (session == null) {
-            throw new WebApplicationException(
+            containerRequestContext.abortWith(
                     Response.status(Response.Status.UNAUTHORIZED).entity("{\"error\":\"No valid session\"}").build());
         }
 

@@ -1,4 +1,4 @@
-package com.prodyna.pac.eternity.server.rest.filter;
+package com.prodyna.pac.eternity.server.rest.security;
 
 import javax.ws.rs.NameBinding;
 import java.lang.annotation.ElementType;

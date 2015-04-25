@@ -19,18 +19,20 @@
                     // if we're not logged-in to the web service, redirect to login page
                     if (rejection.status === 401) {
 
-                        // I am unauthorized
-                        // So my session sux
                         delete $cookies["XSRF-TOKEN"];
 
-                        // do I have a remember me? use it
-                        if($cookies["REMEMBER-ME"]) {
+                        if ($cookies["REMEMBER-ME"]) {
                             $location.path('/tokenLogin');
-                        } else if($location.path() != '/login') {
+                        } else if ($location.path() != '/login') {
                             $location.path('/login');
                         }
 
+                    } else if (rejection.status === 403) {
+
+                        $location.path('/forbidden');
+
                     }
+
                     return $q.reject(rejection);
                 }
             };

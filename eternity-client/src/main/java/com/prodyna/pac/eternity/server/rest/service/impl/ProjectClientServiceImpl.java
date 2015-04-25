@@ -1,12 +1,17 @@
 package com.prodyna.pac.eternity.server.rest.service.impl;
 
-import com.prodyna.pac.eternity.server.rest.filter.Authenticated;
+import com.prodyna.pac.eternity.server.rest.security.Authenticated;
 import com.prodyna.pac.eternity.server.rest.service.ProjectClientService;
 import com.prodyna.pac.eternity.server.service.ProjectService;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+
+import static com.prodyna.pac.eternity.server.rest.utils.RestCookieUtils.JSON_UTF8;
 
 /**
  * Default implementation for the ProjectClientService.
@@ -18,6 +23,9 @@ public class ProjectClientServiceImpl implements ProjectClientService {
     @Inject
     private ProjectService projectService;
 
+    @RolesAllowed("ADMIN")
+    @GET
+    @Produces(JSON_UTF8)
     @Override
     public Response get() {
 

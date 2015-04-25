@@ -16,8 +16,6 @@ public interface ProjectClientService {
      *
      * @return all projects
      */
-    @GET
-    @Produces(JSON_UTF8)
     Response get();
 
 }

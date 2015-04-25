@@ -63,6 +63,7 @@
         <version.neo4j.jdbc>2.0.2</version.neo4j.jdbc>
         <version.sl4j>1.7.7</version.sl4j>
         <version.junit>4.8.1</version.junit>
+        <version.resteasy>3.0.10.Final</version.resteasy>
 
     </properties>
 
@@ -114,6 +115,13 @@
                 <artifactId>jboss-javaee-7.0</artifactId>
                 <version>${version.jboss.spec.javaee.7.0}</version>
                 <type>pom</type>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-jaxrs</artifactId>
+                <version>${version.resteasy}</version>
                 <scope>provided</scope>
             </dependency>
 

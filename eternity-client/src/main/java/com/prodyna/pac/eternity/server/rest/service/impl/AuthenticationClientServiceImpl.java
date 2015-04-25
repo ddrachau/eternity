@@ -6,17 +6,15 @@ import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordExcep
 import com.prodyna.pac.eternity.server.exception.functional.InvalidTokenException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
 import com.prodyna.pac.eternity.server.model.Login;
-import com.prodyna.pac.eternity.server.rest.filter.Authenticated;
+import com.prodyna.pac.eternity.server.rest.security.Authenticated;
 import com.prodyna.pac.eternity.server.rest.service.AuthenticationClientService;
 import com.prodyna.pac.eternity.server.service.AuthenticationService;
 import com.prodyna.pac.eternity.server.service.SessionService;
 import org.slf4j.Logger;
 
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
-import javax.ws.rs.CookieParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.Response;
@@ -27,6 +25,7 @@ import static com.prodyna.pac.eternity.server.rest.utils.RestCookieUtils.*;
 /**
  * Default implementation for the AuthenticationClientService.
  */
+@PermitAll
 @Path("/auth")
 public class AuthenticationClientServiceImpl implements AuthenticationClientService {
 
@@ -40,6 +39,7 @@ public class AuthenticationClientServiceImpl implements AuthenticationClientServ
     private SessionService sessionService;
 
     @Authenticated
+    @GET
     @Override
     public Response ping() {
 
@@ -47,8 +47,13 @@ public class AuthenticationClientServiceImpl implements AuthenticationClientServ
 
     }
 
+    @POST
+    @Consumes(JSON_UTF8)
+    @Produces(JSON_UTF8)
     @Override
-    public Response login(Cookie sessionCookie, Cookie rememberMeCookie, UriInfo uriInfo, Login login) {
+    public Response login(@CookieParam(COOKIE_TOKEN_XSRF) Cookie sessionCookie,
+                          @CookieParam(COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie,
+                          @Context UriInfo uriInfo, Login login) {
 
         try {
 
@@ -88,7 +93,6 @@ public class AuthenticationClientServiceImpl implements AuthenticationClientServ
 
     }
 
-
     @GET
     @Produces(JSON_UTF8)
     @Path("/token")
@@ -123,8 +127,10 @@ public class AuthenticationClientServiceImpl implements AuthenticationClientServ
     }
 
     @Authenticated
+    @DELETE
     @Override
-    public Response logout(UriInfo uriInfo, Cookie xsrfCookie, Cookie rememberMeCookie) {
+    public Response logout(@Context UriInfo uriInfo, @CookieParam(COOKIE_TOKEN_XSRF) Cookie xsrfCookie,
+                           @CookieParam(COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie) {
 
         String rememberMeToken = rememberMeCookie != null ? rememberMeCookie.getValue() : null;
         authenticationService.logout(xsrfCookie.getValue(), rememberMeToken);

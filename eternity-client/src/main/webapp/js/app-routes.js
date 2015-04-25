@@ -31,6 +31,9 @@ angular.module('Eternity').config(function ($routeProvider) {
             templateUrl: 'templates/authentication/logout.html',
             controller: 'LogoutCtrl'
         })
+        .when('/forbidden', {
+            templateUrl: 'templates/authentication/forbidden.html'
+        })
         .otherwise({
             redirectTo: '/users'
         });

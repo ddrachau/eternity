@@ -16,8 +16,6 @@ public interface UserClientService {
      *
      * @return all user
      */
-    @GET
-    @Produces(JSON_UTF8)
     Response get();
 
 }
