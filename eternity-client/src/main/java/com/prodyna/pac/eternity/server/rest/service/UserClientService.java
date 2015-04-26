@@ -1,5 +1,6 @@
 package com.prodyna.pac.eternity.server.rest.service;
 
+import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.Response;
 
 /**
@@ -13,5 +14,13 @@ public interface UserClientService {
      * @return all user
      */
     Response get();
+
+    /**
+     * Return the user associated to this session
+     *
+     * @param xsrfCookie the session cookie
+     * @return the associated session
+     */
+    Response getBySession(Cookie xsrfCookie);
 
 }

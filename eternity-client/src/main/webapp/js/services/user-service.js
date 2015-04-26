@@ -6,7 +6,8 @@
 
         return $resource('rest/user/', [],
             {
-                find: {method: 'GET', isArray: true}
+                find: {method: 'GET', isArray: true},
+                getBySession: {method: 'GET', url: 'rest/user/session'}
             });
 
     });

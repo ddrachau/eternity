@@ -25,6 +25,10 @@ public class Login {
      * The optional rememberMeToken.
      */
     private String rememberMeToken;
+    /**
+     * The matching user.
+     */
+    private User user;
 
     /**
      * Empty default constructor.
@@ -146,6 +150,24 @@ public class Login {
         this.xsrfToken = xsrfToken;
     }
 
+    /**
+     * Basic Getter
+     *
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Basic Setter
+     *
+     * @param user to be set
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -157,7 +179,9 @@ public class Login {
         if (username != null ? !username.equals(login.username) : login.username != null) return false;
         if (password != null ? !password.equals(login.password) : login.password != null) return false;
         if (xsrfToken != null ? !xsrfToken.equals(login.xsrfToken) : login.xsrfToken != null) return false;
-        return !(rememberMeToken != null ? !rememberMeToken.equals(login.rememberMeToken) : login.rememberMeToken != null);
+        if (rememberMeToken != null ? !rememberMeToken.equals(login.rememberMeToken) : login.rememberMeToken != null)
+            return false;
+        return !(user != null ? !user.equals(login.user) : login.user != null);
 
     }
 
@@ -169,6 +193,7 @@ public class Login {
                 ", remember=" + remember +
                 ", xsrfToken='" + xsrfToken + '\'' +
                 ", rememberMeToken='" + rememberMeToken + '\'' +
+                ", user=" + user +
                 '}';
     }
 

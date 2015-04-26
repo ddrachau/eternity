@@ -97,8 +97,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private Login createLogin(@NotNull Login login) {
 
         Session session = sessionService.create(login.getUsername());
+        User user = userService.get(login.getUsername());
 
         login.setXsrfToken(session.getId());
+        login.setUser(user);
 
         if (login.isRemember()) {
             RememberMe rememberMe = rememberMeService.create(login.getUsername());

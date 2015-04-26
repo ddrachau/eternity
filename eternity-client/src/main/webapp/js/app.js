@@ -23,6 +23,8 @@
                     // if we're not logged-in to the web service, redirect to login page
                     if (rejection.status === 401) {
 
+                        $rootScope.user = undefined;
+
                         delete $cookies["XSRF-TOKEN"];
 
                         if ($cookies["REMEMBER-ME"]) {
@@ -43,9 +45,11 @@
         });
     });
 
-    angular.module('Eternity').controller("EternityController", function ($rootScope) {
+    angular.module('Eternity').controller("EternityController", function ($rootScope, UserService) {
 
         $rootScope.loggedIn = false;
+        $rootScope.user = UserService.getBySession();
+
         $rootScope.$on("$locationChangeStart", function (event, nextUrl, currentUrl) {
 
             if (currentUrl) {

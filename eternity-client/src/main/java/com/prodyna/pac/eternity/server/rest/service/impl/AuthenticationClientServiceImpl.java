@@ -70,7 +70,7 @@ public class AuthenticationClientServiceImpl implements AuthenticationClientServ
                 sessionService.delete(sessionCookie.getValue());
             }
 
-            Response.ResponseBuilder response = Response.ok();
+            Response.ResponseBuilder response = Response.ok().entity(login.getUser());
             response.cookie(createXSRFToken(uriInfo, login.getXsrfToken()));
 
             if (login.isRemember()) {

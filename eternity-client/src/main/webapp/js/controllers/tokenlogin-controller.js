@@ -6,6 +6,7 @@ angular.module('Eternity').controller('TokenLoginCtrl', function ($scope, $rootS
 
             // essential since the cookie is not yet available for checking
             $rootScope.loggedIn = true;
+            $rootScope.user = success;
 
             if ($rootScope.nextRoute && $rootScope.nextRoute.indexOf('#') > 0
                 && $rootScope.nextRoute.indexOf('logout') < 0) {

@@ -335,14 +335,12 @@ public class UserServiceImpl implements UserService {
         String readIdentifier = (String) values.get("u.identifier");
         String readForename = (String) values.get("u.forename");
         String readSurname = (String) values.get("u.surname");
-        String readPassword = (String) values.get("u.password");
         String readRole = (String) values.get("u.role");
 
         result.setId(readId);
         result.setIdentifier(readIdentifier);
         result.setForename(readForename);
         result.setSurname(readSurname);
-        result.setPassword(readPassword);
         result.setRole(UserRole.valueOf(readRole));
 
         return result;

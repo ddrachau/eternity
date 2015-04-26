@@ -3,6 +3,7 @@ angular.module('Eternity').controller('LogoutCtrl', function ($rootScope, $scope
     (new SessionService()).$delete(function (success) {
 
         $rootScope.loggedIn = false;
+        $rootScope.user = undefined;
         $scope.logoutSuccess = success;
 
     }, function (error) {
