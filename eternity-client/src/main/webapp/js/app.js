@@ -8,14 +8,18 @@
         $httpProvider.interceptors.push(function ($cookies, $rootScope, $location, $q) {
             return {
                 'request': function (request) {
+
                     // if we're not logged-in to the AngularJS app, redirect to login page
-                    $rootScope.loggedIn = $cookies["XSRF-TOKEN"] || $cookies["REMEMBER-ME"] || $rootScope.loggedIn;
+                    $rootScope.loggedIn = $cookies["XSRF-TOKEN"] !== undefined ||
+                        $cookies["REMEMBER-ME"] !== undefined || $rootScope.loggedIn;
                     if (!$rootScope.loggedIn && $location.path() != '/login') {
                         $location.path('/login');
                     }
+
                     return request;
                 },
                 'responseError': function (rejection) {
+
                     // if we're not logged-in to the web service, redirect to login page
                     if (rejection.status === 401) {
 
@@ -41,6 +45,7 @@
 
     angular.module('Eternity').controller("EternityController", function ($rootScope) {
 
+        $rootScope.loggedIn = false;
         $rootScope.$on("$locationChangeStart", function (event, nextUrl, currentUrl) {
 
             if (currentUrl) {

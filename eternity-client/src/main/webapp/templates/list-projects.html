@@ -1,2 +1,24 @@
 <h3>Projektverwaltung</h3>
-<div class="well">{{projects}}</div>
+<div class="well">
+
+    <div class="table-responsive">
+
+        <table class="table table-striped table-hover">
+
+            <tr>
+                <th>Id</th>
+                <th>Identifier</th>
+                <th>Beschreibung</th>
+            </tr>
+
+            <tr ng-repeat="project in projects track by $index">
+                <td>{{project.id}}</td>
+                <td>{{project.identifier}}</td>
+                <td>{{project.description}}</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>

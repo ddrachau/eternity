@@ -1,2 +1,29 @@
 <h3>Benutzerverwaltung</h3>
-<div class="well">{{users}}</div>
+<div class="well">
+
+    <div class="table-responsive">
+
+        <table class="table table-striped table-hover">
+
+            <tr>
+                <th>Id</th>
+                <th>Identifier</th>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Rolle</th>
+            </tr>
+
+            <tr ng-repeat="user in users track by $index">
+                <td>{{user.id}}</td>
+                <td>{{user.identifier}}</td>
+                <td>{{user.forename}}</td>
+                <td>{{user.surname}}</td>
+                <td>{{user.role}}</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
