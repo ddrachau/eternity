@@ -27,7 +27,7 @@ public class UserClientServiceImpl implements UserClientService {
     @Inject
     private UserService userService;
 
-    @RolesAllowed("USER")
+    @RolesAllowed({"MANAGER","ADMINISTRATOR"})
     @GET
     @Produces(JSON_UTF8)
     @Override

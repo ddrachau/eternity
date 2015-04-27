@@ -19,8 +19,6 @@ import javax.ejb.EJBException;
 import javax.inject.Inject;
 import java.util.List;
 
-import static com.prodyna.pac.eternity.server.common.PasswordHash.validatePassword;
-
 @RunWith(Arquillian.class)
 public class UserServiceTest extends AbstractArquillianTest {
 
@@ -459,27 +457,21 @@ public class UserServiceTest extends AbstractArquillianTest {
 
     @Test
     @InSequence(19)
-    public void testStorePassword() throws InvalidUserException {
-
-        User user7 = userService.get("ttester2");
-        User user8 = userService.get("ttester3");
-
-        Assert.assertNotNull(user7.getPassword());
-        Assert.assertNull(user8.getPassword());
-
-        Assert.assertTrue(validatePassword("pw", user7.getPassword()));
-        Assert.assertFalse(validatePassword("pw2", user7.getPassword()));
+    public void testStorePassword() throws InvalidUserException, InvalidPasswordException {
 
         String newPassword = "new";
 
-        Assert.assertFalse(validatePassword(newPassword, user7.getPassword()));
+        try {
+            userService.checkIfPasswordIsValid("ttester2", newPassword);
+            Assert.fail();
+        } catch (InvalidPasswordException e) {
+            //expected
+        }
         userService.storePassword("ttester2", newPassword);
-        user7 = userService.get("ttester2");
-        Assert.assertTrue(validatePassword(newPassword, user7.getPassword()));
+        userService.checkIfPasswordIsValid("ttester2", newPassword);
 
         userService.storePassword("ttester3", newPassword);
-        user8 = userService.get("ttester3");
-        Assert.assertTrue(validatePassword(newPassword, user8.getPassword()));
+        userService.checkIfPasswordIsValid("ttester3", newPassword);
 
     }
 
@@ -499,13 +491,16 @@ public class UserServiceTest extends AbstractArquillianTest {
 
         String newPassword = "boom";
         String oldPassword = "pw";
-        User user9 = userService.get("ttester4");
 
-        Assert.assertTrue(validatePassword(oldPassword, user9.getPassword()));
+        userService.checkIfPasswordIsValid("ttester4", oldPassword);
         userService.changePassword("ttester4", oldPassword, newPassword);
-        user9 = userService.get("ttester4");
-        Assert.assertFalse(validatePassword(oldPassword, user9.getPassword()));
-        Assert.assertTrue(validatePassword(newPassword, user9.getPassword()));
+        try {
+            userService.checkIfPasswordIsValid("ttester4", oldPassword);
+            Assert.fail();
+        } catch (InvalidPasswordException e) {
+            // expected
+        }
+        userService.checkIfPasswordIsValid("ttester4", newPassword);
 
     }
 

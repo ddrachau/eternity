@@ -48,6 +48,7 @@
     angular.module('Eternity').controller("EternityController", function ($rootScope, UserService) {
 
         $rootScope.loggedIn = false;
+
         $rootScope.user = UserService.getBySession();
 
         $rootScope.$on("$locationChangeStart", function (event, nextUrl, currentUrl) {

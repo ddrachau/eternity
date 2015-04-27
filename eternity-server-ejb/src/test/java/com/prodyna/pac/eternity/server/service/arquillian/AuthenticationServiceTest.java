@@ -60,8 +60,6 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
 
         User user1 = userService.get("khansen");
 
-        Assert.assertNotNull(user1.getPassword());
-        Assert.assertTrue(validatePassword("pw", user1.getPassword()));
         Login l = authenticationService.login(new Login(user1.getIdentifier(), "pw"));
         Assert.assertNotNull(l);
         String sId = l.getXsrfToken();
@@ -119,8 +117,6 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
 
         User user1 = userService.get("khansen");
 
-        Assert.assertNotNull(user1.getPassword());
-        Assert.assertTrue(validatePassword("pw", user1.getPassword()));
         authenticationService.login(new Login(user1.getIdentifier(), "pw2"));
 
     }

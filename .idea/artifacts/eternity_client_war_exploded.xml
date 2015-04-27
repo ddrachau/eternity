@@ -52,7 +52,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/eternity-client/target/exploded/eternity-server-war.war/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/eternity-client/target/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="eternity-client/web/Web" />
     </root>

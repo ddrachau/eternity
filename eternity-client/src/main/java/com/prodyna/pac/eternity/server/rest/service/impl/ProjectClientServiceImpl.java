@@ -23,7 +23,7 @@ public class ProjectClientServiceImpl implements ProjectClientService {
     @Inject
     private ProjectService projectService;
 
-    @RolesAllowed("USER")
+    @RolesAllowed({"MANAGER","ADMINISTRATOR"})
     @GET
     @Produces(JSON_UTF8)
     @Override
