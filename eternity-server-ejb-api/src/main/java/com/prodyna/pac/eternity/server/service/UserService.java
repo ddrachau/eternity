@@ -3,7 +3,6 @@ package com.prodyna.pac.eternity.server.service;
 import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
-import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.model.Booking;
 import com.prodyna.pac.eternity.server.model.Project;
 import com.prodyna.pac.eternity.server.model.User;
@@ -121,6 +120,7 @@ public interface UserService {
      *
      * @param userIdentifier the user which gets a new password
      * @param plainPassword  the new password to set
+     * @throws InvalidUserException if the user is incorrect
      */
     void storePassword(@NotNull String userIdentifier, @NotNull String plainPassword) throws InvalidUserException;
 
@@ -130,8 +130,8 @@ public interface UserService {
      * @param userIdentifier   the user which should get a new password
      * @param oldPlainPassword the users old password
      * @param newPlainPassword the users new password
-     * @throws InvalidUserException if the user is incorrect
-     * @throws InvalidUserException if the password is incorrect
+     * @throws InvalidUserException     if the user is incorrect
+     * @throws InvalidPasswordException if the password is incorrect
      */
     void changePassword(@NotNull String userIdentifier, @NotNull String oldPlainPassword, @NotNull String newPlainPassword) throws
             InvalidUserException, InvalidPasswordException;
@@ -141,8 +141,8 @@ public interface UserService {
      *
      * @param userIdentifier the user to check against
      * @param plainPassword  the users password to check
-     * @throws NoSuchElementRuntimeException if the user does not exists
-     * @throws InvalidPasswordException      if the old password is incorrect
+     * @throws InvalidPasswordException if the old password is incorrect
+     * @throws InvalidUserException     if the user is incorrect
      */
     void checkIfPasswordIsValid(@NotNull String userIdentifier, @NotNull String plainPassword)
             throws InvalidPasswordException, InvalidUserException;

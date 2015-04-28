@@ -14,7 +14,7 @@ public interface AuthenticationClientService {
     /**
      * Simple test method to check if the client is authenticated.
      *
-     * @return
+     * @return status 200 if authentication was successful
      */
     Response ping();
 
