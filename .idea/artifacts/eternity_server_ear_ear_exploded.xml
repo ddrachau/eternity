@@ -6,7 +6,7 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/eternity-server-ear/target/MANIFEST.MF" />
       </element>
-      <element id="archive" name="eternity-server-war.war">
+      <element id="archive" name="eternity-client-war.war">
         <element id="artifact" artifact-name="eternity-client:war exploded" />
       </element>
     </root>

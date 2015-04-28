@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/eternity.iml" filepath="$PROJECT_DIR$/eternity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eternity-build-tools/eternity-build-tools.iml" filepath="$PROJECT_DIR$/eternity-build-tools/eternity-build-tools.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-client/eternity-client.iml" filepath="$PROJECT_DIR$/eternity-client/eternity-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-components/eternity-components.iml" filepath="$PROJECT_DIR$/eternity-components/eternity-components.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-components/eternity-components-utils/eternity-components-utils.iml" filepath="$PROJECT_DIR$/eternity-components/eternity-components-utils/eternity-components-utils.iml" />

@@ -19,22 +19,12 @@
 
     <dependencies>
 
-        <!--<dependency>
-            <groupId>com.prodyna.pac.eternity.server</groupId>
-            <artifactId>eternity-server-ejb</artifactId>
-            <type>ejb</type>
-        </dependency>-->
-
         <dependency>
-            <groupId>com.prodyna.pac.eternity.server</groupId>
-            <artifactId>eternity-server-war</artifactId>
+            <groupId>com.prodyna.pac.eternity.client</groupId>
+            <artifactId>eternity-client-war</artifactId>
+            <version>${version}</version>
             <type>war</type>
         </dependency>
-
-        <!--<dependency>
-            <groupId>com.prodyna.pac.eternity.server</groupId>
-            <artifactId>eternity-server-ejb-api</artifactId>
-        </dependency>-->
 
     </dependencies>
 
@@ -62,8 +52,8 @@
 
                     <modules>
                         <webModule>
-                            <groupId>com.prodyna.pac.eternity.server</groupId>
-                            <artifactId>eternity-server-war</artifactId>
+                            <groupId>com.prodyna.pac.eternity.client</groupId>
+                            <artifactId>eternity-client-war</artifactId>
                             <contextRoot>/eternity</contextRoot>
                         </webModule>
                     </modules>

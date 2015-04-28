@@ -5,8 +5,8 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.prodyna.pac.eternity.server</groupId>
-    <artifactId>eternity-server-war</artifactId>
+    <groupId>com.prodyna.pac.eternity.client</groupId>
+    <artifactId>eternity-client-war</artifactId>
     <packaging>war</packaging>
 
     <name>Assembly Eternity Webclient</name>
