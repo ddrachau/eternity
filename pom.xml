@@ -14,7 +14,7 @@
     <description>Eternity Meta Project configuring the build</description>
 
     <modules>
-        <module>eternity-build-tools</module>
+        <!--<module>eternity-build-tools</module>-->
         <module>eternity-components</module>
         <module>eternity-server-ejb-api</module>
         <module>eternity-client</module>

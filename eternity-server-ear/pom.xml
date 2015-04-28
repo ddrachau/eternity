@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.prodyna.pac.eternity.client</groupId>
             <artifactId>eternity-client-war</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
             <type>war</type>
         </dependency>
 
