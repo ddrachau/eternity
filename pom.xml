@@ -55,10 +55,10 @@
         <!-- other versions -->
         <version.javaee>7</version.javaee>
         <version.ejb>3.1</version.ejb>
-        <version.arquillian>1.1.5.Final</version.arquillian>
+        <version.arquillian>1.1.8.Final</version.arquillian>
         <version.arquillian.wildfly.remote>1.0.0.Alpha5</version.arquillian.wildfly.remote>
-        <version.arquillian.jacoco>1.0.0.Alpha7</version.arquillian.jacoco>
-        <version.jacoco>0.7.1.201405082137</version.jacoco>
+        <version.arquillian.jacoco>1.0.0.Alpha8</version.arquillian.jacoco>
+        <version.jacoco>0.7.4.201502262128</version.jacoco>
         <version.neo4j>2.0.3</version.neo4j>
         <version.neo4j.jdbc>2.0.2</version.neo4j.jdbc>
         <version.sl4j>1.7.7</version.sl4j>
