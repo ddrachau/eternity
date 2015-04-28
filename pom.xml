@@ -49,6 +49,7 @@
         <version.jar.plugin>2.6</version.jar.plugin>
         <version.javadoc.plugin>2.10.3</version.javadoc.plugin>
         <version.checkstyle.plugin>2.15</version.checkstyle.plugin>
+        <version.findbugs.plugin>3.0.1</version.findbugs.plugin>
 
         <!-- maven-compiler-plugin -->
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -196,6 +197,11 @@
                     <version>${version.surefire.plugin}</version>
                 </plugin>
 
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>findbugs-maven-plugin</artifactId>
+                    <version>${version.findbugs.plugin}</version>
+                </plugin>
                <!-- <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
@@ -253,7 +259,11 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.1</version>
+                <configuration>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                    <xmlOutput>true</xmlOutput>
+                </configuration>
             </plugin>
 
         </plugins>
@@ -267,16 +277,6 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <configuration>
                     <configLocation>checkstyle/eternity_checks.xml</configLocation>
-                </configuration>
-            </plugin>-->
-<!--            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.1</version>
-                <configuration>
-                    <effort>Max</effort>
-                    <threshold>Low</threshold>
-                    <xmlOutput>true</xmlOutput>
                 </configuration>
             </plugin>-->
         </plugins>
