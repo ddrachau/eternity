@@ -159,6 +159,11 @@ public class Booking extends AbstractNode {
     }
 
     @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
     public String toString() {
         return "Booking{" +
                 "id='" + this.getId() + '\'' +

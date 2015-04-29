@@ -27,9 +27,6 @@ import java.security.Principal;
 public class AuthenticationRequestFilter implements ContainerRequestFilter {
 
     @Inject
-    private Logger logger;
-
-    @Inject
     private SessionService sessionService;
 
     @Inject

@@ -186,6 +186,11 @@ public class Login {
     }
 
     @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
     public String toString() {
         return "Login{" +
                 "username='" + username + '\'' +

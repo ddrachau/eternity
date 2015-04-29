@@ -185,6 +185,11 @@ public class User extends AbstractNode {
     }
 
     @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
     public String toString() {
         return "User{" +
                 "identifier='" + identifier + '\'' +

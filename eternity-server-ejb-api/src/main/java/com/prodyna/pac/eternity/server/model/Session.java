@@ -100,6 +100,11 @@ public class Session extends AbstractNode {
     }
 
     @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
     public String toString() {
         return "Session{" +
                 "lastAccessedTime=" + lastAccessedTime +

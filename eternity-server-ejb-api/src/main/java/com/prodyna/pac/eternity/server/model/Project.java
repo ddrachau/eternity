@@ -94,6 +94,11 @@ public class Project extends AbstractNode {
     }
 
     @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
     public String toString() {
         return "Project{" +
                 "id='" + this.getId() + '\'' +
