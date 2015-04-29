@@ -53,7 +53,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${version.war.plugin}</version>
                 <configuration>
-                    <webappDirectory>${project.build.directory}/exploded/eternity-server-war.war
+                    <webappDirectory>${project.build.directory}/exploded/eternity-client.war
                     </webappDirectory>
                 </configuration>
             </plugin>

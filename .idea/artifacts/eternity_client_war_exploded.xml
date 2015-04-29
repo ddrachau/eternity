@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="eternity-client:war exploded">
-    <output-path>$PROJECT_DIR$/eternity-client/target/exploded/eternity-server-war.war</output-path>
+    <output-path>$PROJECT_DIR$/eternity-client/target/exploded/eternity-client.war</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -52,7 +52,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/eternity-client/target/exploded/eternity-server-war.war/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/eternity-client/target/exploded/eternity-client.war/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="eternity-client/web/Web" />
     </root>

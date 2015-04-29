@@ -1,30 +1,66 @@
 package com.prodyna.pac.eternity.server.rest.security;
 
+import com.prodyna.pac.eternity.server.model.User;
+
+import javax.validation.constraints.NotNull;
+import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.core.SecurityContext;
 import java.security.Principal;
 
+/**
+ * Implementation for checking rules for the given user.
+ */
 public class AuthorizationSecurityContext implements SecurityContext {
 
-    @Override
-    public Principal getUserPrincipal() {
-        return null;
+    /**
+     * the user this context represents
+     */
+    private User user;
+
+    /**
+     * the request context
+     */
+    private ContainerRequestContext context;
+
+    /**
+     * Default constructor
+     *
+     * @param newUser    the user this context represents
+     * @param newContext the request context
+     */
+    public AuthorizationSecurityContext(@NotNull final User newUser, @NotNull final ContainerRequestContext newContext) {
+
+        this.user = newUser;
+        this.context = newContext;
+
     }
 
     @Override
-    public boolean isUserInRole(String s) {
+    public final Principal getUserPrincipal() {
 
-        System.out.println("I am asked for role:" + s);
-        return false;
+        return () -> user.getIdentifier();
+
     }
 
     @Override
-    public boolean isSecure() {
-        return false;
+    public final boolean isUserInRole(final String s) {
+
+        return user.getRole().name().equals(s);
+
     }
 
     @Override
-    public String getAuthenticationScheme() {
-        return null;
+    public final boolean isSecure() {
+
+        return this.context.getSecurityContext().isSecure();
+
+    }
+
+    @Override
+    public final String getAuthenticationScheme() {
+
+        return this.context.getSecurityContext().getAuthenticationScheme();
+
     }
 
 }
