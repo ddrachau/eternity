@@ -20,10 +20,12 @@ public abstract class AbstractNode {
     /**
      * Creates an AbstractNode and initialize the following property:
      *
-     * @param id the technical identifier
+     * @param newId the technical identifier
      */
-    public AbstractNode(String id) {
-        this.id = id;
+    public AbstractNode(final String newId) {
+
+        this.id = newId;
+
     }
 
     /**
@@ -31,34 +33,47 @@ public abstract class AbstractNode {
      *
      * @return the id
      */
-    public String getId() {
+    public final String getId() {
+
         return this.id;
+
     }
 
     /**
      * Basic Setter
      *
-     * @param id to be set
+     * @param newId to be set
      */
-    public void setId(String id) {
-        this.id = id;
+    public final void setId(final String newId) {
+
+        this.id = newId;
+
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public final boolean equals(final Object o) {
+
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         AbstractNode that = (AbstractNode) o;
 
-        if (!id.equals(that.id)) return false;
+        if (!id.equals(that.id)) {
+            return false;
+        }
 
         return true;
     }
 
     @Override
     public int hashCode() {
+
         return id.hashCode();
+
     }
 
 }

@@ -59,7 +59,7 @@ public class PasswordHash {
      * @param password the password to hash
      * @return a salted PBKDF2 hash of the password
      */
-    public static String createHash(String password) {
+    public static String createHash(final String password) {
         return createHash(password.toCharArray());
     }
 
@@ -69,7 +69,7 @@ public class PasswordHash {
      * @param password the password to hash
      * @return a salted PBKDF2 hash of the password
      */
-    public static String createHash(char[] password) {
+    public static String createHash(final char[] password) {
 
         // Generate a random salt
         SecureRandom random = new SecureRandom();
@@ -86,7 +86,7 @@ public class PasswordHash {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        
+
     }
 
     /**
@@ -107,7 +107,7 @@ public class PasswordHash {
      * @param correctHash the hash of the valid password
      * @return true if the password is correct, false if not
      */
-    public static boolean validatePassword(char[] password, @NotNull String correctHash) {
+    public static boolean validatePassword(final char[] password, final @NotNull String correctHash) {
         // Decode the hash into its parameters
         String[] params = correctHash.split(":");
         int iterations = Integer.parseInt(params[ITERATION_INDEX]);
