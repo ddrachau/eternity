@@ -45,7 +45,7 @@
             <artifactId>eternity-components-utils</artifactId>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.neo4j</groupId>
             <artifactId>neo4j</artifactId>
             <version>${version.neo4j}</version>
@@ -55,7 +55,7 @@
             <groupId>org.neo4j</groupId>
             <artifactId>neo4j-jdbc</artifactId>
             <version>${version.neo4j.jdbc}</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.jboss.spec</groupId>

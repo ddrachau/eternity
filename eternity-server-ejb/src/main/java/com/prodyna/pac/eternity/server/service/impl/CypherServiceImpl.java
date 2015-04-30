@@ -27,7 +27,7 @@ public class CypherServiceImpl implements CypherService {
     @Inject
     private Logger logger;
 
-    @Resource(mappedName = "java:jboss/datasources/Neo4jDS")
+    @Inject
     private DataSource dataSource;
 
     @Override
