@@ -2,11 +2,7 @@ package com.prodyna.pac.eternity.client.service;
 
 import com.prodyna.pac.eternity.client.helper.AbstractRESTTest;
 import com.prodyna.pac.eternity.client.rest.service.AuthenticationClientService;
-import com.prodyna.pac.eternity.helper.DatabaseCleaner;
-import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.model.authentication.Login;
-import com.prodyna.pac.eternity.server.model.user.User;
-import com.prodyna.pac.eternity.server.service.user.UserService;
 import junit.framework.Assert;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -14,7 +10,6 @@ import org.jboss.arquillian.junit.InSequence;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 
 /**

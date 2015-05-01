@@ -3,6 +3,7 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-build-tools" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-client-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-components" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-components/eternity-components-utils" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-ear" charset="UTF-8" />

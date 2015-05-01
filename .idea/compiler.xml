@@ -94,6 +94,13 @@
         <processorPath useClasspath="true" />
         <module name="eternity-ejb" />
       </profile>
+      <profile default="false" name="Annotation profile for eternity-client-api" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-client-api" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="api" target="1.8" />
@@ -106,6 +113,7 @@
       <module name="eternity" target="1.8" />
       <module name="eternity-build-tools" target="1.5" />
       <module name="eternity-client" target="1.8" />
+      <module name="eternity-client-api" target="1.8" />
       <module name="eternity-components" target="1.8" />
       <module name="eternity-components-utils" target="1.8" />
       <module name="eternity-ear" target="1.8" />

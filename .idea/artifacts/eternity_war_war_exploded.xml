@@ -10,6 +10,9 @@
           <element id="archive" name="eternity-components-utils-1.0.jar">
             <element id="module-output" name="eternity-components-utils" />
           </element>
+          <element id="archive" name="eternity-client-api-1.0.jar">
+            <element id="module-output" name="eternity-client-api" />
+          </element>
           <element id="archive" name="eternity-ejb-api-1.0.jar">
             <element id="module-output" name="eternity-ejb-api" />
           </element>

@@ -15,10 +15,6 @@ import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import static com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils.COOKIE_TOKEN_REMEMBER_ME;
-import static com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils.COOKIE_TOKEN_XSRF;
-import static com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils.JSON_UTF8;
-
 /**
  * Client service for authentication.
  */
@@ -44,10 +40,10 @@ public interface AuthenticationClientService {
      * @return a session cookie and optionally a remember me cookie
      */
     @POST
-    @Consumes(JSON_UTF8)
+    @Consumes(RestCookieUtils.JSON_UTF8)
     @Produces(RestCookieUtils.JSON_UTF8)
-    Response login(@CookieParam(COOKIE_TOKEN_XSRF) Cookie sessionCookie,
-                   @CookieParam(COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie,
+    Response login(@CookieParam(RestCookieUtils.COOKIE_TOKEN_XSRF) Cookie sessionCookie,
+                   @CookieParam(RestCookieUtils.COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie,
                    @Context UriInfo uriInfo, Login login);
 
     /**
@@ -59,10 +55,10 @@ public interface AuthenticationClientService {
      * @return a session cookie and optionally a remember me cookie
      */
     @GET
-    @Produces(JSON_UTF8)
+    @Produces(RestCookieUtils.JSON_UTF8)
     @Path("/token")
-    Response loginWithToken(@CookieParam(COOKIE_TOKEN_XSRF) Cookie sessionCookie,
-                            @CookieParam(COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie,
+    Response loginWithToken(@CookieParam(RestCookieUtils.COOKIE_TOKEN_XSRF) Cookie sessionCookie,
+                            @CookieParam(RestCookieUtils.COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie,
                             @Context UriInfo uriInfo);
 
     /**
@@ -75,7 +71,7 @@ public interface AuthenticationClientService {
      * @return 200 if no problem occurred
      */
     @DELETE
-    Response logout(@Context UriInfo uriInfo, @CookieParam(COOKIE_TOKEN_XSRF) Cookie xsrfCookie,
-                    @CookieParam(COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie);
+    Response logout(@Context UriInfo uriInfo, @CookieParam(RestCookieUtils.COOKIE_TOKEN_XSRF) Cookie xsrfCookie,
+                    @CookieParam(RestCookieUtils.COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie);
 
 }
