@@ -1,6 +1,6 @@
-package com.prodyna.pac.eternity.client.rest.service.impl;
+package com.prodyna.pac.eternity.client.rest.service.project.impl;
 
-import com.prodyna.pac.eternity.client.rest.service.ProjectClientService;
+import com.prodyna.pac.eternity.client.rest.service.project.ProjectClientService;
 import com.prodyna.pac.eternity.client.rest.security.Authenticated;
 import com.prodyna.pac.eternity.server.service.project.ProjectService;
 

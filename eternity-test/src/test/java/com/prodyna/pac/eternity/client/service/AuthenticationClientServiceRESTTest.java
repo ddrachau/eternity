@@ -1,7 +1,7 @@
 package com.prodyna.pac.eternity.client.service;
 
 import com.prodyna.pac.eternity.client.helper.AbstractRESTTest;
-import com.prodyna.pac.eternity.client.rest.service.AuthenticationClientService;
+import com.prodyna.pac.eternity.client.rest.service.authentication.AuthenticationClientService;
 import com.prodyna.pac.eternity.server.model.authentication.Login;
 import junit.framework.Assert;
 import org.jboss.arquillian.container.test.api.RunAsClient;

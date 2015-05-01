@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/eternity.iml" filepath="$PROJECT_DIR$/eternity.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-build-tools/eternity-build-tools.iml" filepath="$PROJECT_DIR$/eternity-build-tools/eternity-build-tools.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-client-api/eternity-client-api.iml" filepath="$PROJECT_DIR$/eternity-client-api/eternity-client-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eternity-client-impl/eternity-client-impl.iml" filepath="$PROJECT_DIR$/eternity-client-impl/eternity-client-impl.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-components/eternity-components.iml" filepath="$PROJECT_DIR$/eternity-components/eternity-components.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-components/eternity-components-utils/eternity-components-utils.iml" filepath="$PROJECT_DIR$/eternity-components/eternity-components-utils/eternity-components-utils.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-ear/eternity-ear.iml" filepath="$PROJECT_DIR$/eternity-ear/eternity-ear.iml" />

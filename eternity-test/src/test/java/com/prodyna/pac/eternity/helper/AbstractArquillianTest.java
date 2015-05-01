@@ -18,8 +18,6 @@ public abstract class AbstractArquillianTest {
         jar.deleteClass(DatasourceProducer.class);
         jar.addAsResource("META-INF/beans.xml");
 
-        System.out.println(jar.toString(true));
-
         return jar;
 
     }

@@ -36,6 +36,11 @@
 
         <dependency>
             <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-client-impl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
             <artifactId>eternity-ejb</artifactId>
             <type>ejb</type>
         </dependency>

@@ -1,7 +1,7 @@
-package com.prodyna.pac.eternity.client.rest.service.impl;
+package com.prodyna.pac.eternity.client.rest.service.authentication.impl;
 
 import com.prodyna.pac.eternity.client.rest.security.Authenticated;
-import com.prodyna.pac.eternity.client.rest.service.AuthenticationClientService;
+import com.prodyna.pac.eternity.client.rest.service.authentication.AuthenticationClientService;
 import com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils;
 import com.prodyna.pac.eternity.components.common.RememberMeUtils;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidLoginException;

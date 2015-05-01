@@ -1,4 +1,4 @@
-package com.prodyna.pac.eternity.client.rest.service;
+package com.prodyna.pac.eternity.client.rest.service.user;
 
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.Response;

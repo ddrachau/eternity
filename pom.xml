@@ -18,6 +18,7 @@
         <module>eternity-components</module>
         <module>eternity-client-api</module>
         <module>eternity-ejb-api</module>
+        <module>eternity-client-impl</module>
         <module>eternity-ejb</module>
         <module>eternity-war</module>
         <module>eternity-ear</module>
@@ -103,6 +104,12 @@
             <dependency>
                 <groupId>com.prodyna.pac.eternity</groupId>
                 <artifactId>eternity-ejb-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-client-impl</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

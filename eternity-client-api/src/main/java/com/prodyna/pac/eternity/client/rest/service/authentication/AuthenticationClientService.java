@@ -1,4 +1,4 @@
-package com.prodyna.pac.eternity.client.rest.service;
+package com.prodyna.pac.eternity.client.rest.service.authentication;
 
 import com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils;
 import com.prodyna.pac.eternity.server.model.authentication.Login;
