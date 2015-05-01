@@ -1,6 +1,8 @@
 package com.prodyna.pac.eternity.server.service;
 
 import com.prodyna.pac.eternity.components.common.DateUtils;
+import com.prodyna.pac.eternity.helper.AbstractArquillianTest;
+import com.prodyna.pac.eternity.helper.DatabaseCleaner;
 import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
@@ -26,7 +28,7 @@ import java.util.List;
 public class ProjectServiceTest extends AbstractArquillianTest {
 
     @Inject
-    private CypherService cypherService;
+    private DatabaseCleaner databaseCleaner;
 
     @Inject
     private ProjectService projectService;
@@ -41,8 +43,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
     @InSequence(1)
     public void createDemoData() throws ElementAlreadyExistsException {
 
-        // clean DB from nodes and relations
-        cypherService.query(CLEANUP_QUERY, null);
+        databaseCleaner.deleteAllData();
 
         Project project1 = new Project("P00754", "KiBucDu Final (Phase II)");
         Project project2 = new Project("P00843", "IT-/Prozessharmonisierung im Handel");

@@ -2,10 +2,18 @@ package com.prodyna.pac.eternity.server.service;
 
 import com.prodyna.pac.eternity.components.common.DateUtils;
 import com.prodyna.pac.eternity.components.common.RememberMeUtils;
-import com.prodyna.pac.eternity.server.exception.functional.*;
+import com.prodyna.pac.eternity.helper.AbstractArquillianTest;
+import com.prodyna.pac.eternity.helper.DatabaseCleaner;
+import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
+import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidLoginException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
+import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
-import com.prodyna.pac.eternity.server.model.booking.Booking;
 import com.prodyna.pac.eternity.server.model.authentication.Login;
+import com.prodyna.pac.eternity.server.model.booking.Booking;
 import com.prodyna.pac.eternity.server.model.project.Project;
 import com.prodyna.pac.eternity.server.model.user.User;
 import com.prodyna.pac.eternity.server.service.authentication.AuthenticationService;
@@ -27,7 +35,7 @@ import java.util.List;
 public class UserServiceTest extends AbstractArquillianTest {
 
     @Inject
-    private CypherService cypherService;
+    private DatabaseCleaner databaseCleaner;
 
     @Inject
     private UserService userService;
@@ -48,8 +56,7 @@ public class UserServiceTest extends AbstractArquillianTest {
     @InSequence(1)
     public void createDemoData() throws InvalidBookingException, DuplicateTimeBookingException, UserNotAssignedToProjectException, ElementAlreadyExistsException {
 
-        // clean DB from nodes and relations
-        cypherService.query(CLEANUP_QUERY, null);
+        databaseCleaner.deleteAllData();
 
         User user1 = new User("khansen", "Knut", "Hansen", "pw");
         User user2 = new User("aeich", "Alexander", null, "pw2");
@@ -112,6 +119,7 @@ public class UserServiceTest extends AbstractArquillianTest {
     @Test
     @InSequence(2)
     public void testGetAllUsers() {
+
         Assert.assertEquals(9, userService.findAll().size());
     }
 

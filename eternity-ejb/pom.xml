@@ -46,6 +46,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ejb-plugin</artifactId>
+                <version>${version.ejb.plugin}</version>
                 <configuration>
                     <!-- Tell Maven we are using EJB 3.1 -->
                     <ejbVersion>${version.ejb}</ejbVersion>

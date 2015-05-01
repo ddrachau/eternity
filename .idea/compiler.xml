@@ -29,6 +29,7 @@
         <module name="ejb" />
         <module name="ejb-api" />
         <module name="ejbs" />
+        <module name="eternity-build-tools" />
         <module name="eternity-ear" />
         <module name="eternity-server-ear" />
         <module name="primary-source" />
@@ -79,13 +80,6 @@
         <processorPath useClasspath="true" />
         <module name="eternity-test" />
       </profile>
-      <profile default="false" name="Annotation profile for eternity-build-tools" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="true" />
-        <module name="eternity-build-tools" />
-      </profile>
       <profile default="false" name="Annotation profile for eternity-ejb-api" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -110,7 +104,7 @@
       <module name="ejb-api" target="1.8" />
       <module name="ejbs" target="1.8" />
       <module name="eternity" target="1.8" />
-      <module name="eternity-build-tools" target="1.8" />
+      <module name="eternity-build-tools" target="1.5" />
       <module name="eternity-client" target="1.8" />
       <module name="eternity-components" target="1.8" />
       <module name="eternity-components-utils" target="1.8" />

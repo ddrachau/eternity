@@ -1,5 +1,7 @@
 package com.prodyna.pac.eternity.server.service;
 
+import com.prodyna.pac.eternity.helper.AbstractArquillianTest;
+import com.prodyna.pac.eternity.helper.DatabaseCleaner;
 import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.model.authentication.Session;
 import com.prodyna.pac.eternity.server.model.user.User;
@@ -21,7 +23,7 @@ import java.util.List;
 public class SessionServiceTest extends AbstractArquillianTest {
 
     @Inject
-    private CypherService cypherService;
+    private DatabaseCleaner databaseCleaner;
 
     @Inject
     private UserService userService;
@@ -39,8 +41,7 @@ public class SessionServiceTest extends AbstractArquillianTest {
     @InSequence(1)
     public void createDemoData() {
 
-        // clean DB from nodes and relations
-        cypherService.query(CLEANUP_QUERY, null);
+        databaseCleaner.deleteAllData();
 
     }
 
