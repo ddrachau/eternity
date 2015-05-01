@@ -4,14 +4,14 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="eternity-client" />
+          <element id="module-output" name="eternity-war" />
         </element>
         <element id="directory" name="lib">
           <element id="archive" name="eternity-server-ejb-api-1.0.jar">
-            <element id="module-output" name="eternity-server-ejb-api" />
+            <element id="module-output" name="eternity-ejb-api" />
           </element>
           <element id="archive" name="eternity-server-ejb-1.0.jar">
-            <element id="module-output" name="eternity-server-ejb" />
+            <element id="module-output" name="eternity-ejb" />
           </element>
           <element id="archive" name="eternity-components-utils-1.0.jar">
             <element id="module-output" name="eternity-components-utils" />
@@ -19,9 +19,9 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/eternity-client/target/exploded/eternity-client.war/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/eternity-war/target/exploded/eternity-client.war/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="eternity-client/web/Web" />
+      <element id="javaee-facet-resources" facet="eternity-war/web/Web" />
     </root>
   </artifact>
 </component>

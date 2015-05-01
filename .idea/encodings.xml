@@ -3,34 +3,35 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-build-tools" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-client" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-client/src/main/java/com/prodyna/pac/eternity/server/rest" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-client/src/main/webapp/css/bootstrap/bootstrap-theme.css" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/eternity-client/src/main/webapp/css/bootstrap/bootstrap-theme.min.css" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/eternity-client/src/main/webapp/css/bootstrap/bootstrap.css" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/eternity-client/src/main/webapp/css/bootstrap/bootstrap.min.css" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/eternity-client/src/main/webapp/css/fonts/glyphicons-halflings-regular.eot" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/eternity-client/src/main/webapp/css/fonts/glyphicons-halflings-regular.svg" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/eternity-client/src/main/webapp/css/fonts/glyphicons-halflings-regular.ttf" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/eternity-client/src/main/webapp/css/fonts/glyphicons-halflings-regular.woff" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/eternity-client/src/main/webapp/css/fonts/glyphicons-halflings-regular.woff2" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/eternity-components" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-components/eternity-components-utils" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-server-ear" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-server-ejb" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-server-ejb-api" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/functional" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/technical" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/model" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/AuthenticationService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/BookingService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/CypherService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/ProjectService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-server-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/UserService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-server-ejb/pom-server.xml" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-server-ejb/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-server-ejb/src/main/resources/META-INF/beans.xml" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-server-ejb/src/test" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-ear" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-ejb" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-ejb-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/functional" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/technical" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/model" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/CypherService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/authentication/AuthenticationService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/booking/BookingService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/project/ProjectService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/user/UserService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-ejb/pom-server.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-ejb/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-ejb/src/main/resources/META-INF/beans.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-ejb/src/test" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-test" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-war" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-war/src/main/java/com/prodyna/pac/eternity/server/rest" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-war/src/main/webapp/css/bootstrap/bootstrap-theme.css" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/eternity-war/src/main/webapp/css/bootstrap/bootstrap-theme.min.css" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/eternity-war/src/main/webapp/css/bootstrap/bootstrap.css" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/eternity-war/src/main/webapp/css/bootstrap/bootstrap.min.css" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/eternity-war/src/main/webapp/css/fonts/glyphicons-halflings-regular.eot" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/eternity-war/src/main/webapp/css/fonts/glyphicons-halflings-regular.svg" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/eternity-war/src/main/webapp/css/fonts/glyphicons-halflings-regular.ttf" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/eternity-war/src/main/webapp/css/fonts/glyphicons-halflings-regular.woff" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/eternity-war/src/main/webapp/css/fonts/glyphicons-halflings-regular.woff2" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/pom.xml" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>

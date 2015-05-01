@@ -1,0 +1,27 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="eternity-war:war exploded">
+    <output-path>$PROJECT_DIR$/eternity-war/target/exploded/eternity-war.war</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="eternity-war" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="archive" name="eternity-components-utils-1.0.jar">
+            <element id="module-output" name="eternity-components-utils" />
+          </element>
+          <element id="archive" name="eternity-ejb-api-1.0.jar">
+            <element id="module-output" name="eternity-ejb-api" />
+          </element>
+          <element id="archive" name="eternity-ejb-1.0.jar">
+            <element id="module-output" name="eternity-ejb" />
+          </element>
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/eternity-war/target/exploded/eternity-war.war/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="eternity-war/web/Web" />
+    </root>
+  </artifact>
+</component>

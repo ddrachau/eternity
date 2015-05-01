@@ -16,10 +16,11 @@
     <modules>
         <module>eternity-build-tools</module>
         <module>eternity-components</module>
-        <module>eternity-server-ejb-api</module>
-        <module>eternity-client</module>
-        <module>eternity-server-ejb</module>
-        <module>eternity-server-ear</module>
+        <module>eternity-ejb-api</module>
+        <module>eternity-ejb</module>
+        <module>eternity-war</module>
+        <module>eternity-ear</module>
+        <module>eternity-test</module>
     </modules>
 
     <properties>
@@ -62,8 +63,6 @@
         <version.arquillian.wildfly.remote>1.0.0.Alpha5</version.arquillian.wildfly.remote>
         <version.arquillian.jacoco>1.0.0.Alpha8</version.arquillian.jacoco>
         <version.jacoco>0.7.4.201502262128</version.jacoco>
-        <version.neo4j>2.0.3</version.neo4j>
-        <version.neo4j.jdbc>2.0.2</version.neo4j.jdbc>
         <version.sl4j>1.7.7</version.sl4j>
         <version.junit>4.8.1</version.junit>
         <version.resteasy>3.0.10.Final</version.resteasy>
@@ -95,23 +94,23 @@
             </dependency>
 
             <dependency>
-                <groupId>com.prodyna.pac.eternity.server</groupId>
-                <artifactId>eternity-server-ejb-api</artifactId>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-ejb-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.prodyna.pac.eternity.server</groupId>
-                <artifactId>eternity-server-war</artifactId>
-                <version>${project.version}</version>
-                <type>war</type>
-            </dependency>
-
-            <dependency>
-                <groupId>com.prodyna.pac.eternity.server</groupId>
-                <artifactId>eternity-server-ejb</artifactId>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-ejb</artifactId>
                 <version>${project.version}</version>
                 <type>ejb</type>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-war</artifactId>
+                <version>${project.version}</version>
+                <type>war</type>
             </dependency>
 
             <dependency>

@@ -2,9 +2,9 @@
   <artifact type="exploded-ear" name="eternity-server-ear:ear exploded">
     <output-path>$PROJECT_DIR$/eternity-server-ear/target/myapp.ear</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="eternity-server-ear/javaeeApplication/JavaEE" />
+      <element id="javaee-facet-resources" facet="eternity-ear/javaeeApplication/JavaEE" />
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/eternity-server-ear/target/myapp.ear/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/eternity-ear/target/myapp.ear/META-INF/MANIFEST.MF" />
       </element>
       <element id="archive" name="eternity-client-war.war">
         <element id="artifact" artifact-name="eternity-client:war exploded" />

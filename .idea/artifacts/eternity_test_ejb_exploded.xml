@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="eternity-test:ejb exploded">
+    <output-path>$PROJECT_DIR$/eternity-test/target/eternity-test</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="eternity-test/ejb/EJB" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/eternity-test/target/eternity-test/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="eternity-test" />
+    </root>
+  </artifact>
+</component>

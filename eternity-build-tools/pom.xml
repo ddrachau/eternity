@@ -8,26 +8,13 @@
     <groupId>com.prodyna.pac.eternity.ci</groupId>
     <artifactId>eternity-build-tools</artifactId>
     <packaging>jar</packaging>
-    <version>1.0</version>
 
     <name>Assembly Build related files</name>
 
-    <build>
-
-        <plugins>
-
-            <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.0.2.Final</version>
-                <configuration>
-                    <!-- disabled by default, deploy only ear -->
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-
-        </plugins>
-
-    </build>
+    <parent>
+        <groupId>com.prodyna.pac.eternity</groupId>
+        <artifactId>eternity</artifactId>
+        <version>1.0</version>
+    </parent>
 
 </project>
