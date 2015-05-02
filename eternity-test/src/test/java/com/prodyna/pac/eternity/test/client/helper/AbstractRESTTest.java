@@ -17,8 +17,8 @@ public abstract class AbstractRESTTest extends AbstractArquillianTest {
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
-    @ArquillianResource
-    protected URL url;
+//    @ArquillianResource
+//    protected URL url;
 
     protected Client createClient() {
 
@@ -29,7 +29,8 @@ public abstract class AbstractRESTTest extends AbstractArquillianTest {
 
     protected ResteasyWebTarget createWebTarget() {
 
-        String fullPath = url.toString() + "rest";
+//        String fullPath = url.toString() + "rest";
+        String fullPath = "http://localhost:8080/test/rest";
         log.info("URL = " + fullPath);
         ResteasyWebTarget target = (ResteasyWebTarget) createClient().target(fullPath);
         return target;

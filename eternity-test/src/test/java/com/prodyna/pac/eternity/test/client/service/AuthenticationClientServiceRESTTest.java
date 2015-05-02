@@ -2,6 +2,7 @@ package com.prodyna.pac.eternity.test.client.service;
 
 import com.prodyna.pac.eternity.server.model.authentication.Login;
 import com.prodyna.pac.eternity.server.model.user.User;
+import com.prodyna.pac.eternity.server.service.user.UserService;
 import com.prodyna.pac.eternity.test.client.helper.AbstractRESTTest;
 import com.prodyna.pac.eternity.test.client.proxy.AuthenticationClientServiceProxy;
 import junit.framework.Assert;
@@ -11,6 +12,7 @@ import org.jboss.arquillian.junit.InSequence;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 
 /**
@@ -18,6 +20,15 @@ import javax.ws.rs.core.Response;
  */
 @RunWith(Arquillian.class)
 public class AuthenticationClientServiceRESTTest extends AbstractRESTTest {
+
+    @Inject
+    private UserService userService;
+
+    @Test
+    @InSequence(1)
+    public  void testData() {
+        Assert.assertTrue(userService.findAll().size()>0);
+    }
 
     @Test
     @RunAsClient
