@@ -36,13 +36,23 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.prodyna.pac.eternity.components</groupId>
-            <artifactId>eternity-components-utils</artifactId>
+            <groupId>com.prodyna.pac.eternity.common</groupId>
+            <artifactId>eternity-common-model</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity.common</groupId>
+            <artifactId>eternity-common-utils</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.prodyna.pac.eternity</groupId>
             <artifactId>eternity-client-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-client-impl</artifactId>
         </dependency>
 
         <dependency>
@@ -54,12 +64,6 @@
             <groupId>com.prodyna.pac.eternity</groupId>
             <artifactId>eternity-ejb</artifactId>
             <type>ejb</type>
-        </dependency>
-
-        <dependency>
-            <groupId>com.prodyna.pac.eternity</groupId>
-            <artifactId>eternity-war</artifactId>
-            <type>war</type>
         </dependency>
 
         <dependency>

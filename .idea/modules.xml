@@ -6,8 +6,9 @@
       <module fileurl="file://$PROJECT_DIR$/eternity-build-tools/eternity-build-tools.iml" filepath="$PROJECT_DIR$/eternity-build-tools/eternity-build-tools.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-client-api/eternity-client-api.iml" filepath="$PROJECT_DIR$/eternity-client-api/eternity-client-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-client-impl/eternity-client-impl.iml" filepath="$PROJECT_DIR$/eternity-client-impl/eternity-client-impl.iml" />
-      <module fileurl="file://$PROJECT_DIR$/eternity-components/eternity-components.iml" filepath="$PROJECT_DIR$/eternity-components/eternity-components.iml" />
-      <module fileurl="file://$PROJECT_DIR$/eternity-components/eternity-components-utils/eternity-components-utils.iml" filepath="$PROJECT_DIR$/eternity-components/eternity-components-utils/eternity-components-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eternity-common/eternity-common.iml" filepath="$PROJECT_DIR$/eternity-common/eternity-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eternity-common/eternity-common-model/eternity-common-model.iml" filepath="$PROJECT_DIR$/eternity-common/eternity-common-model/eternity-common-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eternity-common/eternity-common-utils/eternity-common-utils.iml" filepath="$PROJECT_DIR$/eternity-common/eternity-common-utils/eternity-common-utils.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-ear/eternity-ear.iml" filepath="$PROJECT_DIR$/eternity-ear/eternity-ear.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-ejb/eternity-ejb.iml" filepath="$PROJECT_DIR$/eternity-ejb/eternity-ejb.iml" />
       <module fileurl="file://$PROJECT_DIR$/eternity-ejb-api/eternity-ejb-api.iml" filepath="$PROJECT_DIR$/eternity-ejb-api/eternity-ejb-api.iml" />

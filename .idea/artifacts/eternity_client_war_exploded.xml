@@ -14,7 +14,7 @@
             <element id="module-output" name="eternity-ejb" />
           </element>
           <element id="archive" name="eternity-components-utils-1.0.jar">
-            <element id="module-output" name="eternity-components-utils" />
+            <element id="module-output" name="eternity-common-utils" />
           </element>
         </element>
       </element>

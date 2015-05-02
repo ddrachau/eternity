@@ -15,11 +15,14 @@
 
     <modules>
         <module>eternity-build-tools</module>
-        <module>eternity-components</module>
-        <module>eternity-client-api</module>
+
+        <module>eternity-common</module>
         <module>eternity-ejb-api</module>
+        <module>eternity-client-api</module>
+
         <module>eternity-client-impl</module>
         <module>eternity-ejb</module>
+
         <module>eternity-war</module>
         <module>eternity-ear</module>
         <module>eternity-test</module>
@@ -90,8 +93,14 @@
         <dependencies>
 
             <dependency>
-                <groupId>com.prodyna.pac.eternity.components</groupId>
-                <artifactId>eternity-components-utils</artifactId>
+                <groupId>com.prodyna.pac.eternity.common</groupId>
+                <artifactId>eternity-common-utils</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity.common</groupId>
+                <artifactId>eternity-common-model</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -132,6 +141,13 @@
                 <artifactId>jboss-javaee-7.0</artifactId>
                 <version>${version.jboss.spec.javaee.7.0}</version>
                 <type>pom</type>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>jaxrs-api</artifactId>
+                <version>${version.resteasy}</version>
                 <scope>provided</scope>
             </dependency>
 

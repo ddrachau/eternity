@@ -20,21 +20,6 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.prodyna.pac.eternity.components</groupId>
-            <artifactId>eternity-components-utils</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.prodyna.pac.eternity</groupId>
-            <artifactId>eternity-client-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.prodyna.pac.eternity</groupId>
-            <artifactId>eternity-ejb-api</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.prodyna.pac.eternity</groupId>
             <artifactId>eternity-client-impl</artifactId>
         </dependency>
@@ -43,18 +28,6 @@
             <groupId>com.prodyna.pac.eternity</groupId>
             <artifactId>eternity-ejb</artifactId>
             <type>ejb</type>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.spec</groupId>
-            <artifactId>jboss-javaee-7.0</artifactId>
-            <type>pom</type>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxrs</artifactId>
         </dependency>
 
     </dependencies>

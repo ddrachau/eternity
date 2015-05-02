@@ -16,6 +16,7 @@
         <version>1.0</version>
     </parent>
 
+
     <dependencies>
 
         <dependency>
@@ -24,8 +25,13 @@
         </dependency>
 
         <dependency>
-            <groupId>com.prodyna.pac.eternity.components</groupId>
-            <artifactId>eternity-components-utils</artifactId>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-ejb-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity.common</groupId>
+            <artifactId>eternity-common-utils</artifactId>
         </dependency>
 
         <dependency>

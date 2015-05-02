@@ -108,6 +108,20 @@
         <processorPath useClasspath="true" />
         <module name="eternity-client-impl" />
       </profile>
+      <profile default="false" name="Annotation profile for eternity-common-utils" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-common-utils" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-utils" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-utils" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="api" target="1.8" />
@@ -122,6 +136,9 @@
       <module name="eternity-client" target="1.8" />
       <module name="eternity-client-api" target="1.8" />
       <module name="eternity-client-impl" target="1.8" />
+      <module name="eternity-common" target="1.8" />
+      <module name="eternity-common-model" target="1.8" />
+      <module name="eternity-common-utils" target="1.8" />
       <module name="eternity-components" target="1.8" />
       <module name="eternity-components-utils" target="1.8" />
       <module name="eternity-ear" target="1.8" />
@@ -132,6 +149,7 @@
       <module name="eternity-server-ejb" target="1.8" />
       <module name="eternity-server-ejb-api" target="1.8" />
       <module name="eternity-test" target="1.8" />
+      <module name="eternity-utils" target="1.8" />
       <module name="eternity-war" target="1.8" />
       <module name="logging" target="1.8" />
       <module name="primary-source" target="1.5" />

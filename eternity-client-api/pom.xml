@@ -19,13 +19,13 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.prodyna.pac.eternity</groupId>
-            <artifactId>eternity-ejb-api</artifactId>
+            <groupId>com.prodyna.pac.eternity.common</groupId>
+            <artifactId>eternity-common-model</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxrs</artifactId>
+            <artifactId>jaxrs-api</artifactId>
         </dependency>
 
         <dependency>
@@ -34,7 +34,6 @@
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
-
 
     </dependencies>
 
