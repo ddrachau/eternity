@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('Eternity', ['ngRoute', 'ngResource', 'ngCookies']);
+    angular.module('Eternity', ['ngRoute', 'ngResource', 'ngCookies', 'ui.bootstrap']);
 
     angular.module('Eternity').config(function ($httpProvider) {
         $httpProvider.interceptors.push(function ($cookies, $rootScope, $location, $q) {
@@ -61,9 +61,9 @@
 
     });
 
-    angular.module('Eternity').config(['$resourceProvider', function ($resourceProvider) {
-        // Don't strip trailing slashes from calculated URLs
-        $resourceProvider.defaults.stripTrailingSlashes = false;
-    }]);
+    //angular.module('Eternity').config(['$resourceProvider', function ($resourceProvider) {
+    //    // Don't strip trailing slashes from calculated URLs
+    //    $resourceProvider.defaults.stripTrailingSlashes = false;
+    //}]);
 
 })();

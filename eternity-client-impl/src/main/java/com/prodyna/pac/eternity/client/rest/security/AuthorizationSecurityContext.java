@@ -63,4 +63,13 @@ public class AuthorizationSecurityContext implements SecurityContext {
 
     }
 
+    /**
+     * Basic getter
+     *
+     * @return the user
+     */
+    public User getUser() {
+
+        return user;
+    }
 }

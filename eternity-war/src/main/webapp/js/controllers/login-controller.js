@@ -1,7 +1,7 @@
 angular.module('Eternity').controller('LoginCtrl', function ($scope, $rootScope, $location, SessionService) {
 
     $scope.login = {
-        username: 'khansen',
+        username: 'admin',
         password: 'pw',
         remember: false
     };
@@ -16,9 +16,6 @@ angular.module('Eternity').controller('LoginCtrl', function ($scope, $rootScope,
 
             if ($rootScope.nextRoute && $rootScope.nextRoute.indexOf('#') > 0
                 && $rootScope.nextRoute.indexOf('logout') < 0) {
-
-                console.log($rootScope.nextRoute);
-                console.log($rootScope.nextRoute.substr($rootScope.nextRoute.indexOf('#') + 1));
 
                 $location.path($rootScope.nextRoute.substr($rootScope.nextRoute.indexOf('#') + 1));
 

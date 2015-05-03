@@ -19,6 +19,18 @@ angular.module('Eternity').config(function ($routeProvider) {
                 }
             }
         })
+        .when('/bookings', {
+            templateUrl: 'templates/list-bookings.html',
+            controller: 'BookingCtrl',
+            resolve: {
+                bookings: function (UserService) {
+                    return UserService.getBookingsForCurrentUser();
+                },
+                projects: function (UserService) {
+                    return UserService.getProjectsForCurrentUser();
+                }
+            }
+        })
         .when('/login', {
             templateUrl: 'templates/authentication/login.html',
             controller: 'LoginCtrl'

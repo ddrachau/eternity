@@ -9,15 +9,19 @@ import com.prodyna.pac.eternity.server.logging.Logging;
 import com.prodyna.pac.eternity.server.model.booking.Booking;
 import com.prodyna.pac.eternity.server.model.project.Project;
 import com.prodyna.pac.eternity.server.model.user.User;
-import com.prodyna.pac.eternity.server.service.booking.BookingService;
 import com.prodyna.pac.eternity.server.service.CypherService;
+import com.prodyna.pac.eternity.server.service.booking.BookingService;
 import com.prodyna.pac.eternity.server.service.project.ProjectService;
 import com.prodyna.pac.eternity.server.service.user.UserService;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import static com.prodyna.pac.eternity.components.common.DateUtils.getCalendar;
 import static com.prodyna.pac.eternity.components.common.QueryUtils.map;
@@ -32,7 +36,7 @@ public class BookingServiceImpl implements BookingService {
     /**
      * Default return properties, to make object creation easier.
      */
-    private static final String BOOKING_RETURN_PROPERTIES = "b.id, b.startTime, b.endTime, b.breakDuration, b.description";
+    private static final String BOOKING_RETURN_PROPERTIES = "b.id, b.startTime, b.endTime, b.breakDuration, b.description, p.identifier";
 
     @Inject
     private CypherService cypherService;
@@ -83,7 +87,7 @@ public class BookingServiceImpl implements BookingService {
         Booking result = null;
 
         final Map<String, Object> queryResult = cypherService.querySingle(
-                "MATCH (b:Booking {id:{1}}) RETURN " + BOOKING_RETURN_PROPERTIES,
+                "MATCH (b:Booking {id:{1}})-[:PERFORMED_FOR]->(p:Project) RETURN " + BOOKING_RETURN_PROPERTIES,
                 map(1, id));
 
         if (queryResult != null) {
@@ -100,7 +104,7 @@ public class BookingServiceImpl implements BookingService {
         List<Booking> result = new ArrayList<>();
 
         final List<Map<String, Object>> queryResult = cypherService.query(
-                "MATCH (u:User {id:{1}})<-[:PERFORMED_BY]-(b:Booking) " +
+                "MATCH (u:User {id:{1}})<-[:PERFORMED_BY]-(b:Booking)-[:PERFORMED_FOR]->(p:Project) " +
                         "RETURN " + BOOKING_RETURN_PROPERTIES,
                 map(1, user.getId()));
 
@@ -159,7 +163,8 @@ public class BookingServiceImpl implements BookingService {
         this.checkForOverlapping(booking, user, project);
 
         final Map<String, Object> queryResult = cypherService.querySingle(
-                "MATCH (b:Booking {id:{1}}) SET b.startTime={2}, b.endTime={3}, b.breakDuration={4}, b.description={5} " +
+                "MATCH (b:Booking {id:{1}})-[:PERFORMED_FOR]->(p:Project) " +
+                        "SET b.startTime={2}, b.endTime={3}, b.breakDuration={4}, b.description={5} " +
                         "RETURN " + BOOKING_RETURN_PROPERTIES,
                 map(1, booking.getId(), 2, booking.getStartTime().getTimeInMillis(),
                         3, booking.getEndTime().getTimeInMillis(), 4, booking.getBreakDuration(),
@@ -250,7 +255,7 @@ public class BookingServiceImpl implements BookingService {
      * @param values the available values
      * @return a filled Booking
      */
-    private Booking getBooking(Map<String, Object> values) {
+    private Booking getBooking(final Map<String, Object> values) {
 
         Booking result = new Booking();
 
@@ -259,12 +264,14 @@ public class BookingServiceImpl implements BookingService {
         long readEndTime = (long) values.get("b.endTime");
         int readBreakDuration = (int) values.get("b.breakDuration");
         String readDescription = (String) values.get("b.description");
+        String readProjectIdentifier = (String) values.get("p.identifier");
 
         result.setId(readId);
         result.setStartTime(getCalendar(readStartTime));
         result.setEndTime(getCalendar(readEndTime));
         result.setBreakDuration(readBreakDuration);
         result.setDescription(readDescription);
+        result.setProjectIdentifier(readProjectIdentifier);
 
         return result;
 

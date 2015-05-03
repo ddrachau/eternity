@@ -5,7 +5,7 @@ import com.prodyna.pac.eternity.server.model.AbstractNode;
 import java.util.Calendar;
 
 /**
- * A booking is a concrete time booking with a start and end date (at the same day) for a project.
+ * A booking is a concrete time booking with a start and end date (at the same day) for a projectIdentifier.
  */
 public class Booking extends AbstractNode {
 
@@ -13,18 +13,26 @@ public class Booking extends AbstractNode {
      * The start time.
      */
     private Calendar startTime;
+
     /**
      * The end time.
      */
     private Calendar endTime;
+
     /**
      * The break duration in minutes.
      */
     private int breakDuration;
+
     /**
      * An optional descript of the work
      */
     private String description;
+
+    /**
+     * The projectIdentifier identifier for this booking
+     */
+    private String projectIdentifier;
 
     /**
      * Empty default constructor
@@ -36,18 +44,23 @@ public class Booking extends AbstractNode {
     /**
      * Creates a booking and initialize the following properties:
      *
-     * @param id            the technical identifier
-     * @param startTime     the start time
-     * @param endTime       the end time
-     * @param breakDuration the break duration in minutes
-     * @param description   the description of the work done
+     * @param id                the technical identifier
+     * @param startTime         the start time
+     * @param endTime           the end time
+     * @param breakDuration     the break duration in minutes
+     * @param description       the description of the work done
+     * @param projectIdentifier the projectIdentifier identifier
      */
-    public Booking(String id, Calendar startTime, Calendar endTime, int breakDuration, String description) {
+    public Booking(final String id, final Calendar startTime, final Calendar endTime,
+                   final int breakDuration, final String description, final String projectIdentifier) {
+
         super(id);
         this.startTime = startTime;
         this.endTime = endTime;
         this.breakDuration = breakDuration;
         this.description = description;
+        this.projectIdentifier = projectIdentifier;
+
     }
 
     /**
@@ -58,8 +71,11 @@ public class Booking extends AbstractNode {
      * @param breakDuration the break duration in minutes
      * @param description   the description of the work done
      */
-    public Booking(Calendar startTime, Calendar endTime, int breakDuration, String description) {
-        this(null, startTime, endTime, breakDuration, description);
+    public Booking(final Calendar startTime, final Calendar endTime, final int breakDuration,
+                   final String description) {
+
+        this(null, startTime, endTime, breakDuration, description, null);
+
     }
 
     /**
@@ -69,8 +85,10 @@ public class Booking extends AbstractNode {
      * @param endTime       the end time
      * @param breakDuration the break duration in minutes
      */
-    public Booking(Calendar startTime, Calendar endTime, int breakDuration) {
-        this(null, startTime, endTime, breakDuration, null);
+    public Booking(final Calendar startTime, final Calendar endTime, final int breakDuration) {
+
+        this(null, startTime, endTime, breakDuration, null, null);
+
     }
 
     /**
@@ -79,7 +97,9 @@ public class Booking extends AbstractNode {
      * @return the startTime
      */
     public Calendar getStartTime() {
+
         return startTime;
+
     }
 
     /**
@@ -87,8 +107,10 @@ public class Booking extends AbstractNode {
      *
      * @param startTime to be set
      */
-    public void setStartTime(Calendar startTime) {
+    public void setStartTime(final Calendar startTime) {
+
         this.startTime = startTime;
+
     }
 
     /**
@@ -97,7 +119,9 @@ public class Booking extends AbstractNode {
      * @return the endTime
      */
     public Calendar getEndTime() {
+
         return endTime;
+
     }
 
     /**
@@ -105,8 +129,10 @@ public class Booking extends AbstractNode {
      *
      * @param endTime to be set
      */
-    public void setEndTime(Calendar endTime) {
+    public void setEndTime(final Calendar endTime) {
+
         this.endTime = endTime;
+
     }
 
     /**
@@ -115,7 +141,9 @@ public class Booking extends AbstractNode {
      * @return the breakDuration
      */
     public int getBreakDuration() {
+
         return breakDuration;
+
     }
 
     /**
@@ -123,8 +151,10 @@ public class Booking extends AbstractNode {
      *
      * @param breakDuration to be set
      */
-    public void setBreakDuration(int breakDuration) {
+    public void setBreakDuration(final int breakDuration) {
+
         this.breakDuration = breakDuration;
+
     }
 
     /**
@@ -133,7 +163,9 @@ public class Booking extends AbstractNode {
      * @return the description
      */
     public String getDescription() {
+
         return description;
+
     }
 
     /**
@@ -141,12 +173,37 @@ public class Booking extends AbstractNode {
      *
      * @param description to be set
      */
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
+
         this.description = description;
+
+    }
+
+    /**
+     * Basic Getter
+     *
+     * @return the description
+     */
+    public String getProjectIdentifier() {
+
+        return projectIdentifier;
+
+    }
+
+    /**
+     * Basic Setter
+     *
+     * @param projectIdentifier to be set
+     */
+    public void setProjectIdentifier(final String projectIdentifier) {
+
+        this.projectIdentifier = projectIdentifier;
+
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
@@ -156,24 +213,29 @@ public class Booking extends AbstractNode {
         if (breakDuration != booking.breakDuration) return false;
         if (startTime != null ? !startTime.equals(booking.startTime) : booking.startTime != null) return false;
         if (endTime != null ? !endTime.equals(booking.endTime) : booking.endTime != null) return false;
-        return !(description != null ? !description.equals(booking.description) : booking.description != null);
+        if (description != null ? !description.equals(booking.description) : booking.description != null) return false;
+        return !(projectIdentifier != null ? !projectIdentifier.equals(booking.projectIdentifier) : booking.projectIdentifier != null);
 
     }
 
     @Override
     public int hashCode() {
+
         return super.hashCode();
+
     }
 
     @Override
     public String toString() {
+
         return "Booking{" +
-                "id='" + this.getId() + '\'' +
-                ", startTime=" + startTime +
+                "startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", breakDuration=" + breakDuration +
-                ", description=" + description +
+                ", description='" + description + '\'' +
+                ", projectIdentifier='" + projectIdentifier + '\'' +
                 '}';
+
     }
 
 }
