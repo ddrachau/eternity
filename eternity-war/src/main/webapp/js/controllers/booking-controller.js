@@ -2,6 +2,12 @@ angular.module('Eternity').controller('BookingCtrl', function ($scope, BookingSe
 
     $scope.bookings = bookings;
     $scope.projects = projects;
+    $scope.breakDuration = 0;
+    $scope.description = '';
+
+    if(projects && projects.length > 0) {
+        $scope.selectedProject = projects[0].identifier;
+    }
 
     var startTime = new Date();
     startTime.setHours(9);
@@ -23,9 +29,6 @@ angular.module('Eternity').controller('BookingCtrl', function ($scope, BookingSe
     $scope.hstep = 1;
     $scope.mstep = 5;
 
-
-    $scope.changed = function () {
-    };
 
     $scope.open = function ($event) {
         $event.preventDefault();
@@ -55,9 +58,9 @@ angular.module('Eternity').controller('BookingCtrl', function ($scope, BookingSe
         var booking = {
             startTime: sTime.getTime(),
             endTime: eTime.getTime(),
-            breakDuration: 0,
-            description: 'mapping pending',
-            projectIdentifier: 'P00001'
+            breakDuration: this.breakDuration,
+            description: this.description,
+            projectIdentifier: this.selectedProject
         };
 
         console.log(booking);
