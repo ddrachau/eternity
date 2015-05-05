@@ -22,6 +22,7 @@ angular.module('Eternity').config(function ($routeProvider) {
         .when('/bookings', {
             templateUrl: 'templates/list-bookings.html',
             controller: 'BookingCtrl',
+            controllerAs: 'bCtrl',
             resolve: {
                 bookings: function (UserService) {
                     return UserService.getBookingsForCurrentUser();

@@ -95,7 +95,7 @@
                     <th>Projekt</th>
                 </tr>
 
-                <tr ng-repeat="booking in bookings track by $index">
+                <tr ng-repeat="booking in bctrl.bookings track by $index">
                     <td>{{ booking.startTime | date:'dd.MM.yyyy' }}</td>
                     <td>{{booking.startTime  | date:'HH:mm' }}</td>
                     <td>{{booking.endTime | date:'HH:mm' }}</td>

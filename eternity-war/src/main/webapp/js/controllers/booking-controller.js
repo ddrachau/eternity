@@ -1,7 +1,7 @@
 angular.module('Eternity').controller('BookingCtrl', function ($scope, BookingService, bookings, projects) {
 
-    $scope.bookings = bookings;
-    $scope.projects = projects;
+    this.bookings = bookings;
+    this.projects = projects;
     $scope.breakDuration = 0;
     $scope.description = '';
 
