@@ -15,7 +15,8 @@ angular.module('Eternity').controller('LoginCtrl', function ($scope, $rootScope,
             $rootScope.user = success;
 
             if ($rootScope.nextRoute && $rootScope.nextRoute.indexOf('#') > 0
-                && $rootScope.nextRoute.indexOf('logout') < 0) {
+                && $rootScope.nextRoute.indexOf('logout') < 0
+                && $rootScope.nextRoute.indexOf('login') < 0) {
 
                 $location.path($rootScope.nextRoute.substr($rootScope.nextRoute.indexOf('#') + 1));
 
