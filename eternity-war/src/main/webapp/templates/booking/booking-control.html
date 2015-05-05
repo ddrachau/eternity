@@ -1,0 +1,80 @@
+<div class="well">
+
+    <div class="alert alert-danger margin-top" ng-show="bcCtrl.bookingError">
+        <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> <strong>{{bcCtrl.error}}</strong>
+    </div>
+
+    <form class="form-horizontal" ng-submit="bcCtrl.createBooking()">
+
+        <div class="form-group">
+
+            <label class="col-sm-2 control-label">Projekt</label>
+
+            <div class="col-sm-10">
+                <select ng-model="selectedProject" class="form-control" required
+                        ng-options="project.identifier as project.identifier + ' - ' + project.description for project in bcCtrl.projects">
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <label class="col-sm-2 control-label">Datum</label>
+
+            <div class="col-sm-10">
+                <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="{{dateFormat}}"
+                           ng-model="bookingDate" is-open="opened" datepicker-options="dateOptions"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                          </span>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="form-group vcenter">
+
+            <label class="col-sm-2 control-label" style="padding-top: 0px;">Zeitraum</label>
+
+            <div class="col-sm-10 vcenter">
+
+                <label class="mylabel">Start </label>
+
+                <timepicker style="float: left" ng-model="startTime" hour-step="hstep" minute-step="mstep"
+                            show-meridian="false"></timepicker>
+
+                <label class="mylabel">Ende </label>
+
+                <timepicker style="float: left" ng-model="endTime" hour-step="hstep" minute-step="mstep"
+                            show-meridian="false"></timepicker>
+
+                <label class="mylabel">Pause </label>
+
+                <input style="float: left" ng-model="breakDuration" type="number" min="0" max="360" step="5"
+                       class="form-control durationSelect"
+                       placeholder="0">
+
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label class="col-sm-2 control-label">Beschreibung</label>
+
+            <div class="col-sm-10">
+                <input class="form-control" ng-model="description" type="text" maxlength="30"
+                       placeholder="Beschreibung">
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Speichern</button>
+
+    </form>
+
+</div>
