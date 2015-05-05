@@ -4,15 +4,19 @@
 
     <div class="well col-md-3">
 
-        <form class="form-horizontal" ng-submit="createBooking()">
+        <div class="alert alert-danger margin-top" ng-show="bookingError">
+            <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> <strong>{{error}}</strong>
+        </div>
+
+        <form class="form-horizontal" ng-submit="bCtrl.createBooking()">
 
             <div class="form-group">
 
                 <label class="col-sm-2 control-label">Projekt</label>
 
                 <div class="col-sm-10">
-                    <select ng-model="selectedProject" class="form-control" required
-                            ng-options="project.identifier as project.identifier + ' - ' + project.description for project in projects">
+                    <select ng-model="bCtrl.selectedProject" class="form-control" required
+                            ng-options="identifier as project.identifier + ' - ' + project.description for project in bCtrl.projects">
                     </select>
                 </div>
 
@@ -56,7 +60,7 @@
 
                     <label class="mylabel">Pause </label>
 
-                    <input style="float: left" ng-model="breakDuration" type="number" min="0" max="360" step="5"
+                    <input style="float: left" ng-model="bCtrl.breakDuration" type="number" min="0" max="360" step="5"
                            class="form-control durationSelect"
                            placeholder="0">
 
@@ -68,7 +72,7 @@
                 <label class="col-sm-2 control-label">Beschreibung</label>
 
                 <div class="col-sm-10">
-                    <input class="form-control" ng-model="description" type="text" maxlength="30"
+                    <input class="form-control" ng-model="bCtrl.description" type="text" maxlength="30"
                            placeholder="Beschreibung">
                 </div>
 
@@ -95,7 +99,7 @@
                     <th>Projekt</th>
                 </tr>
 
-                <tr ng-repeat="booking in bctrl.bookings track by $index">
+                <tr ng-repeat="booking in bCtrl.bookings track by $index">
                     <td>{{ booking.startTime | date:'dd.MM.yyyy' }}</td>
                     <td>{{booking.startTime  | date:'HH:mm' }}</td>
                     <td>{{booking.endTime | date:'HH:mm' }}</td>

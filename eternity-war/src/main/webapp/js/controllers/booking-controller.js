@@ -1,13 +1,15 @@
-angular.module('Eternity').controller('BookingCtrl', function ($scope, BookingService, bookings, projects) {
+angular.module('Eternity').controller('BookingCtrl', function ($scope, BookingService, UserService, bookings, projects) {
 
-    this.bookings = bookings;
-    this.projects = projects;
-    $scope.breakDuration = 0;
-    $scope.description = '';
+    var ctrl = this;
 
-    if(projects && projects.length > 0) {
-        $scope.selectedProject = projects[0].identifier;
-    }
+    ctrl.bookings = bookings;
+    ctrl.projects = projects;
+    ctrl.breakDuration = 0;
+    ctrl.description = '';
+
+    //if (projects.length > 0) {
+    //    ctrl.selectedProject = projects[0].identifier;
+    //}
 
     var startTime = new Date();
     startTime.setHours(9);
@@ -29,7 +31,6 @@ angular.module('Eternity').controller('BookingCtrl', function ($scope, BookingSe
     $scope.hstep = 1;
     $scope.mstep = 5;
 
-
     $scope.open = function ($event) {
         $event.preventDefault();
         $event.stopPropagation();
@@ -37,23 +38,21 @@ angular.module('Eternity').controller('BookingCtrl', function ($scope, BookingSe
         $scope.opened = true;
     };
 
-    $scope.createBooking = function () {
+    ctrl.createBooking = function () {
 
         var sTime = new Date(0);
-        sTime.setUTCFullYear(this.bookingDate.getUTCFullYear());
-        sTime.setUTCMonth(this.bookingDate.getUTCMonth());
-        sTime.setUTCDate(this.bookingDate.getUTCDate());
-        sTime.setUTCHours(this.startTime.getUTCHours());
-        sTime.setUTCMinutes(this.startTime.getUTCMinutes());
-
-        console.log(sTime);
+        sTime.setUTCFullYear($scope.bookingDate.getUTCFullYear());
+        sTime.setUTCMonth($scope.bookingDate.getUTCMonth());
+        sTime.setUTCDate($scope.bookingDate.getUTCDate());
+        sTime.setUTCHours($scope.startTime.getUTCHours());
+        sTime.setUTCMinutes($scope.startTime.getUTCMinutes());
 
         var eTime = new Date(0);
-        eTime.setUTCFullYear(this.bookingDate.getUTCFullYear());
-        eTime.setUTCMonth(this.bookingDate.getUTCMonth());
-        eTime.setUTCDate(this.bookingDate.getUTCDate());
-        eTime.setUTCHours(this.endTime.getUTCHours());
-        eTime.setUTCMinutes(this.endTime.getUTCMinutes());
+        eTime.setUTCFullYear($scope.bookingDate.getUTCFullYear());
+        eTime.setUTCMonth($scope.bookingDate.getUTCMonth());
+        eTime.setUTCDate($scope.bookingDate.getUTCDate());
+        eTime.setUTCHours($scope.endTime.getUTCHours());
+        eTime.setUTCMinutes($scope.endTime.getUTCMinutes());
 
         var booking = {
             startTime: sTime.getTime(),
@@ -65,8 +64,22 @@ angular.module('Eternity').controller('BookingCtrl', function ($scope, BookingSe
 
         console.log(booking);
 
-        BookingService.save(booking);
+        BookingService.save(booking, function (success) {
 
-    }
+            $scope.bookingError = false;
+            $scope.projects = UserService.getProjectsForCurrentUser();
+
+            return success;
+
+        }, function (error, $q) {
+
+            $scope.bookingError = true;
+            $scope.error = error.statusText;
+
+            return $q.reject(error);
+
+        });
+
+    };
 
 });
