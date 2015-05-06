@@ -1,5 +1,6 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
+import com.prodyna.pac.eternity.server.event.BookingEvent;
 import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
@@ -15,6 +16,7 @@ import com.prodyna.pac.eternity.server.service.project.ProjectService;
 import com.prodyna.pac.eternity.server.service.user.UserService;
 
 import javax.ejb.Stateless;
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -37,6 +39,9 @@ public class BookingServiceImpl implements BookingService {
      * Default return properties, to make object creation easier.
      */
     private static final String BOOKING_RETURN_PROPERTIES = "b.id, b.startTime, b.endTime, b.breakDuration, b.description, p.identifier";
+
+    @Inject
+    private Event<BookingEvent> events;
 
     @Inject
     private CypherService cypherService;
@@ -76,6 +81,8 @@ public class BookingServiceImpl implements BookingService {
         if (queryResult == null) {
             throw new NotCreatedRuntimeException(booking.toString());
         }
+
+        events.fire(new BookingEvent());
 
         return booking;
 
