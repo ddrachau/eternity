@@ -4,7 +4,7 @@
     <root id="root">
       <element id="javaee-facet-resources" facet="eternity-ear/javaeeApplication/JavaEE" />
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/eternity-ear/target/eternity.ear/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/eternity-ear/target/MANIFEST.MF" />
       </element>
       <element id="archive" name="eternity-war.war">
         <element id="artifact" artifact-name="eternity-war:war exploded" />

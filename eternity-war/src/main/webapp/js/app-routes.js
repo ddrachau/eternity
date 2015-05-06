@@ -6,7 +6,7 @@ angular.module('Eternity').config(function ($routeProvider) {
             controller: 'UserCtrl',
             resolve: {
                 data: function (UserService) {
-                    return UserService.find();
+                    return UserService.find().$promise;
                 }
             }
         })
@@ -15,7 +15,7 @@ angular.module('Eternity').config(function ($routeProvider) {
             controller: 'ProjectCtrl',
             resolve: {
                 data: function (ProjectService) {
-                    return ProjectService.find();
+                    return ProjectService.find().$promise;
                 }
             }
         })
@@ -25,10 +25,10 @@ angular.module('Eternity').config(function ($routeProvider) {
             controllerAs: 'bCtrl',
             resolve: {
                 bookings: function (UserService) {
-                    return UserService.getBookingsForCurrentUser();
+                    return UserService.getBookingsForCurrentUser().$promise;
                 },
                 projects: function (UserService) {
-                    return UserService.getProjectsForCurrentUser();
+                    return UserService.getProjectsForCurrentUser().$promise;
                 }
             }
         })
@@ -48,7 +48,7 @@ angular.module('Eternity').config(function ($routeProvider) {
             templateUrl: 'templates/authentication/forbidden.html'
         })
         .otherwise({
-            redirectTo: '/users'
+            redirectTo: '/bookings'
         });
 
 });

@@ -1,11 +1,9 @@
 angular.module('Eternity').controller('BookingControlCtrl', function ($scope, BookingService, UserService) {
 
-    var ctrl = this;
-
-    ctrl.projects = $scope.projects;
     $scope.breakDuration = 0;
     $scope.description = '';
-    $scope.selectedProject = '';
+    $scope.selectedProject = $scope.projects && $scope.projects.length > 0 ? $scope.projects[0].identifier : undefined;
+    $scope.bookingSuccess = false;
 
     var startTime = new Date();
     startTime.setHours(9);
@@ -34,7 +32,15 @@ angular.module('Eternity').controller('BookingControlCtrl', function ($scope, Bo
         $scope.opened = true;
     };
 
-    ctrl.createBooking = function () {
+    $scope.createBooking = function () {
+
+        if (!$scope.bookingForm.$valid) {
+            console.log("invalid")
+
+            $scope.validationFailed = true;
+        } else {
+            $scope.validationFailed = false;
+        }
 
         var sTime = new Date(0);
         sTime.setUTCFullYear($scope.bookingDate.getUTCFullYear());
@@ -62,13 +68,15 @@ angular.module('Eternity').controller('BookingControlCtrl', function ($scope, Bo
 
         BookingService.save(booking, function (success) {
 
-            ctrl.bookingError = false;
-            ctrl.projects = UserService.getProjectsForCurrentUser();
+            $scope.bookingSuccess = true;
+            $scope.bookingError = false;
+            $scope.projects = UserService.getProjectsForCurrentUser();
 
         }, function (error) {
 
-            ctrl.bookingError = true;
-            ctrl.error = error.statusText;
+            $scope.bookingSuccess = false;
+            $scope.bookingError = true;
+            $scope.error = error.statusText;
 
         });
 

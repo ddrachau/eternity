@@ -2,36 +2,8 @@
 
 <div class="row">
 
-    <booking-control projects="bCtrl.projects"></booking-control>
+    <booking-control class="col-md-7" projects="bCtrl.projects"></booking-control>
 
-    <div class="well col-md-7 col-md-offset-1">
-
-        <div class="table-responsive">
-
-            <table class="table table-striped table-hover">
-
-                <tr>
-                    <th>Datum</th>
-                    <th>Beginn</th>
-                    <th>Ende</th>
-                    <th>Pause</th>
-                    <th>Beschreibung</th>
-                    <th>Projekt</th>
-                </tr>
-
-                <tr ng-repeat="booking in bCtrl.bookings track by $index">
-                    <td>{{booking.startTime | date:'dd.MM.yyyy'}}</td>
-                    <td>{{booking.startTime  | date:'HH:mm'}}</td>
-                    <td>{{booking.endTime | date:'HH:mm'}}</td>
-                    <td>{{booking.breakDuration}}</td>
-                    <td>{{booking.description}}</td>
-                    <td>{{booking.projectIdentifier}}</td>
-                </tr>
-
-            </table>
-
-        </div>
-
-    </div>
+    <booking-listing class="col-md-5" bookings="bCtrl.bookings"></booking-listing>
 
 </div>
