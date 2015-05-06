@@ -45,17 +45,22 @@ public class BookingClientServiceImpl implements BookingClientService {
         User u = userService.getBySessionId(xsrfToken);
         Project p = projectService.get(booking.getProjectIdentifier());
 
+        Response.ResponseBuilder responseBuilder = Response.ok();
+
         try {
             bookingService.create(booking, u, p);
         } catch (DuplicateTimeBookingException e) {
-            e.printStackTrace();
+            responseBuilder = Response.status(Response.Status.EXPECTATION_FAILED)
+                    .entity("{\"error\":\"" + "Überschneidende Buchung" + "\"}");
         } catch (UserNotAssignedToProjectException e) {
-            e.printStackTrace();
+            responseBuilder = Response.status(Response.Status.PRECONDITION_FAILED)
+                    .entity("{\"error\":\"" + "Benutzer ist dem Projekt nicht zugeordnet" + "\"}");
         } catch (InvalidBookingException e) {
-            e.printStackTrace();
+            responseBuilder = Response.status(Response.Status.EXPECTATION_FAILED)
+                    .entity("{\"error\":\"" + "Ungültige Buchung: (" + e.getMessage() + ")\"}");
         }
 
-        return Response.ok().build();
+        return responseBuilder.build();
 
     }
 

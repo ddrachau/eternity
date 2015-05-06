@@ -76,7 +76,12 @@ angular.module('Eternity').controller('BookingControlCtrl', function ($scope, Bo
 
             $scope.bookingSuccess = false;
             $scope.bookingError = true;
-            $scope.error = error.statusText;
+
+            if(error.status === 417 || error.status === 412) {
+                $scope.error = error.data.error;
+            } else {
+                $scope.error = error.statusText;
+            }
 
         });
 
