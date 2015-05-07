@@ -2,12 +2,16 @@
 
     'use strict';
 
-    angular.module('Eternity').factory('ServerPushService', function ($rootScope, $websocket) {
+    angular.module('Eternity').factory('ServerPushService', function ($rootScope, $location, $websocket) {
 
         var service = this;
         service.events = {};
 
-        $rootScope.ws = $websocket.$new('ws://localhost:8080/eternity-war/push');
+        var appPath = window.location.pathname.split('/')[1];
+        var wsProtocol = $location.protocol() === 'http' ? 'ws' : 'wss';
+        var wsUrl = wsProtocol + '://' + window.location.hostname + ':' + $location.port() + '/' + appPath + '/push';
+
+        $rootScope.ws = $websocket.$new(wsUrl);
 
         $rootScope.ws.$on('$open', function () {
 
@@ -28,13 +32,10 @@
                 var handlers = service.events[data.event];
 
                 if (handlers) {
-
                     for (var h = 0; h < handlers.length; h++) {
                         handlers[h].handler(data);
                     }
-
                 }
-
             }
 
         });
