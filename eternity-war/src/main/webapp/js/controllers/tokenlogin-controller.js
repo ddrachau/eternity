@@ -1,9 +1,10 @@
-angular.module('Eternity').controller('TokenLoginCtrl', function ($scope, $rootScope, $location, SessionService) {
+angular.module('Eternity').controller('TokenLoginCtrl', function ($scope, $rootScope, $location, ServerPushService, SessionService) {
 
     (function () {
 
         SessionService.loginWithToken(function (success) {
 
+            ServerPushService.open();
             // essential since the cookie is not yet available for checking
             $rootScope.loggedIn = true;
             $rootScope.user = success;

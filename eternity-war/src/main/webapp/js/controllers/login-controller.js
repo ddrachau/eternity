@@ -1,4 +1,4 @@
-angular.module('Eternity').controller('LoginCtrl', function ($scope, $rootScope, $location, SessionService) {
+angular.module('Eternity').controller('LoginCtrl', function ($scope, $rootScope, $location, ServerPushService, SessionService) {
 
     $scope.login = {
         username: 'admin',
@@ -10,6 +10,7 @@ angular.module('Eternity').controller('LoginCtrl', function ($scope, $rootScope,
 
         $scope.user = SessionService.login($scope.login, function (success) {
 
+            ServerPushService.open();
             // essential since the cookie is not yet available for checking
             $rootScope.loggedIn = true;
             $rootScope.user = success;

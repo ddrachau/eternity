@@ -14,23 +14,23 @@
         $rootScope.ws = ws;
 
         ws.$on('$open', function () {
-            console.log('Open new server push connection');
+            console.info('Open new server push connection');
         });
 
         ws.$on('$close', function () {
-            console.log('Server push connection lost');
+            console.info('Server push connection lost');
         });
 
         ws.$on('$message', function (data) {
 
             if (data.event && data.event.length > 0) {
 
-                console.log("Message received: event ('" + data.event + "')");
+                console.info("Message received: event ('" + data.event + "')");
                 var handlers = service.events[data.event];
 
                 if (handlers) {
                     for (var h = 0; h < handlers.length; h++) {
-                        console.log("Message dispatch to scope with id: " + handlers[h].scopeId);
+                        console.info("Message dispatch to scope with id: " + handlers[h].scopeId);
                         handlers[h].handler(data);
                     }
                 }
@@ -49,7 +49,7 @@
                 }
             }
 
-        }
+        };
 
         var register = function (event, $scope, handler) {
 
@@ -70,10 +70,20 @@
 
             });
 
-        }
+        };
+
+        var openConnection = function () {
+            ws.$open();
+        };
+
+        var closeConnection = function () {
+            ws.$close();
+        };
 
         return {
-            on: register
+            on: register,
+            open: openConnection,
+            close: closeConnection
         }
 
     });

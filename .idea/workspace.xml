@@ -215,48 +215,7 @@
     <favorites_list name="eternity-server" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="serverpush-service.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/services/serverpush-service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.046421662">
-              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="booking-controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/booking-controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="project-controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/project-controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user-controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/user-controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -279,8 +238,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/helper/AbstractArquillianTest.java" />
-        <option value="$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/client/service/AuthenticationClientServiceRESTTest.java" />
         <option value="$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/client/proxy/AuthenticationClientServiceProxy.java" />
         <option value="$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/model/authentication/Login.java" />
         <option value="$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/helper/AbstractArquillianTest.java" />
@@ -310,7 +267,6 @@
         <option value="$PROJECT_DIR$/eternity-build-tools/pom.xml" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/list-projects.html" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/services/booking-service.js" />
-        <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/login-controller.js" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/directives/booking/booking-control.js" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/app-routes.js" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/css/application.css" />
@@ -323,13 +279,16 @@
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/booking/booking-control.js" />
         <option value="$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/push/ChatServer.java" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/index.html" />
-        <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/app.js" />
         <option value="$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/push/PushServer.java" />
         <option value="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/impl/BookingServiceImpl.java" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/user-controller.js" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/project-controller.js" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/booking-controller.js" />
+        <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/logout-controller.js" />
+        <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/app.js" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/services/serverpush-service.js" />
+        <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/login-controller.js" />
+        <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/tokenlogin-controller.js" />
       </list>
     </option>
   </component>
@@ -2756,12 +2715,12 @@
       <workItem from="1430931097990" duration="11536000" />
       <workItem from="1430978233137" duration="35000" />
       <workItem from="1430978518466" duration="524000" />
-      <workItem from="1430983387551" duration="4311000" />
+      <workItem from="1430983387551" duration="6824000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="518627000" />
+    <option name="totallyTimeSpent" value="521140000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2774,11 +2733,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="932" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32744282" sideWeight="0.49758163" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32395834" sideWeight="0.51544404" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3196005" sideWeight="0.5177262" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.493565" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16687042" sideWeight="0.49453977" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299458" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2794,7 +2753,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3196005" sideWeight="0.484556" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3196005" sideWeight="0.48227385" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32848233" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2864,28 +2823,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/eternity-test/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-war/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-ear/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eternity-ejb/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.085072234">
@@ -3124,13 +3061,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/login-controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="99" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/push/ChatServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3149,20 +3079,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.791667">
           <caret line="59" column="50" selection-start-line="59" selection-start-column="50" selection-end-line="59" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="86" selection-start-line="47" selection-start-column="86" selection-end-line="47" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/app-routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="66" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="66" />
         </state>
       </provider>
     </entry>
@@ -3196,7 +3112,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/user-controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.2959381">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
@@ -3204,7 +3120,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/project-controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.2959381">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
@@ -3212,16 +3128,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/booking-controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.5918762">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/services/session-service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6711799">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/logout-controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16441005">
+          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/services/serverpush-service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.046421662">
-          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="80" column="10" selection-start-line="80" selection-start-column="10" selection-end-line="80" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/app-routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5918762">
+          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/tokenlogin-controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2630561">
+          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/login-controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.39458415">
+          <caret line="0" column="109" selection-start-line="0" selection-start-column="92" selection-end-line="0" selection-end-column="109" />
           <folding />
         </state>
       </provider>
