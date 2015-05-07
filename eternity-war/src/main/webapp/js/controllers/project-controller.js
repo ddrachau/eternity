@@ -2,15 +2,9 @@ angular.module('Eternity').controller('ProjectCtrl', function ($scope, $rootScop
 
     $scope.projects = data;
 
-    ServerPushService.on('project', 'ProjectCtrl', function (data) {
+    ServerPushService.on('project', $scope, function (data) {
 
         console.log('Received "project" event: ' + data);
-
-    });
-
-    $scope.$on("$destroy", function () {
-
-        ServerPushService.un('ProjectCtrl');
 
     });
 

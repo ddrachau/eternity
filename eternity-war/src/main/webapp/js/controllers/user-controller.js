@@ -2,15 +2,9 @@ angular.module('Eternity').controller('UserCtrl', function ($scope, $rootScope, 
 
     $scope.users = data;
 
-    ServerPushService.on('user', 'UserCtrl', function (data) {
+    ServerPushService.on('user', $scope, function (data) {
 
         console.log('Received "user" event: ' + data);
-
-    });
-
-    $scope.$on("$destroy", function () {
-
-        ServerPushService.un('UserCtrl');
 
     });
 
