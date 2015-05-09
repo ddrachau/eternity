@@ -11,6 +11,7 @@
                 <th>Pause</th>
                 <th>Beschreibung</th>
                 <th>Projekt</th>
+                <th></th>
             </tr>
 
             <tr ng-repeat="booking in bookings track by $index">
@@ -20,6 +21,15 @@
                 <td>{{booking.breakDuration}}</td>
                 <td>{{booking.description}}</td>
                 <td>{{booking.projectIdentifier}}</td>
+                <td>
+                    <a ng-click="editBooking(booking)">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </a>
+                    <a ng-click="removeBooking(booking)"
+                       ng-confirm-click="Soll die Buchung ({{booking.startTime | date:'dd.MM.yyyy'}}: {{booking.startTime  | date:'HH:mm'}}-{{booking.endTime | date:'HH:mm'}}) wirklich gelöscht werden?">
+                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                    </a>
+                </td>
             </tr>
 
         </table>

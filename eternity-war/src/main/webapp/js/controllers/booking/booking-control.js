@@ -24,6 +24,20 @@ angular.module('Eternity').controller('BookingControlCtrl', function ($scope, Bo
     $scope.dateFormat = 'dd.MM.yyyy';
     $scope.hstep = 1;
     $scope.mstep = 5;
+    $scope.alerts = [];
+
+    $scope.addAlert = function (type, msg) {
+        $scope.clearAlerts();
+        $scope.alerts.push({type: type, msg: msg});
+    };
+
+    $scope.clearAlerts = function () {
+        $scope.alerts.length = 0;
+    };
+
+    $scope.closeAlert = function (index) {
+        $scope.alerts.splice(index, 1);
+    };
 
     $scope.open = function ($event) {
         $event.preventDefault();
@@ -35,8 +49,6 @@ angular.module('Eternity').controller('BookingControlCtrl', function ($scope, Bo
     $scope.createBooking = function () {
 
         if (!$scope.bookingForm.$valid) {
-            console.log("invalid")
-
             $scope.validationFailed = true;
         } else {
             $scope.validationFailed = false;
@@ -68,19 +80,15 @@ angular.module('Eternity').controller('BookingControlCtrl', function ($scope, Bo
 
         BookingService.save(booking, function (success) {
 
-            $scope.bookingSuccess = true;
-            $scope.bookingError = false;
+            $scope.addAlert('success', 'Buchung erfolgreich angelegt');
             $scope.projects = UserService.getProjectsForCurrentUser();
 
         }, function (error) {
 
-            $scope.bookingSuccess = false;
-            $scope.bookingError = true;
-
-            if(error.status === 417 || error.status === 412) {
-                $scope.error = error.data.error;
+            if (error.status === 417 || error.status === 412) {
+                $scope.addAlert('danger', error.data.error);
             } else {
-                $scope.error = error.statusText;
+                $scope.addAlert('danger', error.statusText);
             }
 
         });

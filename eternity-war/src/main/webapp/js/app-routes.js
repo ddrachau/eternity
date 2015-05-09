@@ -2,7 +2,7 @@ angular.module('Eternity').config(function ($routeProvider) {
 
     $routeProvider
         .when('/users', {
-            templateUrl: 'templates/list-users.html',
+            templateUrl: 'templates/users.html',
             controller: 'UserCtrl',
             resolve: {
                 data: function (UserService) {
@@ -11,7 +11,7 @@ angular.module('Eternity').config(function ($routeProvider) {
             }
         })
         .when('/projects', {
-            templateUrl: 'templates/list-projects.html',
+            templateUrl: 'templates/projects.html',
             controller: 'ProjectCtrl',
             resolve: {
                 data: function (ProjectService) {
@@ -20,7 +20,7 @@ angular.module('Eternity').config(function ($routeProvider) {
             }
         })
         .when('/bookings', {
-            templateUrl: 'templates/list-bookings.html',
+            templateUrl: 'templates/bookings.html',
             controller: 'BookingCtrl',
             controllerAs: 'bCtrl',
             resolve: {
