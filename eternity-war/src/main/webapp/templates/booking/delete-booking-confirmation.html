@@ -1,0 +1,27 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close(false)" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Sol die Buchung wirklich gelöscht werden?</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Projekt: <strong>{{booking.projectIdentifier}}</strong>
+                    Datum: <strong>{{booking.startTime | date:'dd.MM.yyyy'}}</strong>
+                    Start: <strong>{{booking.startTime  | date:'HH:mm'}}</strong>
+                    Ende: <strong>{{booking.endTime | date:'HH:mm'}}</strong>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="close(false)" class="btn btn-default" data-dismiss="modal">
+                    Abbrechen
+                </button>
+                <button type="button" ng-click="close(true)" class="btn btn-primary" data-dismiss="modal">
+                    Bestätigen
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

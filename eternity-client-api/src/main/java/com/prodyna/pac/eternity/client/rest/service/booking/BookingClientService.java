@@ -11,4 +11,8 @@ public interface BookingClientService {
 
     Response createBooking(String xsrfToken, Booking booking);
 
+    Response updateBooking(String xsrfToken, Booking booking);
+
+    Response deleteBooking(String xsrfToken, String id);
+
 }

@@ -3,7 +3,8 @@ angular.module('Eternity').directive('bookingListing', function () {
     return {
         restrict: 'E',
         scope: {
-            bookings: "="
+            bookings: "=",
+            projects: "="
         },
         controller: 'BookingListingCtrl',
         controllerAs: 'blCtrl',

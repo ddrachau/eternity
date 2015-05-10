@@ -92,17 +92,17 @@ public class PushServer {
         // take the user role in consideration, users do not need every update
         // for now, send every message to every client
 
-        String message = "{\"event\":\"pong\",\"data\":\"hi listening websocket server\"}";
-        String message2 = "{\"event\":\"project\",\"data\":\"hi listening websocket server\"}";
-
-        for (Session session : sessions) {
-            logger.info("Session ID : " + session.getId() + " - Send message");
-            logger.info(message);
-            session.getBasicRemote().sendText(message);
-            logger.info("Session ID : " + session.getId() + " - Send message");
-            logger.info(message2);
-            session.getBasicRemote().sendText(message2);
-        }
+//        String message = "{\"event\":\"pong\",\"data\":\"hi listening websocket server\"}";
+//        String message2 = "{\"event\":\"project\",\"data\":\"hi listening websocket server\"}";
+//
+//        for (Session session : sessions) {
+//            logger.info("Session ID : " + session.getId() + " - Send message");
+//            logger.info(message);
+//            session.getBasicRemote().sendText(message);
+//            logger.info("Session ID : " + session.getId() + " - Send message");
+//            logger.info(message2);
+//            session.getBasicRemote().sendText(message2);
+//        }
 
     }
 

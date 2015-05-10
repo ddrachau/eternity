@@ -81,7 +81,6 @@ angular.module('Eternity').controller('BookingControlCtrl', function ($scope, Bo
         BookingService.save(booking, function (success) {
 
             $scope.addAlert('success', 'Buchung erfolgreich angelegt');
-            $scope.projects = UserService.getProjectsForCurrentUser();
 
         }, function (error) {
 

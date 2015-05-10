@@ -197,6 +197,8 @@ public class BookingServiceImpl implements BookingService {
                         "DELETE r1,b,r2",
                 map(1, id));
 
+        events.fire(new BookingEvent());
+
     }
 
     /**

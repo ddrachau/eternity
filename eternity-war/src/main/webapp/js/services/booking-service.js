@@ -4,12 +4,12 @@
 
     angular.module('Eternity').factory('BookingService', function ($resource) {
 
-        return $resource('rest/bookings/');
-        //, [],
-        //    {
-        //        find: {method: 'GET', isArray: true},
-        //        getBookingsForCurrentUser: {method: 'GET', url: 'rest/users/bookings', isArray: true}
-        //    });
+        return $resource('rest/bookings/' , [],
+            {
+                delete: {method: 'DELETE', url: 'rest/bookings/:id'},
+                update: {method: 'PUT', url: 'rest/bookings/:id'}
+                //getBookingsForCurrentUser: {method: 'GET', url: 'rest/users/bookings', isArray: true}
+            });
 
     });
 
