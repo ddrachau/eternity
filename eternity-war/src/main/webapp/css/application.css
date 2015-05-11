@@ -21,3 +21,15 @@
     background-color: #8AAA24;
     color: whitesmoke;
 }
+
+.st-sort-ascent:after {
+    font-family: "Glyphicons Halflings";
+    font-size: 14px;
+    content: "\00a0\e113";
+}
+
+.st-sort-descent:after {
+    font-family: "Glyphicons Halflings";
+    font-size: 14px;
+    content: "\00a0\e114";
+}

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d657f7b-8d97-4b3a-bd42-2472c9edf69f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-war/src/main/webapp/css/application.css" afterPath="$PROJECT_DIR$/eternity-war/src/main/webapp/css/application.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/booking/booking-listing.html" afterPath="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/booking/booking-listing.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="eternity-server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,11 +67,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="booking-listing.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="booking-listing.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/booking/booking-listing.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38251367">
-              <caret line="25" column="70" selection-start-line="25" selection-start-column="70" selection-end-line="25" selection-end-column="70" />
+            <state vertical-scroll-proportion="-12.5">
+              <caret line="31" column="59" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/css/application.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.8376963">
+              <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -142,7 +152,6 @@
         <option value="$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/server/service/BookingServiceTest.java" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/booking/delete-booking-confirmation.js" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/booking/create-update-booking.js" />
-        <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/css/application.css" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/booking/create-update-booking.html" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/bookings.html" />
         <option value="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/impl/BookingServiceImpl.java" />
@@ -151,6 +160,7 @@
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/app.js" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/index.html" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/booking/booking-listing.html" />
+        <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/css/application.css" />
       </list>
     </option>
   </component>
@@ -610,6 +620,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity-war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1831,12 +1871,12 @@
       <workItem from="1430983387551" duration="6824000" />
       <workItem from="1431199168440" duration="26265000" />
       <workItem from="1431325303231" duration="8914000" />
-      <workItem from="1431366106143" duration="760000" />
+      <workItem from="1431366106143" duration="2365000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="557079000" />
+    <option name="totallyTimeSpent" value="558684000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2214,13 +2254,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/css/application.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/booking/create-update-booking.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.65384614">
@@ -2301,8 +2334,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/booking/booking-listing.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38251367">
-          <caret line="25" column="70" selection-start-line="25" selection-start-column="70" selection-end-line="25" selection-end-column="70" />
+        <state vertical-scroll-proportion="-12.5">
+          <caret line="31" column="59" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/css/application.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8376963">
+          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
           <folding />
         </state>
       </provider>
