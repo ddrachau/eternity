@@ -19,11 +19,7 @@ import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import static com.prodyna.pac.eternity.components.common.DateUtils.getCalendar;
 import static com.prodyna.pac.eternity.components.common.QueryUtils.map;
@@ -38,7 +34,8 @@ public class BookingServiceImpl implements BookingService {
     /**
      * Default return properties, to make object creation easier.
      */
-    private static final String BOOKING_RETURN_PROPERTIES = "b.id, b.startTime, b.endTime, b.breakDuration, b.description, p.identifier";
+    private static final String BOOKING_RETURN_PROPERTIES =
+            "b.id, b.startTime, b.endTime, b.breakDuration, b.description, p.identifier";
 
     @Inject
     private Event<BookingEvent> events;
@@ -53,7 +50,7 @@ public class BookingServiceImpl implements BookingService {
     private ProjectService projectService;
 
     @Override
-    public Booking create(@NotNull Booking booking, @NotNull User user, @NotNull Project project)
+    public Booking create(@NotNull final Booking booking, @NotNull final User user, @NotNull final Project project)
             throws DuplicateTimeBookingException, UserNotAssignedToProjectException, InvalidBookingException {
 
         this.checkIfBookingIsValid(booking);
@@ -66,9 +63,9 @@ public class BookingServiceImpl implements BookingService {
             throw new UserNotAssignedToProjectException(user.toString());
         }
 
-        this.checkForOverlapping(booking, user, project);
-
         booking.setId(UUID.randomUUID().toString());
+
+        this.checkForOverlapping(booking, user, project);
 
         final Map<String, Object> queryResult = cypherService.querySingle(
                 "MATCH (u:User {id:{1}}), (p:Project {id:{2}}) " +
@@ -89,7 +86,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Booking get(String id) {
+    public Booking get(final String id) {
 
         Booking result = null;
 
@@ -106,7 +103,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<Booking> findByUser(@NotNull User user) {
+    public List<Booking> findByUser(@NotNull final User user) {
 
         List<Booking> result = new ArrayList<>();
 
@@ -124,7 +121,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<Booking> findByProject(@NotNull Project project) {
+    public List<Booking> findByProject(@NotNull final Project project) {
 
         List<Booking> result = new ArrayList<>();
 
@@ -142,7 +139,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<Booking> findByUserAndProject(@NotNull User user, @NotNull Project project) {
+    public List<Booking> findByUserAndProject(@NotNull final User user, @NotNull final Project project) {
 
         List<Booking> result = new ArrayList<>();
 
@@ -160,7 +157,8 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Booking update(@NotNull Booking booking) throws DuplicateTimeBookingException, InvalidBookingException {
+    public Booking update(@NotNull final Booking booking)
+            throws DuplicateTimeBookingException, InvalidBookingException {
 
         this.checkIfBookingIsValid(booking);
 
@@ -180,13 +178,16 @@ public class BookingServiceImpl implements BookingService {
         if (queryResult == null) {
             throw new NoSuchElementRuntimeException();
         } else {
+
+            events.fire(new BookingEvent());
+
             return this.getBooking(queryResult);
         }
 
     }
 
     @Override
-    public void delete(@NotNull String id) throws NoSuchElementRuntimeException {
+    public void delete(@NotNull final String id) throws NoSuchElementRuntimeException {
 
         if (this.get(id) == null) {
             throw new NoSuchElementRuntimeException();
@@ -207,7 +208,7 @@ public class BookingServiceImpl implements BookingService {
      * @param booking the booking to be checked
      * @throws InvalidBookingException if the given booking is inconsistent.
      */
-    private void checkIfBookingIsValid(@NotNull Booking booking) throws InvalidBookingException {
+    private void checkIfBookingIsValid(@NotNull final Booking booking) throws InvalidBookingException {
 
         Calendar startTime = booking.getStartTime();
         Calendar endTime = booking.getEndTime();
@@ -240,18 +241,19 @@ public class BookingServiceImpl implements BookingService {
      * @param project the target user
      * @throws DuplicateTimeBookingException if there is an overlapping
      */
-    private void checkForOverlapping(@NotNull Booking booking, @NotNull User user, @NotNull Project project)
-            throws DuplicateTimeBookingException {
+    private void checkForOverlapping(@NotNull final Booking booking, @NotNull final User user,
+                                     @NotNull final Project project) throws DuplicateTimeBookingException {
 
         final List<Map<String, Object>> queryResult = cypherService.query(
                 "MATCH (u:User {id:{1}})<-[:PERFORMED_BY]-(b:Booking)-[:PERFORMED_FOR]->(p:Project {id:{2}}) " +
                         "WHERE " +
-                        "(b.startTime >= {3} AND b.startTime < {4}) OR" +
+                        "b.id <> {5} AND " +
+                        "((b.startTime >= {3} AND b.startTime < {4}) OR" +
                         "(b.endTime > {3} AND b.endTime <= {4}) OR" +
-                        "(b.startTime <= {3} AND b.endTime >= {4}) " +
+                        "(b.startTime <= {3} AND b.endTime >= {4})) " +
                         "RETURN " + BOOKING_RETURN_PROPERTIES,
                 map(1, user.getId(), 2, project.getId(), 3, booking.getStartTime().getTimeInMillis(),
-                        4, booking.getEndTime().getTimeInMillis()));
+                        4, booking.getEndTime().getTimeInMillis(), 5, booking.getId()));
         if (queryResult.size() > 0) {
             throw new DuplicateTimeBookingException();
         }

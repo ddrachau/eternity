@@ -468,6 +468,65 @@ public class BookingServiceTest extends AbstractArquillianTest {
 
     }
 
+    @Test
+    @InSequence(14)
+    public void testAdvancedUpdate() throws InvalidBookingException, DuplicateTimeBookingException, UserNotAssignedToProjectException {
+
+        Project project4 = projectService.get("P01110");
+        User user4 = userService.get("bborg");
+
+        Assert.assertTrue(userService.isAssignedTo(user4, project4));
+
+        int startHour = 8;
+        int startMinute = 0;
+        int endHour = 14;
+        int endMinute = 0;
+        int newStartHour = 11;
+        int newStartMinute = 30;
+        int newEndHour = 15;
+        int newEndMinute = 40;
+
+        Booking b = new Booking(DateUtils.getCalendar(2015, 5, 10, startHour, startMinute), DateUtils.getCalendar(2015, 5, 10, endHour, endMinute), 45);
+        b = bookingService.create(b, user4, project4);
+        Assert.assertNotNull(b.getId());
+
+        Calendar cal1 = b.getStartTime();
+        Calendar cal2 = b.getEndTime();
+
+        Assert.assertEquals(startHour, cal1.get(Calendar.HOUR_OF_DAY));
+        Assert.assertEquals(startMinute, cal1.get(Calendar.MINUTE));
+        Assert.assertEquals(endHour, cal2.get(Calendar.HOUR_OF_DAY));
+        Assert.assertEquals(endMinute, cal2.get(Calendar.MINUTE));
+        Assert.assertNull(b.getDescription());
+
+        b.setStartTime(DateUtils.getCalendar(2015, 5, 10, newStartHour, newStartMinute));
+        b.setEndTime(DateUtils.getCalendar(2015, 5, 10, newEndHour, newEndMinute));
+        b.setDescription("demo");
+
+        b = bookingService.update(b);
+
+        Calendar cal3 = b.getStartTime();
+        Calendar cal4 = b.getEndTime();
+
+        Assert.assertEquals(newStartHour, cal3.get(Calendar.HOUR_OF_DAY));
+        Assert.assertEquals(newStartMinute, cal3.get(Calendar.MINUTE));
+        Assert.assertEquals(newEndHour, cal4.get(Calendar.HOUR_OF_DAY));
+        Assert.assertEquals(newEndMinute, cal4.get(Calendar.MINUTE));
+        Assert.assertNotNull(b.getDescription());
+
+        b = bookingService.get(b.getId());
+
+        Calendar cal5 = b.getStartTime();
+        Calendar cal6 = b.getEndTime();
+
+        Assert.assertEquals(newStartHour, cal5.get(Calendar.HOUR_OF_DAY));
+        Assert.assertEquals(newStartMinute, cal5.get(Calendar.MINUTE));
+        Assert.assertEquals(newEndHour, cal6.get(Calendar.HOUR_OF_DAY));
+        Assert.assertEquals(newEndMinute, cal6.get(Calendar.MINUTE));
+        Assert.assertNotNull(b.getDescription());
+
+    }
+
 }
 
 
