@@ -72,7 +72,7 @@ angular.module('Eternity').controller('CreateUpdateBookingCtrl',
                 $element.modal('hide');
 
                 //  Now call close, returning control to the caller.
-                close(undefined, 200);
+                close(undefined, 500);
 
             };
 
@@ -113,7 +113,7 @@ angular.module('Eternity').controller('CreateUpdateBookingCtrl',
 
                         $element.modal('hide');
 
-                        close({type: 'success', msg: 'Buchung erfolgreich aktualisiert'}, 200);
+                        close({type: 'success', msg: 'Buchung erfolgreich aktualisiert'}, 500);
 
                     }, function (error) {
 
@@ -125,7 +125,7 @@ angular.module('Eternity').controller('CreateUpdateBookingCtrl',
 
                         $element.modal('hide');
 
-                        close({type: 'success', msg: 'Buchung erfolgreich angelegt'}, 200);
+                        close({type: 'success', msg: 'Buchung erfolgreich angelegt'}, 500);
 
                     }, function (error) {
 
