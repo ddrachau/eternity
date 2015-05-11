@@ -16,3 +16,8 @@
 .durationSelect {
     width: 65px;
 }
+
+.modal-header {
+    background-color: #8AAA24;
+    color: whitesmoke;
+}
