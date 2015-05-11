@@ -221,8 +221,8 @@ public class BookingServiceImpl implements BookingService {
             throw new InvalidBookingException("Start has to be at least 5min before end");
         }
 
-        if ((endTime.getTimeInMillis() - startTime.getTimeInMillis()) / 60000 < booking.getBreakDuration()) {
-            throw new InvalidBookingException("Work has to be greater thand break");
+        if ((endTime.getTimeInMillis() - startTime.getTimeInMillis()) / 60000 <= booking.getBreakDuration()) {
+            throw new InvalidBookingException("Work has to be greater than break");
         }
 
         boolean timesAtTheSameDay = startTime.get(Calendar.YEAR) == endTime.get(Calendar.YEAR) &&

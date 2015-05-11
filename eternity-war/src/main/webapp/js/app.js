@@ -3,7 +3,7 @@
     'use strict';
 
     angular.module('Eternity', ['ngRoute', 'ngResource', 'ngCookies', 'ui.bootstrap',
-        'ngWebsocket', 'angularModalService']);
+        'ngWebsocket', 'angularModalService', 'smart-table']);
 
     angular.module('Eternity').config(function ($httpProvider) {
         $httpProvider.interceptors.push(function ($cookies, $rootScope, $location, $q) {
