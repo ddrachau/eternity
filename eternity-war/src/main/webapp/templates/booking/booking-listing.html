@@ -29,7 +29,7 @@
                 <th>Ende</th>
                 <th>Pause</th>
                 <th>Beschreibung</th>
-                <th><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></th>
+                <th class="text-center"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></th>
             </tr>
             </thead>
 
@@ -40,7 +40,7 @@
                 <td>{{booking.endTime | date:'HH:mm'}}</td>
                 <td>{{booking.breakDuration}}</td>
                 <td>{{booking.description}}</td>
-                <td>
+                <td class="text-center">
                     <button type="button" ng-click="editBooking(booking)" class="btn btn-xs btn-warning">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                     </button>
