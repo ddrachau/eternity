@@ -1,4 +1,5 @@
-angular.module('Eternity').controller('BookingListingCtrl', function ($scope, TableService, BookingService, ModalService) {
+angular.module('Eternity').controller('BookingListingCtrl',
+    function ($scope, TableService, ServerPushService, BookingService, ModalService) {
 
     var ctrl = this;
 
@@ -17,10 +18,17 @@ angular.module('Eternity').controller('BookingListingCtrl', function ($scope, Ta
         $scope.alerts.splice(index, 1);
     };
 
+    ServerPushService.on('booking', $scope, function () {
+
+        ctrl.callServer(ctrl.tableState);
+
+    });
+
     this.displayed = [];
 
     this.callServer = function (tableState) {
 
+        ctrl.tableState = tableState;
         ctrl.isLoading = true;
 
         var requestFilter = TableService.createRequestFilterFromTableState(tableState);

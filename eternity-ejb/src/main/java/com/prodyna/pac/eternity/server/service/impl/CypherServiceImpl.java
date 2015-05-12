@@ -1,6 +1,7 @@
 package com.prodyna.pac.eternity.server.service.impl;
 
 import com.prodyna.pac.eternity.server.logging.Logging;
+import com.prodyna.pac.eternity.server.model.FilterRequest;
 import com.prodyna.pac.eternity.server.profiling.Profiling;
 import com.prodyna.pac.eternity.server.service.CypherService;
 import org.slf4j.Logger;
@@ -9,7 +10,11 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.NonUniqueResultException;
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -30,14 +35,16 @@ public class CypherServiceImpl implements CypherService {
     private DataSource dataSource;
 
     @Override
-    public List<Map<String, Object>> query(final String query, final Map<Integer, Object> params) {
+    public List<Map<String, Object>> query(final String query, final Map<Integer, Object> params,
+                                           final FilterRequest filterRequest) {
 
         Connection connection = null;
 
         try {
 
             connection = dataSource.getConnection();
-            final PreparedStatement statement = connection.prepareStatement(query);
+            final PreparedStatement statement = connection.prepareStatement(
+                    query + this.getFilterString(filterRequest));
 
             setParameters(statement, params);
 
@@ -64,9 +71,17 @@ public class CypherServiceImpl implements CypherService {
     }
 
     @Override
-    public Map<String, Object> querySingle(String query, Map<Integer, Object> params) throws NonUniqueResultException {
+    public List<Map<String, Object>> query(final String query, final Map<Integer, Object> params) {
 
-        List<Map<String, Object>> result = this.query(query, params);
+        return this.query(query, params, null);
+
+    }
+
+    @Override
+    public Map<String, Object> querySingle(final String query, final Map<Integer, Object> params,
+                                           final FilterRequest filterRequest) throws NonUniqueResultException {
+
+        List<Map<String, Object>> result = this.query(query, params, filterRequest);
 
         if (result.size() > 1) {
             throw new NonUniqueResultException();
@@ -75,6 +90,13 @@ public class CypherServiceImpl implements CypherService {
         } else {
             return result.get(0);
         }
+
+    }
+
+    @Override
+    public Map<String, Object> querySingle(final String query, final Map<Integer, Object> params) {
+
+        return this.querySingle(query, params, null);
 
     }
 
@@ -130,6 +152,30 @@ public class CypherServiceImpl implements CypherService {
         }
 
         return result;
+
+    }
+
+    private String getFilterString(final FilterRequest filterRequest) {
+
+        String response = " ";
+
+        if (filterRequest != null) {
+
+            if (filterRequest.getSortString() != null) {
+                response += filterRequest.getSortString() + " ";
+            }
+
+            if (filterRequest.getStart() > 0) {
+                response += "SKIP " + filterRequest.getStart() + " ";
+            }
+
+            if (filterRequest.getPageSize() > 0) {
+                response += "LIMIT " + filterRequest.getPageSize() + " ";
+            }
+
+        }
+
+        return response;
 
     }
 
