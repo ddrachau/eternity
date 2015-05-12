@@ -3,6 +3,8 @@ package com.prodyna.pac.eternity.client.rest.service.user.impl;
 import com.prodyna.pac.eternity.client.rest.security.Authenticated;
 import com.prodyna.pac.eternity.client.rest.service.user.UserClientService;
 import com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils;
+import com.prodyna.pac.eternity.server.model.FilterRequest;
+import com.prodyna.pac.eternity.server.model.FilterResponse;
 import com.prodyna.pac.eternity.server.model.booking.Booking;
 import com.prodyna.pac.eternity.server.model.project.Project;
 import com.prodyna.pac.eternity.server.model.user.User;
@@ -13,10 +15,7 @@ import com.prodyna.pac.eternity.server.service.user.UserService;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -62,11 +61,16 @@ public class UserClientServiceImpl implements UserClientService {
     @Produces(RestCookieUtils.JSON_UTF8)
     @Path("/bookings")
     @Override
-    public Response getBookings(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken) {
+    public Response getBookings(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken,
+                                @QueryParam("sort") final String sort,
+                                @QueryParam("filter") final String[] filter,
+                                @QueryParam("start") final int start,
+                                @QueryParam("pageSize") final int pageSize) {
 
         User user = userService.getBySessionId(xsrfToken);
 
-        List<Booking> bookings = bookingService.findByUser(user);
+        FilterRequest filterRequest = new FilterRequest(sort, filter, start, pageSize);
+        FilterResponse<Booking> bookings = bookingService.findByUser(user, filterRequest);
 
         return Response.ok().entity(bookings).build();
 

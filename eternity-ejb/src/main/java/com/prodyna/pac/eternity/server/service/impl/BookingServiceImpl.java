@@ -7,6 +7,8 @@ import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToPro
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NotCreatedRuntimeException;
 import com.prodyna.pac.eternity.server.logging.Logging;
+import com.prodyna.pac.eternity.server.model.FilterRequest;
+import com.prodyna.pac.eternity.server.model.FilterResponse;
 import com.prodyna.pac.eternity.server.model.booking.Booking;
 import com.prodyna.pac.eternity.server.model.project.Project;
 import com.prodyna.pac.eternity.server.model.user.User;
@@ -117,6 +119,48 @@ public class BookingServiceImpl implements BookingService {
         }
 
         return result;
+
+    }
+
+    @Override
+    public FilterResponse<Booking> findByUser(@NotNull final User user, @NotNull final FilterRequest filterRequest) {
+
+        System.out.println(filterRequest);
+
+        int allBookings = (int) cypherService.querySingle(
+                "MATCH (u:User {id:{1}})<-[:PERFORMED_BY]-(b:Booking)" +
+                        "RETURN count(b)",
+                map(1, user.getId())).get("count(b)");
+
+        FilterResponse<Booking> response = new FilterResponse<>();
+
+        response.setTotalSize(allBookings);
+        response.setPageSize(filterRequest.getPageSize());
+        response.setOffset(filterRequest.getStart());
+        response.setNumberOfPages((allBookings + filterRequest.getPageSize() - 1) / filterRequest.getPageSize());
+
+        if (allBookings > 0) {
+
+            List<Booking> result = new ArrayList<>();
+
+            final List<Map<String, Object>> queryResult = cypherService.query(
+                    "MATCH (u:User {id:{1}})<-[:PERFORMED_BY]-(b:Booking)-[:PERFORMED_FOR]->(p:Project) " +
+                            "RETURN " + BOOKING_RETURN_PROPERTIES + " " +
+                            "SKIP {3} " +
+                            "LIMIT {4}",
+                    map(1, user.getId(), 3, filterRequest.getStart(), 4, filterRequest.getPageSize()));
+
+            for (Map<String, Object> values : queryResult) {
+                result.add(this.getBooking(values));
+            }
+
+            // TODO sort
+            // TODO filter
+            response.setData(result);
+
+        }
+
+        return response;
 
     }
 

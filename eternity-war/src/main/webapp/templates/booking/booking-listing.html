@@ -12,11 +12,10 @@
 
     <div class="table-responsive">
 
-        <table st-table="bookings" class="table table-striped table-hover">
+        <table st-table="blCtrl.displayed" st-pipe="blCtrl.callServer" class="table table-striped table-hover">
 
             <thead>
             <tr>
-
                 <th st-skip-natural="true" st-sort="startTime" st-sort-default="true">Datum</th>
                 <th st-skip-natural="true" st-sort="projectIdentifier">Projekt</th>
                 <th>Beginn</th>
@@ -38,8 +37,8 @@
             </tr>
             </thead>
 
-            <tbody>
-            <tr ng-repeat="booking in bookings">
+            <tbody ng-show="!blCtrl.isLoading">
+            <tr ng-repeat="booking in blCtrl.displayed">
                 <td>{{booking.startTime | date:'dd.MM.yyyy'}}</td>
                 <td>{{booking.projectIdentifier}}</td>
                 <td>{{booking.startTime  | date:'HH:mm'}}</td>
@@ -56,6 +55,18 @@
                 </td>
             </tr>
             </tbody>
+            <tbody ng-show="blCtrl.isLoading">
+            <tr>
+                <td colspan="7" class="text-center">Loading ...</td>
+            </tr>
+            </tbody>
+
+            <tfoot>
+            <tr>
+                <td class="text-center" st-pagination="" st-items-by-page="5" colspan="7">
+                </td>
+            </tr>
+            </tfoot>
 
         </table>
 

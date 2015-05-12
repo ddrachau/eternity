@@ -24,9 +24,6 @@ angular.module('Eternity').config(function ($routeProvider) {
             controller: 'BookingCtrl',
             controllerAs: 'bCtrl',
             resolve: {
-                bookings: function (UserService) {
-                    return UserService.getBookingsForCurrentUser().$promise;
-                },
                 projects: function (UserService) {
                     return UserService.getProjectsForCurrentUser().$promise;
                 }

@@ -1,4 +1,6 @@
-angular.module('Eternity').controller('BookingListingCtrl', function ($scope, BookingService, ModalService) {
+angular.module('Eternity').controller('BookingListingCtrl', function ($scope, TableService, BookingService, ModalService) {
+
+    var ctrl = this;
 
     $scope.alerts = [];
 
@@ -15,7 +17,23 @@ angular.module('Eternity').controller('BookingListingCtrl', function ($scope, Bo
         $scope.alerts.splice(index, 1);
     };
 
-    var createErrorAlert = function (error) {
+    this.displayed = [];
+
+    this.callServer = function (tableState) {
+
+        ctrl.isLoading = true;
+
+        var requestFilter = TableService.createRequestFilterFromTableState(tableState);
+
+        BookingService.getBookingsForCurrentUser(requestFilter, function (result) {
+            ctrl.displayed = result.data;
+            tableState.pagination.numberOfPages = result.numberOfPages;
+            ctrl.isLoading = false;
+        });
+
+    };
+
+    this.createErrorAlert = function (error) {
 
         if (error.status === 500) {
             $scope.addAlert('danger', error.statusText);
@@ -32,7 +50,7 @@ angular.module('Eternity').controller('BookingListingCtrl', function ($scope, Bo
             controller: "CreateUpdateBookingCtrl",
             inputs: {
                 title: 'Neue Buchung anlegen',
-                projects : $scope.projects,
+                projects: $scope.projects,
                 booking: {}
             }
         }).then(function (modal) {
@@ -58,7 +76,7 @@ angular.module('Eternity').controller('BookingListingCtrl', function ($scope, Bo
             controller: "CreateUpdateBookingCtrl",
             inputs: {
                 title: 'Bestehende Buchung anpassen',
-                projects : $scope.projects,
+                projects: $scope.projects,
                 booking: booking
             }
         }).then(function (modal) {
@@ -98,7 +116,7 @@ angular.module('Eternity').controller('BookingListingCtrl', function ($scope, Bo
 
                     }, function (error) {
 
-                        createErrorAlert(error);
+                        ctrl.createErrorAlert(error);
 
                     });
 

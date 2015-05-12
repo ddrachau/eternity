@@ -3,6 +3,8 @@ package com.prodyna.pac.eternity.server.service.booking;
 import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
+import com.prodyna.pac.eternity.server.model.FilterRequest;
+import com.prodyna.pac.eternity.server.model.FilterResponse;
 import com.prodyna.pac.eternity.server.model.booking.Booking;
 import com.prodyna.pac.eternity.server.model.project.Project;
 import com.prodyna.pac.eternity.server.model.user.User;
@@ -48,6 +50,15 @@ public interface BookingService {
     List<Booking> findByUser(@NotNull User user);
 
     /**
+     * Search for all the bookings of an user.
+     *
+     * @param user          the source user
+     * @param filterRequest the filter parameter for this search
+     * @return bookings which are assigned to the user, empty list if the user does not exists or no booking was made
+     */
+    FilterResponse<Booking> findByUser(@NotNull User user, @NotNull FilterRequest filterRequest);
+
+    /**
      * Search for all the bookings for a project.
      *
      * @param project the source project
@@ -82,3 +93,4 @@ public interface BookingService {
     void delete(@NotNull String id);
 
 }
+

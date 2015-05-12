@@ -8,7 +8,7 @@
             {
                 find: {method: 'GET', isArray: true},
                 getBySession: {method: 'GET', url: 'rest/users/session'},
-                getBookingsForCurrentUser: {method: 'GET', url: 'rest/users/bookings', isArray: true},
+                //getBookingsForCurrentUser: {method: 'GET', url: 'rest/users/bookings', isArray: true},
                 getProjectsForCurrentUser: {method: 'GET', url: 'rest/users/projects', isArray: true}
             });
 
