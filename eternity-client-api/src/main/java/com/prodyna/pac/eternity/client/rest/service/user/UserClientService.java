@@ -29,7 +29,7 @@ public interface UserClientService {
      * @param sort      optional sort order
      * @param filter    filter for field values
      * @param start     value to start from if pagination is used
-     * @param pageSize  the maximum result for a page call, <=0 for no limit
+     * @param pageSize  the maximum result for a page call, &lt;=0 for no limit
      * @return the users bookings
      */
     Response getBookings(String xsrfToken, String sort, String[] filter, int start, int pageSize);
