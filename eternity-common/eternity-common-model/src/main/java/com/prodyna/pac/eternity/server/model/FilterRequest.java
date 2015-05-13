@@ -8,8 +8,6 @@ public class FilterRequest {
 
     private String sortString;
 
-    private String filterString;
-
     private String sort;
 
     private String[] filter;
@@ -32,19 +30,9 @@ public class FilterRequest {
         return sortString;
     }
 
-    public void setSortString(String sortString) {
+    public void setSortString(final String sortString) {
 
         this.sortString = sortString;
-    }
-
-    public String getFilterString() {
-
-        return filterString;
-    }
-
-    public void setFilterString(String filterString) {
-
-        this.filterString = filterString;
     }
 
     public String getSort() {
@@ -102,11 +90,10 @@ public class FilterRequest {
         HashMap<String, String> result = new HashMap<>();
 
         for (String f : this.getFilter()) {
-
             String[] parts = f.split(":");
-
-            result.put(parts[0], parts[1]);
-
+            String value = parts[1].replace("\\", "\\\\");
+            value = "(?i).*\\\\Q" + value + "\\\\E.*";
+            result.put(parts[0], value);
         }
 
         return result;
@@ -115,10 +102,8 @@ public class FilterRequest {
 
     @Override
     public String toString() {
-
         return "FilterRequest{" +
                 "sortString='" + sortString + '\'' +
-                ", filterString='" + filterString + '\'' +
                 ", sort='" + sort + '\'' +
                 ", filter=" + Arrays.toString(filter) +
                 ", start=" + start +

@@ -16,15 +16,6 @@
 
             <thead>
             <tr>
-                <th st-skip-natural="true" st-sort="startTime" st-sort-default="true">Datum</th>
-                <th st-skip-natural="true" st-sort="projectIdentifier">Projekt</th>
-                <th>Beginn</th>
-                <th>Ende</th>
-                <th>Pause</th>
-                <th>Beschreibung</th>
-                <th class="text-center"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></th>
-            </tr>
-            <tr>
                 <th></th>
                 <th colspan="3">
                     <input st-search="projectIdentifier" placeholder="Projektfilter"
@@ -35,15 +26,24 @@
                            class="input-sm form-control table-filter" type="search"/>
                 </th>
             </tr>
+            <tr>
+                <th st-skip-natural="true" st-sort="startTime" st-sort-default="true">Datum</th>
+                <th st-skip-natural="true" st-sort="projectIdentifier">Projekt</th>
+                <th class="text-center">Beginn</th>
+                <th class="text-center">Ende</th>
+                <th class="text-center">Pause</th>
+                <th>Beschreibung</th>
+                <th class="text-center"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></th>
+            </tr>
             </thead>
 
             <tbody ng-show="!blCtrl.isLoading">
             <tr ng-repeat="booking in blCtrl.displayed">
                 <td>{{booking.startTime | date:'dd.MM.yyyy'}}</td>
                 <td>{{booking.projectIdentifier}}</td>
-                <td>{{booking.startTime  | date:'HH:mm'}}</td>
-                <td>{{booking.endTime | date:'HH:mm'}}</td>
-                <td>{{booking.breakDuration}}</td>
+                <td class="text-center">{{booking.startTime  | date:'HH:mm'}}</td>
+                <td class="text-center">{{booking.endTime | date:'HH:mm'}}</td>
+                <td class="text-center">{{booking.breakDuration}}</td>
                 <td>{{booking.description}}</td>
                 <td class="text-center">
                     <button type="button" ng-click="editBooking(booking)" class="btn btn-xs btn-warning">

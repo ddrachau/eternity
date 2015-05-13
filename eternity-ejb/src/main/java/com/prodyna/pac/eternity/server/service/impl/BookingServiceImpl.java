@@ -22,11 +22,7 @@ import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import static com.prodyna.pac.eternity.components.common.DateUtils.getCalendar;
 import static com.prodyna.pac.eternity.components.common.QueryUtils.map;
@@ -130,8 +126,44 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public FilterResponse<Booking> findByUser(@NotNull final User user, @NotNull final FilterRequest filterRequest) {
 
+        String filterString = "";
+
+        if (filterRequest.hasValidFilter()) {
+
+            filterString = "WHERE ";
+
+            int filterCounter = 0;
+
+            Map<String, String> filterMap = filterRequest.getFilterMap();
+
+            for (Map.Entry<String, String> pair : filterMap.entrySet()) {
+
+                filterCounter++;
+                String key;
+
+                switch (pair.getKey()) {
+                    case "description":
+                        key = "b.description";
+                        break;
+                    case "projectIdentifier":
+                        key = "p.identifier";
+                        break;
+                    default:
+                        throw new InvalidFilterRequestRuntimeException("unknown filter: " + pair.getKey());
+                }
+
+                filterString += key + "=~'" + pair.getValue() + "' ";
+
+                if (filterCounter < filterMap.size()) {
+                    filterString += "AND ";
+                }
+            }
+
+        }
+
         int allBookings = (int) cypherService.querySingle(
-                "MATCH (u:User {id:{1}})<-[:PERFORMED_BY]-(b:Booking)" +
+                "MATCH (u:User {id:{1}})<-[:PERFORMED_BY]-(b:Booking)-[:PERFORMED_FOR]->(p:Project) " +
+                        filterString +
                         "RETURN count(b)",
                 map(1, user.getId())).get("count(b)");
 
@@ -164,38 +196,11 @@ public class BookingServiceImpl implements BookingService {
 
             }
 
-            if (filterRequest.hasValidFilter()) {
-
-                String filterString = "WHERE ";
-
-                for (Map.Entry<String, String> pair : filterRequest.getFilterMap().entrySet()) {
-
-                    String key;
-
-                    switch (pair.getKey()) {
-                        case "description":
-                            key = "b.description";
-                            break;
-                        case "projectIdentifier":
-                            key = "p.identifier";
-                            break;
-                        default:
-                            throw new InvalidFilterRequestRuntimeException("unknown filter: " + pair.getKey());
-                    }
-
-                    filterString += key + "=~'" + pair.getValue() + "' ";
-
-                }
-
-                filterRequest.setFilterString(filterString);
-
-            }
-
             List<Booking> result = new ArrayList<>();
 
             final List<Map<String, Object>> queryResult = cypherService.query(
                     "MATCH (u:User {id:{1}})<-[:PERFORMED_BY]-(b:Booking)-[:PERFORMED_FOR]->(p:Project) " +
-                            (filterRequest.getFilterString() != null ? filterRequest.getFilterString() : " ") +
+                            filterString +
                             "RETURN " + BOOKING_RETURN_PROPERTIES,
                     map(1, user.getId()), filterRequest);
 
