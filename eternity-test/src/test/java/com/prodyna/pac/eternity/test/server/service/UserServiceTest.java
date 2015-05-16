@@ -120,7 +120,7 @@ public class UserServiceTest extends AbstractArquillianTest {
     @InSequence(2)
     public void testGetAllUsers() {
 
-        Assert.assertEquals(9, userService.findAll().size());
+        Assert.assertEquals(9, userService.find().size());
     }
 
     @Test

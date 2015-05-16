@@ -27,7 +27,7 @@ public class AuthenticationClientServiceRESTTest extends AbstractRESTTest {
     @Test
     @InSequence(1)
     public  void testData() {
-        Assert.assertTrue(userService.findAll().size()>0);
+        Assert.assertTrue(userService.find().size()>0);
     }
 
     @Test

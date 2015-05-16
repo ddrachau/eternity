@@ -4,7 +4,6 @@ import com.prodyna.pac.eternity.server.event.BookingEvent;
 import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
-import com.prodyna.pac.eternity.server.exception.technical.InvalidFilterRequestRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NotCreatedRuntimeException;
 import com.prodyna.pac.eternity.server.logging.Logging;
@@ -22,7 +21,12 @@ import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import static com.prodyna.pac.eternity.components.common.DateUtils.getCalendar;
 import static com.prodyna.pac.eternity.components.common.QueryUtils.map;
@@ -126,40 +130,8 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public FilterResponse<Booking> findByUser(@NotNull final User user, @NotNull final FilterRequest filterRequest) {
 
-        String filterString = "";
-
-        if (filterRequest.hasValidFilter()) {
-
-            filterString = "WHERE ";
-
-            int filterCounter = 0;
-
-            Map<String, String> filterMap = filterRequest.getFilterMap();
-
-            for (Map.Entry<String, String> pair : filterMap.entrySet()) {
-
-                filterCounter++;
-                String key;
-
-                switch (pair.getKey()) {
-                    case "description":
-                        key = "b.description";
-                        break;
-                    case "projectIdentifier":
-                        key = "p.identifier";
-                        break;
-                    default:
-                        throw new InvalidFilterRequestRuntimeException("unknown filter: " + pair.getKey());
-                }
-
-                filterString += key + "=~'" + pair.getValue() + "' ";
-
-                if (filterCounter < filterMap.size()) {
-                    filterString += "AND ";
-                }
-            }
-
-        }
+        filterRequest.setMappings(this.getRequestMappings());
+        String filterString = filterRequest.getFilterString();
 
         int allBookings = (int) cypherService.querySingle(
                 "MATCH (u:User {id:{1}})<-[:PERFORMED_BY]-(b:Booking)-[:PERFORMED_FOR]->(p:Project) " +
@@ -174,27 +146,6 @@ public class BookingServiceImpl implements BookingService {
         response.setOffset(filterRequest.getStart());
 
         if (allBookings > 0) {
-
-            if (filterRequest.hasValidSortFilter()) {
-
-                String sortProperty;
-
-                switch (filterRequest.getSort().substring(1)) {
-                    case "startTime":
-                        sortProperty = "b.startTime";
-                        break;
-                    case "projectIdentifier":
-                        sortProperty = "p.identifier";
-                        break;
-                    default:
-                        throw new InvalidFilterRequestRuntimeException("unknown sort filter: " +
-                                filterRequest.getSort().substring(1));
-                }
-
-                filterRequest.setSortString("ORDER BY " + sortProperty +
-                        (filterRequest.isSortDescending() ? " DESC" : " "));
-
-            }
 
             List<Booking> result = new ArrayList<>();
 
@@ -353,6 +304,18 @@ public class BookingServiceImpl implements BookingService {
         if (queryResult.size() > 0) {
             throw new DuplicateTimeBookingException();
         }
+
+    }
+
+    private Map<String, String> getRequestMappings() {
+
+        HashMap<String, String> result = new HashMap<>();
+
+        result.put("startTime", "b.startTime");
+        result.put("projectIdentifier", "p.identifier");
+        result.put("description", "b.description");
+
+        return result;
 
     }
 

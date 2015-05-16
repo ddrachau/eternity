@@ -78,7 +78,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
     @Test
     @InSequence(3)
     public void testGetAllProjects() {
-        Assert.assertEquals(6, projectService.findAll().size());
+        Assert.assertEquals(6, projectService.find().size());
     }
 
     @Test

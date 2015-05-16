@@ -6,6 +6,6 @@ angular.module('Eternity')
             scope: {
                 data: "="
             },
-            templateUrl: 'templates/directives/footer.html'
+            templateUrl: 'templates/footer.html'
         };
     });

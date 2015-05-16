@@ -10,9 +10,14 @@ public interface UserClientService {
     /**
      * Returns a list of all Users found.
      *
-     * @return all user
+     * @param xsrfToken the session token
+     * @param sort      optional sort order
+     * @param filter    filter for field values
+     * @param start     value to start from if pagination is used
+     * @param pageSize  the maximum result for a page call, &lt;=0 for no limit
+     * @return the matching user
      */
-    Response get();
+    Response get(String xsrfToken, String sort, String[] filter, int start, int pageSize);
 
     /**
      * Return the user associated to this session

@@ -15,7 +15,11 @@ import com.prodyna.pac.eternity.server.service.user.UserService;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -39,9 +43,17 @@ public class UserClientServiceImpl implements UserClientService {
     @GET
     @Produces(RestCookieUtils.JSON_UTF8)
     @Override
-    public Response get() {
+    public Response get(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken,
+                        @QueryParam("sort") final String sort,
+                        @QueryParam("filter") final String[] filter,
+                        @QueryParam("start") final int start,
+                        @QueryParam("pageSize") final int pageSize) {
 
-        return Response.ok(userService.findAll()).build();
+
+        FilterRequest filterRequest = new FilterRequest(sort, filter, start, pageSize);
+        FilterResponse<User> user = userService.find(filterRequest);
+
+        return Response.ok().entity(user).build();
 
     }
 

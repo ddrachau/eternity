@@ -2,30 +2,20 @@ angular.module('Eternity').config(function ($routeProvider) {
 
     $routeProvider
         .when('/users', {
-            templateUrl: 'templates/users.html',
-            controller: 'UserCtrl',
-            resolve: {
-                data: function (UserService) {
-                    return UserService.find().$promise;
-                }
-            }
+            templateUrl: 'templates/user/users.html',
+            controller: 'UserCtrl'
         })
         .when('/projects', {
-            templateUrl: 'templates/projects.html',
-            controller: 'ProjectCtrl',
-            resolve: {
-                data: function (ProjectService) {
-                    return ProjectService.find().$promise;
-                }
-            }
+            templateUrl: 'templates/project/projects.html',
+            controller: 'ProjectCtrl'
         })
         .when('/bookings', {
-            templateUrl: 'templates/bookings.html',
+            templateUrl: 'templates/booking/bookings.html',
             controller: 'BookingCtrl',
             controllerAs: 'bCtrl',
             resolve: {
-                projects: function (UserService) {
-                    return UserService.getProjectsForCurrentUser().$promise;
+                projects: function (ProjectService) {
+                    return ProjectService.getProjectsForCurrentUser().$promise;
                 }
             }
         })

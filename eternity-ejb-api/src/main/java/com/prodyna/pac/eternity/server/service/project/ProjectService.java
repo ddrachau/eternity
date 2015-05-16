@@ -1,6 +1,8 @@
 package com.prodyna.pac.eternity.server.service.project;
 
 import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
+import com.prodyna.pac.eternity.server.model.FilterRequest;
+import com.prodyna.pac.eternity.server.model.FilterResponse;
 import com.prodyna.pac.eternity.server.model.booking.Booking;
 import com.prodyna.pac.eternity.server.model.project.Project;
 import com.prodyna.pac.eternity.server.model.user.User;
@@ -45,7 +47,15 @@ public interface ProjectService {
      *
      * @return a list of all found projects.
      */
-    List<Project> findAll();
+    List<Project> find();
+
+    /**
+     * Search for all the bookings of an user.
+     *
+     * @param filterRequest the filter parameter for this search
+     * @return projects which match the filter.
+     */
+    FilterResponse<Project> find(@NotNull FilterRequest filterRequest);
 
     /**
      * Updates the given project in the database.

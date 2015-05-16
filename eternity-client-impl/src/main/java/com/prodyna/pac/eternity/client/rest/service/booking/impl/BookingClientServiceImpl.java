@@ -1,6 +1,7 @@
-package com.prodyna.pac.eternity.client.rest.service.booking;
+package com.prodyna.pac.eternity.client.rest.service.booking.impl;
 
 import com.prodyna.pac.eternity.client.rest.security.Authenticated;
+import com.prodyna.pac.eternity.client.rest.service.booking.BookingClientService;
 import com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils;
 import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;

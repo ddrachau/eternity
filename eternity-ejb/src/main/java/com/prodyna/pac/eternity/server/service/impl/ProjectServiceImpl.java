@@ -4,6 +4,8 @@ import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExists
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NotCreatedRuntimeException;
 import com.prodyna.pac.eternity.server.logging.Logging;
+import com.prodyna.pac.eternity.server.model.FilterRequest;
+import com.prodyna.pac.eternity.server.model.FilterResponse;
 import com.prodyna.pac.eternity.server.model.booking.Booking;
 import com.prodyna.pac.eternity.server.model.project.Project;
 import com.prodyna.pac.eternity.server.model.user.User;
@@ -14,6 +16,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -36,7 +39,7 @@ public class ProjectServiceImpl implements ProjectService {
     private CypherService cypherService;
 
     @Override
-    public Project create(@NotNull Project project) throws ElementAlreadyExistsException {
+    public Project create(@NotNull final Project project) throws ElementAlreadyExistsException {
 
         Project result = this.get(project.getIdentifier());
 
@@ -96,7 +99,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Project> findAll() {
+    public List<Project> find() {
 
         List<Project> result = new ArrayList<>();
 
@@ -112,7 +115,47 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project update(@NotNull Project project) throws NoSuchElementRuntimeException, ElementAlreadyExistsException {
+    public FilterResponse<Project> find(@NotNull final FilterRequest filterRequest) {
+
+        filterRequest.setMappings(this.getRequestMappings());
+        String filterString = filterRequest.getFilterString();
+
+        int allProjects = (int) cypherService.querySingle(
+                "MATCH (p:Project) " +
+                        filterString +
+                        "RETURN count(p)",
+                null).get("count(p)");
+
+        FilterResponse<Project> response = new FilterResponse<>();
+
+        response.setTotalSize(allProjects);
+        response.setPageSize(filterRequest.getPageSize());
+        response.setOffset(filterRequest.getStart());
+
+        if (allProjects > 0) {
+
+            List<Project> result = new ArrayList<>();
+
+            final List<Map<String, Object>> queryResult = cypherService.query(
+                    "MATCH (p:Project) " +
+                            filterString +
+                            "RETURN " + PROJECT_RETURN_PROPERTIES,
+                    null, filterRequest);
+
+            for (Map<String, Object> values : queryResult) {
+                result.add(this.getProject(values));
+            }
+
+            response.setData(result);
+
+        }
+
+        return response;
+
+    }
+
+    @Override
+    public Project update(@NotNull final Project project) throws NoSuchElementRuntimeException, ElementAlreadyExistsException {
 
         // Check for already present project with the new identifier
         Project check = this.get(project.getIdentifier());
@@ -134,7 +177,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void delete(@NotNull String identifier) throws NoSuchElementRuntimeException {
+    public void delete(@NotNull final  String identifier) throws NoSuchElementRuntimeException {
 
         if (this.get(identifier) == null) {
             throw new NoSuchElementRuntimeException();
@@ -150,7 +193,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Project> findAllAssignedToUser(@NotNull User user) {
+    public List<Project> findAllAssignedToUser(@NotNull final User user) {
 
         List<Project> result = new ArrayList<>();
 
@@ -167,13 +210,24 @@ public class ProjectServiceImpl implements ProjectService {
 
     }
 
+    private Map<String, String> getRequestMappings() {
+
+        HashMap<String, String> result = new HashMap<>();
+
+        result.put("identifier", "p.identifier");
+        result.put("description", "p.description");
+
+        return result;
+
+    }
+
     /**
      * Helper method to construct a Project from a query response
      *
      * @param values the available values
      * @return a filled Project
      */
-    private Project getProject(@NotNull Map<String, Object> values) {
+    private Project getProject(@NotNull final Map<String, Object> values) {
 
         Project result = new Project();
 

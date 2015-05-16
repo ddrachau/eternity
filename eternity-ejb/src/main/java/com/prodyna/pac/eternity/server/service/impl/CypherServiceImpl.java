@@ -124,7 +124,7 @@ public class CypherServiceImpl implements CypherService {
      * @return the transformed result
      * @throws SQLException in case the some SQL problem occurred while processing
      */
-    private List<Map<String, Object>> prepareQueryResult(ResultSet resultSet) throws SQLException {
+    private List<Map<String, Object>> prepareQueryResult(final ResultSet resultSet) throws SQLException {
 
         List<Map<String, Object>> result = new ArrayList<>();
 

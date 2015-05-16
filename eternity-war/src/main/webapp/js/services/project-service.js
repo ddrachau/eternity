@@ -4,9 +4,12 @@
 
     angular.module('Eternity').factory('ProjectService', function ($resource) {
 
-        return $resource('rest/project/', [],
+        return $resource('rest/projects/', [],
             {
-                find: {method: 'GET', isArray: true}
+                delete: {method: 'DELETE', url: 'rest/projects/:id'},
+                update: {method: 'PUT', url: 'rest/projects/:id'},
+                find: {method: 'GET'},
+                getProjectsForCurrentUser: {method: 'GET', url: 'rest/users/projects', isArray: true}
             });
 
     });

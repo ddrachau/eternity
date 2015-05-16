@@ -86,7 +86,7 @@
 //    @Schedule(second = "*/20", minute = "*", hour = "*", persistent = false)
 //    public void play() {
 //        //logger.log(Level.INFO, "timetolog" + this.toString());
-//        //logger.log(Level.INFO, "Find all Projects" + service.findAll().size());
+//        //logger.log(Level.INFO, "Find all Projects" + service.find().size());
 ////        send(new ChatMessage("" + System.currentTimeMillis(),
 ////                ChatMessageType.CHAT));
 //    }

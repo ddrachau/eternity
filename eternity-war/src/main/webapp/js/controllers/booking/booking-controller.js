@@ -7,7 +7,6 @@ angular.module('Eternity').controller('BookingCtrl',
 
     ServerPushService.on('project', $scope, function (data) {
 
-        console.log('Received "project" event: ' + data);
         ctrl.projects = UserService.getProjectsForCurrentUser();
 
     });

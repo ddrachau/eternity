@@ -4,7 +4,7 @@ angular.module('Eternity')
 
             restrict: 'E',
             scope: true,
-            templateUrl: 'templates/directives/header.html',
+            templateUrl: 'templates/header.html',
             controller: function($rootScope) {
                 this.root = $rootScope;
             }
