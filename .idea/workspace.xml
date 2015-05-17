@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d657f7b-8d97-4b3a-bd42-2472c9edf69f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/project/create-update-project.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/project/create-update-project.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/user/create-update-user.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/user/create-update-user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/booking/create-update-booking.js" afterPath="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/booking/create-update-booking.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-war/src/main/webapp/index.html" afterPath="$PROJECT_DIR$/eternity-war/src/main/webapp/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/project/project-listing.html" afterPath="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/project/project-listing.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/project/project-listing.js" afterPath="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/project/project-listing.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/user/create-update-user.html" afterPath="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/user/create-update-user.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/user/user-listing.html" afterPath="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/user/user-listing.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/user/user-listing.js" afterPath="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/user/user-listing.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="eternity-server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,16 +67,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="serverpush-service.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/services/serverpush-service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="table-service.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/services/table-service.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -116,26 +97,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="session-service.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/services/session-service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="project-service.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/services/project-service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="74" selection-start-line="8" selection-start-column="74" selection-end-line="8" selection-end-column="74" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="create-update-project.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/project/create-update-project.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -149,18 +110,48 @@
       <file leaf-file-name="create-update-user.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/user/create-update-user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.5">
-              <caret line="54" column="47" selection-start-line="54" selection-start-column="47" selection-end-line="54" selection-end-column="47" />
+            <state vertical-scroll-proportion="-0.25">
+              <caret line="44" column="75" selection-start-line="44" selection-start-column="75" selection-end-line="44" selection-end-column="75" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create-update-user.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user-listing.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/user/user-listing.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3814433">
+              <caret line="53" column="79" selection-start-line="53" selection-start-column="79" selection-end-line="53" selection-end-column="79" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create-update-user.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/user/create-update-user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35363457">
+            <state vertical-scroll-proportion="0.0">
               <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="footer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/directives/footer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="footer.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/footer.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -241,15 +232,15 @@
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/booking/booking-controller.js" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/index.html" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/project/project-listing.js" />
-        <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/user/user-listing.html" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/user/user-listing.js" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/project/delete-project-confirmation.js" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/project/create-update-project.html" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/booking/create-update-booking.js" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/project/project-listing.html" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/project/create-update-project.js" />
-        <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/user/create-update-user.html" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/user/create-update-user.js" />
+        <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/user/create-update-user.html" />
+        <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/user/user-listing.html" />
       </list>
     </option>
   </component>
@@ -3166,12 +3157,12 @@
       <workItem from="1431499645249" duration="155000" />
       <workItem from="1431499878930" duration="55000" />
       <workItem from="1431502508350" duration="15549000" />
-      <workItem from="1431777124211" duration="25398000" />
+      <workItem from="1431777124211" duration="29082000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="632479000" />
+    <option name="totallyTimeSpent" value="636163000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -3274,22 +3265,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/app-routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10909091">
-          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/model/FilterRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/authentication/impl/AuthenticationServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3554,14 +3529,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/user/user-listing.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.0833335">
-          <caret line="48" column="16" selection-start-line="48" selection-start-column="16" selection-end-line="52" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/booking/booking-listing.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8412371">
@@ -3650,14 +3617,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/user/create-update-user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.5">
-          <caret line="54" column="47" selection-start-line="54" selection-start-column="47" selection-end-line="54" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/services/user-service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3682,10 +3641,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/directives/footer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/footer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/user/create-update-user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35363457">
+        <state vertical-scroll-proportion="0.0">
           <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/user/create-update-user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.25">
+          <caret line="44" column="75" selection-start-line="44" selection-start-column="75" selection-end-line="44" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/user/user-listing.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3814433">
+          <caret line="53" column="79" selection-start-line="53" selection-start-column="79" selection-end-line="53" selection-end-column="79" />
           <folding />
         </state>
       </provider>

@@ -20,7 +20,7 @@
 
                         <div class="col-sm-9">
                             <input class="form-control" ng-model="identifier" type="text" maxlength="30"
-                                   placeholder="Identifier" required ng-disabled="userId">
+                                   placeholder="Identifier" ng-minlength="2" required ng-disabled="userId">
                         </div>
 
                     </div>
@@ -31,7 +31,7 @@
 
                         <div class="col-sm-9">
                             <input class="form-control" ng-model="forename" type="text" maxlength="30"
-                                   placeholder="Vorname">
+                                   placeholder="Vorname" ng-minlength="2" required>
                         </div>
 
                     </div>
@@ -42,7 +42,7 @@
 
                         <div class="col-sm-9">
                             <input class="form-control" ng-model="surname" type="text" maxlength="30"
-                                   placeholder="Nachname">
+                                   placeholder="Nachname" ng-minlength="2" required>
                         </div>
 
                     </div>
