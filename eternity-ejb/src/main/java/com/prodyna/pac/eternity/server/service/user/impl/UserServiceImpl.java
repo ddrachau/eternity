@@ -1,5 +1,7 @@
-package com.prodyna.pac.eternity.server.service.impl;
+package com.prodyna.pac.eternity.server.service.user.impl;
 
+import com.prodyna.pac.eternity.server.event.BookingEvent;
+import com.prodyna.pac.eternity.server.event.UserEvent;
 import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
@@ -17,6 +19,7 @@ import com.prodyna.pac.eternity.server.service.project.ProjectService;
 import com.prodyna.pac.eternity.server.service.user.UserService;
 
 import javax.ejb.Stateless;
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -39,7 +42,11 @@ public class UserServiceImpl implements UserService {
     /**
      * Default return properties, to make object creation easier.
      */
-    private static final String USER_RETURN_PROPERTIES = "u.id, u.identifier, u.forename, u.surname, u.password, u.role";
+    private static final String USER_RETURN_PROPERTIES =
+            "u.id, u.identifier, u.forename, u.surname, u.password, u.role";
+
+    @Inject
+    private Event<UserEvent> events;
 
     @Inject
     private CypherService cypherService;
@@ -48,7 +55,7 @@ public class UserServiceImpl implements UserService {
     private ProjectService projectService;
 
     @Override
-    public User create(@NotNull User user) throws ElementAlreadyExistsException {
+    public User create(@NotNull final User user) throws ElementAlreadyExistsException {
 
         User result = this.get(user.getIdentifier());
 
@@ -56,29 +63,32 @@ public class UserServiceImpl implements UserService {
             throw new ElementAlreadyExistsException();
         }
 
-        user.setId(UUID.randomUUID().toString());
+        result = user;
+        result.setId(UUID.randomUUID().toString());
 
         final Map<String, Object> queryResult = cypherService.querySingle(
                 "CREATE (u:User {id:{1}, identifier:{2}, forename:{3}, surname:{4}, role:{5}}) " +
                         "RETURN " + USER_RETURN_PROPERTIES,
-                map(1, user.getId(), 2, user.getIdentifier(), 3, user.getForename(),
-                        4, user.getSurname(), 5, user.getRole().name()));
+                map(1, result.getId(), 2, result.getIdentifier(), 3, result.getForename(),
+                        4, result.getSurname(), 5, result.getRole().name()));
 
         if (queryResult == null) {
-            throw new NotCreatedRuntimeException(user.toString());
+            throw new NotCreatedRuntimeException(result.toString());
         }
 
         if (user.getPassword() != null) {
             try {
-                this.storePassword(user.getIdentifier(), user.getPassword());
-                user = get(user.getIdentifier());
+                this.storePassword(result.getIdentifier(), result.getPassword());
+                result = get(user.getIdentifier());
             } catch (InvalidUserException e) {
                 // should never happen since it was just created
                 throw new RuntimeException(e);
             }
         }
 
-        return user;
+        events.fire(new UserEvent());
+
+        return result;
     }
 
     @Override
@@ -227,8 +237,10 @@ public class UserServiceImpl implements UserService {
         if (queryResult == null) {
             throw new NoSuchElementRuntimeException();
         } else {
+            events.fire(new UserEvent());
             return this.getUser(queryResult);
         }
+
 
     }
 
@@ -247,6 +259,8 @@ public class UserServiceImpl implements UserService {
                         "DELETE s,a1,a2,u,p1,b,p2",
                 map(1, identifier));
 
+        events.fire(new UserEvent());
+
     }
 
     @Override
@@ -256,6 +270,8 @@ public class UserServiceImpl implements UserService {
                 "CREATE UNIQUE (u)-[:ASSIGNED_TO]->(p)";
         this.assignQuery(query, user, project);
 
+        events.fire(new UserEvent());
+
     }
 
     @Override
@@ -264,6 +280,8 @@ public class UserServiceImpl implements UserService {
         String query = "MATCH (u:User {identifier:{1}})-[a:ASSIGNED_TO]->(p:Project {identifier:{2}}) " +
                 "DELETE a";
         this.assignQuery(query, user, project);
+
+        events.fire(new UserEvent());
 
     }
 
@@ -352,7 +370,8 @@ public class UserServiceImpl implements UserService {
      * @param project the project of the assignment
      * @throws NoSuchElementRuntimeException if the given user or project cannot be found
      */
-    private void assignQuery(final String query, final User user, final Project project) throws NoSuchElementRuntimeException {
+    private void assignQuery(final String query, final User user, final Project project)
+            throws NoSuchElementRuntimeException {
 
         User readUser = this.get(user.getIdentifier());
         Project readProject = projectService.get(project.getIdentifier());

@@ -1,5 +1,8 @@
-package com.prodyna.pac.eternity.server.service.impl;
+package com.prodyna.pac.eternity.server.service.project.impl;
 
+import com.prodyna.pac.eternity.server.event.BookingEvent;
+import com.prodyna.pac.eternity.server.event.ProjectEvent;
+import com.prodyna.pac.eternity.server.event.UserEvent;
 import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NotCreatedRuntimeException;
@@ -13,6 +16,7 @@ import com.prodyna.pac.eternity.server.service.CypherService;
 import com.prodyna.pac.eternity.server.service.project.ProjectService;
 
 import javax.ejb.Stateless;
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -36,6 +40,9 @@ public class ProjectServiceImpl implements ProjectService {
     private static final String PROJECT_RETURN_PROPERTIES = "p.id, p.identifier, p.description";
 
     @Inject
+    private Event<ProjectEvent> events;
+
+    @Inject
     private CypherService cypherService;
 
     @Override
@@ -57,6 +64,8 @@ public class ProjectServiceImpl implements ProjectService {
         if (queryResult == null) {
             throw new NotCreatedRuntimeException(project.toString());
         }
+
+        events.fire(new ProjectEvent());
 
         return project;
 
@@ -171,6 +180,7 @@ public class ProjectServiceImpl implements ProjectService {
         if (queryResult == null) {
             throw new NoSuchElementRuntimeException();
         } else {
+            events.fire(new ProjectEvent());
             return this.getProject(queryResult);
         }
 
@@ -189,6 +199,8 @@ public class ProjectServiceImpl implements ProjectService {
                         "OPTIONAL MATCH (p)<-[p1:PERFORMED_FOR]-(b:Booking)-[p2:PERFORMED_BY]->(:User) " +
                         "DELETE a,p,p1,b,p2",
                 map(1, identifier));
+
+        events.fire(new ProjectEvent());
 
     }
 

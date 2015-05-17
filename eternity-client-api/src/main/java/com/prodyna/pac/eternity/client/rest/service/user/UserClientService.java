@@ -1,5 +1,7 @@
 package com.prodyna.pac.eternity.client.rest.service.user;
 
+import com.prodyna.pac.eternity.server.model.user.User;
+
 import javax.ws.rs.core.Response;
 
 /**
@@ -46,5 +48,11 @@ public interface UserClientService {
      * @return the users assigned projects
      */
     Response getProjects(String xsrfToken);
+
+    Response create(User user);
+
+    Response update(User user);
+
+    Response delete(String identifier);
 
 }

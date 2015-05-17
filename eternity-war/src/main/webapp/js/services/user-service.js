@@ -6,6 +6,8 @@
 
         return $resource('rest/users/', [],
             {
+                delete: {method: 'DELETE', url: 'rest/users/:identifier'},
+                update: {method: 'PUT', url: 'rest/users'},
                 find: {method: 'GET'},
                 getBySession: {method: 'GET', url: 'rest/users/session'}
             });

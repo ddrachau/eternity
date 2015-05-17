@@ -7,7 +7,7 @@
         return $resource('rest/bookings/', [],
             {
                 delete: {method: 'DELETE', url: 'rest/bookings/:id'},
-                update: {method: 'PUT', url: 'rest/bookings/:id'},
+                update: {method: 'PUT', url: 'rest/bookings'},
                 getBookingsForCurrentUser: {method: 'GET', url: 'rest/users/bookings'}
             });
 

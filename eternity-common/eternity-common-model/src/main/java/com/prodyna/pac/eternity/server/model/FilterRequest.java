@@ -20,8 +20,8 @@ public class FilterRequest {
 
         this.sort = sort;
         this.filter = filter;
-        this.start = start;
-        this.pageSize = pageSize;
+        this.setStart(start);
+        this.setPageSize(pageSize);
 
     }
 
@@ -43,9 +43,31 @@ public class FilterRequest {
 
     }
 
+    public void setStart(final int start) {
+
+        if (start < 0) {
+            this.start = 0;
+        } else {
+            this.start = start;
+        }
+
+    }
+
     public int getPageSize() {
 
         return pageSize;
+
+    }
+
+    public void setPageSize(final int pageSize) {
+
+        if (pageSize < 0) {
+            this.pageSize = 0;
+        } else if (pageSize > 50) {
+            this.pageSize = 50;
+        } else {
+            this.pageSize = pageSize;
+        }
 
     }
 

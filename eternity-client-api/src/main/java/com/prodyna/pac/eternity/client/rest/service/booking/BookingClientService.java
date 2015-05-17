@@ -9,10 +9,10 @@ import javax.ws.rs.core.Response;
  */
 public interface BookingClientService {
 
-    Response createBooking(String xsrfToken, Booking booking);
+    Response create(String xsrfToken, Booking booking);
 
-    Response updateBooking(String xsrfToken, Booking booking);
+    Response update(String xsrfToken, Booking booking);
 
-    Response deleteBooking(String xsrfToken, String id);
+    Response delete(String xsrfToken, String id);
 
 }

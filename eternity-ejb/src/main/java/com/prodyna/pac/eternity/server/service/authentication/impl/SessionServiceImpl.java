@@ -1,4 +1,4 @@
-package com.prodyna.pac.eternity.server.service.impl;
+package com.prodyna.pac.eternity.server.service.authentication.impl;
 
 import com.prodyna.pac.eternity.server.exception.technical.NotCreatedRuntimeException;
 import com.prodyna.pac.eternity.server.logging.Logging;

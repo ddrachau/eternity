@@ -46,7 +46,7 @@ public class BookingClientServiceImpl implements BookingClientService {
     @Consumes(RestCookieUtils.JSON_UTF8)
     @Produces(RestCookieUtils.JSON_UTF8)
     @Override
-    public Response createBooking(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken,
+    public Response create(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken,
                                   final Booking booking) {
 
         Response.ResponseBuilder responseBuilder = Response.ok();
@@ -77,7 +77,7 @@ public class BookingClientServiceImpl implements BookingClientService {
     @Consumes(RestCookieUtils.JSON_UTF8)
     @Produces(RestCookieUtils.JSON_UTF8)
     @Override
-    public Response updateBooking(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken,
+    public Response update(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken,
                                   final Booking booking) {
 
         Response.ResponseBuilder responseBuilder = Response.ok();
@@ -103,7 +103,7 @@ public class BookingClientServiceImpl implements BookingClientService {
     @Produces(RestCookieUtils.JSON_UTF8)
     @Path("{id}")
     @Override
-    public Response deleteBooking(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken,
+    public Response delete(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken,
                                   @PathParam("id") final String id) {
 
         User requestUser = userService.getBySessionId(xsrfToken);

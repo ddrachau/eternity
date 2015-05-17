@@ -1,4 +1,4 @@
-package com.prodyna.pac.eternity.server.service.impl;
+package com.prodyna.pac.eternity.server.service.authentication.impl;
 
 import com.prodyna.pac.eternity.components.common.DateUtils;
 import com.prodyna.pac.eternity.components.common.PasswordHash;

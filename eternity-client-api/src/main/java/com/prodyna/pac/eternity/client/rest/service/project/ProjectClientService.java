@@ -1,5 +1,7 @@
 package com.prodyna.pac.eternity.client.rest.service.project;
 
+import com.prodyna.pac.eternity.server.model.project.Project;
+
 import javax.ws.rs.core.Response;
 
 /**
@@ -18,5 +20,11 @@ public interface ProjectClientService {
      * @return the matching projects
      */
     Response get(String xsrfToken, String sort, String[] filter, int start, int pageSize);
+
+    Response create(Project project);
+
+    Response update(Project project);
+
+    Response delete(String identifier);
 
 }

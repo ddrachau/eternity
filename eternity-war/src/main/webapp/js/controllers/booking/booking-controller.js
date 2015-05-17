@@ -1,5 +1,5 @@
 angular.module('Eternity').controller('BookingCtrl',
-    function ($scope, BookingService, UserService, ServerPushService,  projects) {
+    function ($scope, BookingService, ProjectService, ServerPushService,  projects) {
 
     var ctrl = this;
 
@@ -7,7 +7,7 @@ angular.module('Eternity').controller('BookingCtrl',
 
     ServerPushService.on('project', $scope, function (data) {
 
-        ctrl.projects = UserService.getProjectsForCurrentUser();
+        ctrl.projects = ProjectService.getProjectsForCurrentUser();
 
     });
 

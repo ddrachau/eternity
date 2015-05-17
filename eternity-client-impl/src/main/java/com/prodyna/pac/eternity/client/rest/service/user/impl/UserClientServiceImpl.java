@@ -3,6 +3,7 @@ package com.prodyna.pac.eternity.client.rest.service.user.impl;
 import com.prodyna.pac.eternity.client.rest.security.Authenticated;
 import com.prodyna.pac.eternity.client.rest.service.user.UserClientService;
 import com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils;
+import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.model.FilterRequest;
 import com.prodyna.pac.eternity.server.model.FilterResponse;
 import com.prodyna.pac.eternity.server.model.booking.Booking;
@@ -15,9 +16,14 @@ import com.prodyna.pac.eternity.server.service.user.UserService;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
@@ -100,6 +106,56 @@ public class UserClientServiceImpl implements UserClientService {
         List<Project> projects = projectService.findAllAssignedToUser(user);
 
         return Response.ok().entity(projects).build();
+
+    }
+
+    @RolesAllowed({"ADMINISTRATOR"})
+    @POST
+    @Consumes(RestCookieUtils.JSON_UTF8)
+    @Produces(RestCookieUtils.JSON_UTF8)
+    @Override
+    public Response create(final User user) {
+
+        try {
+
+            userService.create(user);
+            return Response.ok().build();
+
+        } catch (ElementAlreadyExistsException e) {
+            return Response.status(Response.Status.EXPECTATION_FAILED)
+                    .entity("{\"error\":\"" + "Id schon vorhanden\"}").build();
+        }
+
+    }
+
+    @RolesAllowed({"ADMINISTRATOR"})
+    @PUT
+    @Consumes(RestCookieUtils.JSON_UTF8)
+    @Produces(RestCookieUtils.JSON_UTF8)
+    @Override
+    public Response update(final User user) {
+
+        try {
+
+            userService.update(user);
+            return Response.ok().build();
+
+        } catch (ElementAlreadyExistsException e) {
+            return Response.status(Response.Status.EXPECTATION_FAILED)
+                    .entity("{\"error\":\"" + "Id schon vorhanden\"}").build();
+        }
+
+    }
+
+    @RolesAllowed({"ADMINISTRATOR"})
+    @DELETE
+    @Produces(RestCookieUtils.JSON_UTF8)
+    @Path("{identifier}")
+    @Override
+    public Response delete(@PathParam("identifier") final String identifier) {
+
+        userService.delete(identifier);
+        return Response.ok().build();
 
     }
 

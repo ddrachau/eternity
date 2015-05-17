@@ -1,10 +1,10 @@
 package com.prodyna.pac.eternity.client.rest.push;
 
-
 import com.prodyna.pac.eternity.server.event.BookingEvent;
+import com.prodyna.pac.eternity.server.event.ProjectEvent;
+import com.prodyna.pac.eternity.server.event.UserEvent;
 import org.slf4j.Logger;
 
-import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.enterprise.event.Observes;
@@ -30,23 +30,8 @@ public class PushServer {
 
     private Set<Session> sessions = new HashSet<>();
 
-//    private void send(Message msg) {
-//
-//        try {
-//            for (Session session : peers) {
-//                if (session.isOpen()) {
-//                    msg.setSession(session);
-//                    session.getBasicRemote().sendObject(msg);
-//                    logger.log(Level.INFO, "send " + msg);
-//                }
-//            }
-//        } catch (IOException | EncodeException e) {
-//            logger.log(Level.SEVERE, e.toString());
-//        }
-//    }
-
     @OnMessage
-    public void message(final Session session, String msg) throws IOException, EncodeException {
+    public void message(final Session session, final String msg) throws IOException, EncodeException {
 
         logger.info("Session ID : " + session.getId() + " - Received message");
         logger.info(msg);
@@ -62,7 +47,7 @@ public class PushServer {
     }
 
     @OnOpen
-    public void openConnection(Session session) throws IOException, EncodeException {
+    public void openConnection(final Session session) throws IOException, EncodeException {
 
         logger.info("Session ID : " + session.getId() + " - Connection opened");
         sessions.add(session);
@@ -70,7 +55,7 @@ public class PushServer {
     }
 
     @OnClose
-    public void closedConnection(Session session) {
+    public void closedConnection(final Session session) {
 
         logger.info("Session ID : " + session.getId() + "Connection closed.");
         sessions.remove(session);
@@ -78,35 +63,13 @@ public class PushServer {
     }
 
     @OnError
-    public void error(Session session, Throwable t) {
+    public void error(final Session session, final Throwable t) {
 
-        logger.error(t.toString());
-        logger.error("Session ID : " + session.getId() + "Connection error.");
-
-    }
-
-    @Schedule(second = "*/10", minute = "*", hour = "*", persistent = false)
-    public void play() throws IOException {
-
-        // TODO add filter for project, bookings and user screens
-        // take the user role in consideration, users do not need every update
-        // for now, send every message to every client
-
-//        String message = "{\"event\":\"pong\",\"data\":\"hi listening websocket server\"}";
-//        String message2 = "{\"event\":\"project\",\"data\":\"hi listening websocket server\"}";
-//
-//        for (Session session : sessions) {
-//            logger.info("Session ID : " + session.getId() + " - Send message");
-//            logger.info(message);
-//            session.getBasicRemote().sendText(message);
-//            logger.info("Session ID : " + session.getId() + " - Send message");
-//            logger.info(message2);
-//            session.getBasicRemote().sendText(message2);
-//        }
+        logger.error("Session ID : " + session.getId() + "Connection error: " + t.toString());
 
     }
 
-    public void listenToBookingEvents(@Observes BookingEvent event) throws IOException {
+    public void listenToBookingEvents(@Observes final BookingEvent event) throws IOException {
 
         String message = "{\"event\":\"booking\",\"data\":\"hi listening websocket server\"}";
 
@@ -117,5 +80,29 @@ public class PushServer {
         }
 
     }
-}
 
+    public void listenToProjectEvents(@Observes final ProjectEvent event) throws IOException {
+
+        String message = "{\"event\":\"project\",\"data\":\"hi listening websocket server\"}";
+
+        for (Session session : sessions) {
+            logger.info("Session ID : " + session.getId() + " - Send message");
+            logger.info(message);
+            session.getBasicRemote().sendText(message);
+        }
+
+    }
+
+    public void listenToUserEvents(@Observes final UserEvent event) throws IOException {
+
+        String message = "{\"event\":\"user\",\"data\":\"hi listening websocket server\"}";
+
+        for (Session session : sessions) {
+            logger.info("Session ID : " + session.getId() + " - Send message");
+            logger.info(message);
+            session.getBasicRemote().sendText(message);
+        }
+
+    }
+
+}
