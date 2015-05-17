@@ -54,12 +54,11 @@ angular.module('Eternity').controller('ProjectListingCtrl',
         $scope.createProject = function () {
 
             ModalService.showModal({
-                templateUrl: "templates/booking/create-update-booking.html",
-                controller: "CreateUpdateBookingCtrl",
+                templateUrl: "templates/project/create-update-project.html",
+                controller: "CreateUpdateProjectCtrl",
                 inputs: {
-                    title: 'Neue Buchung anlegen',
-                    projects: $scope.projects,
-                    booking: {}
+                    title: 'Neues Projekt anlegen',
+                    project: {}
                 }
             }).then(function (modal) {
 
@@ -77,15 +76,14 @@ angular.module('Eternity').controller('ProjectListingCtrl',
 
         }
 
-        $scope.editProject = function (booking) {
+        $scope.editProject = function (project) {
 
             ModalService.showModal({
-                templateUrl: "templates/booking/create-update-booking.html",
-                controller: "CreateUpdateBookingCtrl",
+                templateUrl: "templates/project/create-update-project.html",
+                controller: "CreateUpdateProjectCtrl",
                 inputs: {
-                    title: 'Bestehende Buchung anpassen',
-                    projects: $scope.projects,
-                    booking: booking
+                    title: 'Bestehendes Projekt anpassen',
+                    project: project
                 }
             }).then(function (modal) {
 

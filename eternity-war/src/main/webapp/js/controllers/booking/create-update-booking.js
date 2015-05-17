@@ -2,6 +2,7 @@ angular.module('Eternity').controller('CreateUpdateBookingCtrl',
     ['$scope', '$element', 'BookingService', 'UserService', 'close', 'booking', 'projects', 'title',
         function ($scope, $element, BookingService, UserService, close, booking, projects, title) {
 
+            $scope.alerts = [];
             $scope.title = title;
             $scope.projects = projects;
 
@@ -41,7 +42,6 @@ angular.module('Eternity').controller('CreateUpdateBookingCtrl',
             $scope.dateFormat = 'dd.MM.yyyy';
             $scope.hstep = 1;
             $scope.mstep = 5;
-            $scope.alerts = [];
 
             $scope.addAlert = function (type, msg) {
                 $scope.clearAlerts();

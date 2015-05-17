@@ -1,0 +1,48 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close()" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{title}}</h4>
+            </div>
+            <div class="modal-body">
+
+                <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
+                    {{alert.msg}}
+                </alert>
+
+                <form name="projectForm" class="form-horizontal">
+
+                    <div class="form-group">
+
+                        <label class="col-sm-3 control-label">Identifier</label>
+
+                        <div class="col-sm-9">
+                            <input class="form-control" ng-model="identifier" type="text" maxlength="30"
+                                   placeholder="Identifier" required ng-disabled="projectId">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-sm-3 control-label">Beschreibung</label>
+
+                        <div class="col-sm-9">
+                            <input class="form-control" ng-model="description" type="text" maxlength="30"
+                                   placeholder="Beschreibung">
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="createUpdateProject()" class="btn btn-primary">Speichern</button>
+                <button type="button" ng-click="cancel()" class="btn">Abbrechen</button>
+            </div>
+        </div>
+    </div>
+</div>
