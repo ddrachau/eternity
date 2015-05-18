@@ -106,7 +106,8 @@ angular.module('Eternity').controller('UserListingCtrl',
                 templateUrl: "templates/authentication/set-password.html",
                 controller: "SetPasswordCtrl",
                 inputs: {
-                    title: 'Passwort für den Benutzer \'' + user.identifier + '\' setzen'
+                    title: 'Passwort für den Benutzer \'' + user.identifier + '\' setzen',
+                    user: user
                 }
             }).then(function (modal) {
 

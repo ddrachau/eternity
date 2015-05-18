@@ -4,8 +4,11 @@ import com.prodyna.pac.eternity.client.rest.security.Authenticated;
 import com.prodyna.pac.eternity.client.rest.service.user.UserClientService;
 import com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils;
 import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
 import com.prodyna.pac.eternity.server.model.FilterRequest;
 import com.prodyna.pac.eternity.server.model.FilterResponse;
+import com.prodyna.pac.eternity.server.model.authentication.ChangePassword;
 import com.prodyna.pac.eternity.server.model.booking.Booking;
 import com.prodyna.pac.eternity.server.model.project.Project;
 import com.prodyna.pac.eternity.server.model.user.User;
@@ -144,6 +147,54 @@ public class UserClientServiceImpl implements UserClientService {
             return Response.status(Response.Status.EXPECTATION_FAILED)
                     .entity("{\"error\":\"" + "Id schon vorhanden\"}").build();
         }
+
+    }
+
+    @RolesAllowed({"ADMINISTRATOR"})
+    @POST
+    @Consumes(RestCookieUtils.JSON_UTF8)
+    @Produces(RestCookieUtils.JSON_UTF8)
+    @Path("{identifier}/password")
+    @Override
+    public Response setPassword(@PathParam("identifier") final String identifier,
+                                final ChangePassword changePassword) {
+
+        // TODO check, validate, exception...
+
+        try {
+            userService.storePassword(identifier, changePassword.getNewPassword());
+        } catch (InvalidUserException e) {
+            e.printStackTrace();
+        }
+
+        return Response.ok().build();
+
+    }
+
+    @PermitAll
+    @PUT
+    @Consumes(RestCookieUtils.JSON_UTF8)
+    @Produces(RestCookieUtils.JSON_UTF8)
+    @Path("{identifier}/password")
+    @Override
+    public Response changePassword(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken,
+                                   @PathParam("identifier") final String identifier,
+                                   final ChangePassword changePassword) {
+
+        User sessionUser = userService.getBySessionId(xsrfToken);
+        User changeUser = userService.get(identifier);
+
+        // TODO check, validate, exception...
+
+        try {
+            userService.changePassword(identifier, changePassword.getOldPassword(), changePassword.getNewPassword());
+        } catch (InvalidUserException e) {
+            e.printStackTrace();
+        } catch (InvalidPasswordException e) {
+            e.printStackTrace();
+        }
+
+        return Response.ok().build();
 
     }
 

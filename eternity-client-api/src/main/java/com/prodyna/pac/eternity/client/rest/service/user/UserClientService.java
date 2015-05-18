@@ -1,5 +1,6 @@
 package com.prodyna.pac.eternity.client.rest.service.user;
 
+import com.prodyna.pac.eternity.server.model.authentication.ChangePassword;
 import com.prodyna.pac.eternity.server.model.user.User;
 
 import javax.ws.rs.core.Response;
@@ -54,5 +55,9 @@ public interface UserClientService {
     Response update(User user);
 
     Response delete(String identifier);
+
+    Response setPassword(String identifier, ChangePassword changePassword);
+
+    Response changePassword(String xsrfToken, String identifier, ChangePassword changePassword);
 
 }
