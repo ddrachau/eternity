@@ -76,6 +76,54 @@ angular.module('Eternity').controller('UserListingCtrl',
 
         }
 
+        $scope.assignToProject = function (user) {
+
+            ModalService.showModal({
+                templateUrl: "templates/user/assign-to-project.html",
+                controller: "AssignToProjectCtrl",
+                inputs: {
+                    title: 'Benutzer \'' + user.identifier + '\' Projekten zuordnen'
+                }
+            }).then(function (modal) {
+
+                modal.element.modal({backdrop: 'static'});
+                modal.close.then(function (result) {
+
+                    if (result) {
+
+                        $scope.addAlert(result.type, result.msg);
+
+                    }
+
+                });
+            });
+
+        }
+
+        $scope.setPassword = function (user) {
+
+            ModalService.showModal({
+                templateUrl: "templates/authentication/set-password.html",
+                controller: "SetPasswordCtrl",
+                inputs: {
+                    title: 'Passwort für den Benutzer \'' + user.identifier + '\' setzen'
+                }
+            }).then(function (modal) {
+
+                modal.element.modal({backdrop: 'static'});
+                modal.close.then(function (result) {
+
+                    if (result) {
+
+                        $scope.addAlert(result.type, result.msg);
+
+                    }
+
+                });
+            });
+
+        }
+
         $scope.editUser = function (user) {
 
             ModalService.showModal({

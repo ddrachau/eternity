@@ -1,4 +1,4 @@
-angular.module('Eternity').controller('ChangePasswordCtrl',
+angular.module('Eternity').controller('AssignToProjectCtrl',
     ['$scope', '$element', 'BookingService', 'UserService', 'close', 'title',
         function ($scope, $element, BookingService, UserService, close, title) {
 

@@ -1,12 +1,13 @@
-angular.module('Eternity')
-    .directive('header', function ($rootScope) {
-        return {
+angular.module('Eternity').directive('header', function () {
 
-            restrict: 'E',
-            scope: true,
-            templateUrl: 'templates/header.html',
-            controller: function($rootScope) {
-                this.root = $rootScope;
-            }
-        };
-    });
+    return {
+
+        restrict: 'E',
+        scope: true,
+        templateUrl: 'templates/header.html',
+        controller: 'HeaderCtrl',
+        controllerAs: 'hCtrl'
+
+    };
+
+});
