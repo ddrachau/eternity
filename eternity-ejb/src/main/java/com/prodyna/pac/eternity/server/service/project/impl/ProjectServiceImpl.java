@@ -1,8 +1,6 @@
 package com.prodyna.pac.eternity.server.service.project.impl;
 
-import com.prodyna.pac.eternity.server.event.BookingEvent;
-import com.prodyna.pac.eternity.server.event.ProjectEvent;
-import com.prodyna.pac.eternity.server.event.UserEvent;
+import com.prodyna.pac.eternity.server.event.EternityEvent;
 import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.server.exception.technical.NotCreatedRuntimeException;
@@ -19,11 +17,7 @@ import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import static com.prodyna.pac.eternity.components.common.QueryUtils.map;
 
@@ -40,7 +34,7 @@ public class ProjectServiceImpl implements ProjectService {
     private static final String PROJECT_RETURN_PROPERTIES = "p.id, p.identifier, p.description";
 
     @Inject
-    private Event<ProjectEvent> events;
+    private Event<EternityEvent> events;
 
     @Inject
     private CypherService cypherService;
@@ -65,14 +59,14 @@ public class ProjectServiceImpl implements ProjectService {
             throw new NotCreatedRuntimeException(project.toString());
         }
 
-        events.fire(new ProjectEvent());
+        events.fire(EternityEvent.createProjectEvent());
 
         return project;
 
     }
 
     @Override
-    public Project get(@NotNull String identifier) {
+    public Project get(@NotNull final String identifier) {
 
         Project result = null;
 
@@ -90,7 +84,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project get(@NotNull Booking booking) throws NoSuchElementRuntimeException {
+    public Project get(@NotNull final Booking booking) throws NoSuchElementRuntimeException {
 
         Project result = null;
 
@@ -180,14 +174,14 @@ public class ProjectServiceImpl implements ProjectService {
         if (queryResult == null) {
             throw new NoSuchElementRuntimeException();
         } else {
-            events.fire(new ProjectEvent());
+            events.fire(EternityEvent.createProjectEvent());
             return this.getProject(queryResult);
         }
 
     }
 
     @Override
-    public void delete(@NotNull final  String identifier) throws NoSuchElementRuntimeException {
+    public void delete(@NotNull final String identifier) throws NoSuchElementRuntimeException {
 
         if (this.get(identifier) == null) {
             throw new NoSuchElementRuntimeException();
@@ -200,7 +194,7 @@ public class ProjectServiceImpl implements ProjectService {
                         "DELETE a,p,p1,b,p2",
                 map(1, identifier));
 
-        events.fire(new ProjectEvent());
+        events.fire(EternityEvent.createProjectEvent());
 
     }
 

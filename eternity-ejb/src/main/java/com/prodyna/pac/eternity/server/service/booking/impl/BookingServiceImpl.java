@@ -1,6 +1,6 @@
 package com.prodyna.pac.eternity.server.service.booking.impl;
 
-import com.prodyna.pac.eternity.server.event.BookingEvent;
+import com.prodyna.pac.eternity.server.event.EternityEvent;
 import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
@@ -21,12 +21,7 @@ import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import static com.prodyna.pac.eternity.components.common.DateUtils.getCalendar;
 import static com.prodyna.pac.eternity.components.common.QueryUtils.map;
@@ -45,7 +40,7 @@ public class BookingServiceImpl implements BookingService {
             "b.id, b.startTime, b.endTime, b.breakDuration, b.description, p.identifier";
 
     @Inject
-    private Event<BookingEvent> events;
+    private Event<EternityEvent> events;
 
     @Inject
     private CypherService cypherService;
@@ -86,7 +81,7 @@ public class BookingServiceImpl implements BookingService {
             throw new NotCreatedRuntimeException(booking.toString());
         }
 
-        events.fire(new BookingEvent());
+        events.fire(EternityEvent.createBookingEvent());
 
         return booking;
 
@@ -226,7 +221,7 @@ public class BookingServiceImpl implements BookingService {
             throw new NoSuchElementRuntimeException();
         } else {
 
-            events.fire(new BookingEvent());
+            events.fire(EternityEvent.createBookingEvent());
 
             return this.getBooking(queryResult);
         }
@@ -245,7 +240,7 @@ public class BookingServiceImpl implements BookingService {
                         "DELETE r1,b,r2",
                 map(1, id));
 
-        events.fire(new BookingEvent());
+        events.fire(EternityEvent.createBookingEvent());
 
     }
 

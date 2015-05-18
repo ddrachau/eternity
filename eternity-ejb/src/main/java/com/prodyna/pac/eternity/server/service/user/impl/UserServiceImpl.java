@@ -1,7 +1,6 @@
 package com.prodyna.pac.eternity.server.service.user.impl;
 
-import com.prodyna.pac.eternity.server.event.BookingEvent;
-import com.prodyna.pac.eternity.server.event.UserEvent;
+import com.prodyna.pac.eternity.server.event.EternityEvent;
 import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
@@ -22,11 +21,7 @@ import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import static com.prodyna.pac.eternity.components.common.PasswordHash.createHash;
 import static com.prodyna.pac.eternity.components.common.PasswordHash.validatePassword;
@@ -46,7 +41,7 @@ public class UserServiceImpl implements UserService {
             "u.id, u.identifier, u.forename, u.surname, u.password, u.role";
 
     @Inject
-    private Event<UserEvent> events;
+    private Event<EternityEvent> events;
 
     @Inject
     private CypherService cypherService;
@@ -86,7 +81,7 @@ public class UserServiceImpl implements UserService {
             }
         }
 
-        events.fire(new UserEvent());
+        events.fire(EternityEvent.createUsereEvent());
 
         return result;
     }
@@ -237,7 +232,7 @@ public class UserServiceImpl implements UserService {
         if (queryResult == null) {
             throw new NoSuchElementRuntimeException();
         } else {
-            events.fire(new UserEvent());
+            events.fire(EternityEvent.createUsereEvent());
             return this.getUser(queryResult);
         }
 
@@ -259,7 +254,7 @@ public class UserServiceImpl implements UserService {
                         "DELETE s,a1,a2,u,p1,b,p2",
                 map(1, identifier));
 
-        events.fire(new UserEvent());
+        events.fire(EternityEvent.createUsereEvent());
 
     }
 
@@ -270,7 +265,7 @@ public class UserServiceImpl implements UserService {
                 "CREATE UNIQUE (u)-[:ASSIGNED_TO]->(p)";
         this.assignQuery(query, user, project);
 
-        events.fire(new UserEvent());
+        events.fire(EternityEvent.createUsereEvent());
 
     }
 
@@ -281,7 +276,7 @@ public class UserServiceImpl implements UserService {
                 "DELETE a";
         this.assignQuery(query, user, project);
 
-        events.fire(new UserEvent());
+        events.fire(EternityEvent.createUsereEvent());
 
     }
 
