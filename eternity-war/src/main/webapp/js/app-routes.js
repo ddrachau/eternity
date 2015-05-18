@@ -23,6 +23,10 @@ angular.module('Eternity').config(function ($routeProvider) {
             templateUrl: 'templates/authentication/login.html',
             controller: 'LoginCtrl'
         })
+        .when('/changePassword', {
+            templateUrl: 'templates/authentication/change-password.html',
+            controller: 'ChangePwCtrl'
+        })
         .when('/tokenLogin', {
             templateUrl: 'templates/authentication/token.html',
             controller: 'TokenLoginCtrl'

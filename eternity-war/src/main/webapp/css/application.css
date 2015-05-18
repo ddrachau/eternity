@@ -8,9 +8,9 @@
 }
 
 /* override iOS fix, in filter cells zooming is ok */
-.table-filter {
+/*.table-filter {
     font-size: 12px;
-}
+}*/
 
 .vcenter {
     padding-top: 0px;
