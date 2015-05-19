@@ -10,6 +10,7 @@ import com.prodyna.pac.eternity.server.model.project.Project;
 import com.prodyna.pac.eternity.server.model.user.User;
 
 import javax.ejb.Local;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public interface UserService {
      * @return the created project with the generated id
      * @throws ElementAlreadyExistsException if an user with the same identifier already exists
      */
-    User create(@NotNull User user) throws ElementAlreadyExistsException;
+    User create(@NotNull @Valid User user) throws ElementAlreadyExistsException;
 
     /**
      * Searches for a single user.
@@ -82,7 +83,7 @@ public interface UserService {
      * @return the updated user
      * @throws ElementAlreadyExistsException if a user with the same identifier already exists
      */
-    User update(@NotNull User user) throws ElementAlreadyExistsException;
+    User update(@NotNull @Valid User user) throws ElementAlreadyExistsException;
 
     /**
      * Removes the given user from the database.

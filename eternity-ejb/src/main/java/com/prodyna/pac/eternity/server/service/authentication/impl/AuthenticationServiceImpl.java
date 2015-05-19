@@ -9,7 +9,7 @@ import com.prodyna.pac.eternity.server.model.authentication.Login;
 import com.prodyna.pac.eternity.server.model.authentication.RememberMe;
 import com.prodyna.pac.eternity.server.model.authentication.Session;
 import com.prodyna.pac.eternity.server.model.user.User;
-import com.prodyna.pac.eternity.server.service.*;
+import com.prodyna.pac.eternity.server.service.CypherService;
 import com.prodyna.pac.eternity.server.service.authentication.AuthenticationService;
 import com.prodyna.pac.eternity.server.service.authentication.RememberMeService;
 import com.prodyna.pac.eternity.server.service.authentication.SessionService;
@@ -17,6 +17,7 @@ import com.prodyna.pac.eternity.server.service.user.UserService;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -39,7 +40,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private RememberMeService rememberMeService;
 
     @Override
-    public Login login(@NotNull Login login) throws InvalidLoginException {
+    public Login login(@NotNull @Valid final Login login) throws InvalidLoginException {
 
         String userIdentifier = login.getUsername();
         String plainPassword = login.getPassword();

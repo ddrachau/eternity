@@ -16,15 +16,15 @@
 
             <thead>
             <tr>
-                <th colspan="1">
+                <th colspan="2">
                     <input st-search="identifier" placeholder="Identifier"
                            class="input-sm form-control table-filter" type="search"/>
                 </th>
-                <th colspan="2">
+                <th colspan="1">
                     <input st-search="forename" st-search placeholder="Vorname"
                            class="input-sm form-control table-filter" type="search"/>
                 </th>
-                <th colspan="2">
+                <th colspan="1">
                     <input st-search="surname" st-search placeholder="Nachname"
                            class="input-sm form-control table-filter" type="search"/>
                 </th>
@@ -34,7 +34,6 @@
                 </th>
             </tr>
             <tr>
-                <th>Id</th>
                 <th st-skip-natural="true" st-sort="identifier" st-sort-default="true">Identifier</th>
                 <th st-skip-natural="true" st-sort="forename">Vorname</th>
                 <th st-skip-natural="true" st-sort="surname">Nachname</th>
@@ -45,7 +44,6 @@
 
             <tbody ng-show="!ulCtrl.isLoading">
             <tr ng-repeat="user in ulCtrl.displayed">
-                <td>{{user.id}}</td>
                 <td>{{user.identifier}}</td>
                 <td>{{user.forename}}</td>
                 <td>{{user.surname}}</td>
@@ -72,7 +70,7 @@
             </tbody>
             <tbody ng-show="ulCtrl.isLoading">
             <tr>
-                <td colspan="6" class="text-center">Loading ...</td>
+                <td colspan="5" class="text-center">Loading ...</td>
             </tr>
             </tbody>
 

@@ -1,8 +1,12 @@
 package com.prodyna.pac.eternity.client.rest.service.user;
 
 import com.prodyna.pac.eternity.server.model.authentication.ChangePassword;
+import com.prodyna.pac.eternity.server.model.authentication.SetPassword;
 import com.prodyna.pac.eternity.server.model.user.User;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.ws.rs.core.Response;
 
 /**
@@ -50,14 +54,14 @@ public interface UserClientService {
      */
     Response getProjects(String xsrfToken);
 
-    Response create(User user);
+    Response create(@NotNull @Valid User user);
 
-    Response update(User user);
+    Response update(@NotNull @Valid User user);
 
-    Response delete(String identifier);
+    Response delete(@NotNull @Size(min = 1) String identifier);
 
-    Response setPassword(String identifier, ChangePassword changePassword);
+    Response setPassword(String identifier, @NotNull @Valid SetPassword setPassword);
 
-    Response changePassword(String xsrfToken, ChangePassword changePassword);
+    Response changePassword(String xsrfToken, @NotNull @Valid ChangePassword changePassword);
 
 }

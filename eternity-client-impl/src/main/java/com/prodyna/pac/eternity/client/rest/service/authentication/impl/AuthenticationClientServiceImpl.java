@@ -15,6 +15,8 @@ import org.slf4j.Logger;
 
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.CookieParam;
 import javax.ws.rs.DELETE;
@@ -64,9 +66,9 @@ public class AuthenticationClientServiceImpl implements AuthenticationClientServ
     @Consumes(JSON_UTF8)
     @Produces(RestCookieUtils.JSON_UTF8)
     @Override
-    public Response login(@CookieParam(COOKIE_TOKEN_XSRF) Cookie sessionCookie,
-                          @CookieParam(COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie,
-                          @Context UriInfo uriInfo, Login login) {
+    public Response login(@CookieParam(COOKIE_TOKEN_XSRF) final Cookie sessionCookie,
+                          @CookieParam(COOKIE_TOKEN_REMEMBER_ME) final Cookie rememberMeCookie,
+                          @Context final UriInfo uriInfo, @NotNull @Valid Login login) {
 
         try {
 

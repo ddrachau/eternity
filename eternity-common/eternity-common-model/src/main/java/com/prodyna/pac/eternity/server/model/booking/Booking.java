@@ -3,6 +3,7 @@ package com.prodyna.pac.eternity.server.model.booking;
 import com.prodyna.pac.eternity.server.model.AbstractNode;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  * A booking is a concrete time booking with a start and end date (at the same day) for a projectIdentifier.
@@ -206,22 +207,19 @@ public class Booking extends AbstractNode {
 
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
         Booking booking = (Booking) o;
-
-        if (breakDuration != booking.breakDuration) return false;
-        if (startTime != null ? !startTime.equals(booking.startTime) : booking.startTime != null) return false;
-        if (endTime != null ? !endTime.equals(booking.endTime) : booking.endTime != null) return false;
-        if (description != null ? !description.equals(booking.description) : booking.description != null) return false;
-        return !(projectIdentifier != null ? !projectIdentifier.equals(booking.projectIdentifier) : booking.projectIdentifier != null);
+        return Objects.equals(breakDuration, booking.breakDuration) &&
+                Objects.equals(startTime, booking.startTime) &&
+                Objects.equals(endTime, booking.endTime) &&
+                Objects.equals(description, booking.description) &&
+                Objects.equals(projectIdentifier, booking.projectIdentifier);
 
     }
 
     @Override
     public int hashCode() {
 
-        return super.hashCode();
+        return Objects.hash(startTime, endTime, breakDuration, description, projectIdentifier);
 
     }
 

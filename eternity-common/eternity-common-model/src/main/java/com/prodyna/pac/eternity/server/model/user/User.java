@@ -2,6 +2,10 @@ package com.prodyna.pac.eternity.server.model.user;
 
 import com.prodyna.pac.eternity.server.model.AbstractNode;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.Objects;
+
 /**
  * Represents a person which can login to the system and book times or administer.
  */
@@ -10,19 +14,29 @@ public class User extends AbstractNode {
     /**
      * the functional identifier for the user
      */
+    @NotNull
+    @Size(min = 1, max = 30)
     private String identifier;
+
     /**
      * the forename of the user
      */
+    @NotNull
+    @Size(min = 1, max = 30)
     private String forename;
+
     /**
      * the surname of the user
      */
+    @NotNull
+    @Size(min = 1, max = 30)
     private String surname;
+
     /**
      * the password of the user
      */
     private String password;
+
     /**
      * the role this user has in the system
      */
@@ -45,7 +59,9 @@ public class User extends AbstractNode {
      * @param password   the user's password
      * @param role       the user's role
      */
-    public User(String id, String identifier, String forename, String surname, String password, UserRole role) {
+    public User(final String id, final String identifier, final String forename, final String surname,
+                final String password, final UserRole role) {
+
         super(id);
         this.identifier = identifier;
         this.forename = forename;
@@ -63,8 +79,10 @@ public class User extends AbstractNode {
      * @param surname    the user's surname
      * @param password   the user's password
      */
-    public User(String id, String identifier, String forename, String surname, String password) {
-        this(null, identifier, forename, surname, password,UserRole.USER);
+    public User(final String id, final String identifier, final String forename, final String surname,
+                final String password) {
+
+        this(id, identifier, forename, surname, password, UserRole.USER);
     }
 
     /**
@@ -75,7 +93,8 @@ public class User extends AbstractNode {
      * @param surname    the user's surname
      * @param password   the user's password
      */
-    public User(String identifier, String forename, String surname, String password) {
+    public User(final String identifier, final String forename, final String surname, final String password) {
+
         this(null, identifier, forename, surname, password);
     }
 
@@ -85,6 +104,7 @@ public class User extends AbstractNode {
      * @return the identifier
      */
     public String getIdentifier() {
+
         return identifier;
     }
 
@@ -93,7 +113,8 @@ public class User extends AbstractNode {
      *
      * @param identifier to be set
      */
-    public void setIdentifier(String identifier) {
+    public void setIdentifier(final String identifier) {
+
         this.identifier = identifier;
     }
 
@@ -103,6 +124,7 @@ public class User extends AbstractNode {
      * @return the forename
      */
     public String getForename() {
+
         return forename;
     }
 
@@ -111,7 +133,8 @@ public class User extends AbstractNode {
      *
      * @param forename to be set
      */
-    public void setForename(String forename) {
+    public void setForename(final String forename) {
+
         this.forename = forename;
     }
 
@@ -121,6 +144,7 @@ public class User extends AbstractNode {
      * @return the surname
      */
     public String getSurname() {
+
         return surname;
     }
 
@@ -129,7 +153,8 @@ public class User extends AbstractNode {
      *
      * @param surname to be set
      */
-    public void setSurname(String surname) {
+    public void setSurname(final String surname) {
+
         this.surname = surname;
     }
 
@@ -139,6 +164,7 @@ public class User extends AbstractNode {
      * @return the password
      */
     public String getPassword() {
+
         return password;
     }
 
@@ -147,7 +173,8 @@ public class User extends AbstractNode {
      *
      * @param password to be set
      */
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
+
         this.password = password;
     }
 
@@ -157,6 +184,7 @@ public class User extends AbstractNode {
      * @return the role
      */
     public UserRole getRole() {
+
         return role;
     }
 
@@ -165,34 +193,34 @@ public class User extends AbstractNode {
      *
      * @param role to be set
      */
-    public void setRole(UserRole role) {
+    public void setRole(final UserRole role) {
+
         this.role = role;
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
         User user = (User) o;
-
-        if (identifier != null ? !identifier.equals(user.identifier) : user.identifier != null) return false;
-        if (forename != null ? !forename.equals(user.forename) : user.forename != null) return false;
-        if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-
-        return role == user.role;
-
+        return Objects.equals(identifier, user.identifier) &&
+                Objects.equals(forename, user.forename) &&
+                Objects.equals(surname, user.surname) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+
+        return Objects.hash(identifier, forename, surname, password, role);
+
     }
 
     @Override
     public String toString() {
+
         return "User{" +
                 "identifier='" + identifier + '\'' +
                 ", forename='" + forename + '\'' +

@@ -3,29 +3,13 @@ package com.prodyna.pac.eternity.server.model.authentication;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class ChangePassword {
-
-    @NotNull
-    @Size(min = 1, max = 30)
-    private String oldPassword;
+public class SetPassword {
 
     @NotNull
     @Size(min = 1, max = 30)
     private String newPassword;
 
-    public ChangePassword() {
-
-    }
-
-    public String getOldPassword() {
-
-        return oldPassword;
-
-    }
-
-    public void setOldPassword(final String oldPassword) {
-
-        this.oldPassword = oldPassword;
+    public SetPassword() {
 
     }
 
@@ -45,7 +29,6 @@ public class ChangePassword {
     public String toString() {
 
         return "ChangePassword{" +
-                ", oldPassword='" + oldPassword + '\'' +
                 ", newPassword='" + newPassword + '\'' +
                 '}';
     }

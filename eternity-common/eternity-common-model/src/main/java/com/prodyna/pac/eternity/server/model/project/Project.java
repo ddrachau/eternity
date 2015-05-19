@@ -2,6 +2,8 @@ package com.prodyna.pac.eternity.server.model.project;
 
 import com.prodyna.pac.eternity.server.model.AbstractNode;
 
+import java.util.Objects;
+
 /**
  * A project is a representation of a real work project. Users can book times on it.
  */
@@ -11,6 +13,7 @@ public class Project extends AbstractNode {
      * the functional identifier for the project
      */
     private String identifier;
+
     /**
      * the description for the project
      */
@@ -31,6 +34,7 @@ public class Project extends AbstractNode {
      * @param description the project description
      */
     public Project(String id, String identifier, String description) {
+
         super(id);
         this.identifier = identifier;
         this.description = description;
@@ -42,8 +46,10 @@ public class Project extends AbstractNode {
      * @param identifier  the functional identifier
      * @param description the project description
      */
-    public Project(String identifier, String description) {
+    public Project(final String identifier, final String description) {
+
         this(null, identifier, description);
+
     }
 
     /**
@@ -52,7 +58,9 @@ public class Project extends AbstractNode {
      * @return the identifier
      */
     public String getIdentifier() {
+
         return identifier;
+
     }
 
     /**
@@ -60,8 +68,10 @@ public class Project extends AbstractNode {
      *
      * @param identifier to be set
      */
-    public void setIdentifier(String identifier) {
+    public void setIdentifier(final String identifier) {
+
         this.identifier = identifier;
+
     }
 
     /**
@@ -70,7 +80,9 @@ public class Project extends AbstractNode {
      * @return the description
      */
     public String getDescription() {
+
         return description;
+
     }
 
     /**
@@ -78,30 +90,33 @@ public class Project extends AbstractNode {
      *
      * @param description to be set
      */
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
+
         this.description = description;
+
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
         Project project = (Project) o;
-
-        if (identifier != null ? !identifier.equals(project.identifier) : project.identifier != null) return false;
-        return !(description != null ? !description.equals(project.description) : project.description != null);
+        return Objects.equals(identifier, project.identifier) &&
+                Objects.equals(description, project.description);
 
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+
+        return Objects.hash(identifier, description);
+
     }
 
     @Override
     public String toString() {
+
         return "Project{" +
                 "id='" + this.getId() + '\'' +
                 ", identifier='" + identifier + '\'' +

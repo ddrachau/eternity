@@ -20,8 +20,13 @@ import com.prodyna.pac.eternity.server.service.user.UserService;
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import static com.prodyna.pac.eternity.components.common.PasswordHash.createHash;
 import static com.prodyna.pac.eternity.components.common.PasswordHash.validatePassword;
@@ -50,7 +55,7 @@ public class UserServiceImpl implements UserService {
     private ProjectService projectService;
 
     @Override
-    public User create(@NotNull final User user) throws ElementAlreadyExistsException {
+    public User create(@NotNull @Valid final User user) throws ElementAlreadyExistsException {
 
         User result = this.get(user.getIdentifier());
 
@@ -71,7 +76,7 @@ public class UserServiceImpl implements UserService {
             throw new NotCreatedRuntimeException(result.toString());
         }
 
-        if (user.getPassword() != null) {
+        if (user.getPassword() != null && user.getPassword().length() > 0) {
             try {
                 this.storePassword(result.getIdentifier(), result.getPassword());
                 result = get(user.getIdentifier());
@@ -215,7 +220,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(@NotNull final User user) throws NoSuchElementRuntimeException, ElementAlreadyExistsException {
+    public User update(@NotNull @Valid final User user) throws NoSuchElementRuntimeException, ElementAlreadyExistsException {
 
         // Check for already present project with the new identifier
         User check = this.get(user.getIdentifier());

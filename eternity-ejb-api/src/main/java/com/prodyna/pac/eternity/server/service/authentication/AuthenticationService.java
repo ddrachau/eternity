@@ -4,6 +4,7 @@ import com.prodyna.pac.eternity.server.exception.functional.InvalidLoginExceptio
 import com.prodyna.pac.eternity.server.model.authentication.Login;
 
 import javax.ejb.Local;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -19,7 +20,7 @@ public interface AuthenticationService {
      * @return the new created login
      * @throws InvalidLoginException if the password or user is incorrect
      */
-    Login login(@NotNull Login login) throws InvalidLoginException;
+    Login login(@NotNull @Valid Login login) throws InvalidLoginException;
 
     /**
      * Tries to login with a rememberMe token.

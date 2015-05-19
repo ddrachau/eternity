@@ -3,6 +3,7 @@ package com.prodyna.pac.eternity.server.model.authentication;
 import com.prodyna.pac.eternity.server.model.AbstractNode;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  * Represents a technical session for the client server communication.
@@ -13,6 +14,7 @@ public class Session extends AbstractNode {
      * The last accessed time.
      */
     private Calendar lastAccessedTime;
+
     /**
      * The initial creation time.
      */
@@ -33,6 +35,7 @@ public class Session extends AbstractNode {
      * @param createdTime      the creation time
      */
     public Session(String id, Calendar lastAccessedTime, Calendar createdTime) {
+
         super(id);
         this.lastAccessedTime = lastAccessedTime;
         this.createdTime = createdTime;
@@ -45,6 +48,7 @@ public class Session extends AbstractNode {
      * @param createdTime      the creation time
      */
     public Session(Calendar lastAccessedTime, Calendar createdTime) {
+
         super(null);
         this.lastAccessedTime = lastAccessedTime;
         this.createdTime = createdTime;
@@ -57,6 +61,7 @@ public class Session extends AbstractNode {
      * @return the lastAccessedTime
      */
     public Calendar getLastAccessedTime() {
+
         return lastAccessedTime;
     }
 
@@ -66,6 +71,7 @@ public class Session extends AbstractNode {
      * @param lastAccessedTime to be set
      */
     public void setLastAccessedTime(Calendar lastAccessedTime) {
+
         this.lastAccessedTime = lastAccessedTime;
     }
 
@@ -75,6 +81,7 @@ public class Session extends AbstractNode {
      * @return the createdTime
      */
     public Calendar getCreatedTime() {
+
         return createdTime;
     }
 
@@ -83,31 +90,30 @@ public class Session extends AbstractNode {
      *
      * @param createdTime to be set
      */
-    public void setCreatedTime(Calendar createdTime) {
+    public void setCreatedTime(final Calendar createdTime) {
+
         this.createdTime = createdTime;
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
         Session session = (Session) o;
-
-        if (lastAccessedTime != null ? !lastAccessedTime.equals(session.lastAccessedTime) : session.lastAccessedTime != null)
-            return false;
-        return !(createdTime != null ? !createdTime.equals(session.createdTime) : session.createdTime != null);
-
+        return Objects.equals(lastAccessedTime, session.lastAccessedTime) &&
+                Objects.equals(createdTime, session.createdTime);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+
+        return Objects.hash(lastAccessedTime, createdTime);
     }
 
     @Override
     public String toString() {
+
         return "Session{" +
                 "lastAccessedTime=" + lastAccessedTime +
                 ", createdTime=" + createdTime +

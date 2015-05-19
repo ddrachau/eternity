@@ -36,9 +36,7 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 
 /**
- * PBKDF2 salted password hashing.
- * Author: havoc AT defuse.ca
- * www: http://crackstation.net/hashing-security.htm
+ * PBKDF2 salted password hashing. Author: havoc AT defuse.ca www: http://crackstation.net/hashing-security.htm
  */
 public class PasswordHash {
 
@@ -46,11 +44,15 @@ public class PasswordHash {
 
     // The following constants may be changed without breaking existing hashes.
     private static final int SALT_BYTE_SIZE = 24;
+
     private static final int HASH_BYTE_SIZE = 24;
+
     private static final int PBKDF2_ITERATIONS = 1000;
 
     private static final int ITERATION_INDEX = 0;
+
     private static final int SALT_INDEX = 1;
+
     private static final int PBKDF2_INDEX = 2;
 
     /**
@@ -60,6 +62,7 @@ public class PasswordHash {
      * @return a salted PBKDF2 hash of the password
      */
     public static String createHash(final String password) {
+
         return createHash(password.toCharArray());
     }
 
@@ -97,6 +100,7 @@ public class PasswordHash {
      * @return true if the password is correct, false if not
      */
     public static boolean validatePassword(String password, String correctHash) {
+
         return validatePassword(password.toCharArray(), correctHash);
     }
 
@@ -107,7 +111,7 @@ public class PasswordHash {
      * @param correctHash the hash of the valid password
      * @return true if the password is correct, false if not
      */
-    public static boolean validatePassword(final char[] password, final @NotNull String correctHash) {
+    public static boolean validatePassword(final char[] password, @NotNull final String correctHash) {
         // Decode the hash into its parameters
         String[] params = correctHash.split(":");
         int iterations = Integer.parseInt(params[ITERATION_INDEX]);
@@ -127,15 +131,15 @@ public class PasswordHash {
     }
 
     /**
-     * Compares two byte arrays in length-constant time. This comparison method
-     * is used so that password hashes cannot be extracted from an on-line
-     * system using a timing attack and then attacked off-line.
+     * Compares two byte arrays in length-constant time. This comparison method is used so that password hashes cannot
+     * be extracted from an on-line system using a timing attack and then attacked off-line.
      *
      * @param a the first byte array
      * @param b the second byte array
      * @return true if both byte arrays are the same, false if not
      */
-    private static boolean slowEquals(byte[] a, byte[] b) {
+    private static boolean slowEquals(final byte[] a, final byte[] b) {
+
         int diff = a.length ^ b.length;
         for (int i = 0; i < a.length && i < b.length; i++)
             diff |= a[i] ^ b[i];
@@ -151,8 +155,9 @@ public class PasswordHash {
      * @param bytes      the length of the hash to compute in bytes
      * @return the PBDKF2 hash of the password
      */
-    private static byte[] pbkdf2(char[] password, byte[] salt, int iterations, int bytes)
+    private static byte[] pbkdf2(final char[] password, final byte[] salt, final int iterations, final int bytes)
             throws NoSuchAlgorithmException, InvalidKeySpecException {
+
         PBEKeySpec spec = new PBEKeySpec(password, salt, iterations, bytes * 8);
         SecretKeyFactory skf = SecretKeyFactory.getInstance(PBKDF2_ALGORITHM);
         return skf.generateSecret(spec).getEncoded();
@@ -165,6 +170,7 @@ public class PasswordHash {
      * @return the hex string decoded into a byte array
      */
     private static byte[] fromHex(String hex) {
+
         byte[] binary = new byte[hex.length() / 2];
         for (int i = 0; i < binary.length; i++) {
             binary[i] = (byte) Integer.parseInt(hex.substring(2 * i, 2 * i + 2), 16);
@@ -179,6 +185,7 @@ public class PasswordHash {
      * @return a length*2 character string encoding the byte array
      */
     private static String toHex(byte[] array) {
+
         BigInteger bi = new BigInteger(1, array);
         String hex = bi.toString(16);
         int paddingLength = (array.length * 2) - hex.length();

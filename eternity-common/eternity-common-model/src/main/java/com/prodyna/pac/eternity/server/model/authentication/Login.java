@@ -2,6 +2,9 @@ package com.prodyna.pac.eternity.server.model.authentication;
 
 import com.prodyna.pac.eternity.server.model.user.User;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * Wrapper class for logging user in.
  */
@@ -15,6 +18,8 @@ public class Login {
     /**
      * The user password.
      */
+    @NotNull
+    @Size(min = 1)
     private String password;
 
     /**
@@ -51,11 +56,12 @@ public class Login {
      * @param password the login password
      * @param remember should the login generate a rememberMe?
      */
-    public Login(String username, String password, boolean remember) {
+    public Login(final String username, final String password, final boolean remember) {
 
         this.username = username;
         this.password = password;
         this.remember = remember;
+
     }
 
     /**
@@ -64,9 +70,10 @@ public class Login {
      * @param username the user identifier
      * @param password the login password
      */
-    public Login(String username, String password) {
+    public Login(final String username, final String password) {
 
         this(username, password, false);
+
     }
 
     /**
@@ -77,6 +84,7 @@ public class Login {
     public String getUsername() {
 
         return username;
+
     }
 
     /**
@@ -84,9 +92,10 @@ public class Login {
      *
      * @param username to be set
      */
-    public void setUsername(String username) {
+    public void setUsername(final String username) {
 
         this.username = username;
+
     }
 
     /**
@@ -97,6 +106,7 @@ public class Login {
     public String getPassword() {
 
         return password;
+
     }
 
     /**
@@ -104,9 +114,10 @@ public class Login {
      *
      * @param password to be set
      */
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
 
         this.password = password;
+
     }
 
     /**
@@ -117,6 +128,7 @@ public class Login {
     public boolean isRemember() {
 
         return remember;
+
     }
 
     /**
@@ -124,9 +136,10 @@ public class Login {
      *
      * @param remember to be set
      */
-    public void setRemember(boolean remember) {
+    public void setRemember(final boolean remember) {
 
         this.remember = remember;
+
     }
 
     /**
@@ -137,6 +150,7 @@ public class Login {
     public String getRememberMeToken() {
 
         return rememberMeToken;
+
     }
 
     /**
@@ -144,9 +158,10 @@ public class Login {
      *
      * @param rememberMeToken to be set
      */
-    public void setRememberMeToken(String rememberMeToken) {
+    public void setRememberMeToken(final String rememberMeToken) {
 
         this.rememberMeToken = rememberMeToken;
+
     }
 
     /**
@@ -157,6 +172,7 @@ public class Login {
     public String getXsrfToken() {
 
         return xsrfToken;
+
     }
 
     /**
@@ -164,9 +180,10 @@ public class Login {
      *
      * @param xsrfToken to be set
      */
-    public void setXsrfToken(String xsrfToken) {
+    public void setXsrfToken(final String xsrfToken) {
 
         this.xsrfToken = xsrfToken;
+
     }
 
     /**
@@ -177,6 +194,7 @@ public class Login {
     public User getUser() {
 
         return user;
+
     }
 
     /**
@@ -184,13 +202,14 @@ public class Login {
      *
      * @param user to be set
      */
-    public void setUser(User user) {
+    public void setUser(final User user) {
 
         this.user = user;
+
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
 
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -211,6 +230,7 @@ public class Login {
     public int hashCode() {
 
         return super.hashCode();
+
     }
 
     @Override

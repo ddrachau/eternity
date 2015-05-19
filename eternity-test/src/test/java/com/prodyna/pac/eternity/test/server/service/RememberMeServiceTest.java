@@ -43,7 +43,7 @@ public class RememberMeServiceTest extends AbstractArquillianTest {
         databaseCleaner.deleteAllData();
 
         User user1 = new User("khansen", "Knut", "Hansen", "pw");
-        User user2 = new User("aeich", "Alexander", null, "pw2");
+        User user2 = new User("aeich", "Alexander", "A", "pw2");
         User user3 = new User("rvoeller", "Rudi", "Völler", null);
         User user4 = new User("bborg", "Björn", "Borg", "pw");
         userService.create(user1);

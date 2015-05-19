@@ -1,8 +1,10 @@
 package com.prodyna.pac.eternity.test.server.service;
 
-import com.prodyna.pac.eternity.test.helper.AbstractArquillianTest;
-import com.prodyna.pac.eternity.test.helper.DatabaseCleaner;
-import com.prodyna.pac.eternity.server.exception.functional.*;
+import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidLoginException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidTokenException;
+import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
 import com.prodyna.pac.eternity.server.model.authentication.Login;
 import com.prodyna.pac.eternity.server.model.user.User;
 import com.prodyna.pac.eternity.server.service.authentication.AuthenticationService;
@@ -10,6 +12,8 @@ import com.prodyna.pac.eternity.server.service.authentication.RememberMeService;
 import com.prodyna.pac.eternity.server.service.authentication.SessionService;
 import com.prodyna.pac.eternity.server.service.project.ProjectService;
 import com.prodyna.pac.eternity.server.service.user.UserService;
+import com.prodyna.pac.eternity.test.helper.AbstractArquillianTest;
+import com.prodyna.pac.eternity.test.helper.DatabaseCleaner;
 import junit.framework.Assert;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -47,7 +51,7 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
         databaseCleaner.deleteAllData();
 
         User user1 = new User("khansen", "Knut", "Hansen", "pw");
-        User user2 = new User("aeich", "Alexander", null, "pw2");
+        User user2 = new User("aeich", "Alexander", "A", "pw2");
         User user3 = new User("rvoeller", "Rudi", "Völler", null);
         User user4 = new User("bborg", "Björn", "Borg", "pw");
         userService.create(user1);
@@ -202,6 +206,36 @@ public class AuthenticationServiceTest extends AbstractArquillianTest {
         } catch (InvalidTokenException e) {
             // expected
         }
+    }
+
+    @Test
+    @InSequence(9)
+    public void testLoginWithUserWithoutAPassword() throws ElementAlreadyExistsException, InvalidLoginException {
+
+        User u = userService.create(new User("uwoapass", "Tok", "en", ""));
+
+        try {
+            authenticationService.login(new Login(u.getIdentifier(), ""));
+            Assert.fail("login with empty password should not be possible");
+        } catch (RuntimeException e) {
+            // expected
+        }
+
+        User u2 = userService.create(new User("uwoapass2", "Tok", "en", null));
+
+        try {
+            authenticationService.login(new Login(u2.getIdentifier(), ""));
+            Assert.fail("login with empty password should not be possible");
+        } catch (RuntimeException e) {
+            // expected
+        }
+        try {
+            authenticationService.login(new Login(u2.getIdentifier(), null));
+            Assert.fail("login with empty password should not be possible");
+        } catch (RuntimeException e) {
+            // expected
+        }
+
     }
 
 }

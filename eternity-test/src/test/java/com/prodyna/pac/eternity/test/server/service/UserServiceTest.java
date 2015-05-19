@@ -2,8 +2,6 @@ package com.prodyna.pac.eternity.test.server.service;
 
 import com.prodyna.pac.eternity.components.common.DateUtils;
 import com.prodyna.pac.eternity.components.common.RememberMeUtils;
-import com.prodyna.pac.eternity.test.helper.AbstractArquillianTest;
-import com.prodyna.pac.eternity.test.helper.DatabaseCleaner;
 import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
@@ -21,6 +19,8 @@ import com.prodyna.pac.eternity.server.service.authentication.SessionService;
 import com.prodyna.pac.eternity.server.service.booking.BookingService;
 import com.prodyna.pac.eternity.server.service.project.ProjectService;
 import com.prodyna.pac.eternity.server.service.user.UserService;
+import com.prodyna.pac.eternity.test.helper.AbstractArquillianTest;
+import com.prodyna.pac.eternity.test.helper.DatabaseCleaner;
 import junit.framework.Assert;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -29,6 +29,7 @@ import org.junit.runner.RunWith;
 
 import javax.ejb.EJBException;
 import javax.inject.Inject;
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 @RunWith(Arquillian.class)
@@ -59,13 +60,13 @@ public class UserServiceTest extends AbstractArquillianTest {
         databaseCleaner.deleteAllData();
 
         User user1 = new User("khansen", "Knut", "Hansen", "pw");
-        User user2 = new User("aeich", "Alexander", null, "pw2");
+        User user2 = new User("aeich", "Alexander", "A", "pw2");
         User user3 = new User("rvoeller", "Rudi", "Völler", "pw3");
         User user4 = new User("bborg", "Björn", "Borg", "pw");
         User user5 = new User("hmeiser", "Hans", "Meiser", "pw");
         User user6 = new User("ttester", "Test", "Tester", "pw");
         User user7 = new User("ttester2", "Test2", "Tester", "pw");
-        User user8 = new User("ttester3", "Test3", "Tester", null);
+        User user8 = new User("ttester3", "Test3", "Tester", "ppp");
         User user9 = new User("ttester4", "Test4", "Tester", "pw");
         userService.create(user1);
         userService.create(user2);
@@ -91,7 +92,6 @@ public class UserServiceTest extends AbstractArquillianTest {
         userService.assignUserToProject(user1, project1);
         userService.assignUserToProject(user2, project1);
         userService.assignUserToProject(user2, project2);
-
 
     }
 
@@ -150,7 +150,7 @@ public class UserServiceTest extends AbstractArquillianTest {
 
         String identifier = "new identifier";
 
-        User u = new User(identifier, null, null, null);
+        User u = new User(identifier, "ABC", "DEF", "PW");
 
         userService.create(u);
 
@@ -196,7 +196,7 @@ public class UserServiceTest extends AbstractArquillianTest {
         Assert.assertNotNull(u);
 
         Assert.assertEquals(forename, u.getForename());
-        Assert.assertNull(u.getSurname());
+        Assert.assertEquals("A", u.getSurname());
         u.setForename(newForename);
 
         u = userService.update(u);
@@ -232,7 +232,7 @@ public class UserServiceTest extends AbstractArquillianTest {
     @InSequence(9)
     public void testUpdateUserNonExistingNode() throws ElementAlreadyExistsException {
 
-        User u = new User("unknow", null, null, null);
+        User u = new User("unknown", "ABC","DEF","GH");
 
         try {
             userService.update(u);
@@ -560,6 +560,102 @@ public class UserServiceTest extends AbstractArquillianTest {
         Assert.assertNotNull(user);
         Assert.assertNotNull(user2);
         Assert.assertEquals(user, user2);
+
+    }
+
+    @Test
+    @InSequence(26)
+    public void testCreateUserWithIncompleteData() throws ElementAlreadyExistsException {
+
+        try {
+            userService.create(new User("", "Mike", "Mon", "secret"));
+            Assert.fail("invalid user, validation should throw an exception");
+        } catch (RuntimeException e) {
+            // expected
+        }
+        try {
+            userService.create(new User(null, "Mike", "Mon", "secret"));
+            Assert.fail("invalid user, validation should throw an exception");
+        } catch (RuntimeException e) {
+            // expected
+        }
+        try {
+            userService.create(new User("ivcreate1", "", "Mon", "secret"));
+            Assert.fail("invalid user, validation should throw an exception");
+        } catch (RuntimeException e) {
+            // expected
+        }
+        try {
+            userService.create(new User("ivcreate2", null, "Mon", "secret"));
+            Assert.fail("invalid user, validation should throw an exception");
+        } catch (RuntimeException e) {
+            // expected
+        }
+        try {
+            userService.create(new User("ivcreate3", "Mike", "", "secret"));
+            Assert.fail("invalid user, validation should throw an exception");
+        } catch (RuntimeException e) {
+            // expected
+        }
+        try {
+            userService.create(new User("ivcreate4", "Mike", null, "secret"));
+            Assert.fail("invalid user, validation should throw an exception");
+        } catch (RuntimeException e) {
+            // expected
+        }
+
+    }
+
+    @Test
+    @InSequence(27)
+    public void testUpdateWithIncompleteData() throws ElementAlreadyExistsException {
+
+        User u = new User("updateinvalide", "Mike", "Mon", "secret");
+
+        try {
+            u.setIdentifier("");
+            userService.update(u);
+            Assert.fail("invalid user, validation should throw an exception");
+        } catch (RuntimeException e) {
+            // expected
+        }
+        try {
+            u.setIdentifier(null);
+            userService.update(u);
+            Assert.fail("invalid user, validation should throw an exception");
+        } catch (RuntimeException e) {
+            // expected
+        }
+        try {
+            u = userService.get("updateinvalide");
+            u.setForename("");
+            userService.update(u);
+            Assert.fail("invalid user, validation should throw an exception");
+        } catch (RuntimeException e) {
+            // expected
+        }
+        try {
+            u.setForename(null);
+            userService.update(u);
+            Assert.fail("invalid user, validation should throw an exception");
+        } catch (RuntimeException e) {
+            // expected
+        }
+        try {
+            u = userService.get("updateinvalide");
+            u.setSurname("");
+            userService.update(u);
+            Assert.fail("invalid user, validation should throw an exception");
+        } catch (RuntimeException e) {
+            // expected
+        }
+        try {
+            u.setSurname(null);
+            userService.update(u);
+            Assert.fail("invalid user, validation should throw an exception");
+        } catch (RuntimeException e) {
+            // expected
+        }
 
     }
 
