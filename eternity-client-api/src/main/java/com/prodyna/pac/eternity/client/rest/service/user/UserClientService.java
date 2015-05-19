@@ -58,6 +58,6 @@ public interface UserClientService {
 
     Response setPassword(String identifier, ChangePassword changePassword);
 
-    Response changePassword(String xsrfToken, String identifier, ChangePassword changePassword);
+    Response changePassword(String xsrfToken, ChangePassword changePassword);
 
 }

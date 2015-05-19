@@ -2,24 +2,11 @@ package com.prodyna.pac.eternity.server.model.authentication;
 
 public class ChangePassword {
 
-    private String userIdentifier;
-
     private String oldPassword;
 
     private String newPassword;
 
     public ChangePassword() {
-
-    }
-
-    public String getUserIdentifier() {
-
-        return userIdentifier;
-    }
-
-    public void setUserIdentifier(final String userIdentifier) {
-
-        this.userIdentifier = userIdentifier;
 
     }
 
@@ -51,7 +38,6 @@ public class ChangePassword {
     public String toString() {
 
         return "ChangePassword{" +
-                "userIdentifier='" + userIdentifier + '\'' +
                 ", oldPassword='" + oldPassword + '\'' +
                 ", newPassword='" + newPassword + '\'' +
                 '}';

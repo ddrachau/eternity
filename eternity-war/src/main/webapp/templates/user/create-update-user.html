@@ -52,10 +52,8 @@
                         <label class="col-sm-3 control-label">Rolle</label>
 
                         <div class="col-sm-9">
-                            <select ng-model="role" class="form-control" required>
-                                <option>USER</option>
-                                <option>MANAGER</option>
-                                <option>ADMINISTRATOR</option>
+                            <select ng-model="selectedRole" class="form-control" required
+                                    ng-options="role.value as role.text for role in roles">
                             </select>
                         </div>
 

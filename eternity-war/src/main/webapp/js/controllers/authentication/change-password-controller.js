@@ -4,6 +4,9 @@ angular.module('Eternity').controller('ChangePasswordCtrl',
 
             $scope.alerts = [];
             $scope.title = title;
+            $scope.oldPassword = '';
+            $scope.newPassword1 = '';
+            $scope.newPassword2 = '';
 
             $scope.addAlert = function (type, msg) {
                 $scope.clearAlerts();
@@ -38,56 +41,24 @@ angular.module('Eternity').controller('ChangePasswordCtrl',
 
             };
 
-            $scope.createUpdateBooking = function () {
+            $scope.changePassword = function () {
 
-                var sTime = new Date(0);
-                sTime.setUTCFullYear($scope.bookingDate.getUTCFullYear());
-                sTime.setUTCMonth($scope.bookingDate.getUTCMonth());
-                sTime.setUTCDate($scope.bookingDate.getUTCDate());
-                sTime.setUTCHours($scope.startTime.getUTCHours());
-                sTime.setUTCMinutes($scope.startTime.getUTCMinutes());
-
-                var eTime = new Date(0);
-                eTime.setUTCFullYear($scope.bookingDate.getUTCFullYear());
-                eTime.setUTCMonth($scope.bookingDate.getUTCMonth());
-                eTime.setUTCDate($scope.bookingDate.getUTCDate());
-                eTime.setUTCHours($scope.endTime.getUTCHours());
-                eTime.setUTCMinutes($scope.endTime.getUTCMinutes());
-
-                var booking = {
-                    id: $scope.bookingId,
-                    startTime: sTime.getTime(),
-                    endTime: eTime.getTime(),
-                    breakDuration: $scope.breakDuration,
-                    description: $scope.description,
-                    projectIdentifier: $scope.selectedProject
+                var changePassword = {
+                    oldPassword: $scope.oldPassword,
+                    newPassword: $scope.newPassword1
                 };
 
-                if (booking.id) {
-                    BookingService.update(booking, function (success) {
+                UserService.changePassword(changePassword, function () {
 
-                        $element.modal('hide');
+                    $element.modal('hide');
 
-                        close({type: 'success', msg: 'Buchung erfolgreich aktualisiert'}, 500);
+                    close({type: 'success', msg: 'Passwort erfolgreich aktualisiert'}, 500);
 
-                    }, function (error) {
+                }, function (error) {
 
-                        createErrorAlert(error);
+                    createErrorAlert(error);
 
-                    });
-                } else {
-                    BookingService.save(booking, function (success) {
-
-                        $element.modal('hide');
-
-                        close({type: 'success', msg: 'Buchung erfolgreich angelegt'}, 500);
-
-                    }, function (error) {
-
-                        createErrorAlert(error);
-
-                    });
-                }
+                });
 
             };
 

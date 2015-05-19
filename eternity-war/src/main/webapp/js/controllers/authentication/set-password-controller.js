@@ -42,9 +42,6 @@ angular.module('Eternity').controller('SetPasswordCtrl',
 
             $scope.setPassword = function () {
 
-                console.log("set PW: " + $scope.password);
-
-
                 var changePassword = {
                     newPassword: $scope.password
                 };
@@ -60,7 +57,6 @@ angular.module('Eternity').controller('SetPasswordCtrl',
                     createErrorAlert(error);
 
                 });
-
 
             };
 

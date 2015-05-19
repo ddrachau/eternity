@@ -6,11 +6,13 @@ angular.module('Eternity').controller('CreateUpdateUserCtrl',
             $scope.title = title;
             $scope.user = user;
 
+            $scope.roles = [{ value: "USER", "text": "Benutzer" }, { value: "MANAGER", text: "Manager" },
+                { value: "ADMINISTRATOR", text: "Administrator" }];
             $scope.userId = user.id;
             $scope.identifier = user.identifier || '';
             $scope.forename = user.forename || '';
             $scope.surname = user.surname || '';
-            $scope.role = user.role || 'USER';
+            $scope.selectedRole = user.role || 'USER';
 
             $scope.addAlert = function (type, msg) {
                 $scope.clearAlerts();
@@ -52,7 +54,7 @@ angular.module('Eternity').controller('CreateUpdateUserCtrl',
                     identifier: $scope.identifier,
                     forename: $scope.forename,
                     surname: $scope.surname,
-                    role: $scope.role
+                    role: $scope.selectedRole
                 };
 
                 if (user.id) {

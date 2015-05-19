@@ -19,16 +19,7 @@ import com.prodyna.pac.eternity.server.service.user.UserService;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -159,12 +150,11 @@ public class UserClientServiceImpl implements UserClientService {
     public Response setPassword(@PathParam("identifier") final String identifier,
                                 final ChangePassword changePassword) {
 
-        // TODO check, validate, exception...
-
         try {
             userService.storePassword(identifier, changePassword.getNewPassword());
         } catch (InvalidUserException e) {
-            e.printStackTrace();
+            return Response.status(Response.Status.PRECONDITION_FAILED)
+                    .entity("{\"error\":\"" + "Benutzer Id nicht vorhanden\"}").build();
         }
 
         return Response.ok().build();
@@ -175,26 +165,25 @@ public class UserClientServiceImpl implements UserClientService {
     @PUT
     @Consumes(RestCookieUtils.JSON_UTF8)
     @Produces(RestCookieUtils.JSON_UTF8)
-    @Path("{identifier}/password")
+    @Path("password")
     @Override
     public Response changePassword(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken,
-                                   @PathParam("identifier") final String identifier,
                                    final ChangePassword changePassword) {
 
-        User sessionUser = userService.getBySessionId(xsrfToken);
-        User changeUser = userService.get(identifier);
-
-        // TODO check, validate, exception...
-
         try {
-            userService.changePassword(identifier, changePassword.getOldPassword(), changePassword.getNewPassword());
-        } catch (InvalidUserException e) {
-            e.printStackTrace();
-        } catch (InvalidPasswordException e) {
-            e.printStackTrace();
-        }
 
-        return Response.ok().build();
+            User user = userService.getBySessionId(xsrfToken);
+            userService.changePassword(user.getIdentifier(), changePassword.getOldPassword(),
+                    changePassword.getNewPassword());
+            return Response.ok().build();
+
+        } catch (InvalidUserException e) {
+            return Response.status(Response.Status.PRECONDITION_FAILED)
+                    .entity("{\"error\":\"" + "Benutzer Id nicht vorhanden\"}").build();
+        } catch (InvalidPasswordException e) {
+            return Response.status(Response.Status.EXPECTATION_FAILED)
+                    .entity("{\"error\":\"" + "Passwort nicht korrekt\"}").build();
+        }
 
     }
 
