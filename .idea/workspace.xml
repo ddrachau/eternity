@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d657f7b-8d97-4b3a-bd42-2472c9edf69f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/authentication/impl/AuthenticationServiceImpl.java" afterPath="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/authentication/impl/AuthenticationServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/security/AuthorizationSecurityContext.java" afterPath="$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/security/AuthorizationSecurityContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/booking/BookingService.java" afterPath="$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/booking/BookingService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/booking/impl/BookingServiceImpl.java" afterPath="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/booking/impl/BookingServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/impl/CypherServiceImpl.java" afterPath="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/impl/CypherServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-build-tools/src/main/resources/checkstyle/eternity_checks.xml" afterPath="$PROJECT_DIR$/eternity-build-tools/src/main/resources/checkstyle/eternity_checks.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/event/EternityEvent.java" afterPath="$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/event/EternityEvent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-common/eternity-common-utils/src/main/java/com/prodyna/pac/eternity/components/common/PasswordHash.java" afterPath="$PROJECT_DIR$/eternity-common/eternity-common-utils/src/main/java/com/prodyna/pac/eternity/components/common/PasswordHash.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/project/impl/ProjectServiceImpl.java" afterPath="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/project/impl/ProjectServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/push/PushServer.java" afterPath="$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/push/PushServer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/service/user/impl/UserClientServiceImpl.java" afterPath="$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/service/user/impl/UserClientServiceImpl.java" />
     </list>
     <ignored path="eternity-server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,22 +71,106 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BookingService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/booking/BookingService.java">
+      <file leaf-file-name="UserClientServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/service/user/impl/UserClientServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+              <caret line="180" column="49" selection-start-line="180" selection-start-column="49" selection-end-line="180" selection-end-column="49" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EternityEvent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/event/EternityEvent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="eternity_checks.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/eternity-build-tools/src/main/resources/checkstyle/eternity_checks.xml">
+      <file leaf-file-name="PasswordHash.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/eternity-common/eternity-common-utils/src/main/java/com/prodyna/pac/eternity/components/common/PasswordHash.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.30456853">
-              <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PushServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/push/PushServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="3" column="59" selection-start-line="3" selection-start-column="59" selection-end-line="3" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BookingServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/booking/impl/BookingServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProjectServiceImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/project/impl/ProjectServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.2284264">
+              <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProjectClientService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/eternity-client-api/src/main/java/com/prodyna/pac/eternity/client/rest/service/project/ProjectClientService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserClientService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/eternity-client-api/src/main/java/com/prodyna/pac/eternity/client/rest/service/user/UserClientService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuthenticationClientService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/eternity-client-api/src/main/java/com/prodyna/pac/eternity/client/rest/service/authentication/AuthenticationClientService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="31" column="59" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/user/impl/UserServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -114,9 +198,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/project/impl/ProjectServiceImpl.java" />
-        <option value="$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/event/EternityEvent.java" />
-        <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/booking/booking-listing.html" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/project/project-listing.html" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/authentication/login.html" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/directives/header.js" />
@@ -140,11 +221,9 @@
         <option value="$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/model/authentication/SetPassword.java" />
         <option value="$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/model/authentication/ChangePassword.java" />
         <option value="$PROJECT_DIR$/eternity-client-api/src/main/java/com/prodyna/pac/eternity/client/rest/service/user/UserClientService.java" />
-        <option value="$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/service/user/impl/UserClientServiceImpl.java" />
         <option value="$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/model/user/User.java" />
         <option value="$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/server/service/UserServiceTest.java" />
         <option value="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/user/impl/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/eternity-common/eternity-common-utils/src/main/java/com/prodyna/pac/eternity/components/common/PasswordHash.java" />
         <option value="$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/authentication/AuthenticationService.java" />
         <option value="$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/service/authentication/impl/AuthenticationClientServiceImpl.java" />
         <option value="$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/model/authentication/Login.java" />
@@ -161,10 +240,15 @@
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/templates/user/create-update-user.html" />
         <option value="$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/security/AuthorizationSecurityContext.java" />
         <option value="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/authentication/impl/AuthenticationServiceImpl.java" />
-        <option value="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/booking/impl/BookingServiceImpl.java" />
         <option value="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/impl/CypherServiceImpl.java" />
         <option value="$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/booking/BookingService.java" />
         <option value="$PROJECT_DIR$/eternity-build-tools/src/main/resources/checkstyle/eternity_checks.xml" />
+        <option value="$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/service/user/impl/UserClientServiceImpl.java" />
+        <option value="$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/event/EternityEvent.java" />
+        <option value="$PROJECT_DIR$/eternity-common/eternity-common-utils/src/main/java/com/prodyna/pac/eternity/components/common/PasswordHash.java" />
+        <option value="$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/push/PushServer.java" />
+        <option value="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/booking/impl/BookingServiceImpl.java" />
+        <option value="$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/project/impl/ProjectServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -1594,6 +1678,10 @@
               <option name="myItemId" value="server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="event" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1810,6 +1898,10 @@
               <option name="myItemId" value="rest" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1846,6 +1938,44 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="user" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity-client-api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2118,7 +2248,7 @@
     <property name="js.buildTools.gulp.gulp_package_dir" value="" />
     <property name="LayoutCode.rearrangeEntriesJava" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java" />
-    <property name="SearchEverywhereHistoryKey" value="eternity-client&#9;null&#9;null&#10;arquillianser&#9;PSI&#9;JAVA://org.jboss.as.arquillian.protocol.jmx.ArquillianServiceDeployer" />
+    <property name="SearchEverywhereHistoryKey" value="projectse&#9;PSI&#9;JAVA://com.prodyna.pac.eternity.server.service.project.impl.ProjectServiceImpl&#10;book&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/booking/impl/BookingServiceImpl.java&#10;pushs&#9;PSI&#9;JAVA://com.prodyna.pac.eternity.client.rest.push.PushServer&#10;passwordh&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-common/eternity-common-utils/src/main/java/com/prodyna/pac/eternity/components/common/PasswordHash.java&#10;eternity-client&#9;null&#9;null&#10;arquillianser&#9;PSI&#9;JAVA://org.jboss.as.arquillian.protocol.jmx.ArquillianServiceDeployer" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="168" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="185" />
@@ -3217,12 +3347,12 @@
       <workItem from="1431932418912" duration="12146000" />
       <workItem from="1431974146883" duration="6375000" />
       <workItem from="1432016591586" duration="7803000" />
-      <workItem from="1432059185264" duration="8871000" />
+      <workItem from="1432059185264" duration="10070000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="671358000" />
+    <option name="totallyTimeSpent" value="672557000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -3312,7 +3442,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="62" />
+      <option name="time" value="64" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JBossConfiguration">
@@ -3325,36 +3455,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/user/user-controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/service/booking/impl/BookingClientServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/user/user-listing.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="175" column="27" selection-start-line="175" selection-start-column="27" selection-end-line="175" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/authentication/set-password-controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2441406">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/css/application.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3467,24 +3567,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/model/authentication/ChangePassword.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/service/user/impl/UserClientServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="122" column="27" selection-start-line="122" selection-start-column="27" selection-end-line="122" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/model/user/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3492,30 +3574,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-client-api/src/main/java/com/prodyna/pac/eternity/client/rest/service/user/UserClientService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/user/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="78" column="73" selection-start-line="78" selection-start-column="73" selection-end-line="78" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-common/eternity-common-utils/src/main/java/com/prodyna/pac/eternity/components/common/PasswordHash.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="157" column="103" selection-start-line="157" selection-start-column="103" selection-end-line="157" selection-end-column="103" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3534,14 +3592,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-client-api/src/main/java/com/prodyna/pac/eternity/client/rest/service/authentication/AuthenticationClientService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="65" selection-start-line="35" selection-start-column="65" selection-end-line="35" selection-end-column="65" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3683,14 +3733,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/service/authentication/impl/AuthenticationClientServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="149" column="59" selection-start-line="149" selection-start-column="59" selection-end-line="149" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/security/AuthorizationSecurityContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3703,14 +3745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/booking/impl/BookingServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="25" selection-start-line="75" selection-start-column="25" selection-end-line="75" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -3733,8 +3767,110 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/eternity-build-tools/src/main/resources/checkstyle/eternity_checks.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30456853">
+        <state vertical-scroll-proportion="0.0">
           <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/service/authentication/impl/AuthenticationClientServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="149" column="59" selection-start-line="149" selection-start-column="59" selection-end-line="149" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/model/authentication/ChangePassword.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client-api/src/main/java/com/prodyna/pac/eternity/client/rest/service/user/UserClientService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client-api/src/main/java/com/prodyna/pac/eternity/client/rest/service/project/ProjectClientService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client-api/src/main/java/com/prodyna/pac/eternity/client/rest/service/authentication/AuthenticationClientService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="59" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/user/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/service/user/impl/UserClientServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="180" column="49" selection-start-line="180" selection-start-column="49" selection-end-line="180" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/event/EternityEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-common/eternity-common-utils/src/main/java/com/prodyna/pac/eternity/components/common/PasswordHash.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/push/PushServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="59" selection-start-line="3" selection-start-column="59" selection-end-line="3" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/booking/impl/BookingServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/project/impl/ProjectServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2284264">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
           <folding />
         </state>
       </provider>
