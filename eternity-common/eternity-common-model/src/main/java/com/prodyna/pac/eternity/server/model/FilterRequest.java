@@ -102,11 +102,11 @@ public class FilterRequest {
 
     public String getFilterString() {
 
-        String filterString = "";
+        StringBuffer buffer = new StringBuffer();
 
         if (this.hasValidFilter()) {
 
-            filterString = "WHERE ";
+            buffer.append("WHERE ");
 
             int filterCounter = 0;
 
@@ -117,20 +117,21 @@ public class FilterRequest {
                 filterCounter++;
 
                 if (this.mappings.containsKey(pair.getKey())) {
-                    filterString += this.mappings.get(pair.getKey()) + "=~'" + pair.getValue() + "' ";
+                    buffer.append(this.mappings.get(pair.getKey()));
+                    buffer.append("=~'");
+                    buffer.append(pair.getValue());
+                    buffer.append("' ");
                 } else {
                     throw new RuntimeException("unknown filter: " + pair.getKey());
                 }
 
                 if (filterCounter < filterMap.size()) {
-                    filterString += "AND ";
+                    buffer.append("AND ");
                 }
-
             }
-
         }
 
-        return filterString;
+        return buffer.toString();
 
     }
 
