@@ -28,7 +28,8 @@ public class AuthorizationSecurityContext implements SecurityContext {
      * @param newUser    the user this context represents
      * @param newContext the request context
      */
-    public AuthorizationSecurityContext(@NotNull final User newUser, @NotNull final ContainerRequestContext newContext) {
+    public AuthorizationSecurityContext(@NotNull final User newUser,
+                                        @NotNull final ContainerRequestContext newContext) {
 
         this.user = newUser;
         this.context = newContext;

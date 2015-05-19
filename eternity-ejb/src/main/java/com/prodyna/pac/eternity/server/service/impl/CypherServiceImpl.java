@@ -107,7 +107,8 @@ public class CypherServiceImpl implements CypherService {
      * @param params    the params for the statement, empty or null if no parameters are needed
      * @throws SQLException in case the property could not be set properly
      */
-    private void setParameters(final PreparedStatement statement, final Map<Integer, Object> params) throws SQLException {
+    private void setParameters(final PreparedStatement statement, final Map<Integer, Object> params)
+            throws SQLException {
 
         if (params != null) {
             for (Map.Entry<Integer, Object> entry : params.entrySet()) {

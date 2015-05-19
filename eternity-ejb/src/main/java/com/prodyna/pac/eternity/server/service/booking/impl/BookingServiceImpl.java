@@ -71,7 +71,9 @@ public class BookingServiceImpl implements BookingService {
 
         final Map<String, Object> queryResult = cypherService.querySingle(
                 "MATCH (u:User {id:{1}}), (p:Project {id:{2}}) " +
-                        "CREATE (u)<-[:PERFORMED_BY]-(b:Booking {id:{3}, startTime:{4}, endTime:{5}, breakDuration:{6}, description:{7}})-[:PERFORMED_FOR]->(p) " +
+                        "CREATE (u)<-[:PERFORMED_BY]-" +
+                        "(b:Booking {id:{3}, startTime:{4}, endTime:{5}, breakDuration:{6}, description:{7}})-" +
+                        "[:PERFORMED_FOR]->(p) " +
                         "RETURN " + BOOKING_RETURN_PROPERTIES,
                 map(1, user.getId(), 2, project.getId(), 3, booking.getId(),
                         4, booking.getStartTime().getTimeInMillis(), 5, booking.getEndTime().getTimeInMillis(),

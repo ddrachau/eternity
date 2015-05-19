@@ -26,7 +26,8 @@ public interface BookingService {
      * @param user    the user who spent the time
      * @param project the project the user spent his time on
      * @return the created Booking
-     * @throws DuplicateTimeBookingException     if there already exists a booking which would overlap with this new one for the user and project
+     * @throws DuplicateTimeBookingException     if there already exists a booking which would overlap with this new one
+     *                                           for the user and project
      * @throws UserNotAssignedToProjectException if the user is not allowed to book on this project
      * @throws InvalidBookingException           if the booking is inconsistent
      */
@@ -62,7 +63,8 @@ public interface BookingService {
      * Search for all the bookings for a project.
      *
      * @param project the source project
-     * @return bookings which are assigned to the project, empty list if the project does not exists or no booking was made
+     * @return bookings which are assigned to the project, empty list if the project does not exists or no booking was
+     * made
      */
     List<Booking> findByProject(@NotNull Project project);
 
@@ -80,7 +82,8 @@ public interface BookingService {
      *
      * @param booking the booking to be updated
      * @return the updated booking
-     * @throws DuplicateTimeBookingException if there already exists a booking which would overlap with this new one for the user and project
+     * @throws DuplicateTimeBookingException if there already exists a booking which would overlap with this new one for
+     *                                       the user and project
      * @throws InvalidBookingException       if the booking is inconsistent
      */
     Booking update(@NotNull Booking booking) throws DuplicateTimeBookingException, InvalidBookingException;

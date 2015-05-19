@@ -52,7 +52,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public Login login(@NotNull String rememberMeToken) throws InvalidLoginException {
+    public Login login(@NotNull final String rememberMeToken) throws InvalidLoginException {
 
         if (!rememberMeToken.contains(RememberMeUtils.TOKEN_DELIMITER)) {
             throw new InvalidTokenException();
@@ -83,7 +83,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public void logout(@NotNull String sessionId, String rememberMeToken) {
+    public void logout(@NotNull final String sessionId, final String rememberMeToken) {
 
         sessionService.delete(sessionId);
 
@@ -99,7 +99,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      * @param login the input
      * @return the updated login
      */
-    private Login createLogin(@NotNull Login login) {
+    private Login createLogin(@NotNull final Login login) {
 
         Session session = sessionService.create(login.getUsername());
         User user = userService.get(login.getUsername());
