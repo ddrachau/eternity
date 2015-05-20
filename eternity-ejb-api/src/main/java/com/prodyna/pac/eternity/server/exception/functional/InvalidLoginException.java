@@ -9,6 +9,7 @@ public abstract class InvalidLoginException extends Exception {
      * Default constructor.
      */
     public InvalidLoginException() {
+
     }
 
     /**
@@ -16,7 +17,8 @@ public abstract class InvalidLoginException extends Exception {
      *
      * @param cause the root cause
      */
-    public InvalidLoginException(Throwable cause) {
+    public InvalidLoginException(final Throwable cause) {
+
         super(cause);
     }
 
@@ -25,7 +27,8 @@ public abstract class InvalidLoginException extends Exception {
      *
      * @param message the exception message
      */
-    public InvalidLoginException(String message) {
+    public InvalidLoginException(final String message) {
+
         super(message);
     }
 
@@ -35,7 +38,8 @@ public abstract class InvalidLoginException extends Exception {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public InvalidLoginException(String message, Throwable cause) {
+    public InvalidLoginException(final String message, final Throwable cause) {
+
         super(message, cause);
     }
 

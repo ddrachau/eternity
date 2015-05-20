@@ -34,7 +34,7 @@ public class SessionServiceImpl implements SessionService {
     private CypherService cypherService;
 
     @Override
-    public Session create(@NotNull String userIdentifier) {
+    public Session create(@NotNull final String userIdentifier) {
 
         final Map<String, Object> queryResult = cypherService.querySingle(
                 "MATCH (u:User {identifier:{1}}) " +
@@ -56,7 +56,7 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public Session get(String sessionId) {
+    public Session get(final String sessionId) {
 
         Session result = null;
 
@@ -76,7 +76,7 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public List<Session> getByUser(@NotNull String userIdentifier) {
+    public List<Session> getByUser(@NotNull final String userIdentifier) {
 
         List<Session> result = new ArrayList<>();
 
@@ -94,7 +94,7 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public void delete(@NotNull String identifier) {
+    public void delete(@NotNull final String identifier) {
 
         cypherService.query(
                 "MATCH (s:Session {id:{1}})-[a:ASSIGNED_TO]->(:User)" +
@@ -104,7 +104,7 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public void deleteByUser(@NotNull String userIdentifier) {
+    public void deleteByUser(@NotNull final String userIdentifier) {
 
         cypherService.query(
                 "MATCH (s:Session)-[a:ASSIGNED_TO]->(u:User {identifier:{1}})" +
@@ -119,7 +119,7 @@ public class SessionServiceImpl implements SessionService {
      * @param values the available values
      * @return a filled Session
      */
-    private Session getSession(Map<String, Object> values) {
+    private Session getSession(final Map<String, Object> values) {
 
         Session result = new Session();
 

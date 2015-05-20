@@ -17,7 +17,7 @@ public class InvalidFilterRequestRuntimeException extends RuntimeException {
      *
      * @param cause the root cause
      */
-    public InvalidFilterRequestRuntimeException(Throwable cause) {
+    public InvalidFilterRequestRuntimeException(final Throwable cause) {
 
         super(cause);
     }
@@ -27,7 +27,7 @@ public class InvalidFilterRequestRuntimeException extends RuntimeException {
      *
      * @param message the exception message
      */
-    public InvalidFilterRequestRuntimeException(String message) {
+    public InvalidFilterRequestRuntimeException(final String message) {
 
         super(message);
     }
@@ -38,7 +38,7 @@ public class InvalidFilterRequestRuntimeException extends RuntimeException {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public InvalidFilterRequestRuntimeException(String message, Throwable cause) {
+    public InvalidFilterRequestRuntimeException(final String message, final Throwable cause) {
 
         super(message, cause);
     }

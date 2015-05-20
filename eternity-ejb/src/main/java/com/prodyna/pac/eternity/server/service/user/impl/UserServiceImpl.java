@@ -220,7 +220,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(@NotNull @Valid final User user) throws NoSuchElementRuntimeException, ElementAlreadyExistsException {
+    public User update(@NotNull @Valid final User user)
+            throws NoSuchElementRuntimeException, ElementAlreadyExistsException {
 
         // Check for already present project with the new identifier
         User check = this.get(user.getIdentifier());
@@ -344,17 +345,15 @@ public class UserServiceImpl implements UserService {
     public void checkIfPasswordIsValid(@NotNull final String userIdentifier, @NotNull final String plainPassword)
             throws InvalidPasswordException, InvalidUserException {
 
-        String RETURN_PASSWORD = "u.password";
-
         final Map<String, Object> oldPasswordQueryResult = cypherService.querySingle(
-                "MATCH (u:User {identifier:{1}}) RETURN " + RETURN_PASSWORD,
+                "MATCH (u:User {identifier:{1}}) RETURN u.password",
                 map(1, userIdentifier));
 
         if (oldPasswordQueryResult == null) {
             throw new InvalidUserException(userIdentifier);
         }
 
-        String currentPasswordHash = (String) oldPasswordQueryResult.get(RETURN_PASSWORD);
+        String currentPasswordHash = (String) oldPasswordQueryResult.get("u.password");
 
         if (!validatePassword(plainPassword, currentPasswordHash)) {
             throw new InvalidPasswordException();

@@ -9,6 +9,7 @@ public class UserNotAssignedToProjectException extends Exception {
      * Default constructor.
      */
     public UserNotAssignedToProjectException() {
+
     }
 
     /**
@@ -16,7 +17,8 @@ public class UserNotAssignedToProjectException extends Exception {
      *
      * @param cause the root cause
      */
-    public UserNotAssignedToProjectException(Throwable cause) {
+    public UserNotAssignedToProjectException(final Throwable cause) {
+
         super(cause);
     }
 
@@ -25,7 +27,8 @@ public class UserNotAssignedToProjectException extends Exception {
      *
      * @param message the exception message
      */
-    public UserNotAssignedToProjectException(String message) {
+    public UserNotAssignedToProjectException(final String message) {
+
         super(message);
     }
 
@@ -35,7 +38,8 @@ public class UserNotAssignedToProjectException extends Exception {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public UserNotAssignedToProjectException(String message, Throwable cause) {
+    public UserNotAssignedToProjectException(final String message, final Throwable cause) {
+
         super(message, cause);
     }
 

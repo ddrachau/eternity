@@ -17,7 +17,7 @@ public abstract class DateUtils {
      * @param minute the minute
      * @return the created calendar
      */
-    public static Calendar getCalendar(int year, int month, int day, int hour, int minute) {
+    public static Calendar getCalendar(final int year, final int month, final int day, final int hour, final int minute) {
 
         Calendar calendar = Calendar.getInstance();
 
@@ -39,7 +39,7 @@ public abstract class DateUtils {
      * @param milliseconds the date in milliseconds
      * @return the created calendar
      */
-    public static Calendar getCalendar(long milliseconds) {
+    public static Calendar getCalendar(final long milliseconds) {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(milliseconds);

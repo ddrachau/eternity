@@ -34,7 +34,7 @@ public class RememberMeServiceImpl implements RememberMeService {
     private CypherService cypherService;
 
     @Override
-    public RememberMe create(@NotNull String userIdentifier) {
+    public RememberMe create(@NotNull final String userIdentifier) {
 
         String password = UUID.randomUUID().toString();
         String hashedToken = PasswordHash.createHash(password);
@@ -59,7 +59,7 @@ public class RememberMeServiceImpl implements RememberMeService {
     }
 
     @Override
-    public RememberMe get(@NotNull String identifier) {
+    public RememberMe get(@NotNull final String identifier) {
 
         RememberMe result = null;
 
@@ -79,7 +79,7 @@ public class RememberMeServiceImpl implements RememberMeService {
     }
 
     @Override
-    public List<RememberMe> getByUser(@NotNull String userIdentifier) {
+    public List<RememberMe> getByUser(@NotNull final String userIdentifier) {
 
         List<RememberMe> result = new ArrayList<>();
 
@@ -97,7 +97,7 @@ public class RememberMeServiceImpl implements RememberMeService {
     }
 
     @Override
-    public void delete(@NotNull String identifier) {
+    public void delete(@NotNull final String identifier) {
 
         cypherService.query(
                 "MATCH (r:RememberMe {id:{1}})-[a:ASSIGNED_TO]->(:User)" +
@@ -107,7 +107,7 @@ public class RememberMeServiceImpl implements RememberMeService {
     }
 
     @Override
-    public void deleteByUser(@NotNull String userIdentifier) {
+    public void deleteByUser(@NotNull final String userIdentifier) {
 
         cypherService.query(
                 "MATCH (r:RememberMe)-[a:ASSIGNED_TO]->(u:User {identifier:{1}})" +
@@ -122,7 +122,7 @@ public class RememberMeServiceImpl implements RememberMeService {
      * @param values the available values
      * @return a filled RememberMe
      */
-    private RememberMe getRememberMe(Map<String, Object> values) {
+    private RememberMe getRememberMe(final Map<String, Object> values) {
 
         RememberMe result = new RememberMe();
 

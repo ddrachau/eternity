@@ -9,6 +9,7 @@ public class InvalidBookingException extends Exception {
      * Default constructor.
      */
     public InvalidBookingException() {
+
     }
 
     /**
@@ -16,7 +17,8 @@ public class InvalidBookingException extends Exception {
      *
      * @param cause the root cause
      */
-    public InvalidBookingException(Throwable cause) {
+    public InvalidBookingException(final Throwable cause) {
+
         super(cause);
     }
 
@@ -25,7 +27,8 @@ public class InvalidBookingException extends Exception {
      *
      * @param message the exception message
      */
-    public InvalidBookingException(String message) {
+    public InvalidBookingException(final String message) {
+
         super(message);
     }
 
@@ -35,7 +38,8 @@ public class InvalidBookingException extends Exception {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public InvalidBookingException(String message, Throwable cause) {
+    public InvalidBookingException(final String message, final Throwable cause) {
+
         super(message, cause);
     }
 

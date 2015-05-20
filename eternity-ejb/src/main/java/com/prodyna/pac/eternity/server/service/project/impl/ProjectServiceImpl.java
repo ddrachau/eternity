@@ -17,7 +17,11 @@ import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import static com.prodyna.pac.eternity.components.common.QueryUtils.map;
 
@@ -158,7 +162,8 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project update(@NotNull final Project project) throws NoSuchElementRuntimeException, ElementAlreadyExistsException {
+    public Project update(@NotNull final Project project)
+            throws NoSuchElementRuntimeException, ElementAlreadyExistsException {
 
         // Check for already present project with the new identifier
         Project check = this.get(project.getIdentifier());

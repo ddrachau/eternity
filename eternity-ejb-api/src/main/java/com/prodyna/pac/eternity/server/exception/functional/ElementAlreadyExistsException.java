@@ -9,6 +9,7 @@ public class ElementAlreadyExistsException extends Exception {
      * Default constructor.
      */
     public ElementAlreadyExistsException() {
+
     }
 
     /**
@@ -16,7 +17,8 @@ public class ElementAlreadyExistsException extends Exception {
      *
      * @param cause the root cause
      */
-    public ElementAlreadyExistsException(Throwable cause) {
+    public ElementAlreadyExistsException(final Throwable cause) {
+
         super(cause);
     }
 
@@ -25,7 +27,8 @@ public class ElementAlreadyExistsException extends Exception {
      *
      * @param message the exception message
      */
-    public ElementAlreadyExistsException(String message) {
+    public ElementAlreadyExistsException(final String message) {
+
         super(message);
     }
 
@@ -35,7 +38,8 @@ public class ElementAlreadyExistsException extends Exception {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public ElementAlreadyExistsException(String message, Throwable cause) {
+    public ElementAlreadyExistsException(final String message, final Throwable cause) {
+
         super(message, cause);
     }
 

@@ -9,6 +9,7 @@ public class DuplicateTimeBookingException extends Exception {
      * Default constructor.
      */
     public DuplicateTimeBookingException() {
+
     }
 
     /**
@@ -16,7 +17,8 @@ public class DuplicateTimeBookingException extends Exception {
      *
      * @param cause the root cause
      */
-    public DuplicateTimeBookingException(Throwable cause) {
+    public DuplicateTimeBookingException(final Throwable cause) {
+
         super(cause);
     }
 
@@ -25,7 +27,8 @@ public class DuplicateTimeBookingException extends Exception {
      *
      * @param message the exception message
      */
-    public DuplicateTimeBookingException(String message) {
+    public DuplicateTimeBookingException(final String message) {
+
         super(message);
     }
 
@@ -35,7 +38,8 @@ public class DuplicateTimeBookingException extends Exception {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public DuplicateTimeBookingException(String message, Throwable cause) {
+    public DuplicateTimeBookingException(final String message, final Throwable cause) {
+
         super(message, cause);
     }
 

@@ -144,8 +144,8 @@ public interface UserService {
      * @throws InvalidUserException     if the user is incorrect
      * @throws InvalidPasswordException if the password is incorrect
      */
-    void changePassword(@NotNull String userIdentifier, @NotNull String oldPlainPassword, @NotNull String newPlainPassword) throws
-            InvalidUserException, InvalidPasswordException;
+    void changePassword(@NotNull String userIdentifier, @NotNull String oldPlainPassword,
+                        @NotNull String newPlainPassword) throws InvalidUserException, InvalidPasswordException;
 
     /**
      * Checks if the given password checks against the given user.

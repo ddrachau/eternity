@@ -47,7 +47,7 @@ public class Session extends AbstractNode {
      * @param lastAccessedTime the last accessed time
      * @param createdTime      the creation time
      */
-    public Session(Calendar lastAccessedTime, Calendar createdTime) {
+    public Session(final Calendar lastAccessedTime, final Calendar createdTime) {
 
         super(null);
         this.lastAccessedTime = lastAccessedTime;
@@ -70,7 +70,7 @@ public class Session extends AbstractNode {
      *
      * @param lastAccessedTime to be set
      */
-    public void setLastAccessedTime(Calendar lastAccessedTime) {
+    public void setLastAccessedTime(final Calendar lastAccessedTime) {
 
         this.lastAccessedTime = lastAccessedTime;
     }

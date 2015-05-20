@@ -8,7 +8,7 @@ public final class EternityEvent {
 
     private Map<String, String> payload;
 
-    private EternityEvent(EventType type, Map<String, String> payload) {
+    private EternityEvent(final EventType type, final Map<String, String> payload) {
 
         this.type = type;
         this.payload = payload;
