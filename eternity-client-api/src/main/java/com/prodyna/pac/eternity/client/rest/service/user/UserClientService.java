@@ -55,20 +55,12 @@ public interface UserClientService {
     Response getProjects(String xsrfToken);
 
     /**
-     * Returns a list of all projects the user is assigned to
+     * Returns a list of all projects the user is and can be assigned to
      *
      * @param identifier the user identifier
-     * @return the users assigned projects
+     * @return projects the user is or can be  assigned to
      */
-    Response getAssignedProjects(@NotNull @Size(min = 1) String identifier);
-
-    /**
-     * Returns a list of all projects the user is assigned to
-     *
-     * @param identifier the user identifier
-     * @return the users assigned projects
-     */
-    Response getNotAssignedProjects(@NotNull @Size(min = 1) String identifier);
+    Response getAssignProjects(@NotNull @Size(min = 1) String identifier);
 
     Response create(@NotNull @Valid User user);
 

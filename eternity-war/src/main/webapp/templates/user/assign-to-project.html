@@ -13,17 +13,17 @@
 
                 <form class="form-horizontal">
 
-                    <div ng-show="isProjectsLoading||isUserProjectsLoading" class="form-group">
+                    <div ng-show="isLoading" class="form-group">
                         <div class="col-sm-12 text-center">Lade ...</div>
                     </div>
 
-                    <div ng-show="!(isProjectsLoading||isUserProjectsLoading)" class="form-group">
+                    <div ng-show="!(isLoading)" class="form-group">
 
                         <div class="col-sm-5">
                             <label>Nichtzugewiesende Projekte</label>
                             <select size="6" ng-model="selectedProject" class="form-control" required
                                     ng-disabled="bookingId"
-                                    ng-options="project.identifier as project.identifier + ' - ' + project.description for project in allProjects">
+                                    ng-options="project.identifier as project.identifier + ' - ' + project.description for project in assignableProjects">
                             </select>
                         </div>
                         <div class="col-sm-2 text-center">
@@ -38,10 +38,10 @@
                             </button>
                         </div>
                         <div class="col-sm-5">
-                            <label>Benutzer Projekte</label>
+                            <label>Zugewiesene Projekte</label>
                             <select size="6" ng-model="selectedUserProject" class="form-control" required
                                     ng-disabled="bookingId"
-                                    ng-options="project.identifier as project.identifier + ' - ' + project.description for project in userProjects">
+                                    ng-options="project.identifier as project.identifier + ' - ' + project.description for project in assignedProjects">
                             </select>
                         </div>
 

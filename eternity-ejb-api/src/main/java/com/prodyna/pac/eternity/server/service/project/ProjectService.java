@@ -87,6 +87,6 @@ public interface ProjectService {
      * @param user the source user
      * @return projects which are not assigned to the user
      */
-    List<Project> findAllNotAssignedToUser(@NotNull User user);
+    List<Project> findAllAssignableToUser(@NotNull User user);
 
 }

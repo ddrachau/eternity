@@ -5,16 +5,15 @@ angular.module('Eternity').controller('AssignToProjectCtrl',
             var ctrl = this;
             ctrl.user = user;
 
-            $scope.isProjectsLoading = true;
-            $scope.isUserProjectsLoading = true;
+            $scope.isLoading = true;
 
             $scope.alerts = [];
             $scope.title = title;
 
             $scope.selectedProject = '';
             $scope.selectedUserProject = '';
-            $scope.allProjects = [];
-            $scope.userProjects = [];
+            $scope.assignableProjects = [];
+            $scope.assignedProjects = [];
 
             ServerPushService.on('project', $scope, function () {
                 ctrl.loadProjects();
@@ -22,25 +21,23 @@ angular.module('Eternity').controller('AssignToProjectCtrl',
 
             ctrl.loadProjects = function () {
 
-                $scope.isProjectsLoading = true;
-                $scope.isUserProjectsLoading = true;
+                $scope.isLoading = true;
 
-                ProjectService.getAssignableProjectsForUser({identifier:ctrl.user.identifier},function (result) {
-                    $scope.allProjects = result;
-                    if (result && result.length > 0) {
-                        $scope.selectedProject = result[0].identifier;
-                    }
-                    $scope.isProjectsLoading = false;
-                }, function (error) {
-                    createErrorAlert(error);
-                });
+                ProjectService.getAssignProjectsForUser({identifier:ctrl.user.identifier},function (result) {
 
-                ProjectService.getProjectsForUser({identifier:ctrl.user.identifier},function (result) {
-                    $scope.userProjects = result;
-                    if (result && result.length > 0) {
-                        $scope.selectedUserProject = result[0].identifier;
+                    $scope.assignableProjects = result.assignableProjects;
+                    $scope.assignedProjects = result.assignedProjects;
+
+                    if (result.assignableProjects && result.assignableProjects.length > 0) {
+                        $scope.selectedProject = result.assignableProjects[0].identifier;
                     }
-                    $scope.isUserProjectsLoading = false;
+
+                    if (result.assignedProjects && result.assignedProjects.length > 0) {
+                        $scope.selectedUserProject = result.assignedProjects[0].identifier;
+                    }
+
+                    $scope.isLoading = false;
+
                 }, function (error) {
                     createErrorAlert(error);
                 });

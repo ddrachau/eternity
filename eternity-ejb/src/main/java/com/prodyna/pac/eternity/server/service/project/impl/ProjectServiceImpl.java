@@ -218,7 +218,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Project> findAllNotAssignedToUser(@NotNull final User user) {
+    public List<Project> findAllAssignableToUser(@NotNull final User user) {
 
         List<Project> result = new ArrayList<>();
 
