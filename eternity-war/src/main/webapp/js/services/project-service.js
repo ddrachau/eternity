@@ -9,7 +9,8 @@
                 delete: {method: 'DELETE', url: 'rest/projects/:identifier'},
                 update: {method: 'PUT', url: 'rest/projects'},
                 find: {method: 'GET'},
-                getProjectsForCurrentUser: {method: 'GET', url: 'rest/users/projects', isArray: true}
+                getProjectsForCurrentUser: {method: 'GET', url: 'rest/users/projects', isArray: true},
+                getAssignableProjectsForCurrentUser: {method: 'GET', url: 'rest/users/projects/assignable', isArray: true}
             });
 
     });

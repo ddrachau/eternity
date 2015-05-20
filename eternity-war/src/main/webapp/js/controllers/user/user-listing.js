@@ -19,9 +19,7 @@ angular.module('Eternity').controller('UserListingCtrl',
         };
 
         ServerPushService.on('user', $scope, function () {
-
             ctrl.callServer(ctrl.tableState);
-
         });
 
         this.displayed = [];
@@ -74,7 +72,7 @@ angular.module('Eternity').controller('UserListingCtrl',
                 });
             });
 
-        }
+        };
 
         $scope.assignToProject = function (user) {
 
@@ -82,6 +80,7 @@ angular.module('Eternity').controller('UserListingCtrl',
                 templateUrl: "templates/user/assign-to-project.html",
                 controller: "AssignToProjectCtrl",
                 inputs: {
+                    user: user,
                     title: 'Benutzer \'' + user.identifier + '\' Projekten zuordnen'
                 }
             }).then(function (modal) {
@@ -98,7 +97,7 @@ angular.module('Eternity').controller('UserListingCtrl',
                 });
             });
 
-        }
+        };
 
         $scope.setPassword = function (user) {
 
@@ -123,7 +122,7 @@ angular.module('Eternity').controller('UserListingCtrl',
                 });
             });
 
-        }
+        };
 
         $scope.editUser = function (user) {
 
@@ -148,7 +147,7 @@ angular.module('Eternity').controller('UserListingCtrl',
                 });
             });
 
-        }
+        };
 
         $scope.deleteUser = function (user) {
 
@@ -179,6 +178,6 @@ angular.module('Eternity').controller('UserListingCtrl',
                 });
             });
 
-        }
+        };
 
     });

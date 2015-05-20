@@ -52,7 +52,15 @@ public interface UserClientService {
      * @param xsrfToken the session token
      * @return the users assigned projects
      */
-    Response getProjects(String xsrfToken);
+    Response getAssignedProjects(String xsrfToken);
+
+    /**
+     * Returns a list of all projects the user is assigned to
+     *
+     * @param xsrfToken the session token
+     * @return the users assigned projects
+     */
+    Response getNotAssignedProjects(String xsrfToken);
 
     Response create(@NotNull @Valid User user);
 

@@ -1,9 +1,49 @@
 angular.module('Eternity').controller('AssignToProjectCtrl',
-    ['$scope', '$element', 'BookingService', 'UserService', 'close', 'title',
-        function ($scope, $element, BookingService, UserService, close, title) {
+    ['$scope', '$element', 'ServerPushService', 'ProjectService', 'user', 'close', 'title',
+        function ($scope, $element, ServerPushService, ProjectService, user, close, title) {
+
+            var ctrl = this;
+            $scope.isProjectsLoading = true;
+            $scope.isUserProjectsLoading = true;
 
             $scope.alerts = [];
             $scope.title = title;
+
+            $scope.selectedProject = '';
+            $scope.selectedUserProject = '';
+            $scope.allProjects = [];
+            $scope.userProjects = [];
+
+            ServerPushService.on('project', $scope, function () {
+                ctrl.loadProjects();
+            });
+
+            ctrl.loadProjects = function () {
+
+                $scope.isProjectsLoading = true;
+                $scope.isUserProjectsLoading = true;
+
+                ProjectService.getAssignableProjectsForCurrentUser(function (result) {
+                    $scope.allProjects = result;
+                    if (result && result.length > 0) {
+                        $scope.selectedProject = result[0].identifier;
+                    }
+                    $scope.isProjectsLoading = false;
+                }, function (error) {
+                    createErrorAlert(error);
+                });
+
+                ProjectService.getProjectsForCurrentUser(function (result) {
+                    $scope.userProjects = result;
+                    if (result && result.length > 0) {
+                        $scope.selectedUserProject = result[0].identifier;
+                    }
+                    $scope.isUserProjectsLoading = false;
+                }, function (error) {
+                    createErrorAlert(error);
+                });
+
+            };
 
             $scope.addAlert = function (type, msg) {
                 $scope.clearAlerts();
@@ -38,57 +78,14 @@ angular.module('Eternity').controller('AssignToProjectCtrl',
 
             };
 
-            $scope.createUpdateBooking = function () {
-
-                var sTime = new Date(0);
-                sTime.setUTCFullYear($scope.bookingDate.getUTCFullYear());
-                sTime.setUTCMonth($scope.bookingDate.getUTCMonth());
-                sTime.setUTCDate($scope.bookingDate.getUTCDate());
-                sTime.setUTCHours($scope.startTime.getUTCHours());
-                sTime.setUTCMinutes($scope.startTime.getUTCMinutes());
-
-                var eTime = new Date(0);
-                eTime.setUTCFullYear($scope.bookingDate.getUTCFullYear());
-                eTime.setUTCMonth($scope.bookingDate.getUTCMonth());
-                eTime.setUTCDate($scope.bookingDate.getUTCDate());
-                eTime.setUTCHours($scope.endTime.getUTCHours());
-                eTime.setUTCMinutes($scope.endTime.getUTCMinutes());
-
-                var booking = {
-                    id: $scope.bookingId,
-                    startTime: sTime.getTime(),
-                    endTime: eTime.getTime(),
-                    breakDuration: $scope.breakDuration,
-                    description: $scope.description,
-                    projectIdentifier: $scope.selectedProject
-                };
-
-                if (booking.id) {
-                    BookingService.update(booking, function (success) {
-
-                        $element.modal('hide');
-
-                        close({type: 'success', msg: 'Buchung erfolgreich aktualisiert'}, 500);
-
-                    }, function (error) {
-
-                        createErrorAlert(error);
-
-                    });
-                } else {
-                    BookingService.save(booking, function (success) {
-
-                        $element.modal('hide');
-
-                        close({type: 'success', msg: 'Buchung erfolgreich angelegt'}, 500);
-
-                    }, function (error) {
-
-                        createErrorAlert(error);
-
-                    });
-                }
-
+            $scope.assignToProject = function () {
+                console.log("assgin: " + $scope.selectedProject);
             };
+
+            $scope.unassignToProject = function () {
+                console.log("unassgin: " + $scope.selectedUserProject);
+            };
+
+            ctrl.loadProjects();
 
         }]);

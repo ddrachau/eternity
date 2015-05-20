@@ -103,7 +103,22 @@ public class UserClientServiceImpl implements UserClientService {
     @Produces(RestCookieUtils.JSON_UTF8)
     @Path("/projects")
     @Override
-    public Response getProjects(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken) {
+    public Response getAssignedProjects(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken) {
+
+        User user = userService.getBySessionId(xsrfToken);
+
+        List<Project> projects = projectService.findAllAssignedToUser(user);
+
+        return Response.ok().entity(projects).build();
+
+    }
+
+    @PermitAll
+    @GET
+    @Produces(RestCookieUtils.JSON_UTF8)
+    @Path("/projects/assignable")
+    @Override
+    public Response getNotAssignedProjects(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken) {
 
         User user = userService.getBySessionId(xsrfToken);
 
