@@ -1,6 +1,6 @@
 <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 
-<div class="well well-sm">
+<div class="well well-sm" ng-show="hasAdminPermissions()">
     <div class="row">
         <div class="col-sm-5 col-sm-offset-7 text-right">
             <button type="button" ng-click="createUser()" class="btn btn-primary">Neuer Benutzer</button>
@@ -50,19 +50,19 @@
                 <td>{{user.role}}</td>
                 <td class="text-center">
                     <button type="button" ng-click="assignToProject(user)" class="btn btn-xs btn-success"
-                            title="Benutzer Projekt zuweisen">
+                            ng-show="hasManagerPermissions()" title="Benutzer Projekt zuweisen">
                         <span class="glyphicon glyphicon-random" aria-hidden="true"></span>
                     </button>
                     <button type="button" ng-click="setPassword(user)" class="btn btn-xs btn-warning"
-                            title="Benutzer Passwort setzen">
+                            ng-show="hasAdminPermissions()" title="Benutzer Passwort setzen">
                         <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
                     </button>
                     <button type="button" ng-click="editUser(user)" class="btn btn-xs btn-warning"
-                            title="Benutzer editieren">
+                            ng-show="hasAdminPermissions()" title="Benutzer editieren">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                     </button>
                     <button type="button" ng-click="deleteUser(user)" class="btn btn-xs btn-danger"
-                            title="Benutzer löschen">
+                            ng-show="hasAdminPermissions()"               title="Benutzer löschen">
                         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
                     </button>
                 </td>

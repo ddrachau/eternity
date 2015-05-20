@@ -60,6 +60,15 @@
 
         });
 
+        $rootScope.hasAdminPermissions = function () {
+            return $rootScope.user && ("ADMINISTRATOR" === $rootScope.user.role);
+        };
+
+        $rootScope.hasManagerPermissions = function () {
+            return $rootScope.user &&
+                ("ADMINISTRATOR" === $rootScope.user.role || "MANAGER" === $rootScope.user.role);
+        };
+
     });
 
 })();

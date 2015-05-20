@@ -3,9 +3,7 @@ angular.module('Eternity')
         return {
 
             restrict: 'E',
-            scope: {
-                data: "="
-            },
+            scope: true,
             templateUrl: 'templates/footer.html'
         };
     });

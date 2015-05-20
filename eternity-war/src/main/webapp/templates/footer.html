@@ -9,8 +9,8 @@
                     <ul class="list-unstyled">
                         <li>
                             <a href="#bookings">Zeitbuchung</a>
-                            <a href="#users">Benutzerverwaltung</a>
-                            <a href="#projects">Projektverwaltung</a>
+                            <a ng-show="hasManagerPermissions()" href="#users">Benutzerverwaltung</a>
+                            <a ng-show="hasAdminPermissions()" href="#projects">Projektverwaltung</a>
                         </li>
                     </ul>
                 </div>

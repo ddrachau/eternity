@@ -48,20 +48,20 @@
 
                     <ul class="dropdown-menu" role="menu">
 
-                        <li>
+                        <li ng-show="hasManagerPermissions()">
                             <a href="#users">
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                 Benutzerverwaltung
                             </a>
                         </li>
-                        <li>
+                        <li ng-show="hasAdminPermissions()">
                             <a href="#projects">
                                 <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
                                 Projekteverwaltung
                             </a>
                         </li>
 
-                        <li class='divider'></li>
+                        <li class='divider' ng-show="hasManagerPermissions()"></li>
 
                         <li>
                             <a href="#bookings">
