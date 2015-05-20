@@ -81,4 +81,12 @@ public interface ProjectService {
      */
     List<Project> findAllAssignedToUser(@NotNull User user);
 
+    /**
+     * Search for all the projects not assigned to a user.
+     *
+     * @param user the source user
+     * @return projects which are not assigned to the user
+     */
+    List<Project> findAllNotAssignedToUser(@NotNull User user);
+
 }

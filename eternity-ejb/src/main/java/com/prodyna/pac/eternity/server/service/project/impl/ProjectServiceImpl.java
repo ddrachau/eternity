@@ -17,11 +17,7 @@ import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import static com.prodyna.pac.eternity.components.common.QueryUtils.map;
 
@@ -209,7 +205,28 @@ public class ProjectServiceImpl implements ProjectService {
 
         final List<Map<String, Object>> queryResult = cypherService.query(
                 "MATCH (p:Project)<-[:ASSIGNED_TO]-(u:User {identifier:{1}}) " +
-                        "RETURN " + PROJECT_RETURN_PROPERTIES,
+                        "RETURN " + PROJECT_RETURN_PROPERTIES + " " +
+                        "ORDER BY p.identifier",
+                map(1, user.getIdentifier()));
+
+        for (Map<String, Object> values : queryResult) {
+            result.add(this.getProject(values));
+        }
+
+        return result;
+
+    }
+
+    @Override
+    public List<Project> findAllNotAssignedToUser(@NotNull final User user) {
+
+        List<Project> result = new ArrayList<>();
+
+        final List<Map<String, Object>> queryResult = cypherService.query(
+                "MATCH (p:Project), (u:User {identifier:{1}}) " +
+                        "WHERE NOT (p)<-[:ASSIGNED_TO]-(u) " +
+                        "RETURN " + PROJECT_RETURN_PROPERTIES + " " +
+                        "ORDER BY p.identifier",
                 map(1, user.getIdentifier()));
 
         for (Map<String, Object> values : queryResult) {

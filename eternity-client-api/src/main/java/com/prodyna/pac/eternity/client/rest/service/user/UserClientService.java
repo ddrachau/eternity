@@ -52,15 +52,23 @@ public interface UserClientService {
      * @param xsrfToken the session token
      * @return the users assigned projects
      */
-    Response getAssignedProjects(String xsrfToken);
+    Response getProjects(String xsrfToken);
 
     /**
      * Returns a list of all projects the user is assigned to
      *
-     * @param xsrfToken the session token
+     * @param identifier the user identifier
      * @return the users assigned projects
      */
-    Response getNotAssignedProjects(String xsrfToken);
+    Response getAssignedProjects(@NotNull @Size(min = 1) String identifier);
+
+    /**
+     * Returns a list of all projects the user is assigned to
+     *
+     * @param identifier the user identifier
+     * @return the users assigned projects
+     */
+    Response getNotAssignedProjects(@NotNull @Size(min = 1) String identifier);
 
     Response create(@NotNull @Valid User user);
 

@@ -3,6 +3,8 @@ angular.module('Eternity').controller('AssignToProjectCtrl',
         function ($scope, $element, ServerPushService, ProjectService, user, close, title) {
 
             var ctrl = this;
+            ctrl.user = user;
+
             $scope.isProjectsLoading = true;
             $scope.isUserProjectsLoading = true;
 
@@ -23,7 +25,7 @@ angular.module('Eternity').controller('AssignToProjectCtrl',
                 $scope.isProjectsLoading = true;
                 $scope.isUserProjectsLoading = true;
 
-                ProjectService.getAssignableProjectsForCurrentUser(function (result) {
+                ProjectService.getAssignableProjectsForUser({identifier:ctrl.user.identifier},function (result) {
                     $scope.allProjects = result;
                     if (result && result.length > 0) {
                         $scope.selectedProject = result[0].identifier;
@@ -33,7 +35,7 @@ angular.module('Eternity').controller('AssignToProjectCtrl',
                     createErrorAlert(error);
                 });
 
-                ProjectService.getProjectsForCurrentUser(function (result) {
+                ProjectService.getProjectsForUser({identifier:ctrl.user.identifier},function (result) {
                     $scope.userProjects = result;
                     if (result && result.length > 0) {
                         $scope.selectedUserProject = result[0].identifier;
