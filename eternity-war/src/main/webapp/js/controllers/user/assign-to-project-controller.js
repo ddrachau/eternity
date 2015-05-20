@@ -1,6 +1,6 @@
 angular.module('Eternity').controller('AssignToProjectCtrl',
-    ['$scope', '$element', 'ServerPushService', 'ProjectService', 'user', 'close', 'title',
-        function ($scope, $element, ServerPushService, ProjectService, user, close, title) {
+    ['$scope', '$element', 'ServerPushService', 'ProjectService', 'UserService', 'user', 'close', 'title',
+        function ($scope, $element, ServerPushService, ProjectService, UserService, user, close, title) {
 
             var ctrl = this;
             ctrl.user = user;
@@ -18,22 +18,29 @@ angular.module('Eternity').controller('AssignToProjectCtrl',
             ServerPushService.on('project', $scope, function () {
                 ctrl.loadProjects();
             });
+            ServerPushService.on('assignment', $scope, function () {
+                ctrl.loadProjects();
+            });
 
             ctrl.loadProjects = function () {
 
                 $scope.isLoading = true;
 
-                ProjectService.getAssignProjectsForUser({identifier:ctrl.user.identifier},function (result) {
+                ProjectService.getAssignProjectsForUser({identifier: ctrl.user.identifier}, function (result) {
 
                     $scope.assignableProjects = result.assignableProjects;
                     $scope.assignedProjects = result.assignedProjects;
 
                     if (result.assignableProjects && result.assignableProjects.length > 0) {
                         $scope.selectedProject = result.assignableProjects[0].identifier;
+                    } else {
+                        $scope.selectedProject = '';
                     }
 
                     if (result.assignedProjects && result.assignedProjects.length > 0) {
                         $scope.selectedUserProject = result.assignedProjects[0].identifier;
+                    } else {
+                        $scope.selectedUserProject = '';
                     }
 
                     $scope.isLoading = false;
@@ -78,11 +85,35 @@ angular.module('Eternity').controller('AssignToProjectCtrl',
             };
 
             $scope.assignToProject = function () {
-                console.log("assgin: " + $scope.selectedProject);
+
+                if (!$scope.selectedProject || $scope.selectedProject === '') {
+                    $scope.addAlert('danger', 'Bitte ein Projekt zum Hinzufügen auswählen');
+                } else {
+                    UserService.assignToProject({
+                        identifier: ctrl.user.identifier,
+                        projectIdentifier: $scope.selectedProject
+                    }, {}, function (success) {
+                    }, function (error) {
+                        createErrorAlert(error);
+                    });
+                }
+
             };
 
-            $scope.unassignToProject = function () {
-                console.log("unassgin: " + $scope.selectedUserProject);
+            $scope.unassignFromProject = function () {
+
+                if (!$scope.selectedUserProject || $scope.selectedUserProject === '') {
+                    $scope.addAlert('danger', 'Bitte ein Projekt zum Entfernen auswählen');
+                } else {
+                    UserService.unassignFromProject({
+                        identifier: ctrl.user.identifier,
+                        projectIdentifier: $scope.selectedUserProject
+                    }, {}, function (success) {
+                    }, function (error) {
+                        createErrorAlert(error);
+                    });
+                }
+
             };
 
             ctrl.loadProjects();

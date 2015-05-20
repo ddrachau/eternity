@@ -21,9 +21,6 @@ angular.module('Eternity').controller('BookingListingCtrl',
         ServerPushService.on('booking', $scope, function () {
             ctrl.callServer(ctrl.tableState);
         });
-        ServerPushService.on('project', $scope, function () {
-            ctrl.callServer(ctrl.tableState);
-        });
 
         this.displayed = [];
 

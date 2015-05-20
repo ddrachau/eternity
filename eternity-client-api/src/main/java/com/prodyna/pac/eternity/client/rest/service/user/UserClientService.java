@@ -62,6 +62,12 @@ public interface UserClientService {
      */
     Response getAssignProjects(@NotNull @Size(min = 1) String identifier);
 
+    Response assignToProject(@NotNull @Size(min = 1) String identifier,
+                             @NotNull @Size(min = 1) String projectIdentifier);
+
+    Response unassignFromProject(@NotNull @Size(min = 1) String identifier,
+                             @NotNull @Size(min = 1) String projectIdentifier);
+
     Response create(@NotNull @Valid User user);
 
     Response update(@NotNull @Valid User user);

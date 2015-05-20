@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService {
             }
         }
 
-        events.fire(EternityEvent.createUsereEvent());
+        events.fire(EternityEvent.createUserEvent());
 
         return result;
     }
@@ -237,7 +237,7 @@ public class UserServiceImpl implements UserService {
         if (queryResult == null) {
             throw new NoSuchElementRuntimeException();
         } else {
-            events.fire(EternityEvent.createUsereEvent());
+            events.fire(EternityEvent.createUserEvent());
             return this.getUser(queryResult);
         }
 
@@ -259,7 +259,7 @@ public class UserServiceImpl implements UserService {
                         "DELETE s,a1,a2,u,p1,b,p2",
                 map(1, identifier));
 
-        events.fire(EternityEvent.createUsereEvent());
+        events.fire(EternityEvent.createUserEvent());
 
     }
 
@@ -270,7 +270,7 @@ public class UserServiceImpl implements UserService {
                 "CREATE UNIQUE (u)-[:ASSIGNED_TO]->(p)";
         this.assignQuery(query, user, project);
 
-        events.fire(EternityEvent.createUsereEvent());
+        events.fire(EternityEvent.createAssignmentEvent());
 
     }
 
@@ -281,7 +281,7 @@ public class UserServiceImpl implements UserService {
                 "DELETE a";
         this.assignQuery(query, user, project);
 
-        events.fire(EternityEvent.createUsereEvent());
+        events.fire(EternityEvent.createAssignmentEvent());
 
     }
 

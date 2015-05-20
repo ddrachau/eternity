@@ -114,7 +114,7 @@ public class UserClientServiceImpl implements UserClientService {
 
     }
 
-    @PermitAll
+    @RolesAllowed({"MANAGER", "ADMINISTRATOR"})
     @GET
     @Produces(RestCookieUtils.JSON_UTF8)
     @Path("/{identifier}/projects")
@@ -129,6 +129,38 @@ public class UserClientServiceImpl implements UserClientService {
         result.setAssignableProjects(projectService.findAllAssignableToUser(user));
 
         return Response.ok().entity(result).build();
+
+    }
+
+    @RolesAllowed({"MANAGER", "ADMINISTRATOR"})
+    @PUT
+    @Path("/{identifier}/projects/{projectIdentifier}/assign")
+    @Override
+    public Response assignToProject(@PathParam("identifier") final String identifier,
+                                    @PathParam("projectIdentifier") final String projectIdentifier) {
+
+        User user = userService.get(identifier);
+        Project project = projectService.get(projectIdentifier);
+
+        userService.assignUserToProject(user, project);
+
+        return Response.ok().build();
+
+    }
+
+    @RolesAllowed({"MANAGER", "ADMINISTRATOR"})
+    @PUT
+    @Path("/{identifier}/projects/{projectIdentifier}/unassign")
+    @Override
+    public Response unassignFromProject(@PathParam("identifier") final String identifier,
+                                        @PathParam("projectIdentifier") final String projectIdentifier) {
+
+        User user = userService.get(identifier);
+        Project project = projectService.get(projectIdentifier);
+
+        userService.unassignUserFromProject(user, project);
+
+        return Response.ok().build();
 
     }
 

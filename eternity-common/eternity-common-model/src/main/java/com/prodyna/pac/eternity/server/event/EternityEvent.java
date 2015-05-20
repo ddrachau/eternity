@@ -35,9 +35,14 @@ public final class EternityEvent {
         return new EternityEvent(EventType.BOOKING, null);
     }
 
-    public static EternityEvent createUsereEvent() {
+    public static EternityEvent createUserEvent() {
 
         return new EternityEvent(EventType.USER, null);
+    }
+
+    public static EternityEvent createAssignmentEvent() {
+
+        return new EternityEvent(EventType.ASSIGNMENT, null);
     }
 
     @Override
