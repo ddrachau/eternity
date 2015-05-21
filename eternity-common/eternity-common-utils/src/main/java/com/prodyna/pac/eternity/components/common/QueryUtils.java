@@ -14,7 +14,7 @@ public abstract class QueryUtils {
      * @param objects the content of the new map, length has to be % 2 = 0, the 1st, 3rd... element needs to be an int
      * @return the new created map
      */
-    public static Map<Integer, Object> map(Object... objects) {
+    public static Map<Integer, Object> map(final Object... objects) {
 
         Map<Integer, Object> result = new HashMap();
 

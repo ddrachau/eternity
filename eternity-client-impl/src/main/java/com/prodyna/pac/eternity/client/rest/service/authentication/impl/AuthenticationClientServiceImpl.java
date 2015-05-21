@@ -17,25 +17,13 @@ import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.CookieParam;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import static com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils.COOKIE_TOKEN_REMEMBER_ME;
-import static com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils.COOKIE_TOKEN_XSRF;
-import static com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils.JSON_UTF8;
-import static com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils.createRememberMeToken;
-import static com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils.createXSRFToken;
-import static com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils.expireRememberMeToken;
-import static com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils.expireXSRFToken;
+import static com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils.*;
 
 /**
  * Default implementation for the AuthenticationClientService.
@@ -112,9 +100,9 @@ public class AuthenticationClientServiceImpl implements AuthenticationClientServ
     @Produces(JSON_UTF8)
     @Path("/token")
     @Override
-    public Response loginWithToken(@CookieParam(COOKIE_TOKEN_XSRF) Cookie sessionCookie,
-                                   @CookieParam(COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie,
-                                   @Context UriInfo uriInfo) {
+    public Response loginWithToken(@CookieParam(COOKIE_TOKEN_XSRF) final Cookie sessionCookie,
+                                   @CookieParam(COOKIE_TOKEN_REMEMBER_ME) final Cookie rememberMeCookie,
+                                   @Context final UriInfo uriInfo) {
 
         try {
 
@@ -144,8 +132,8 @@ public class AuthenticationClientServiceImpl implements AuthenticationClientServ
     @Authenticated
     @DELETE
     @Override
-    public Response logout(@Context UriInfo uriInfo, @CookieParam(COOKIE_TOKEN_XSRF) Cookie xsrfCookie,
-                           @CookieParam(COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie) {
+    public Response logout(@Context final UriInfo uriInfo, @CookieParam(COOKIE_TOKEN_XSRF) final Cookie xsrfCookie,
+                           @CookieParam(COOKIE_TOKEN_REMEMBER_ME) final Cookie rememberMeCookie) {
 
         String rememberMeToken = rememberMeCookie != null ? rememberMeCookie.getValue() : null;
         authenticationService.logout(xsrfCookie.getValue(), rememberMeToken);

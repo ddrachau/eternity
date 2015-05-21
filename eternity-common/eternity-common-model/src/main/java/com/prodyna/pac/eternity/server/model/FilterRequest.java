@@ -4,18 +4,44 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A filter request is a set of filter criteria for a search.
+ */
 public class FilterRequest {
 
+    /**
+     * optional search string for a property, starting with + ascending or - descending
+     */
     private String sort;
 
+    /**
+     * an array of filters for the search 'property:value'.
+     */
     private String[] filter;
 
+    /**
+     * the start offset for the search if pagination is used
+     */
     private int start;
 
+    /**
+     * the page size for the result, 0 for unlimited
+     */
     private int pageSize;
 
+    /**
+     * a mapping list for the internal to external properties
+     */
     private Map<String, String> mappings = new HashMap<>();
 
+    /**
+     * Default constructor for a filter request
+     *
+     * @param sort     the optional sort string
+     * @param filter   optional filters
+     * @param start    pagination offset
+     * @param pageSize the result set max size
+     */
     public FilterRequest(final String sort, final String[] filter, final int start, final int pageSize) {
 
         this.sort = sort;
@@ -25,25 +51,45 @@ public class FilterRequest {
 
     }
 
+    /**
+     * Basic Getter
+     *
+     * @return the sort
+     */
     public String getSort() {
 
         return sort;
 
     }
 
+    /**
+     * Basic Getter
+     *
+     * @return the filter
+     */
     public String[] getFilter() {
 
         return filter;
 
     }
 
+    /**
+     * Basic Getter
+     *
+     * @return the start
+     */
     public int getStart() {
 
         return start;
 
     }
 
-    public void setStart(final int start) {
+    /**
+     * Setter for the start
+     *
+     * @param start &gt;= 0
+     */
+    private void setStart(final int start) {
 
         if (start < 0) {
             this.start = 0;
@@ -53,34 +99,47 @@ public class FilterRequest {
 
     }
 
+    /**
+     * Basic Getter
+     *
+     * @return the pageSize
+     */
     public int getPageSize() {
 
         return pageSize;
 
     }
 
-    public void setPageSize(final int pageSize) {
+    /**
+     * Setter for the page size
+     *
+     * @param pageSize &gt;=0
+     */
+    private void setPageSize(final int pageSize) {
 
         if (pageSize < 0) {
             this.pageSize = 0;
-        } else if (pageSize > 50) {
-            this.pageSize = 50;
         } else {
             this.pageSize = pageSize;
         }
 
     }
 
-    public Map<String, String> getMappings() {
-
-        return mappings;
-    }
-
+    /**
+     * Basic setter
+     *
+     * @param mappings the mappings between in and external properties
+     */
     public void setMappings(final Map<String, String> mappings) {
 
         this.mappings = mappings;
     }
 
+    /**
+     * Creates a sort string
+     *
+     * @return the sort string derived form the sort property
+     */
     public String getSortString() {
 
         String sortString = "";
@@ -100,9 +159,14 @@ public class FilterRequest {
 
     }
 
+    /**
+     * Creates a filter string
+     *
+     * @return the filter string derived from the filters property
+     */
     public String getFilterString() {
 
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
 
         if (this.hasValidFilter()) {
 
@@ -135,6 +199,11 @@ public class FilterRequest {
 
     }
 
+    /**
+     * Check if the sort property is in a valid format
+     *
+     * @return true if valid, false otherwise
+     */
     private boolean hasValidSortFilter() {
 
         return this.getSort() != null && this.getSort().length() > 1 &&
@@ -142,12 +211,24 @@ public class FilterRequest {
 
     }
 
+
+    /**
+     * Check if the sort property is descending
+     *
+     * @return true if descending, false otherwise
+     */
     private boolean isSortDescending() {
 
         return this.hasValidSortFilter() && this.getSort().charAt(0) == '-';
 
     }
 
+
+    /**
+     * Check if the filters property is in a valid format
+     *
+     * @return true if valid, false otherwise
+     */
     private boolean hasValidFilter() {
 
         boolean validFilter = this.getFilter() != null && this.getFilter().length > 0;
@@ -165,6 +246,11 @@ public class FilterRequest {
         return validFilter;
     }
 
+    /**
+     * Creates a filter map form the filters property
+     *
+     * @return the created map
+     */
     private Map<String, String> getFilterMap() {
 
         HashMap<String, String> result = new HashMap<>();

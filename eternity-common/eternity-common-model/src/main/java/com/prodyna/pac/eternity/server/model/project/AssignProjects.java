@@ -16,7 +16,7 @@ public class AssignProjects {
         return assignedProjects;
     }
 
-    public void setAssignedProjects(List<Project> assignedProjects) {
+    public void setAssignedProjects(final List<Project> assignedProjects) {
 
         this.assignedProjects = assignedProjects;
     }
@@ -26,7 +26,7 @@ public class AssignProjects {
         return assignableProjects;
     }
 
-    public void setAssignableProjects(List<Project> assignableProjects) {
+    public void setAssignableProjects(final List<Project> assignableProjects) {
 
         this.assignableProjects = assignableProjects;
     }

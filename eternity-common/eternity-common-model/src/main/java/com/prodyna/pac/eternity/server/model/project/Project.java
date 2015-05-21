@@ -33,7 +33,7 @@ public class Project extends AbstractNode {
      * @param identifier  the functional identifier
      * @param description the project description
      */
-    public Project(String id, String identifier, String description) {
+    public Project(final String id, final String identifier, final String description) {
 
         super(id);
         this.identifier = identifier;

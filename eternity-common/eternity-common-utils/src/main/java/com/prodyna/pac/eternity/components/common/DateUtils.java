@@ -17,7 +17,8 @@ public abstract class DateUtils {
      * @param minute the minute
      * @return the created calendar
      */
-    public static Calendar getCalendar(final int year, final int month, final int day, final int hour, final int minute) {
+    public static Calendar getCalendar(final int year, final int month, final int day, final int hour,
+                                       final int minute) {
 
         Calendar calendar = Calendar.getInstance();
 

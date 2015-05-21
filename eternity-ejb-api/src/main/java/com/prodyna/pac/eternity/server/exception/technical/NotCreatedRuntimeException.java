@@ -16,7 +16,7 @@ public class NotCreatedRuntimeException extends RuntimeException {
      *
      * @param cause the root cause
      */
-    public NotCreatedRuntimeException(Throwable cause) {
+    public NotCreatedRuntimeException(final Throwable cause) {
         super(cause);
     }
 
@@ -25,7 +25,7 @@ public class NotCreatedRuntimeException extends RuntimeException {
      *
      * @param message the exception message
      */
-    public NotCreatedRuntimeException(String message) {
+    public NotCreatedRuntimeException(final String message) {
         super(message);
     }
 
@@ -35,7 +35,7 @@ public class NotCreatedRuntimeException extends RuntimeException {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public NotCreatedRuntimeException(String message, Throwable cause) {
+    public NotCreatedRuntimeException(final String message, final Throwable cause) {
         super(message, cause);
     }
 

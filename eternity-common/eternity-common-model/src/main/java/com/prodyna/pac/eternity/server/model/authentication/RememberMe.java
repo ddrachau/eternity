@@ -36,7 +36,7 @@ public class RememberMe extends AbstractNode {
      * @param hashedToken the hashed token from the database
      * @param token       the last accessed time
      */
-    public RememberMe(String id, String hashedToken, String token) {
+    public RememberMe(final String id, final String hashedToken, final String token) {
         super(id);
         this.token = token;
         this.hashedToken = hashedToken;
@@ -48,7 +48,7 @@ public class RememberMe extends AbstractNode {
      * @param hashedToken the hashed token from the database
      * @param token       the last accessed time
      */
-    public RememberMe(String hashedToken, String token) {
+    public RememberMe(final String hashedToken, final String token) {
         this(null, hashedToken, token);
     }
 
@@ -57,7 +57,7 @@ public class RememberMe extends AbstractNode {
      *
      * @param token the last accessed time
      */
-    public RememberMe(String token) {
+    public RememberMe(final String token) {
         this(null, token);
     }
 
@@ -67,7 +67,7 @@ public class RememberMe extends AbstractNode {
      * @return the token
      */
     public String getToken() {
-        return token;
+        return this.token;
     }
 
     /**
@@ -75,7 +75,7 @@ public class RememberMe extends AbstractNode {
      *
      * @param token to be set
      */
-    public void setToken(String token) {
+    public void setToken(final String token) {
         this.token = token;
     }
 
@@ -93,7 +93,7 @@ public class RememberMe extends AbstractNode {
      *
      * @param hashedToken to be set
      */
-    public void setHashedToken(String hashedToken) {
+    public void setHashedToken(final String hashedToken) {
         this.hashedToken = hashedToken;
     }
 
@@ -104,7 +104,7 @@ public class RememberMe extends AbstractNode {
      */
 
     public Calendar getCreatedTime() {
-        return createdTime;
+        return this.createdTime;
     }
 
     /**
@@ -112,12 +112,12 @@ public class RememberMe extends AbstractNode {
      *
      * @param createdTime to be set
      */
-    public void setCreatedTime(Calendar createdTime) {
+    public void setCreatedTime(final Calendar createdTime) {
         this.createdTime = createdTime;
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
