@@ -8,6 +8,7 @@
             {
                 delete: {method: 'DELETE', url: 'rest/bookings/:id'},
                 update: {method: 'PUT', url: 'rest/bookings'},
+                findAll: {method: 'GET', url: 'rest/bookings'},
                 getBookingsForCurrentUser: {method: 'GET', url: 'rest/users/bookings'}
             });
 

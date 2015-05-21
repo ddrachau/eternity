@@ -42,7 +42,7 @@ public class BookingServiceImpl implements BookingService {
      * Default return properties, to make object creation easier.
      */
     private static final String BOOKING_RETURN_PROPERTIES =
-            "b.id, b.startTime, b.endTime, b.breakDuration, b.description, p.identifier";
+            "b.id, b.startTime, b.endTime, b.breakDuration, b.description, u.identifier, p.identifier";
 
     @Inject
     private Event<EternityEvent> events;
@@ -100,7 +100,8 @@ public class BookingServiceImpl implements BookingService {
         Booking result = null;
 
         final Map<String, Object> queryResult = cypherService.querySingle(
-                "MATCH (b:Booking {id:{1}})-[:PERFORMED_FOR]->(p:Project) RETURN " + BOOKING_RETURN_PROPERTIES,
+                "MATCH (u:User)<-[:PERFORMED_BY]-(b:Booking {id:{1}})-[:PERFORMED_FOR]->(p:Project) RETURN " +
+                        BOOKING_RETURN_PROPERTIES,
                 map(1, id));
 
         if (queryResult != null) {
@@ -170,12 +171,52 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
+    public FilterResponse<Booking> findAll(@NotNull final FilterRequest filterRequest) {
+
+        filterRequest.setMappings(this.getRequestMappings());
+        String filterString = filterRequest.getFilterString();
+
+        int allBookings = (int) cypherService.querySingle(
+                "MATCH (u:User)<-[:PERFORMED_BY]-(b:Booking)-[:PERFORMED_FOR]->(p:Project) " +
+                        filterString +
+                        "RETURN count(b)",
+                null).get("count(b)");
+
+        FilterResponse<Booking> response = new FilterResponse<>();
+
+        response.setTotalSize(allBookings);
+        response.setPageSize(filterRequest.getPageSize());
+        response.setOffset(filterRequest.getStart());
+
+        if (allBookings > 0) {
+
+            List<Booking> result = new ArrayList<>();
+
+            final List<Map<String, Object>> queryResult = cypherService.query(
+                    "MATCH (u:User)<-[:PERFORMED_BY]-(b:Booking)-[:PERFORMED_FOR]->(p:Project) " +
+                            filterString +
+                            "RETURN " + BOOKING_RETURN_PROPERTIES,
+                    null, filterRequest);
+
+            for (Map<String, Object> values : queryResult) {
+                result.add(this.getBooking(values));
+            }
+
+            response.setData(result);
+
+        }
+
+        return response;
+
+    }
+
+    @Override
     public List<Booking> findByProject(@NotNull final Project project) {
 
         List<Booking> result = new ArrayList<>();
 
         final List<Map<String, Object>> queryResult = cypherService.query(
-                "MATCH (p:Project {id:{1}})<-[:PERFORMED_FOR]-(b:Booking) " +
+                "MATCH (u:User)<-[:PERFORMED_BY]-(b:Booking)-[:PERFORMED_FOR]->(p:Project {id:{1}}) " +
                         "RETURN " + BOOKING_RETURN_PROPERTIES,
                 map(1, project.getId()));
 
@@ -217,7 +258,7 @@ public class BookingServiceImpl implements BookingService {
         this.checkForOverlapping(booking, user, project);
 
         final Map<String, Object> queryResult = cypherService.querySingle(
-                "MATCH (b:Booking {id:{1}})-[:PERFORMED_FOR]->(p:Project) " +
+                "MATCH (u:User)<-[:PERFORMED_BY]-(b:Booking {id:{1}})-[:PERFORMED_FOR]->(p:Project) " +
                         "SET b.startTime={2}, b.endTime={3}, b.breakDuration={4}, b.description={5} " +
                         "RETURN " + BOOKING_RETURN_PROPERTIES,
                 map(1, booking.getId(), 2, booking.getStartTime().getTimeInMillis(),
@@ -309,11 +350,17 @@ public class BookingServiceImpl implements BookingService {
 
     }
 
+    /**
+     * Create valid mappings for the request filter
+     *
+     * @return created mappings
+     */
     private Map<String, String> getRequestMappings() {
 
         HashMap<String, String> result = new HashMap<>();
 
         result.put("startTime", "b.startTime");
+        result.put("userIdentifier", "u.identifier");
         result.put("projectIdentifier", "p.identifier");
         result.put("description", "b.description");
 
@@ -336,6 +383,7 @@ public class BookingServiceImpl implements BookingService {
         long readEndTime = (long) values.get("b.endTime");
         int readBreakDuration = (int) values.get("b.breakDuration");
         String readDescription = (String) values.get("b.description");
+        String readUserIdentifier = (String) values.get("u.identifier");
         String readProjectIdentifier = (String) values.get("p.identifier");
 
         result.setId(readId);
@@ -343,6 +391,7 @@ public class BookingServiceImpl implements BookingService {
         result.setEndTime(getCalendar(readEndTime));
         result.setBreakDuration(readBreakDuration);
         result.setDescription(readDescription);
+        result.setUserIdentifier(readUserIdentifier);
         result.setProjectIdentifier(readProjectIdentifier);
 
         return result;

@@ -15,4 +15,15 @@ public interface BookingClientService {
 
     Response delete(String xsrfToken, String id);
 
+    /**
+     * Returns a list of all bookings
+     *
+     * @param sort      optional sort order
+     * @param filter    filter for field values
+     * @param start     value to start from if pagination is used
+     * @param pageSize  the maximum result for a page call, &lt;=0 for no limit
+     * @return the users bookings
+     */
+    Response get(String sort, String[] filter, int start, int pageSize);
+
 }

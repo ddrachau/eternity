@@ -60,6 +60,14 @@ public interface BookingService {
     FilterResponse<Booking> findByUser(@NotNull User user, @NotNull FilterRequest filterRequest);
 
     /**
+     * Search for all the bookings by the given filter.
+     *
+     * @param filterRequest the filter parameter for this search
+     * @return bookings maching the filter, empty list if the filter request returns no results
+     */
+    FilterResponse<Booking> findAll(@NotNull FilterRequest filterRequest);
+
+    /**
      * Search for all the bookings for a project.
      *
      * @param project the source project

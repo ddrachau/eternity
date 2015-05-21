@@ -2,6 +2,8 @@
 
 <div class="row">
 
-    <booking-listing class="col-md-10 col-md-offset-1" projects="bCtrl.projects"></booking-listing>
+    <booking-listing class="col-md-10 col-md-offset-1"></booking-listing>
+
+    <all-booking-listing class="col-md-10 col-md-offset-1" ng-show="hasManagerPermissions()"></all-booking-listing>
 
 </div>

@@ -33,6 +33,11 @@ public class Booking extends AbstractNode {
     /**
      * The projectIdentifier identifier for this booking
      */
+    private String userIdentifier;
+
+    /**
+     * The projectIdentifier identifier for this booking
+     */
     private String projectIdentifier;
 
     /**
@@ -50,16 +55,19 @@ public class Booking extends AbstractNode {
      * @param endTime           the end time
      * @param breakDuration     the break duration in minutes
      * @param description       the description of the work done
+     * @param userIdentifier    the projectIdentifier identifier
      * @param projectIdentifier the projectIdentifier identifier
      */
     public Booking(final String id, final Calendar startTime, final Calendar endTime,
-                   final int breakDuration, final String description, final String projectIdentifier) {
+                   final int breakDuration, final String description, final String projectIdentifier,
+                   final String userIdentifier) {
 
         super(id);
         this.startTime = startTime;
         this.endTime = endTime;
         this.breakDuration = breakDuration;
         this.description = description;
+        this.userIdentifier = userIdentifier;
         this.projectIdentifier = projectIdentifier;
 
     }
@@ -75,7 +83,7 @@ public class Booking extends AbstractNode {
     public Booking(final Calendar startTime, final Calendar endTime, final int breakDuration,
                    final String description) {
 
-        this(null, startTime, endTime, breakDuration, description, null);
+        this(null, startTime, endTime, breakDuration, description, null, null);
 
     }
 
@@ -88,7 +96,7 @@ public class Booking extends AbstractNode {
      */
     public Booking(final Calendar startTime, final Calendar endTime, final int breakDuration) {
 
-        this(null, startTime, endTime, breakDuration, null, null);
+        this(null, startTime, endTime, breakDuration, null, null, null);
 
     }
 
@@ -99,7 +107,7 @@ public class Booking extends AbstractNode {
      */
     public Calendar getStartTime() {
 
-        return startTime;
+        return this.startTime;
 
     }
 
@@ -121,7 +129,7 @@ public class Booking extends AbstractNode {
      */
     public Calendar getEndTime() {
 
-        return endTime;
+        return this.endTime;
 
     }
 
@@ -143,7 +151,7 @@ public class Booking extends AbstractNode {
      */
     public int getBreakDuration() {
 
-        return breakDuration;
+        return this.breakDuration;
 
     }
 
@@ -165,7 +173,7 @@ public class Booking extends AbstractNode {
      */
     public String getDescription() {
 
-        return description;
+        return this.description;
 
     }
 
@@ -178,6 +186,24 @@ public class Booking extends AbstractNode {
 
         this.description = description;
 
+    }
+
+    /**
+     * Basic Getter
+     *
+     * @return the userIdentifier
+     */
+    public String getUserIdentifier() {
+        return this.userIdentifier;
+    }
+
+    /**
+     * Basic Setter
+     *
+     * @param userIdentifier to be set
+     */
+    public void setUserIdentifier(final String userIdentifier) {
+        this.userIdentifier = userIdentifier;
     }
 
     /**
@@ -204,7 +230,6 @@ public class Booking extends AbstractNode {
 
     @Override
     public boolean equals(final Object o) {
-
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Booking booking = (Booking) o;
@@ -212,28 +237,25 @@ public class Booking extends AbstractNode {
                 Objects.equals(startTime, booking.startTime) &&
                 Objects.equals(endTime, booking.endTime) &&
                 Objects.equals(description, booking.description) &&
+                Objects.equals(userIdentifier, booking.userIdentifier) &&
                 Objects.equals(projectIdentifier, booking.projectIdentifier);
-
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(startTime, endTime, breakDuration, description, projectIdentifier);
-
+        return Objects.hash(startTime, endTime, breakDuration, description, userIdentifier, projectIdentifier);
     }
 
     @Override
     public String toString() {
-
         return "Booking{" +
                 "startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", breakDuration=" + breakDuration +
                 ", description='" + description + '\'' +
+                ", userIdentifier='" + userIdentifier + '\'' +
                 ", projectIdentifier='" + projectIdentifier + '\'' +
                 '}';
-
     }
 
 }

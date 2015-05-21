@@ -6,6 +6,8 @@ import com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils;
 import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
+import com.prodyna.pac.eternity.server.model.FilterRequest;
+import com.prodyna.pac.eternity.server.model.FilterResponse;
 import com.prodyna.pac.eternity.server.model.booking.Booking;
 import com.prodyna.pac.eternity.server.model.project.Project;
 import com.prodyna.pac.eternity.server.model.user.User;
@@ -15,14 +17,7 @@ import com.prodyna.pac.eternity.server.service.user.UserService;
 
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 /**
@@ -42,12 +37,26 @@ public class BookingClientServiceImpl implements BookingClientService {
     private ProjectService projectService;
 
     @PermitAll
+    @GET
+    @Produces(RestCookieUtils.JSON_UTF8)
+    @Override
+    public Response get(@QueryParam("sort") final String sort, @QueryParam("filter") final String[] filter,
+                        @QueryParam("start") final int start, @QueryParam("pageSize") final int pageSize) {
+
+        FilterRequest filterRequest = new FilterRequest(sort, filter, start, pageSize);
+        FilterResponse<Booking> bookings = bookingService.findAll(filterRequest);
+
+        return Response.ok().entity(bookings).build();
+
+    }
+
+    @PermitAll
     @POST
     @Consumes(RestCookieUtils.JSON_UTF8)
     @Produces(RestCookieUtils.JSON_UTF8)
     @Override
     public Response create(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken,
-                                  final Booking booking) {
+                           final Booking booking) {
 
         Response.ResponseBuilder responseBuilder = Response.ok();
 
@@ -78,7 +87,7 @@ public class BookingClientServiceImpl implements BookingClientService {
     @Produces(RestCookieUtils.JSON_UTF8)
     @Override
     public Response update(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken,
-                                  final Booking booking) {
+                           final Booking booking) {
 
         Response.ResponseBuilder responseBuilder = Response.ok();
 
@@ -104,7 +113,7 @@ public class BookingClientServiceImpl implements BookingClientService {
     @Path("{id}")
     @Override
     public Response delete(@HeaderParam(RestCookieUtils.HEADER_TOKEN_XSRF) final String xsrfToken,
-                                  @PathParam("id") final String id) {
+                           @PathParam("id") final String id) {
 
         User requestUser = userService.getBySessionId(xsrfToken);
         Booking b = bookingService.get(id);
