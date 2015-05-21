@@ -1,11 +1,11 @@
-angular.module('Eternity').directive('bookingListing', function () {
+angular.module('Eternity').directive('allBookingListing', function () {
 
     return {
         restrict: 'E',
         scope: true,
-        controller: 'BookingListingCtrl',
-        controllerAs: 'blCtrl',
-        templateUrl: 'templates/booking/booking-listing.html'
+        controller: 'AllBookingListingCtrl',
+        controllerAs: 'ablCtrl',
+        templateUrl: 'templates/booking/all-booking-listing.html'
     };
 
 });
