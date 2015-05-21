@@ -99,7 +99,7 @@ public final class PasswordHash {
      * @param correctHash the hash of the valid password
      * @return true if the password is correct, false if not
      */
-    public static boolean validatePassword(String password, String correctHash) {
+    public static boolean validatePassword(final String password, final String correctHash) {
 
         return validatePassword(password.toCharArray(), correctHash);
     }
@@ -141,8 +141,9 @@ public final class PasswordHash {
     private static boolean slowEquals(final byte[] a, final byte[] b) {
 
         int diff = a.length ^ b.length;
-        for (int i = 0; i < a.length && i < b.length; i++)
+        for (int i = 0; i < a.length && i < b.length; i++) {
             diff |= a[i] ^ b[i];
+        }
         return diff == 0;
     }
 
@@ -154,6 +155,8 @@ public final class PasswordHash {
      * @param iterations the iteration count (slowness factor)
      * @param bytes      the length of the hash to compute in bytes
      * @return the PBDKF2 hash of the password
+     * @throws NoSuchAlgorithmException thrown if the algorithm is no existent
+     * @throws InvalidKeySpecException  thrown if the key is invalid
      */
     private static byte[] pbkdf2(final char[] password, final byte[] salt, final int iterations, final int bytes)
             throws NoSuchAlgorithmException, InvalidKeySpecException {

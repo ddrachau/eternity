@@ -19,7 +19,7 @@ public class DatasourceProducer {
      * @throws NamingException if the ds cannot be looked up
      */
     @Produces
-    public DataSource loggerProducer(final InjectionPoint ip) throws NamingException {
+    public DataSource datasourceProducer(final InjectionPoint ip) throws NamingException {
 
         InitialContext ctx = new InitialContext();
         return (DataSource) ctx.lookup("java:jboss/datasources/Neo4jDS");

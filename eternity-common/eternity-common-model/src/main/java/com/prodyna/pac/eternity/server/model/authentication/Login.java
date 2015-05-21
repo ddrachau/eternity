@@ -220,8 +220,9 @@ public class Login {
         if (username != null ? !username.equals(login.username) : login.username != null) return false;
         if (password != null ? !password.equals(login.password) : login.password != null) return false;
         if (xsrfToken != null ? !xsrfToken.equals(login.xsrfToken) : login.xsrfToken != null) return false;
-        if (rememberMeToken != null ? !rememberMeToken.equals(login.rememberMeToken) : login.rememberMeToken != null)
+        if (rememberMeToken != null ? !rememberMeToken.equals(login.rememberMeToken) : login.rememberMeToken != null) {
             return false;
+        }
         return !(user != null ? !user.equals(login.user) : login.user != null);
 
     }

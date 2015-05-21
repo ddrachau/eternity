@@ -1,8 +1,6 @@
 package com.prodyna.pac.eternity.test.server.service;
 
 import com.prodyna.pac.eternity.components.common.DateUtils;
-import com.prodyna.pac.eternity.test.helper.AbstractArquillianTest;
-import com.prodyna.pac.eternity.test.helper.DatabaseCleaner;
 import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
@@ -14,6 +12,8 @@ import com.prodyna.pac.eternity.server.model.user.User;
 import com.prodyna.pac.eternity.server.service.booking.BookingService;
 import com.prodyna.pac.eternity.server.service.project.ProjectService;
 import com.prodyna.pac.eternity.server.service.user.UserService;
+import com.prodyna.pac.eternity.test.helper.AbstractArquillianTest;
+import com.prodyna.pac.eternity.test.helper.DatabaseCleaner;
 import junit.framework.Assert;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -302,6 +302,23 @@ public class ProjectServiceTest extends AbstractArquillianTest {
         Assert.assertNotNull(projectService.get(project.getIdentifier()));
         projectService.delete(project.getIdentifier());
         Assert.assertNull(projectService.get(project.getIdentifier()));
+
+    }
+
+    @Test
+    @InSequence(16)
+    public void testFindAssignProject() throws ElementAlreadyExistsException {
+
+        User user = userService.create(new User("idfindassign", "AB", "CD", "pw"));
+
+        int size = projectService.find().size();
+        Assert.assertTrue(size > 0);
+        Assert.assertEquals(0, projectService.findAllAssignedToUser(user).size());
+        List<Project> allAssignableToUser = projectService.findAllAssignableToUser(user);
+        Assert.assertEquals(size, allAssignableToUser.size());
+        userService.assignUserToProject(user, allAssignableToUser.get(0));
+        Assert.assertEquals(1, projectService.findAllAssignedToUser(user).size());
+        Assert.assertEquals(size - 1, projectService.findAllAssignableToUser(user).size());
 
     }
 
