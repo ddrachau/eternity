@@ -45,7 +45,7 @@ public class FilterRequest {
     public FilterRequest(final String sort, final String[] filter, final int start, final int pageSize) {
 
         this.sort = sort;
-        this.filter = filter;
+        this.filter = filter.clone();
         this.setStart(start);
         this.setPageSize(pageSize);
 
@@ -69,7 +69,11 @@ public class FilterRequest {
      */
     public String[] getFilter() {
 
-        return filter;
+        if (filter != null) {
+            return filter.clone();
+        } else {
+            return new String[0];
+        }
 
     }
 
@@ -231,7 +235,7 @@ public class FilterRequest {
      */
     private boolean hasValidFilter() {
 
-        boolean validFilter = this.getFilter() != null && this.getFilter().length > 0;
+        boolean validFilter = this.getFilter().length > 0;
 
         if (validFilter) {
 

@@ -11,14 +11,19 @@ import javax.websocket.EndpointConfig;
 import java.io.StringWriter;
 import java.util.Map;
 
+/**
+ * Encodes an EternityEvent for the client.
+ */
 public class EternityEventEncoder implements Encoder.Text<EternityEvent> {
 
     @Override
     public void init(final EndpointConfig ec) {
+
     }
 
     @Override
     public void destroy() {
+
     }
 
     @Override
@@ -29,7 +34,7 @@ public class EternityEventEncoder implements Encoder.Text<EternityEvent> {
         try (JsonWriter jsonWriter = Json.createWriter(stringWriter)) {
 
             JsonObjectBuilder builder = Json.createObjectBuilder();
-            builder.add("event", event.getType().toString().toLowerCase());
+            builder.add("event", event.getType().getMessageKey());
 
             if (event.getPayload() != null) {
 

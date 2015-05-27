@@ -2,6 +2,9 @@ package com.prodyna.pac.eternity.client.rest.service.project;
 
 import com.prodyna.pac.eternity.server.model.project.Project;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.ws.rs.core.Response;
 
 /**
@@ -21,10 +24,28 @@ public interface ProjectClientService {
      */
     Response get(String xsrfToken, String sort, String[] filter, int start, int pageSize);
 
-    Response create(Project project);
+    /**
+     * Creates a project
+     *
+     * @param project the project data
+     * @return the response from the execution
+     */
+    Response create(@NotNull @Valid Project project);
 
-    Response update(Project project);
+    /**
+     * Updates the given project
+     *
+     * @param project the project data
+     * @return the response from the execution
+     */
+    Response update(@NotNull @Valid Project project);
 
-    Response delete(String identifier);
+    /**
+     * Deletes the project with the given identifier
+     *
+     * @param identifier the project to delete
+     * @return the response from the execution
+     */
+    Response delete(@NotNull @Size(min = 1) String identifier);
 
 }

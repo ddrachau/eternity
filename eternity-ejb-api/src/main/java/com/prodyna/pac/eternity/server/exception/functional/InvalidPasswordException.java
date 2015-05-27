@@ -9,6 +9,7 @@ public class InvalidPasswordException extends InvalidLoginException {
      * Default constructor.
      */
     public InvalidPasswordException() {
+
     }
 
     /**
@@ -16,7 +17,8 @@ public class InvalidPasswordException extends InvalidLoginException {
      *
      * @param cause the root cause
      */
-    public InvalidPasswordException(Throwable cause) {
+    public InvalidPasswordException(final Throwable cause) {
+
         super(cause);
     }
 
@@ -25,7 +27,8 @@ public class InvalidPasswordException extends InvalidLoginException {
      *
      * @param message the exception message
      */
-    public InvalidPasswordException(String message) {
+    public InvalidPasswordException(final String message) {
+
         super(message);
     }
 
@@ -35,7 +38,8 @@ public class InvalidPasswordException extends InvalidLoginException {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public InvalidPasswordException(String message, Throwable cause) {
+    public InvalidPasswordException(final String message, final Throwable cause) {
+
         super(message, cause);
     }
 

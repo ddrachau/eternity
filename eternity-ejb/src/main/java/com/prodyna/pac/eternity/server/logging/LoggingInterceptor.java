@@ -14,8 +14,15 @@ import javax.interceptor.InvocationContext;
 @Interceptor
 public class LoggingInterceptor {
 
+    /**
+     * Logs the execution for method invocations flagged be @Logging
+     *
+     * @param ic the invocation context of the interceptor
+     * @return the execution result
+     * @throws Exception an exception in case one occurred
+     */
     @AroundInvoke
-    public Object intercept(InvocationContext ic) throws Exception {
+    public Object intercept(final InvocationContext ic) throws Exception {
 
         Logger log = LoggerFactory.getLogger(ic.getTarget().getClass().getName() + "<Interceptor>");
 

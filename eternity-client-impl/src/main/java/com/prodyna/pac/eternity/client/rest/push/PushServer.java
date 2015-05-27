@@ -18,6 +18,9 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The push implementation updating listening clients
+ */
 @Startup
 @Singleton
 @ServerEndpoint(value = "/push", encoders = {EternityEventEncoder.class})
@@ -26,16 +29,29 @@ public class PushServer {
     @Inject
     private Logger logger;
 
+    /**
+     * Store the currently open sessions for notification
+     */
     private Set<Session> sessions = new HashSet<>();
 
+    /**
+     * Remember the  session if a new one opens
+     *
+     * @param session the new session
+     */
     @OnOpen
-    public void openConnection(final Session session) throws IOException, EncodeException {
+    public void openConnection(final Session session) {
 
         logger.info("Session ID : " + session.getId() + " - Connection opened");
         sessions.add(session);
 
     }
 
+    /**
+     * Forget the session if the session closes
+     *
+     * @param session the session which was closed
+     */
     @OnClose
     public void closedConnection(final Session session) {
 
@@ -44,6 +60,12 @@ public class PushServer {
 
     }
 
+    /**
+     * Debug call if a session has an error
+     *
+     * @param session the session with the problem
+     * @param t       the exception
+     */
     @OnError
     public void error(final Session session, final Throwable t) {
 
@@ -51,6 +73,13 @@ public class PushServer {
 
     }
 
+    /**
+     * Listen to EternityEvents and notifiy the clients.
+     *
+     * @param event the event which occurred
+     * @throws IOException     if a session has io problems
+     * @throws EncodeException if the event cannot be encoded
+     */
     public void listenToEternityEvents(@Observes final EternityEvent event) throws IOException, EncodeException {
 
         for (Session session : sessions) {

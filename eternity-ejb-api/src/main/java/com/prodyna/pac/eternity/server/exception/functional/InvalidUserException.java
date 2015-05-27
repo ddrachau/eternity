@@ -9,6 +9,7 @@ public class InvalidUserException extends InvalidLoginException {
      * Default constructor.
      */
     public InvalidUserException() {
+
     }
 
     /**
@@ -16,7 +17,8 @@ public class InvalidUserException extends InvalidLoginException {
      *
      * @param cause the root cause
      */
-    public InvalidUserException(Throwable cause) {
+    public InvalidUserException(final Throwable cause) {
+
         super(cause);
     }
 
@@ -25,7 +27,8 @@ public class InvalidUserException extends InvalidLoginException {
      *
      * @param message the exception message
      */
-    public InvalidUserException(String message) {
+    public InvalidUserException(final String message) {
+
         super(message);
     }
 
@@ -35,7 +38,8 @@ public class InvalidUserException extends InvalidLoginException {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public InvalidUserException(String message, Throwable cause) {
+    public InvalidUserException(final String message, final Throwable cause) {
+
         super(message, cause);
     }
 

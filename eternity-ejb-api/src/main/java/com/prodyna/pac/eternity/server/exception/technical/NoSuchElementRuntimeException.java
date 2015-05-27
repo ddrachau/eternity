@@ -16,7 +16,7 @@ public class NoSuchElementRuntimeException extends RuntimeException {
      *
      * @param cause the root cause
      */
-    public NoSuchElementRuntimeException(Throwable cause) {
+    public NoSuchElementRuntimeException(final Throwable cause) {
         super(cause);
     }
 
@@ -25,7 +25,7 @@ public class NoSuchElementRuntimeException extends RuntimeException {
      *
      * @param message the exception message
      */
-    public NoSuchElementRuntimeException(String message) {
+    public NoSuchElementRuntimeException(final String message) {
         super(message);
     }
 
@@ -35,7 +35,7 @@ public class NoSuchElementRuntimeException extends RuntimeException {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public NoSuchElementRuntimeException(String message, Throwable cause) {
+    public NoSuchElementRuntimeException(final String message, final Throwable cause) {
         super(message, cause);
     }
 

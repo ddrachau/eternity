@@ -38,7 +38,7 @@ public class AuthorizationRequestFilter implements ContainerRequestFilter {
     private static final Response ACCESS_FORBIDDEN = Response.status(Response.Status.FORBIDDEN).build();
 
     @Override
-    public void filter(ContainerRequestContext containerRequestContext) throws IOException {
+    public void filter(final ContainerRequestContext containerRequestContext) throws IOException {
 
         ResourceMethodInvoker methodInvoker = (ResourceMethodInvoker)
                 containerRequestContext.getProperty("org.jboss.resteasy.core.ResourceMethodInvoker");

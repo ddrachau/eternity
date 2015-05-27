@@ -45,6 +45,9 @@ public class UserServiceImpl implements UserService {
     private static final String USER_RETURN_PROPERTIES =
             "u.id, u.identifier, u.forename, u.surname, u.password, u.role";
 
+    /**
+     * Fire events if user change to give the ui a chance to react
+     */
     @Inject
     private Event<EternityEvent> events;
 
@@ -375,7 +378,7 @@ public class UserServiceImpl implements UserService {
         User readUser = this.get(user.getIdentifier());
         Project readProject = projectService.get(project.getIdentifier());
 
-        if (user == null || project == null) {
+        if (readUser == null || readProject == null) {
             throw new NoSuchElementRuntimeException("user or project unknown");
         }
 
@@ -383,6 +386,11 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * Creates a map of mappings between ui variables and query variables.
+     *
+     * @return the mapping
+     */
     private Map<String, String> getRequestMappings() {
 
         HashMap<String, String> result = new HashMap<>();

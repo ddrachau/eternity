@@ -40,20 +40,49 @@ import java.security.spec.InvalidKeySpecException;
  */
 public final class PasswordHash {
 
+    /**
+     * The used hashing algorithm
+     */
     private static final String PBKDF2_ALGORITHM = "PBKDF2WithHmacSHA1";
 
     // The following constants may be changed without breaking existing hashes.
+
+    /**
+     * The size of the salt in byte
+     */
     private static final int SALT_BYTE_SIZE = 24;
 
+    /**
+     * The size of the hash in byte
+     */
     private static final int HASH_BYTE_SIZE = 24;
 
+    /**
+     * The size of iterations
+     */
     private static final int PBKDF2_ITERATIONS = 1000;
 
+    /**
+     * The iteration index
+     */
     private static final int ITERATION_INDEX = 0;
 
+    /**
+     * The salt index
+     */
     private static final int SALT_INDEX = 1;
 
+    /**
+     * The pbkdf2 index
+     */
     private static final int PBKDF2_INDEX = 2;
+
+    /**
+     * Private constructor to avoid initialization
+     */
+    private PasswordHash() {
+
+    }
 
     /**
      * Returns a salted PBKDF2 hash of the password.
@@ -80,13 +109,13 @@ public final class PasswordHash {
         random.nextBytes(salt);
 
         try {
-
             // Hash the password
             byte[] hash = pbkdf2(password, salt, PBKDF2_ITERATIONS, HASH_BYTE_SIZE);
             // format iterations:salt:hash
             return PBKDF2_ITERATIONS + ":" + toHex(salt) + ":" + toHex(hash);
-
-        } catch (Exception e) {
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidKeySpecException e) {
             throw new RuntimeException(e);
         }
 

@@ -44,6 +44,9 @@ public class BookingServiceImpl implements BookingService {
     private static final String BOOKING_RETURN_PROPERTIES =
             "b.id, b.startTime, b.endTime, b.breakDuration, b.description, u.identifier, p.identifier";
 
+    /**
+     * Fire events if bookings change to give the ui a chance to react
+     */
     @Inject
     private Event<EternityEvent> events;
 

@@ -68,7 +68,7 @@ public class AuthenticationClientServiceImpl implements AuthenticationClientServ
     @Override
     public Response login(@CookieParam(COOKIE_TOKEN_XSRF) final Cookie sessionCookie,
                           @CookieParam(COOKIE_TOKEN_REMEMBER_ME) final Cookie rememberMeCookie,
-                          @Context final UriInfo uriInfo, @NotNull @Valid Login login) {
+                          @Context final UriInfo uriInfo, @NotNull @Valid final Login login) {
 
         try {
 
@@ -79,18 +79,18 @@ public class AuthenticationClientServiceImpl implements AuthenticationClientServ
                 throw new InvalidPasswordException();
             }
 
-            login = authenticationService.login(login);
+            Login performedLogin = authenticationService.login(login);
 
             if (sessionCookie != null) {
                 sessionService.delete(sessionCookie.getValue());
             }
 
-            Response.ResponseBuilder response = Response.ok().entity(login.getUser());
-            response.cookie(createXSRFToken(uriInfo, login.getXsrfToken()));
+            Response.ResponseBuilder response = Response.ok().entity(performedLogin.getUser());
+            response.cookie(createXSRFToken(uriInfo, performedLogin.getXsrfToken()));
 
-            if (login.isRemember()) {
+            if (performedLogin.isRemember()) {
 
-                response.cookie(createRememberMeToken(uriInfo, login.getRememberMeToken()));
+                response.cookie(createRememberMeToken(uriInfo, performedLogin.getRememberMeToken()));
 
             } else if (rememberMeCookie != null) {
 

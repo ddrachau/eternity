@@ -37,6 +37,9 @@ public class ProjectServiceImpl implements ProjectService {
      */
     private static final String PROJECT_RETURN_PROPERTIES = "p.id, p.identifier, p.description";
 
+    /**
+     * Fire events if projects change to give the ui a chance to react
+     */
     @Inject
     private Event<EternityEvent> events;
 
@@ -242,6 +245,11 @@ public class ProjectServiceImpl implements ProjectService {
 
     }
 
+    /**
+     * Creates a map of mappings between ui variables and query variables.
+     *
+     * @return the mapping
+     */
     private Map<String, String> getRequestMappings() {
 
         HashMap<String, String> result = new HashMap<>();

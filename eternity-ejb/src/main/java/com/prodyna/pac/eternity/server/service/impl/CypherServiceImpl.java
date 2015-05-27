@@ -28,9 +28,17 @@ import java.util.Map;
 @Stateless
 public class CypherServiceImpl implements CypherService {
 
+    /**
+     * constant for a space
+     */
+    private static final String SPACE_STRING = " ";
+
     @Inject
     private Logger logger;
 
+    /**
+     * The datasource to connect to the Neo4j database
+     */
     @Inject
     private DataSource dataSource;
 
@@ -61,7 +69,9 @@ public class CypherServiceImpl implements CypherService {
             throw new RuntimeException(e);
         } finally {
             try {
-                connection.close();
+                if (connection != null) {
+                    connection.close();
+                }
             } catch (Exception exception) {
                 // if it cannot be closed, so be it we gave it a try
                 logger.error("Cannot close connection", exception);
@@ -156,22 +166,26 @@ public class CypherServiceImpl implements CypherService {
 
     }
 
+    /**
+     * Creates the filter string from the given request
+     *
+     * @param filterRequest the input for the filter
+     * @return the created filter string
+     */
     private String getFilterString(final FilterRequest filterRequest) {
 
-        String response = " ";
+        String response = SPACE_STRING;
 
         if (filterRequest != null) {
 
-            if (filterRequest.getSortString() != null) {
-                response += filterRequest.getSortString() + " ";
-            }
+            response += filterRequest.getSortString() + SPACE_STRING;
 
             if (filterRequest.getStart() > 0) {
-                response += "SKIP " + filterRequest.getStart() + " ";
+                response += "SKIP " + filterRequest.getStart() + SPACE_STRING;
             }
 
             if (filterRequest.getPageSize() > 0) {
-                response += "LIMIT " + filterRequest.getPageSize() + " ";
+                response += "LIMIT " + filterRequest.getPageSize() + SPACE_STRING;
             }
 
         }

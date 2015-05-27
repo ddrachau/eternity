@@ -9,6 +9,7 @@ public class InvalidTokenException extends InvalidLoginException {
      * Default constructor.
      */
     public InvalidTokenException() {
+
     }
 
     /**
@@ -16,7 +17,8 @@ public class InvalidTokenException extends InvalidLoginException {
      *
      * @param cause the root cause
      */
-    public InvalidTokenException(Throwable cause) {
+    public InvalidTokenException(final Throwable cause) {
+
         super(cause);
     }
 
@@ -25,7 +27,8 @@ public class InvalidTokenException extends InvalidLoginException {
      *
      * @param message the exception message
      */
-    public InvalidTokenException(String message) {
+    public InvalidTokenException(final String message) {
+
         super(message);
     }
 
@@ -35,7 +38,8 @@ public class InvalidTokenException extends InvalidLoginException {
      * @param message the exception message
      * @param cause   the root cause
      */
-    public InvalidTokenException(String message, Throwable cause) {
+    public InvalidTokenException(final String message, final Throwable cause) {
+
         super(message, cause);
     }
 
