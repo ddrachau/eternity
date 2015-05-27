@@ -145,6 +145,8 @@ public class BookingServiceImpl implements BookingService {
                         "RETURN count(b)",
                 map(1, user.getId())).get("count(b)");
 
+        filterRequest.setTotalSize(allBookings);
+
         FilterResponse<Booking> response = new FilterResponse<>();
 
         response.setTotalSize(allBookings);
@@ -184,6 +186,8 @@ public class BookingServiceImpl implements BookingService {
                         filterString +
                         "RETURN count(b)",
                 null).get("count(b)");
+
+        filterRequest.setTotalSize(allBookings);
 
         FilterResponse<Booking> response = new FilterResponse<>();
 

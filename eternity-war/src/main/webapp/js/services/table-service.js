@@ -29,6 +29,14 @@
 
                 return requestFilter;
 
+            },
+            processResult: function (tableState, result) {
+
+                tableState.pagination.numberOfPages = result.numberOfPages;
+                tableState.pagination.start = result.offset;
+                tableState.pagination.number = result.pageSize;
+
+
             }
         };
 

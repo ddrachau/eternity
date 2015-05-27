@@ -132,6 +132,27 @@ public class FilterRequest {
     /**
      * Basic setter
      *
+     * @param totalSize the totalSize
+     */
+    public void setTotalSize(final int totalSize) {
+
+        if (this.start >= totalSize) {
+
+            if (this.pageSize == 0) {
+                this.start = 0;
+            } else if (totalSize % this.pageSize > 0) {
+                this.start = (totalSize / this.pageSize) * this.pageSize;
+            } else {
+                this.start = ((totalSize / this.pageSize) - 1) * this.pageSize;
+            }
+
+        }
+
+    }
+
+    /**
+     * Basic setter
+     *
      * @param mappings the mappings between in and external properties
      */
     public void setMappings(final Map<String, String> mappings) {

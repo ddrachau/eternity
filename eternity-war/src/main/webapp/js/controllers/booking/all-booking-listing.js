@@ -17,9 +17,11 @@ angular.module('Eternity').controller('AllBookingListingCtrl',
             var requestFilter = TableService.createRequestFilterFromTableState(tableState);
 
             BookingService.findAll(requestFilter, function (result) {
+
                 ctrl.displayed = result.data;
-                tableState.pagination.numberOfPages = result.numberOfPages;
+                TableService.processResult(tableState, result);
                 ctrl.isLoading = false;
+
             });
 
         };

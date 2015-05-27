@@ -35,7 +35,7 @@ angular.module('Eternity').controller('ProjectListingCtrl',
 
             ProjectService.find(requestFilter, function (result) {
                 ctrl.displayed = result.data;
-                tableState.pagination.numberOfPages = result.numberOfPages;
+                TableService.processResult(tableState, result);
                 ctrl.isLoading = false;
             });
 

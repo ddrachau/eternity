@@ -136,6 +136,8 @@ public class ProjectServiceImpl implements ProjectService {
                         "RETURN count(p)",
                 null).get("count(p)");
 
+        filterRequest.setTotalSize(allProjects);
+
         FilterResponse<Project> response = new FilterResponse<>();
 
         response.setTotalSize(allProjects);

@@ -33,7 +33,7 @@ angular.module('Eternity').controller('UserListingCtrl',
 
             UserService.find(requestFilter, function (result) {
                 ctrl.displayed = result.data;
-                tableState.pagination.numberOfPages = result.numberOfPages;
+                TableService.processResult(tableState, result);
                 ctrl.isLoading = false;
             });
 

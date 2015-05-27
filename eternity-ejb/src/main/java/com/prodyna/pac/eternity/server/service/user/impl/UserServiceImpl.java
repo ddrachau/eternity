@@ -194,6 +194,8 @@ public class UserServiceImpl implements UserService {
                         "RETURN count(u)",
                 null).get("count(u)");
 
+        filterRequest.setTotalSize(allUser);
+
         FilterResponse<User> response = new FilterResponse<>();
 
         response.setTotalSize(allUser);
