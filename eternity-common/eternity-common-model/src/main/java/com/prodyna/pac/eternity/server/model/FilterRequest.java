@@ -45,7 +45,12 @@ public class FilterRequest {
     public FilterRequest(final String sort, final String[] filter, final int start, final int pageSize) {
 
         this.sort = sort;
-        this.filter = filter.clone();
+        if (filter == null) {
+            this.filter = new String[0];
+        } else {
+            this.filter = filter.clone();
+        }
+
         this.setStart(start);
         this.setPageSize(pageSize);
 

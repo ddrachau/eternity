@@ -10,6 +10,8 @@ import com.prodyna.pac.eternity.server.exception.functional.InvalidPasswordExcep
 import com.prodyna.pac.eternity.server.exception.functional.InvalidUserException;
 import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
 import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.server.model.FilterRequest;
+import com.prodyna.pac.eternity.server.model.FilterResponse;
 import com.prodyna.pac.eternity.server.model.authentication.Login;
 import com.prodyna.pac.eternity.server.model.booking.Booking;
 import com.prodyna.pac.eternity.server.model.project.Project;
@@ -29,7 +31,6 @@ import org.junit.runner.RunWith;
 
 import javax.ejb.EJBException;
 import javax.inject.Inject;
-import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 @RunWith(Arquillian.class)
@@ -232,7 +233,7 @@ public class UserServiceTest extends AbstractArquillianTest {
     @InSequence(9)
     public void testUpdateUserNonExistingNode() throws ElementAlreadyExistsException {
 
-        User u = new User("unknown", "ABC","DEF","GH");
+        User u = new User("unknown", "ABC", "DEF", "GH");
 
         try {
             userService.update(u);
@@ -656,6 +657,58 @@ public class UserServiceTest extends AbstractArquillianTest {
         } catch (RuntimeException e) {
             // expected
         }
+
+    }
+
+    @Test
+    @InSequence(28)
+    public void testFindByFilter() throws ElementAlreadyExistsException {
+
+        databaseCleaner.deleteAllData();
+
+        User user1 = new User("khansen", "Knut", "Hansen", "pw");
+        User user2 = new User("aeich", "Alexander", "A", "pw2");
+        User user3 = new User("rvoeller", "Rudi", "Völler", "pw3");
+        User user4 = new User("bborg", "Björn", "Borg", "pw");
+        User user5 = new User("hmeiser", "Hans", "Meiser", "pw");
+        userService.create(user1);
+        userService.create(user2);
+        userService.create(user3);
+        userService.create(user4);
+        userService.create(user5);
+
+        FilterResponse<User> response = userService.find(new FilterRequest(null, null, 0, 0));
+
+        Assert.assertEquals(5, response.getTotalSize());
+        Assert.assertEquals(5, response.getData().size());
+
+        response = userService.find(new FilterRequest(null, null, 2, 0));
+
+        Assert.assertEquals(5, response.getTotalSize());
+        Assert.assertEquals(3, response.getData().size());
+
+        response = userService.find(new FilterRequest(null, null, 0, 4));
+
+        Assert.assertEquals(5, response.getTotalSize());
+        Assert.assertEquals(4, response.getData().size());
+
+        response = userService.find(new FilterRequest(null, null, 4, 4));
+
+        Assert.assertEquals(5, response.getTotalSize());
+        Assert.assertEquals(1, response.getData().size());
+
+        response = userService.find(new FilterRequest("+forename", null, 0, 0));
+
+        Assert.assertEquals("Alexander", response.getData().get(0).getForename());
+
+        response = userService.find(new FilterRequest("-forename", null, 0, 0));
+
+        Assert.assertEquals("Rudi", response.getData().get(0).getForename());
+
+        response = userService.find(new FilterRequest(null, new String[]{"forename:u"}, 0, 0));
+
+        Assert.assertEquals(2, response.getTotalSize());
+        Assert.assertEquals(2, response.getData().size());
 
     }
 
