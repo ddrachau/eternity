@@ -62,20 +62,66 @@ public interface UserClientService {
      */
     Response getAssignProjects(@NotNull @Size(min = 1) String identifier);
 
+    /**
+     * Assigns the given user to the given project
+     *
+     * @param identifier        the user identifier
+     * @param projectIdentifier the project identifier
+     * @return the response from the execution
+     */
     Response assignToProject(@NotNull @Size(min = 1) String identifier,
                              @NotNull @Size(min = 1) String projectIdentifier);
 
+    /**
+     * Unassigns the given user from the given project
+     *
+     * @param identifier        the user identifier
+     * @param projectIdentifier the project identifier
+     * @return the response from the execution
+     */
     Response unassignFromProject(@NotNull @Size(min = 1) String identifier,
-                             @NotNull @Size(min = 1) String projectIdentifier);
+                                 @NotNull @Size(min = 1) String projectIdentifier);
 
+    /**
+     * Creates the given user
+     *
+     * @param user the data
+     * @return the response from the execution
+     */
     Response create(@NotNull @Valid User user);
 
+    /**
+     * Updates the given user
+     *
+     * @param user the data
+     * @return the response from the execution
+     */
     Response update(@NotNull @Valid User user);
 
+    /**
+     * Deletes the given user
+     *
+     * @param identifier the users identifier
+     * @return the response from the execution
+     */
     Response delete(@NotNull @Size(min = 1) String identifier);
 
+    /**
+     * Sets the password for the given user
+     *
+     * @param identifier  the users identifier
+     * @param setPassword the new password
+     * @return the response from the execution
+     */
     Response setPassword(String identifier, @NotNull @Valid SetPassword setPassword);
 
+    /**
+     * Changes the password for the current user
+     *
+     * @param xsrfToken      the users session token
+     * @param changePassword the change password dto
+     * @return the response from the execution
+     */
     Response changePassword(String xsrfToken, @NotNull @Valid ChangePassword changePassword);
 
 }
