@@ -1,6 +1,6 @@
 package com.prodyna.pac.eternity.test.helper;
 
-import com.prodyna.pac.eternity.server.service.impl.DatasourceProducer;
+import com.prodyna.pac.eternity.common.service.impl.DatasourceProducer;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -17,6 +17,8 @@ public abstract class AbstractArquillianTest {
         jar.addPackages(true, "com.prodyna.pac");
         jar.deleteClass(DatasourceProducer.class);
         jar.addAsResource("META-INF/beans.xml");
+
+//        System.out.println(jar.toString(true));
 
         return jar;
 

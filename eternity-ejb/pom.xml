@@ -21,18 +21,37 @@
 
         <dependency>
             <groupId>com.prodyna.pac.eternity</groupId>
-            <artifactId>eternity-ejb-api</artifactId>
+            <artifactId>eternity-modules-authentication-service-impl</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.prodyna.pac.eternity.common</groupId>
-            <artifactId>eternity-common-utils</artifactId>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-booking-service-impl</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.jboss.spec</groupId>
-            <artifactId>jboss-javaee-7.0</artifactId>
-            <type>pom</type>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-common-logging-impl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-common-profiling-impl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-common-service-impl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-project-service-impl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-user-service-impl</artifactId>
         </dependency>
 
     </dependencies>

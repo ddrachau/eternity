@@ -1,7 +1,7 @@
 package com.prodyna.pac.eternity.test.client.proxy;
 
-import com.prodyna.pac.eternity.client.rest.utils.RestCookieUtils;
-import com.prodyna.pac.eternity.server.model.authentication.Login;
+import com.prodyna.pac.eternity.common.helper.impl.RestCookieBuilderImpl;
+import com.prodyna.pac.eternity.common.model.authentication.Login;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.CookieParam;
@@ -36,8 +36,8 @@ public interface AuthenticationClientServiceProxy {
      * @return a session cookie and optionally a remember me cookie
      */
     @POST
-    @Consumes(RestCookieUtils.JSON_UTF8)
-    @Produces(RestCookieUtils.JSON_UTF8)
+    @Consumes(RestCookieBuilderImpl.JSON_UTF8)
+    @Produces(RestCookieBuilderImpl.JSON_UTF8)
     Response login(Login login);
 
     /**
@@ -49,10 +49,10 @@ public interface AuthenticationClientServiceProxy {
      * @return a session cookie and optionally a remember me cookie
      */
     @GET
-    @Produces(RestCookieUtils.JSON_UTF8)
+    @Produces(RestCookieBuilderImpl.JSON_UTF8)
     @Path("/token")
-    Response loginWithToken(@CookieParam(RestCookieUtils.COOKIE_TOKEN_XSRF) Cookie sessionCookie,
-                            @CookieParam(RestCookieUtils.COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie,
+    Response loginWithToken(@CookieParam(RestCookieBuilderImpl.COOKIE_TOKEN_XSRF) Cookie sessionCookie,
+                            @CookieParam(RestCookieBuilderImpl.COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie,
                             @Context UriInfo uriInfo);
 
     /**
@@ -65,7 +65,7 @@ public interface AuthenticationClientServiceProxy {
      * @return 200 if no problem occurred
      */
     @DELETE
-    Response logout(@Context UriInfo uriInfo, @CookieParam(RestCookieUtils.COOKIE_TOKEN_XSRF) Cookie xsrfCookie,
-                    @CookieParam(RestCookieUtils.COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie);
+    Response logout(@Context UriInfo uriInfo, @CookieParam(RestCookieBuilderImpl.COOKIE_TOKEN_XSRF) Cookie xsrfCookie,
+                    @CookieParam(RestCookieBuilderImpl.COOKIE_TOKEN_REMEMBER_ME) Cookie rememberMeCookie);
 
 }

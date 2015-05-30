@@ -17,11 +17,33 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="eternity-common-model" />
-    <orderEntry type="module" module-name="eternity-common-utils" />
-    <orderEntry type="module" module-name="eternity-client-api" />
-    <orderEntry type="module" module-name="eternity-client-impl" />
-    <orderEntry type="module" module-name="eternity-ejb-api" />
+    <orderEntry type="module" module-name="eternity-modules-authentication-client-impl" />
+    <orderEntry type="module" module-name="eternity-modules-authentication-client" />
+    <orderEntry type="module" module-name="eternity-modules-common-client" />
+    <orderEntry type="module" module-name="eternity-modules-authentication-service" />
+    <orderEntry type="module" module-name="eternity-modules-user-service" />
+    <orderEntry type="module" module-name="eternity-modules-common-helper" />
+    <orderEntry type="module" module-name="eternity-modules-common-logging" />
+    <orderEntry type="module" module-name="eternity-modules-common-profiling" />
+    <orderEntry type="module" module-name="eternity-modules-authentication-service-impl" />
+    <orderEntry type="module" module-name="eternity-modules-common-service" />
+    <orderEntry type="module" module-name="eternity-modules-booking-client-impl" />
+    <orderEntry type="module" module-name="eternity-modules-booking-client" />
+    <orderEntry type="module" module-name="eternity-modules-booking-service" />
+    <orderEntry type="module" module-name="eternity-modules-project-service" />
+    <orderEntry type="module" module-name="eternity-modules-booking-service-impl" />
+    <orderEntry type="module" module-name="eternity-modules-common-client-impl" />
+    <orderEntry type="module" module-name="eternity-modules-common-helper-impl" />
+    <orderEntry type="module" module-name="eternity-modules-common-logging-impl" />
+    <orderEntry type="module" module-name="eternity-modules-common-model" />
+    <orderEntry type="module" module-name="eternity-modules-common-profiling-impl" />
+    <orderEntry type="module" module-name="eternity-modules-common-service-impl" />
+    <orderEntry type="module" module-name="eternity-modules-project-client-impl" />
+    <orderEntry type="module" module-name="eternity-modules-project-client" />
+    <orderEntry type="module" module-name="eternity-modules-project-service-impl" />
+    <orderEntry type="module" module-name="eternity-modules-user-client-impl" />
+    <orderEntry type="module" module-name="eternity-modules-user-client" />
+    <orderEntry type="module" module-name="eternity-modules-user-service-impl" />
     <orderEntry type="module" module-name="eternity-ejb" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.activation:activation:1.1.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.enterprise:cdi-api:1.1" level="project" />
@@ -114,6 +136,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.xnio:xnio-nio:3.3.0.Final" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.fusesource.jansi:jansi:1.9" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.picketbox:picketbox:4.9.0.Beta2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:slf4j-api:1.7.7" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.wildfly.core:wildfly-core-model-test-framework:1.0.0.Alpha17" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.wildfly.core:wildfly-controller:1.0.0.Alpha17" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.wildfly.core:wildfly-core-security:1.0.0.Alpha17" level="project" />
@@ -172,7 +195,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.shrinkwrap.descriptors:shrinkwrap-descriptors-api-base:2.0.0-alpha-7" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jacoco:org.jacoco.core:0.7.4.201502262128" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm-debug-all:5.0.1" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:slf4j-api:1.7.7" level="project" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">

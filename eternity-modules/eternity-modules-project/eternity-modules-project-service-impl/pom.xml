@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.prodyna.pac.eternity</groupId>
+    <artifactId>eternity-modules-project-service-impl</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Assembly Eternity Module Project Service Impl</name>
+
+    <parent>
+        <groupId>com.prodyna.pac.eternity</groupId>
+        <artifactId>eternity-modules-common-pom-service-impl</artifactId>
+        <relativePath>../../eternity-modules-common/eternity-modules-common-pom/eternity-modules-common-pom-service-impl</relativePath>
+        <version>1.0</version>
+    </parent>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-project-service</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>

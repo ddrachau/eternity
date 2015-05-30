@@ -1,10 +1,10 @@
 package com.prodyna.pac.eternity.test.client.service;
 
-import com.prodyna.pac.eternity.server.model.authentication.Login;
-import com.prodyna.pac.eternity.server.model.user.User;
-import com.prodyna.pac.eternity.server.service.user.UserService;
+import com.prodyna.pac.eternity.common.model.authentication.Login;
+import com.prodyna.pac.eternity.common.model.user.User;
 import com.prodyna.pac.eternity.test.client.helper.AbstractRESTTest;
 import com.prodyna.pac.eternity.test.client.proxy.AuthenticationClientServiceProxy;
+import com.prodyna.pac.eternity.user.service.UserService;
 import junit.framework.Assert;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -26,8 +26,9 @@ public class AuthenticationClientServiceRESTTest extends AbstractRESTTest {
 
     @Test
     @InSequence(1)
-    public  void testData() {
-        Assert.assertTrue(userService.find().size()>0);
+    public void testData() {
+
+        Assert.assertTrue(userService.find().size() > 0);
     }
 
     @Test

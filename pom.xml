@@ -10,19 +10,13 @@
     <version>1.0</version>
     <packaging>pom</packaging>
 
-    <name>Eternity Root Project</name>
+    <name>Root Eternity Project</name>
     <description>Eternity Meta Project configuring the build</description>
 
     <modules>
         <module>eternity-build-tools</module>
-
-        <module>eternity-common</module>
-        <module>eternity-ejb-api</module>
-        <module>eternity-client-api</module>
-
-        <module>eternity-client-impl</module>
+        <module>eternity-modules</module>
         <module>eternity-ejb</module>
-
         <module>eternity-war</module>
         <module>eternity-ear</module>
         <module>eternity-test</module>
@@ -75,7 +69,7 @@
 
     </properties>
 
-    <repositories>
+    <!--<repositories>
 
         <repository>
             <id>neo4j-public</id>
@@ -86,39 +80,171 @@
             </releases>
         </repository>
 
-    </repositories>
+    </repositories>-->
 
     <dependencyManagement>
 
         <dependencies>
 
             <dependency>
-                <groupId>com.prodyna.pac.eternity.common</groupId>
-                <artifactId>eternity-common-utils</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.prodyna.pac.eternity.common</groupId>
-                <artifactId>eternity-common-model</artifactId>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-authentication-client</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.prodyna.pac.eternity</groupId>
-                <artifactId>eternity-client-api</artifactId>
+                <artifactId>eternity-modules-authentication-client-impl</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.prodyna.pac.eternity</groupId>
-                <artifactId>eternity-ejb-api</artifactId>
+                <artifactId>eternity-modules-authentication-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.prodyna.pac.eternity</groupId>
-                <artifactId>eternity-client-impl</artifactId>
+                <artifactId>eternity-modules-authentication-service-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-booking-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-booking-client-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-booking-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-booking-service-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-common-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-common-client-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-common-helper</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-common-helper-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-common-logging</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-common-logging-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-common-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-common-profiling</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-common-profiling-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-common-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-common-service-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-project-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-project-client-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-project-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-project-service-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-user-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-user-client-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-user-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.prodyna.pac.eternity</groupId>
+                <artifactId>eternity-modules-user-service-impl</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -202,15 +328,6 @@
         </dependencies>
 
     </dependencyManagement>
-
-    <dependencies>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-
-    </dependencies>
 
     <build>
 

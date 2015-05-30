@@ -84,7 +84,8 @@
         <module name="JavadocMethod"/>
         <module name="JavadocType"/>
         <module name="JavadocVariable">
-            <property name="ignoreNamePattern" value=".*Service|logger"/>
+            <property name="ignoreNamePattern"
+                      value=".*Service|logger|queryMapBuilder|passwordHashBuilder|calendarBuilder|rememberMeAccessor|restCookieBuilder"/>
         </module>
         <module name="JavadocStyle">
             <property name="checkFirstSentence" value="false"/>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.prodyna.pac.eternity</groupId>
+    <artifactId>eternity-modules-common</artifactId>
+    <packaging>pom</packaging>
+
+    <name>Eternity Module Common</name>
+
+    <parent>
+        <groupId>com.prodyna.pac.eternity</groupId>
+        <artifactId>eternity-modules</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modules>
+        <module>eternity-modules-common-client</module>
+        <module>eternity-modules-common-client-impl</module>
+        <module>eternity-modules-common-helper</module>
+        <module>eternity-modules-common-helper-impl</module>
+        <module>eternity-modules-common-logging</module>
+        <module>eternity-modules-common-logging-impl</module>
+        <module>eternity-modules-common-model</module>
+        <module>eternity-modules-common-pom</module>
+        <module>eternity-modules-common-profiling-impl</module>
+        <module>eternity-modules-common-profiling</module>
+        <module>eternity-modules-common-service</module>
+        <module>eternity-modules-common-service-impl</module>
+    </modules>
+
+</project>

@@ -6,13 +6,9 @@
                       http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
         bean-discovery-mode="all">
 
-    <!--<decorators>
-        <class>com.prodyna.pac.notification.NotifyingAbteilungServiceDecorator</class>
-    </decorators>-->
-
     <interceptors>
-        <class>com.prodyna.pac.eternity.server.logging.LoggingInterceptor</class>
-        <class>com.prodyna.pac.eternity.server.profiling.ProfilingInterceptor</class>
+        <!--<class>com.prodyna.pac.eternity.common.logging.impl.LoggingInterceptor</class>-->
+        <!--<class>com.prodyna.pac.eternity.common.profiling.impl.ProfilingInterceptor</class>-->
     </interceptors>
 
 </beans>

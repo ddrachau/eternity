@@ -1,14 +1,14 @@
 package com.prodyna.pac.eternity.test.server.service;
 
+import com.prodyna.pac.eternity.authentication.service.AuthenticationService;
+import com.prodyna.pac.eternity.authentication.service.RememberMeService;
+import com.prodyna.pac.eternity.project.service.ProjectService;
+import com.prodyna.pac.eternity.common.model.exception.functional.ElementAlreadyExistsException;
+import com.prodyna.pac.eternity.common.model.authentication.RememberMe;
+import com.prodyna.pac.eternity.common.model.user.User;
 import com.prodyna.pac.eternity.test.helper.AbstractArquillianTest;
 import com.prodyna.pac.eternity.test.helper.DatabaseCleaner;
-import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
-import com.prodyna.pac.eternity.server.model.authentication.RememberMe;
-import com.prodyna.pac.eternity.server.model.user.User;
-import com.prodyna.pac.eternity.server.service.authentication.AuthenticationService;
-import com.prodyna.pac.eternity.server.service.authentication.RememberMeService;
-import com.prodyna.pac.eternity.server.service.project.ProjectService;
-import com.prodyna.pac.eternity.server.service.user.UserService;
+import com.prodyna.pac.eternity.user.service.UserService;
 import junit.framework.Assert;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;

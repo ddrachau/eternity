@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.prodyna.pac.eternity</groupId>
+    <artifactId>eternity-modules-common-pom-client</artifactId>
+    <packaging>pom</packaging>
+
+    <name>Eternity Module Common POM Client</name>
+
+    <parent>
+        <groupId>com.prodyna.pac.eternity</groupId>
+        <artifactId>eternity-modules-common-pom</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-common-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-common-model</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>jaxrs-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-7.0</artifactId>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>

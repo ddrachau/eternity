@@ -78,7 +78,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="eternity-common-utils" />
       </profile>
       <profile default="false" name="Annotation profile for eternity-ejb" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -92,7 +91,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="eternity-ejb-api" />
       </profile>
       <profile default="false" name="Annotation profile for eternity-test" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -106,14 +104,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="eternity-client-impl" />
       </profile>
       <profile default="false" name="Annotation profile for eternity-client-api" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="eternity-client-api" />
       </profile>
       <profile default="false" name="Annotation profile for eternity-war" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -127,7 +123,202 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="eternity-common-model" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-authentication-client" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-authentication-client" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-booking-client" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-booking-client" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-project-client" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-user-client" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-authentication-client-impl" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-authentication-client-impl" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-authentication-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-authentication-service" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-authentication-service-impl" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-authentication-service-impl" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-booking-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-booking-service" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-booking-client-impl" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-booking-client-impl" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-booking-service-impl" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-booking-service-impl" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-user-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-project-service-impl" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-authentication-service (1)" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-project-client-impl" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-project-client-impl" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-user-client-impl" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-project-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-project-service" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-user-service-impl" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-user-service-impl" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-common-client" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-common-client" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-common-client-impl" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-common-client-impl" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-common-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-common-service" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-common-service-impl" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-common-service-impl" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-common-logging" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-common-logging" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-common-logging-impl" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-common-logging-impl" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-profiling-logging-impl" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-common-profiling-impl" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-common-profiling-impl" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-common-profiling" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-common-profiling" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-common-helper" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-common-helper" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-common-helper-impl" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-common-helper-impl" />
+      </profile>
+      <profile default="false" name="Annotation profile for eternity-modules-common-model" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="eternity-modules-common-model" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -145,12 +336,58 @@
       <module name="eternity-client-impl" target="1.8" />
       <module name="eternity-common" target="1.8" />
       <module name="eternity-common-model" target="1.8" />
+      <module name="eternity-common-pom" target="1.8" />
+      <module name="eternity-common-pom-client" target="1.8" />
+      <module name="eternity-common-pom-client-impl" target="1.8" />
+      <module name="eternity-common-pom-service" target="1.8" />
+      <module name="eternity-common-pom-service-impl" target="1.8" />
       <module name="eternity-common-utils" target="1.8" />
       <module name="eternity-components" target="1.8" />
       <module name="eternity-components-utils" target="1.8" />
       <module name="eternity-ear" target="1.8" />
       <module name="eternity-ejb" target="1.8" />
       <module name="eternity-ejb-api" target="1.8" />
+      <module name="eternity-modules" target="1.8" />
+      <module name="eternity-modules-authentication" target="1.8" />
+      <module name="eternity-modules-authentication-client" target="1.8" />
+      <module name="eternity-modules-authentication-client-impl" target="1.8" />
+      <module name="eternity-modules-authentication-service" target="1.8" />
+      <module name="eternity-modules-authentication-service (1)" target="1.8" />
+      <module name="eternity-modules-authentication-service-impl" target="1.8" />
+      <module name="eternity-modules-booking" target="1.8" />
+      <module name="eternity-modules-booking-client" target="1.8" />
+      <module name="eternity-modules-booking-client-impl" target="1.8" />
+      <module name="eternity-modules-booking-service" target="1.8" />
+      <module name="eternity-modules-booking-service-impl" target="1.8" />
+      <module name="eternity-modules-common" target="1.8" />
+      <module name="eternity-modules-common-client" target="1.8" />
+      <module name="eternity-modules-common-client-impl" target="1.8" />
+      <module name="eternity-modules-common-helper" target="1.8" />
+      <module name="eternity-modules-common-helper-impl" target="1.8" />
+      <module name="eternity-modules-common-logging" target="1.8" />
+      <module name="eternity-modules-common-logging-impl" target="1.8" />
+      <module name="eternity-modules-common-model" target="1.8" />
+      <module name="eternity-modules-common-pom" target="1.8" />
+      <module name="eternity-modules-common-pom-client" target="1.8" />
+      <module name="eternity-modules-common-pom-client-impl" target="1.8" />
+      <module name="eternity-modules-common-pom-service" target="1.8" />
+      <module name="eternity-modules-common-pom-service-impl" target="1.8" />
+      <module name="eternity-modules-common-profiling" target="1.8" />
+      <module name="eternity-modules-common-profiling-impl" target="1.8" />
+      <module name="eternity-modules-common-service" target="1.8" />
+      <module name="eternity-modules-common-service-impl" target="1.8" />
+      <module name="eternity-modules-profiling-logging-impl" target="1.8" />
+      <module name="eternity-modules-project" target="1.8" />
+      <module name="eternity-modules-project-client" target="1.8" />
+      <module name="eternity-modules-project-client-impl" target="1.8" />
+      <module name="eternity-modules-project-service" target="1.8" />
+      <module name="eternity-modules-project-service-impl" target="1.8" />
+      <module name="eternity-modules-project-service-impl (1)" target="1.8" />
+      <module name="eternity-modules-user" target="1.8" />
+      <module name="eternity-modules-user-client" target="1.8" />
+      <module name="eternity-modules-user-client-impl" target="1.8" />
+      <module name="eternity-modules-user-service" target="1.8" />
+      <module name="eternity-modules-user-service-impl" target="1.8" />
       <module name="eternity-server" target="1.5" />
       <module name="eternity-server-ear" target="1.8" />
       <module name="eternity-server-ejb" target="1.8" />

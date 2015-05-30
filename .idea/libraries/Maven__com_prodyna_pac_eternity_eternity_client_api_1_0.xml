@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Maven: com.prodyna.pac.eternity:eternity-client-api:1.0">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/prodyna/pac/eternity/eternity-client-api/1.0/eternity-client-api-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-client/eternity-client-api-1.0-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/prodyna/pac/eternity/eternity-client-api/1.0/eternity-client-api-1.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-client/eternity-client-api-1.0-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/prodyna/pac/eternity/eternity-client-api/1.0/eternity-client-api-1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -3,24 +3,57 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-build-tools" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-client-api" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-client-impl" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-common" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-common/eternity-common-model" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/model" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-common/eternity-common-utils" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-ear" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-ejb" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-ejb-api" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/functional" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/exception/technical" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/CypherService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/authentication/AuthenticationService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/booking/BookingService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/project/ProjectService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-ejb-api/src/main/java/com/prodyna/pac/eternity/server/service/user/UserService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-ejb/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-ejb/src/main/resources/META-INF/beans.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-authentication" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-client-impl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-service-impl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-service/src/main/java/com/prodyna/pac/eternity/authentication/service/AuthenticationService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-booking" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-booking/eternity-modules-booking-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-booking/eternity-modules-booking-client-impl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-booking/eternity-modules-booking-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-booking/eternity-modules-booking-service-impl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-booking/eternity-modules-booking-service/src/main/java/com/prodyna/pac/eternity/booking/service/BookingService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-client-impl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-helper" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-helper-impl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-logging" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-logging-impl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-model" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-model/src/main/java/com/prodyna/pac/eternity/server/exception/functional" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-model/src/main/java/com/prodyna/pac/eternity/server/exception/technical" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-model/src/main/java/com/prodyna/pac/eternity/server/model" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-pom" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-pom/eternity-modules-common-pom-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-pom/eternity-modules-common-pom-client-impl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-pom/eternity-modules-common-pom-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-pom/eternity-modules-common-pom-service-impl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling-impl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service/src/main/java/com/prodyna/pac/eternity/common/service/CypherService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-project" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-project/eternity-modules-project-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-project/eternity-modules-project-client-impl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-project/eternity-modules-project-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-project/eternity-modules-project-service-impl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-project/eternity-modules-project-service/src/main/java/com/prodyna/pac/eternity/project/service/ProjectService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-user/eternity-modules-user-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-user/eternity-modules-user-client-impl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-user/eternity-modules-user-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-user/eternity-modules-user-service-impl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-user/eternity-modules-user-service/src/main/java/com/prodyna/pac/eternity/user/service/UserService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-test" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-war" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-war/src/main/webapp/css/bootstrap/bootstrap-theme.css" charset="windows-1252" />

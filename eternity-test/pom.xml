@@ -36,28 +36,73 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.prodyna.pac.eternity.common</groupId>
-            <artifactId>eternity-common-model</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.prodyna.pac.eternity.common</groupId>
-            <artifactId>eternity-common-utils</artifactId>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-authentication-client-impl</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.prodyna.pac.eternity</groupId>
-            <artifactId>eternity-client-api</artifactId>
+            <artifactId>eternity-modules-authentication-service-impl</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.prodyna.pac.eternity</groupId>
-            <artifactId>eternity-client-impl</artifactId>
+            <artifactId>eternity-modules-booking-client-impl</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.prodyna.pac.eternity</groupId>
-            <artifactId>eternity-ejb-api</artifactId>
+            <artifactId>eternity-modules-booking-service-impl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-common-client-impl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-common-helper-impl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-common-logging-impl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-common-model</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-common-profiling-impl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-common-service-impl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-project-client-impl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-project-service-impl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-user-client-impl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-user-service-impl</artifactId>
         </dependency>
 
         <dependency>

@@ -1,18 +1,18 @@
 package com.prodyna.pac.eternity.test.server.service;
 
-import com.prodyna.pac.eternity.components.common.DateUtils;
+import com.prodyna.pac.eternity.booking.service.BookingService;
+import com.prodyna.pac.eternity.common.helper.CalendarBuilder;
+import com.prodyna.pac.eternity.project.service.ProjectService;
+import com.prodyna.pac.eternity.common.model.exception.functional.DuplicateTimeBookingException;
+import com.prodyna.pac.eternity.common.model.exception.functional.ElementAlreadyExistsException;
+import com.prodyna.pac.eternity.common.model.exception.functional.InvalidBookingException;
+import com.prodyna.pac.eternity.common.model.exception.functional.UserNotAssignedToProjectException;
+import com.prodyna.pac.eternity.common.model.booking.Booking;
+import com.prodyna.pac.eternity.common.model.project.Project;
+import com.prodyna.pac.eternity.common.model.user.User;
 import com.prodyna.pac.eternity.test.helper.AbstractArquillianTest;
 import com.prodyna.pac.eternity.test.helper.DatabaseCleaner;
-import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
-import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
-import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
-import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
-import com.prodyna.pac.eternity.server.model.booking.Booking;
-import com.prodyna.pac.eternity.server.model.project.Project;
-import com.prodyna.pac.eternity.server.model.user.User;
-import com.prodyna.pac.eternity.server.service.booking.BookingService;
-import com.prodyna.pac.eternity.server.service.project.ProjectService;
-import com.prodyna.pac.eternity.server.service.user.UserService;
+import com.prodyna.pac.eternity.user.service.UserService;
 import junit.framework.Assert;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -38,6 +38,9 @@ public class BookingServiceTest extends AbstractArquillianTest {
 
     @Inject
     private BookingService bookingService;
+
+    @Inject
+    private CalendarBuilder calendarBuilder;
 
     @Test
     @InSequence(1)
@@ -73,12 +76,12 @@ public class BookingServiceTest extends AbstractArquillianTest {
         userService.assignUserToProject(user3, project3);
         userService.assignUserToProject(user5, project5);
 
-        Booking booking1 = new Booking(DateUtils.getCalendar(2015, 3, 2, 10, 0), DateUtils.getCalendar(2015, 3, 2, 14, 0), 5);
-        Booking booking2 = new Booking(DateUtils.getCalendar(2015, 3, 3, 9, 0), DateUtils.getCalendar(2015, 3, 3, 14, 30), 15, "work1");
-        Booking booking3 = new Booking(DateUtils.getCalendar(2015, 3, 5, 9, 0), DateUtils.getCalendar(2015, 3, 5, 18, 10), 60);
-        Booking booking4 = new Booking(DateUtils.getCalendar(2015, 3, 6, 10, 0), DateUtils.getCalendar(2015, 3, 6, 15, 0), 30, "work2");
-        Booking booking5 = new Booking(DateUtils.getCalendar(2015, 3, 7, 10, 0), DateUtils.getCalendar(2015, 3, 7, 16, 0), 45);
-        Booking booking6 = new Booking(DateUtils.getCalendar(2015, 3, 7, 10, 0), DateUtils.getCalendar(2015, 3, 7, 16, 0), 45, "work3");
+        Booking booking1 = new Booking(calendarBuilder.getCalendar(2015, 3, 2, 10, 0), calendarBuilder.getCalendar(2015, 3, 2, 14, 0), 5);
+        Booking booking2 = new Booking(calendarBuilder.getCalendar(2015, 3, 3, 9, 0), calendarBuilder.getCalendar(2015, 3, 3, 14, 30), 15, "work1");
+        Booking booking3 = new Booking(calendarBuilder.getCalendar(2015, 3, 5, 9, 0), calendarBuilder.getCalendar(2015, 3, 5, 18, 10), 60);
+        Booking booking4 = new Booking(calendarBuilder.getCalendar(2015, 3, 6, 10, 0), calendarBuilder.getCalendar(2015, 3, 6, 15, 0), 30, "work2");
+        Booking booking5 = new Booking(calendarBuilder.getCalendar(2015, 3, 7, 10, 0), calendarBuilder.getCalendar(2015, 3, 7, 16, 0), 45);
+        Booking booking6 = new Booking(calendarBuilder.getCalendar(2015, 3, 7, 10, 0), calendarBuilder.getCalendar(2015, 3, 7, 16, 0), 45, "work3");
 
         bookingService.create(booking1, user1, project1);
         bookingService.create(booking2, user1, project1);
@@ -179,7 +182,7 @@ public class BookingServiceTest extends AbstractArquillianTest {
 
         String description = "desc";
 
-        Booking b = new Booking(DateUtils.getCalendar(2015, 3, 10, 10, 0), DateUtils.getCalendar(2015, 3, 10, 16, 0), 45, description);
+        Booking b = new Booking(calendarBuilder.getCalendar(2015, 3, 10, 10, 0), calendarBuilder.getCalendar(2015, 3, 10, 16, 0), 45, description);
         Assert.assertNull(b.getId());
 
         Booking createdB = bookingService.create(b, user3, project3);
@@ -190,7 +193,7 @@ public class BookingServiceTest extends AbstractArquillianTest {
         Assert.assertEquals(1, bookingService.findByProject(project3).size());
         Assert.assertEquals(description, createdB.getDescription());
 
-        Booking secondB = new Booking(DateUtils.getCalendar(2015, 3, 11, 10, 0), DateUtils.getCalendar(2015, 3, 11, 16, 0), 45);
+        Booking secondB = new Booking(calendarBuilder.getCalendar(2015, 3, 11, 10, 0), calendarBuilder.getCalendar(2015, 3, 11, 16, 0), 45);
         bookingService.create(secondB, user3, project3);
         Assert.assertEquals(2, bookingService.findByUserAndProject(user3, project3).size());
         Assert.assertEquals(2, bookingService.findByUser(user3).size());
@@ -206,7 +209,7 @@ public class BookingServiceTest extends AbstractArquillianTest {
         User user3 = userService.get("rvoeller");
 
         Assert.assertFalse(userService.isAssignedTo(user3, project2));
-        Booking b = new Booking(DateUtils.getCalendar(2015, 3, 10, 10, 0), DateUtils.getCalendar(2015, 3, 10, 16, 0), 45);
+        Booking b = new Booking(calendarBuilder.getCalendar(2015, 3, 10, 10, 0), calendarBuilder.getCalendar(2015, 3, 10, 16, 0), 45);
 
         bookingService.create(b, user3, project2);
 
@@ -220,67 +223,67 @@ public class BookingServiceTest extends AbstractArquillianTest {
         User user4 = userService.get("bborg");
 
         userService.assignUserToProject(user4, project4);
-        Booking b = new Booking(DateUtils.getCalendar(2015, 3, 10, 10, 0), DateUtils.getCalendar(2015, 3, 10, 16, 0), 45);
+        Booking b = new Booking(calendarBuilder.getCalendar(2015, 3, 10, 10, 0), calendarBuilder.getCalendar(2015, 3, 10, 16, 0), 45);
         bookingService.create(b, user4, project4);
 
         try {
-            bookingService.create(new Booking(DateUtils.getCalendar(2015, 3, 10, 11, 0), DateUtils.getCalendar(2015, 3, 10, 15, 0), 0), user4, project4);
+            bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 11, 0), calendarBuilder.getCalendar(2015, 3, 10, 15, 0), 0), user4, project4);
             Assert.fail("Booking with overlapping time is not allowed");
         } catch (DuplicateTimeBookingException e) {
             // expected
         }
         try {
-            bookingService.create(new Booking(DateUtils.getCalendar(2015, 3, 10, 0, 0), DateUtils.getCalendar(2015, 3, 10, 15, 0), 0), user4, project4);
+            bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 0, 0), calendarBuilder.getCalendar(2015, 3, 10, 15, 0), 0), user4, project4);
             Assert.fail("Booking with overlapping time is not allowed");
         } catch (DuplicateTimeBookingException e) {
             // expected
         }
         try {
-            bookingService.create(new Booking(DateUtils.getCalendar(2015, 3, 10, 11, 0), DateUtils.getCalendar(2015, 3, 10, 16, 0), 0), user4, project4);
+            bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 11, 0), calendarBuilder.getCalendar(2015, 3, 10, 16, 0), 0), user4, project4);
             Assert.fail("Booking with overlapping time is not allowed");
         } catch (DuplicateTimeBookingException e) {
             // expected
         }
         try {
-            bookingService.create(new Booking(DateUtils.getCalendar(2015, 3, 10, 10, 0), DateUtils.getCalendar(2015, 3, 10, 16, 0), 0), user4, project4);
+            bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 10, 0), calendarBuilder.getCalendar(2015, 3, 10, 16, 0), 0), user4, project4);
             Assert.fail("Booking with overlapping time is not allowed");
         } catch (DuplicateTimeBookingException e) {
             // expected
         }
         try {
-            bookingService.create(new Booking(DateUtils.getCalendar(2015, 3, 10, 8, 0), DateUtils.getCalendar(2015, 3, 10, 10, 30), 0), user4, project4);
+            bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 8, 0), calendarBuilder.getCalendar(2015, 3, 10, 10, 30), 0), user4, project4);
             Assert.fail("Booking with overlapping time is not allowed");
         } catch (DuplicateTimeBookingException e) {
             // expected
         }
         try {
-            bookingService.create(new Booking(DateUtils.getCalendar(2015, 3, 10, 12, 0), DateUtils.getCalendar(2015, 3, 10, 17, 0), 0), user4, project4);
+            bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 12, 0), calendarBuilder.getCalendar(2015, 3, 10, 17, 0), 0), user4, project4);
             Assert.fail("Booking with overlapping time is not allowed");
         } catch (DuplicateTimeBookingException e) {
             // expected
         }
         try {
-            bookingService.create(new Booking(DateUtils.getCalendar(2015, 3, 10, 9, 0), DateUtils.getCalendar(2015, 3, 10, 18, 0), 0), user4, project4);
+            bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 9, 0), calendarBuilder.getCalendar(2015, 3, 10, 18, 0), 0), user4, project4);
             Assert.fail("Booking with overlapping time is not allowed");
         } catch (DuplicateTimeBookingException e) {
             // expected
         }
         try {
-            bookingService.create(new Booking(DateUtils.getCalendar(2015, 3, 10, 10, 0), DateUtils.getCalendar(2015, 3, 10, 18, 0), 0), user4, project4);
+            bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 10, 0), calendarBuilder.getCalendar(2015, 3, 10, 18, 0), 0), user4, project4);
             Assert.fail("Booking with overlapping time is not allowed");
         } catch (DuplicateTimeBookingException e) {
             // expected
         }
         try {
-            bookingService.create(new Booking(DateUtils.getCalendar(2015, 3, 10, 9, 0), DateUtils.getCalendar(2015, 3, 10, 16, 0), 0), user4, project4);
+            bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 9, 0), calendarBuilder.getCalendar(2015, 3, 10, 16, 0), 0), user4, project4);
             Assert.fail("Booking with overlapping time is not allowed");
         } catch (DuplicateTimeBookingException e) {
             // expected
         }
 
         //good
-        bookingService.create(new Booking(DateUtils.getCalendar(2015, 3, 10, 8, 0), DateUtils.getCalendar(2015, 3, 10, 10, 0), 0), user4, project4);
-        bookingService.create(new Booking(DateUtils.getCalendar(2015, 3, 10, 16, 0), DateUtils.getCalendar(2015, 3, 10, 17, 0), 0), user4, project4);
+        bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 8, 0), calendarBuilder.getCalendar(2015, 3, 10, 10, 0), 0), user4, project4);
+        bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 16, 0), calendarBuilder.getCalendar(2015, 3, 10, 17, 0), 0), user4, project4);
 
     }
 
@@ -293,25 +296,25 @@ public class BookingServiceTest extends AbstractArquillianTest {
         User user4 = userService.get("bborg");
 
         try {
-            bookingService.create(new Booking(DateUtils.getCalendar(2015, 3, 10, 10, 0), DateUtils.getCalendar(2015, 3, 9, 16, 0), 45), user4, project4);
+            bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 10, 0), calendarBuilder.getCalendar(2015, 3, 9, 16, 0), 45), user4, project4);
             Assert.fail("Second date before first");
         } catch (InvalidBookingException e) {
             // expected
         }
         try {
-            bookingService.create(new Booking(DateUtils.getCalendar(2015, 3, 10, 10, 0), DateUtils.getCalendar(2015, 3, 10, 9, 0), 45), user4, project4);
+            bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 10, 0), calendarBuilder.getCalendar(2015, 3, 10, 9, 0), 45), user4, project4);
             Assert.fail("Second date before first");
         } catch (InvalidBookingException e) {
             // expected
         }
         try {
-            bookingService.create(new Booking(DateUtils.getCalendar(2015, 3, 10, 11, 0), DateUtils.getCalendar(2015, 3, 10, 13, 0), 180), user4, project4);
+            bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 11, 0), calendarBuilder.getCalendar(2015, 3, 10, 13, 0), 180), user4, project4);
             Assert.fail("Break too long");
         } catch (InvalidBookingException e) {
             // expected
         }
         try {
-            bookingService.create(new Booking(DateUtils.getCalendar(2015, 3, 10, 10, 0), DateUtils.getCalendar(2015, 3, 11, 16, 0), 45), user4, project4);
+            bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 10, 0), calendarBuilder.getCalendar(2015, 3, 11, 16, 0), 45), user4, project4);
             Assert.fail("Second date different day");
         } catch (InvalidBookingException e) {
             // expected
@@ -337,7 +340,7 @@ public class BookingServiceTest extends AbstractArquillianTest {
         int newEndHour = 15;
         int newEndMinute = 40;
 
-        Booking b = new Booking(DateUtils.getCalendar(2015, 4, 10, startHour, startMinute), DateUtils.getCalendar(2015, 4, 10, endHour, endMinute), 45);
+        Booking b = new Booking(calendarBuilder.getCalendar(2015, 4, 10, startHour, startMinute), calendarBuilder.getCalendar(2015, 4, 10, endHour, endMinute), 45);
         b = bookingService.create(b, user4, project4);
         Assert.assertNotNull(b.getId());
 
@@ -350,8 +353,8 @@ public class BookingServiceTest extends AbstractArquillianTest {
         Assert.assertEquals(endMinute, cal2.get(Calendar.MINUTE));
         Assert.assertNull(b.getDescription());
 
-        b.setStartTime(DateUtils.getCalendar(2015, 4, 11, newStartHour, newStartMinute));
-        b.setEndTime(DateUtils.getCalendar(2015, 4, 11, newEndHour, newEndMinute));
+        b.setStartTime(calendarBuilder.getCalendar(2015, 4, 11, newStartHour, newStartMinute));
+        b.setEndTime(calendarBuilder.getCalendar(2015, 4, 11, newEndHour, newEndMinute));
         b.setDescription("demo");
 
         b = bookingService.update(b);
@@ -387,7 +390,7 @@ public class BookingServiceTest extends AbstractArquillianTest {
 
         Assert.assertTrue(userService.isAssignedTo(user4, project4));
 
-        Booking b = new Booking(DateUtils.getCalendar(2015, 5, 12, 9, 30), DateUtils.getCalendar(2015, 5, 12, 14, 30), 45);
+        Booking b = new Booking(calendarBuilder.getCalendar(2015, 5, 12, 9, 30), calendarBuilder.getCalendar(2015, 5, 12, 14, 30), 45);
         b = bookingService.create(b, user4, project4);
         Assert.assertNotNull(b.getId());
 
@@ -410,7 +413,7 @@ public class BookingServiceTest extends AbstractArquillianTest {
         }
         try {
             b = bookingService.get(b.getId());
-            b.setEndTime(DateUtils.getCalendar(2015, 5, 13, 12, 0));
+            b.setEndTime(calendarBuilder.getCalendar(2015, 5, 13, 12, 0));
             bookingService.update(b);
             Assert.fail("Second date different day");
         } catch (InvalidBookingException e) {
@@ -428,11 +431,11 @@ public class BookingServiceTest extends AbstractArquillianTest {
 
         Assert.assertTrue(userService.isAssignedTo(user4, project4));
 
-        bookingService.create(new Booking(DateUtils.getCalendar(2015, 6, 12, 9, 30), DateUtils.getCalendar(2015, 6, 12, 14, 30), 45), user4, project4);
-        Booking b = bookingService.create(new Booking(DateUtils.getCalendar(2015, 6, 12, 15, 0), DateUtils.getCalendar(2015, 6, 12, 18, 0), 0), user4, project4);
+        bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 6, 12, 9, 30), calendarBuilder.getCalendar(2015, 6, 12, 14, 30), 45), user4, project4);
+        Booking b = bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 6, 12, 15, 0), calendarBuilder.getCalendar(2015, 6, 12, 18, 0), 0), user4, project4);
         Assert.assertNotNull(b.getId());
 
-        b.setStartTime(DateUtils.getCalendar(2015, 6, 12, 13, 0));
+        b.setStartTime(calendarBuilder.getCalendar(2015, 6, 12, 13, 0));
         bookingService.update(b);
 
         Assert.fail("Update not valid, overlapping times");
@@ -486,7 +489,7 @@ public class BookingServiceTest extends AbstractArquillianTest {
         int newEndHour = 15;
         int newEndMinute = 40;
 
-        Booking b = new Booking(DateUtils.getCalendar(2015, 5, 10, startHour, startMinute), DateUtils.getCalendar(2015, 5, 10, endHour, endMinute), 45);
+        Booking b = new Booking(calendarBuilder.getCalendar(2015, 5, 10, startHour, startMinute), calendarBuilder.getCalendar(2015, 5, 10, endHour, endMinute), 45);
         b = bookingService.create(b, user4, project4);
         Assert.assertNotNull(b.getId());
 
@@ -499,8 +502,8 @@ public class BookingServiceTest extends AbstractArquillianTest {
         Assert.assertEquals(endMinute, cal2.get(Calendar.MINUTE));
         Assert.assertNull(b.getDescription());
 
-        b.setStartTime(DateUtils.getCalendar(2015, 5, 10, newStartHour, newStartMinute));
-        b.setEndTime(DateUtils.getCalendar(2015, 5, 10, newEndHour, newEndMinute));
+        b.setStartTime(calendarBuilder.getCalendar(2015, 5, 10, newStartHour, newStartMinute));
+        b.setEndTime(calendarBuilder.getCalendar(2015, 5, 10, newEndHour, newEndMinute));
         b.setDescription("demo");
 
         b = bookingService.update(b);

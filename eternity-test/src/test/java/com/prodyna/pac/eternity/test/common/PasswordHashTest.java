@@ -1,14 +1,16 @@
 package com.prodyna.pac.eternity.test.common;
 
+import com.prodyna.pac.eternity.common.helper.PasswordHashBuilder;
+import com.prodyna.pac.eternity.common.helper.impl.PasswordHashBuilderImpl;
 import junit.framework.Assert;
 import org.junit.Test;
-
-import static com.prodyna.pac.eternity.components.common.PasswordHash.*;
 
 /**
  * Tests for password generation and validation.
  */
 public class PasswordHashTest {
+
+    private PasswordHashBuilder passwordHashBuilder = new PasswordHashBuilderImpl();
 
     @Test
     public void testCreatePasswordHash() {
@@ -17,8 +19,8 @@ public class PasswordHashTest {
 
         for (String password : passwords) {
 
-            String hash = createHash(password);
-            String secondHash = createHash(password);
+            String hash = passwordHashBuilder.createHash(password);
+            String secondHash = passwordHashBuilder.createHash(password);
 
             Assert.assertNotNull(hash);
             Assert.assertNotNull(secondHash);
@@ -34,10 +36,10 @@ public class PasswordHashTest {
 
         for (String password : passwords) {
 
-            String hash = createHash(password);
+            String hash = passwordHashBuilder.createHash(password);
 
-            Assert.assertTrue(validatePassword(password, hash));
-            Assert.assertFalse(validatePassword(password + System.currentTimeMillis(), hash));
+            Assert.assertTrue(passwordHashBuilder.validatePassword(password, hash));
+            Assert.assertFalse(passwordHashBuilder.validatePassword(password + System.currentTimeMillis(), hash));
 
         }
 

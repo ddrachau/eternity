@@ -1,6 +1,6 @@
 package com.prodyna.pac.eternity.test.helper;
 
-import com.prodyna.pac.eternity.server.service.CypherService;
+import com.prodyna.pac.eternity.common.service.CypherService;
 import org.slf4j.Logger;
 
 import javax.ejb.Stateless;

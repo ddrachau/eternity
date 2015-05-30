@@ -1,19 +1,19 @@
 package com.prodyna.pac.eternity.test.server.service;
 
-import com.prodyna.pac.eternity.components.common.DateUtils;
-import com.prodyna.pac.eternity.server.exception.functional.DuplicateTimeBookingException;
-import com.prodyna.pac.eternity.server.exception.functional.ElementAlreadyExistsException;
-import com.prodyna.pac.eternity.server.exception.functional.InvalidBookingException;
-import com.prodyna.pac.eternity.server.exception.functional.UserNotAssignedToProjectException;
-import com.prodyna.pac.eternity.server.exception.technical.NoSuchElementRuntimeException;
-import com.prodyna.pac.eternity.server.model.booking.Booking;
-import com.prodyna.pac.eternity.server.model.project.Project;
-import com.prodyna.pac.eternity.server.model.user.User;
-import com.prodyna.pac.eternity.server.service.booking.BookingService;
-import com.prodyna.pac.eternity.server.service.project.ProjectService;
-import com.prodyna.pac.eternity.server.service.user.UserService;
+import com.prodyna.pac.eternity.booking.service.BookingService;
+import com.prodyna.pac.eternity.common.helper.CalendarBuilder;
+import com.prodyna.pac.eternity.project.service.ProjectService;
+import com.prodyna.pac.eternity.common.model.exception.functional.DuplicateTimeBookingException;
+import com.prodyna.pac.eternity.common.model.exception.functional.ElementAlreadyExistsException;
+import com.prodyna.pac.eternity.common.model.exception.functional.InvalidBookingException;
+import com.prodyna.pac.eternity.common.model.exception.functional.UserNotAssignedToProjectException;
+import com.prodyna.pac.eternity.common.model.exception.technical.NoSuchElementRuntimeException;
+import com.prodyna.pac.eternity.common.model.booking.Booking;
+import com.prodyna.pac.eternity.common.model.project.Project;
+import com.prodyna.pac.eternity.common.model.user.User;
 import com.prodyna.pac.eternity.test.helper.AbstractArquillianTest;
 import com.prodyna.pac.eternity.test.helper.DatabaseCleaner;
+import com.prodyna.pac.eternity.user.service.UserService;
 import junit.framework.Assert;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -38,6 +38,9 @@ public class ProjectServiceTest extends AbstractArquillianTest {
 
     @Inject
     private BookingService bookingService;
+
+    @Inject
+    private CalendarBuilder calendarBuilder;
 
     @Test
     @InSequence(1)
@@ -78,6 +81,7 @@ public class ProjectServiceTest extends AbstractArquillianTest {
     @Test
     @InSequence(3)
     public void testGetAllProjects() {
+
         Assert.assertEquals(6, projectService.find().size());
     }
 
@@ -264,7 +268,8 @@ public class ProjectServiceTest extends AbstractArquillianTest {
         Project project4 = projectService.get("P01110");
 
         userService.assignUserToProject(user5, project4);
-        Booking booking5 = new Booking(DateUtils.getCalendar(2015, 3, 7, 10, 0), DateUtils.getCalendar(2015, 3, 7, 16, 0), 45);
+        Booking booking5 = new Booking(calendarBuilder.getCalendar(2015, 3, 7, 10, 0),
+                calendarBuilder.getCalendar(2015, 3, 7, 16, 0), 45);
         bookingService.create(booking5, user5, project4);
 
         Assert.assertEquals(project4, projectService.get(booking5));
@@ -280,7 +285,8 @@ public class ProjectServiceTest extends AbstractArquillianTest {
         Project project = projectService.create(new Project("P01123", "DB All new", ""));
         userService.assignUserToProject(user, project);
         Booking booking = bookingService.create(
-                new Booking(DateUtils.getCalendar(2015, 3, 3, 9, 0), DateUtils.getCalendar(2015, 3, 3, 14, 30), 15, "work1"), user, project);
+                new Booking(calendarBuilder.getCalendar(2015, 3, 3, 9, 0),
+                        calendarBuilder.getCalendar(2015, 3, 3, 14, 30), 15, "work1"), user, project);
 
         Assert.assertNotNull(user);
         Assert.assertNotNull(project);
