@@ -30,9 +30,9 @@ public class LoggingInterceptor implements Serializable {
 
         Logger log = LoggerFactory.getLogger(ic.getTarget().getClass().getName() + "<LoggingInterceptor>");
 
-        log.debug(">>> " + ic.getMethod().getName());
+        log.info(">>> " + ic.getMethod().getName());
         Object ret = ic.proceed();
-        log.debug("<<< " + ic.getMethod().getName());
+        log.info("<<< " + ic.getMethod().getName());
 
         return ret;
 
