@@ -43,7 +43,8 @@ public class RestCookieBuilderImpl implements RestCookieBuilder {
     @Override
     public NewCookie createRememberMeToken(@NotNull final UriInfo uriInfo, @NotNull final String cookieValue) {
 
-        return this.createToken(RestCookieBuilder.COOKIE_TOKEN_REMEMBER_ME, uriInfo, cookieValue, TTL_TOKEN_REMEMBER_ME);
+        return this.createToken(RestCookieBuilder.COOKIE_TOKEN_REMEMBER_ME, uriInfo, cookieValue,
+                TTL_TOKEN_REMEMBER_ME);
 
     }
 

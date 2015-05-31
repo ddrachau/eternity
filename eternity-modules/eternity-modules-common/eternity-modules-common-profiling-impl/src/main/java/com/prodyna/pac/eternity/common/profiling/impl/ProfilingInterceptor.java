@@ -8,7 +8,6 @@ import javax.annotation.Priority;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import java.io.Serializable;
 
 /**
  * Profiling interceptor which wraps around method calls on classes marked for @Profiling.
@@ -16,7 +15,7 @@ import java.io.Serializable;
 @Profiling
 @Interceptor
 @Priority(Interceptor.Priority.APPLICATION)
-public class ProfilingInterceptor implements Serializable {
+public class ProfilingInterceptor {
 
     /**
      * Logs the execution time for method invocations flagged be @Profiling

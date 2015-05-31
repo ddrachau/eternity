@@ -8,7 +8,6 @@ import javax.annotation.Priority;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import java.io.Serializable;
 
 /**
  * Logging interceptor which wraps around method calls on classes marked for @Logging.
@@ -16,7 +15,7 @@ import java.io.Serializable;
 @Logging
 @Interceptor
 @Priority(Interceptor.Priority.APPLICATION)
-public class LoggingInterceptor implements Serializable {
+public class LoggingInterceptor {
 
     /**
      * Logs the execution for method invocations flagged be @Logging
