@@ -53,7 +53,7 @@ public class BookingClientServiceImpl implements BookingClientService {
                         @QueryParam("start") final int start, @QueryParam("pageSize") final int pageSize) {
 
         FilterRequest filterRequest = new FilterRequest(sort, filter, start, pageSize);
-        FilterResponse<Booking> bookings = bookingService.findAll(filterRequest);
+        FilterResponse<Booking> bookings = bookingService.find(filterRequest);
 
         return Response.ok().entity(bookings).build();
 

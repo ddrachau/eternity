@@ -65,7 +65,7 @@ public interface BookingService {
      * @param filterRequest the filter parameter for this search
      * @return bookings maching the filter, empty list if the filter request returns no results
      */
-    FilterResponse<Booking> findAll(@NotNull FilterRequest filterRequest);
+    FilterResponse<Booking> find(@NotNull FilterRequest filterRequest);
 
     /**
      * Search for all the bookings for a project.

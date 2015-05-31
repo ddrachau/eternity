@@ -2,14 +2,16 @@ package com.prodyna.pac.eternity.test.server.service;
 
 import com.prodyna.pac.eternity.booking.service.BookingService;
 import com.prodyna.pac.eternity.common.helper.CalendarBuilder;
-import com.prodyna.pac.eternity.project.service.ProjectService;
+import com.prodyna.pac.eternity.common.model.FilterRequest;
+import com.prodyna.pac.eternity.common.model.FilterResponse;
+import com.prodyna.pac.eternity.common.model.booking.Booking;
 import com.prodyna.pac.eternity.common.model.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.common.model.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.common.model.exception.functional.InvalidBookingException;
 import com.prodyna.pac.eternity.common.model.exception.functional.UserNotAssignedToProjectException;
-import com.prodyna.pac.eternity.common.model.booking.Booking;
 import com.prodyna.pac.eternity.common.model.project.Project;
 import com.prodyna.pac.eternity.common.model.user.User;
+import com.prodyna.pac.eternity.project.service.ProjectService;
 import com.prodyna.pac.eternity.test.helper.AbstractArquillianTest;
 import com.prodyna.pac.eternity.test.helper.DatabaseCleaner;
 import com.prodyna.pac.eternity.user.service.UserService;
@@ -530,6 +532,57 @@ public class BookingServiceTest extends AbstractArquillianTest {
 
     }
 
+    @Test
+    @InSequence(15)
+    public void testFindByFilter() throws ElementAlreadyExistsException, InvalidBookingException, DuplicateTimeBookingException, UserNotAssignedToProjectException {
+
+        createDemoData();
+
+        FilterResponse<Booking> response = bookingService.find(new FilterRequest(null, null, 0, 0));
+
+        Assert.assertEquals(6, response.getTotalSize());
+        Assert.assertEquals(6, response.getData().size());
+
+        response = bookingService.find(new FilterRequest(null, null, 2, 0));
+
+        Assert.assertEquals(6, response.getTotalSize());
+        Assert.assertEquals(4, response.getData().size());
+
+        response = bookingService.find(new FilterRequest(null, null, 0, 4));
+
+        Assert.assertEquals(6, response.getTotalSize());
+        Assert.assertEquals(4, response.getData().size());
+
+        response = bookingService.find(new FilterRequest(null, null, 4, 4));
+
+        Assert.assertEquals(6, response.getTotalSize());
+        Assert.assertEquals(2, response.getData().size());
+
+        response = bookingService.find(new FilterRequest("+startTime", null, 0, 0));
+
+        Assert.assertEquals(calendarBuilder.getCalendar(2015, 3, 2, 10, 0), response.getData().get(0).getStartTime());
+
+        response = bookingService.find(new FilterRequest("-startTime", null, 0, 0));
+
+        Assert.assertEquals(calendarBuilder.getCalendar(2015, 3, 7, 10, 0), response.getData().get(0).getStartTime());
+
+        response = bookingService.find(new FilterRequest("+userIdentifier", null, 0, 0));
+        response = bookingService.find(new FilterRequest("-userIdentifier", null, 0, 0));
+        response = bookingService.find(new FilterRequest("+projectIdentifier", null, 0, 0));
+        response = bookingService.find(new FilterRequest("-projectIdentifier", null, 0, 0));
+        response = bookingService.find(new FilterRequest("+description", null, 0, 0));
+        response = bookingService.find(new FilterRequest("-description", null, 0, 0));
+
+        response = bookingService.find(new FilterRequest(null, new String[]{"projectIdentifier:P00754"}, 0, 0));
+
+        Assert.assertEquals(3, response.getTotalSize());
+        Assert.assertEquals(3, response.getData().size());
+
+        response = bookingService.find(new FilterRequest(null, new String[]{"projectIdentifier:4"}, 0, 0));
+
+        Assert.assertEquals(6, response.getTotalSize());
+        Assert.assertEquals(6, response.getData().size());
+
+    }
+
 }
-
-

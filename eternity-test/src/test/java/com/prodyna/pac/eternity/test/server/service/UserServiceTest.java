@@ -5,7 +5,10 @@ import com.prodyna.pac.eternity.authentication.service.SessionService;
 import com.prodyna.pac.eternity.booking.service.BookingService;
 import com.prodyna.pac.eternity.common.helper.CalendarBuilder;
 import com.prodyna.pac.eternity.common.helper.RememberMeAccessor;
-import com.prodyna.pac.eternity.project.service.ProjectService;
+import com.prodyna.pac.eternity.common.model.FilterRequest;
+import com.prodyna.pac.eternity.common.model.FilterResponse;
+import com.prodyna.pac.eternity.common.model.authentication.Login;
+import com.prodyna.pac.eternity.common.model.booking.Booking;
 import com.prodyna.pac.eternity.common.model.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.common.model.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.common.model.exception.functional.InvalidBookingException;
@@ -14,12 +17,9 @@ import com.prodyna.pac.eternity.common.model.exception.functional.InvalidPasswor
 import com.prodyna.pac.eternity.common.model.exception.functional.InvalidUserException;
 import com.prodyna.pac.eternity.common.model.exception.functional.UserNotAssignedToProjectException;
 import com.prodyna.pac.eternity.common.model.exception.technical.NoSuchElementRuntimeException;
-import com.prodyna.pac.eternity.common.model.FilterRequest;
-import com.prodyna.pac.eternity.common.model.FilterResponse;
-import com.prodyna.pac.eternity.common.model.authentication.Login;
-import com.prodyna.pac.eternity.common.model.booking.Booking;
 import com.prodyna.pac.eternity.common.model.project.Project;
 import com.prodyna.pac.eternity.common.model.user.User;
+import com.prodyna.pac.eternity.project.service.ProjectService;
 import com.prodyna.pac.eternity.test.helper.AbstractArquillianTest;
 import com.prodyna.pac.eternity.test.helper.DatabaseCleaner;
 import com.prodyna.pac.eternity.user.service.UserService;
@@ -338,6 +338,19 @@ public class UserServiceTest extends AbstractArquillianTest {
         Assert.assertEquals(1, projectService.findAllAssignedToUser(user4).size());
         Assert.assertEquals(2, userService.findAllAssignedToProject(project3).size());
         Assert.assertEquals(1, userService.findAllAssignedToProject(project4).size());
+
+        try {
+            userService.assignUserToProject(user6, new Project("unknown", "desc"));
+            Assert.fail("excepected exception");
+        } catch (RuntimeException e) {
+            //expected
+        }
+        try {
+            userService.assignUserToProject(new User("unknown", "for", "sur", "pw"), project4);
+            Assert.fail("excepected exception");
+        } catch (RuntimeException e) {
+            //expected
+        }
 
     }
 

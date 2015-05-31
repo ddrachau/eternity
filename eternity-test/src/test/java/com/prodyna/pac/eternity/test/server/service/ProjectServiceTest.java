@@ -2,15 +2,17 @@ package com.prodyna.pac.eternity.test.server.service;
 
 import com.prodyna.pac.eternity.booking.service.BookingService;
 import com.prodyna.pac.eternity.common.helper.CalendarBuilder;
-import com.prodyna.pac.eternity.project.service.ProjectService;
+import com.prodyna.pac.eternity.common.model.FilterRequest;
+import com.prodyna.pac.eternity.common.model.FilterResponse;
+import com.prodyna.pac.eternity.common.model.booking.Booking;
 import com.prodyna.pac.eternity.common.model.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.common.model.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.common.model.exception.functional.InvalidBookingException;
 import com.prodyna.pac.eternity.common.model.exception.functional.UserNotAssignedToProjectException;
 import com.prodyna.pac.eternity.common.model.exception.technical.NoSuchElementRuntimeException;
-import com.prodyna.pac.eternity.common.model.booking.Booking;
 import com.prodyna.pac.eternity.common.model.project.Project;
 import com.prodyna.pac.eternity.common.model.user.User;
+import com.prodyna.pac.eternity.project.service.ProjectService;
 import com.prodyna.pac.eternity.test.helper.AbstractArquillianTest;
 import com.prodyna.pac.eternity.test.helper.DatabaseCleaner;
 import com.prodyna.pac.eternity.user.service.UserService;
@@ -53,12 +55,13 @@ public class ProjectServiceTest extends AbstractArquillianTest {
         Project project3 = new Project("P00998", "Bosch - ST-IPP");
         Project project4 = new Project("P01110", "Glory Times");
         Project project5 = new Project("P01244", "Phoenix Classic");
+        Project project6 = new Project("P01140", "Liferay Unterstützung");
         projectService.create(project1);
         projectService.create(project2);
         projectService.create(project3);
         projectService.create(project4);
         projectService.create(project5);
-        projectService.create(new Project("P01140", "Liferay Unterstützung"));
+        projectService.create(project6);
 
         User user1 = new User("khansen", "Knut", "Hansen", "pw");
         User user2 = new User("aeich", "Alexander", "A", "pw2");
@@ -325,6 +328,47 @@ public class ProjectServiceTest extends AbstractArquillianTest {
         userService.assignUserToProject(user, allAssignableToUser.get(0));
         Assert.assertEquals(1, projectService.findAllAssignedToUser(user).size());
         Assert.assertEquals(size - 1, projectService.findAllAssignableToUser(user).size());
+
+    }
+
+    @Test
+    @InSequence(17)
+    public void testFindByFilter() throws ElementAlreadyExistsException {
+
+        createDemoData();
+
+        FilterResponse<Project> response = projectService.find(new FilterRequest(null, null, 0, 0));
+
+        Assert.assertEquals(6, response.getTotalSize());
+        Assert.assertEquals(6, response.getData().size());
+
+        response = projectService.find(new FilterRequest(null, null, 2, 0));
+
+        Assert.assertEquals(6, response.getTotalSize());
+        Assert.assertEquals(4, response.getData().size());
+
+        response = projectService.find(new FilterRequest(null, null, 0, 4));
+
+        Assert.assertEquals(6, response.getTotalSize());
+        Assert.assertEquals(4, response.getData().size());
+
+        response = projectService.find(new FilterRequest(null, null, 4, 4));
+
+        Assert.assertEquals(6, response.getTotalSize());
+        Assert.assertEquals(2, response.getData().size());
+
+        response = projectService.find(new FilterRequest("+identifier", null, 0, 0));
+
+        Assert.assertEquals("P00754", response.getData().get(0).getIdentifier());
+
+        response = projectService.find(new FilterRequest("-identifier", null, 0, 0));
+
+        Assert.assertEquals("P01244", response.getData().get(0).getIdentifier());
+
+        response = projectService.find(new FilterRequest(null, new String[]{"description:Bosch"}, 0, 0));
+
+        Assert.assertEquals(1, response.getTotalSize());
+        Assert.assertEquals(1, response.getData().size());
 
     }
 

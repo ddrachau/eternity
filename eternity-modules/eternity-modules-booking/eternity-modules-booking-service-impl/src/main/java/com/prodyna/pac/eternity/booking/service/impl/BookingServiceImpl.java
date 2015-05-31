@@ -181,7 +181,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public FilterResponse<Booking> findAll(@NotNull final FilterRequest filterRequest) {
+    public FilterResponse<Booking> find(@NotNull final FilterRequest filterRequest) {
 
         filterRequest.setMappings(this.getRequestMappings());
         String filterString = filterRequest.getFilterString();
