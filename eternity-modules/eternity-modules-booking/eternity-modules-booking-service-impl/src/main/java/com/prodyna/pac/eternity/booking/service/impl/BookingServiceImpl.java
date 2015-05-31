@@ -22,6 +22,7 @@ import com.prodyna.pac.eternity.user.service.UserService;
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -65,7 +66,8 @@ public class BookingServiceImpl implements BookingService {
     private CalendarBuilder calendarBuilder;
 
     @Override
-    public Booking create(@NotNull final Booking booking, @NotNull final User user, @NotNull final Project project)
+    public Booking create(@NotNull @Valid final Booking booking, @NotNull @Valid final User user,
+                          @NotNull @Valid final Project project)
             throws DuplicateTimeBookingException, UserNotAssignedToProjectException, InvalidBookingException {
 
         this.checkIfBookingIsValid(booking);
@@ -259,7 +261,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Booking update(@NotNull final Booking booking)
+    public Booking update(@NotNull @Valid final Booking booking)
             throws DuplicateTimeBookingException, InvalidBookingException {
 
         this.checkIfBookingIsValid(booking);

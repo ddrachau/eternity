@@ -2,6 +2,8 @@ package com.prodyna.pac.eternity.common.model.project;
 
 import com.prodyna.pac.eternity.common.model.AbstractNode;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
@@ -12,6 +14,8 @@ public class Project extends AbstractNode {
     /**
      * the functional identifier for the project
      */
+    @NotNull
+    @Size(min = 1, max = 30)
     private String identifier;
 
     /**

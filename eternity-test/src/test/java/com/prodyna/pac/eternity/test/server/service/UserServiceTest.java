@@ -31,6 +31,7 @@ import org.junit.runner.RunWith;
 
 import javax.ejb.EJBException;
 import javax.inject.Inject;
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 @RunWith(Arquillian.class)
@@ -728,6 +729,34 @@ public class UserServiceTest extends AbstractArquillianTest {
 
         Assert.assertEquals(2, response.getTotalSize());
         Assert.assertEquals(2, response.getData().size());
+
+    }
+
+    @Test
+    @InSequence(29)
+    public void testCreateUserWithoutIdentifier() throws Exception {
+
+        String identifier = "";
+        String forename = "Dirk";
+        String surname = "Demo";
+
+        User u = new User(identifier, forename, surname, "pw");
+
+        try {
+            userService.create(u);
+            Assert.fail("invalid user");
+        } catch (RuntimeException e) {
+            // expected
+        }
+
+        u.setIdentifier(null);
+
+        try {
+            userService.create(u);
+            Assert.fail("invalid user");
+        } catch (RuntimeException e) {
+            // expected
+        }
 
     }
 

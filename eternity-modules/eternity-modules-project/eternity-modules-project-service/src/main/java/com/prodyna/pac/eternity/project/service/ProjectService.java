@@ -1,13 +1,14 @@
 package com.prodyna.pac.eternity.project.service;
 
-import com.prodyna.pac.eternity.common.model.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.common.model.FilterRequest;
 import com.prodyna.pac.eternity.common.model.FilterResponse;
 import com.prodyna.pac.eternity.common.model.booking.Booking;
+import com.prodyna.pac.eternity.common.model.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.common.model.project.Project;
 import com.prodyna.pac.eternity.common.model.user.User;
 
 import javax.ejb.Local;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public interface ProjectService {
      * @return the created project with the generated id
      * @throws ElementAlreadyExistsException if a project with the same identifier already exists
      */
-    Project create(@NotNull Project project) throws ElementAlreadyExistsException;
+    Project create(@NotNull @Valid Project project) throws ElementAlreadyExistsException;
 
     /**
      * Searches for a single project.
@@ -64,7 +65,7 @@ public interface ProjectService {
      * @return the updated project
      * @throws ElementAlreadyExistsException if a project with the same identifier already exists
      */
-    Project update(@NotNull Project project) throws ElementAlreadyExistsException;
+    Project update(@NotNull @Valid Project project) throws ElementAlreadyExistsException;
 
     /**
      * Removes the given project from the database.

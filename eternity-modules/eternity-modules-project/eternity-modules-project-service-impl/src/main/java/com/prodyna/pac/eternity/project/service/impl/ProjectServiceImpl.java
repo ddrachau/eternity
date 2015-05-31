@@ -17,6 +17,7 @@ import com.prodyna.pac.eternity.common.model.user.User;
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,7 +50,7 @@ public class ProjectServiceImpl implements ProjectService {
     private QueryMapBuilder queryMapBuilder;
 
     @Override
-    public Project create(@NotNull final Project project) throws ElementAlreadyExistsException {
+    public Project create(@NotNull @Valid final Project project) throws ElementAlreadyExistsException {
 
         Project result = this.get(project.getIdentifier());
 
@@ -169,7 +170,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project update(@NotNull final Project project)
+    public Project update(@NotNull @Valid final Project project)
             throws NoSuchElementRuntimeException, ElementAlreadyExistsException {
 
         // Check for already present project with the new identifier

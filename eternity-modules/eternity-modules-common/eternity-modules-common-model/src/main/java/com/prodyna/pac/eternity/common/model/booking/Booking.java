@@ -2,6 +2,8 @@ package com.prodyna.pac.eternity.common.model.booking;
 
 import com.prodyna.pac.eternity.common.model.AbstractNode;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -13,20 +15,23 @@ public class Booking extends AbstractNode {
     /**
      * The start time.
      */
+    @NotNull
     private Calendar startTime;
 
     /**
      * The end time.
      */
+    @NotNull
     private Calendar endTime;
 
     /**
      * The break duration in minutes.
      */
+    @Min(0)
     private int breakDuration;
 
     /**
-     * An optional descript of the work
+     * An optional description of the work
      */
     private String description;
 
@@ -194,6 +199,7 @@ public class Booking extends AbstractNode {
      * @return the userIdentifier
      */
     public String getUserIdentifier() {
+
         return this.userIdentifier;
     }
 
@@ -203,6 +209,7 @@ public class Booking extends AbstractNode {
      * @param userIdentifier to be set
      */
     public void setUserIdentifier(final String userIdentifier) {
+
         this.userIdentifier = userIdentifier;
     }
 
@@ -230,6 +237,7 @@ public class Booking extends AbstractNode {
 
     @Override
     public boolean equals(final Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Booking booking = (Booking) o;
@@ -243,11 +251,13 @@ public class Booking extends AbstractNode {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(startTime, endTime, breakDuration, description, userIdentifier, projectIdentifier);
     }
 
     @Override
     public String toString() {
+
         return "Booking{" +
                 "startTime=" + startTime +
                 ", endTime=" + endTime +

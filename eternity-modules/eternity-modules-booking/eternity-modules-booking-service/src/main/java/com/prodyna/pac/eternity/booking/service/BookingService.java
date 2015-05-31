@@ -1,15 +1,16 @@
 package com.prodyna.pac.eternity.booking.service;
 
-import com.prodyna.pac.eternity.common.model.exception.functional.DuplicateTimeBookingException;
-import com.prodyna.pac.eternity.common.model.exception.functional.InvalidBookingException;
-import com.prodyna.pac.eternity.common.model.exception.functional.UserNotAssignedToProjectException;
 import com.prodyna.pac.eternity.common.model.FilterRequest;
 import com.prodyna.pac.eternity.common.model.FilterResponse;
 import com.prodyna.pac.eternity.common.model.booking.Booking;
+import com.prodyna.pac.eternity.common.model.exception.functional.DuplicateTimeBookingException;
+import com.prodyna.pac.eternity.common.model.exception.functional.InvalidBookingException;
+import com.prodyna.pac.eternity.common.model.exception.functional.UserNotAssignedToProjectException;
 import com.prodyna.pac.eternity.common.model.project.Project;
 import com.prodyna.pac.eternity.common.model.user.User;
 
 import javax.ejb.Local;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public interface BookingService {
      * @throws UserNotAssignedToProjectException if the user is not allowed to book on this project
      * @throws InvalidBookingException           if the booking is inconsistent
      */
-    Booking create(@NotNull Booking booking, @NotNull User user, @NotNull Project project)
+    Booking create(@NotNull @Valid Booking booking, @Valid @NotNull User user, @Valid @NotNull Project project)
             throws DuplicateTimeBookingException, UserNotAssignedToProjectException, InvalidBookingException;
 
     /**
@@ -94,7 +95,7 @@ public interface BookingService {
      *                                       the user and project
      * @throws InvalidBookingException       if the booking is inconsistent
      */
-    Booking update(@NotNull Booking booking) throws DuplicateTimeBookingException, InvalidBookingException;
+    Booking update(@NotNull @Valid Booking booking) throws DuplicateTimeBookingException, InvalidBookingException;
 
     /**
      * Removes the given booking from the database.

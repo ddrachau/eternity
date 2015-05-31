@@ -372,4 +372,31 @@ public class ProjectServiceTest extends AbstractArquillianTest {
 
     }
 
+    @Test
+    @InSequence(18)
+    public void testCreateProjectWithoutIdentifier() throws Exception {
+
+        String identifier = "";
+        String description = "Dirk";
+
+        Project p = new Project(identifier, description);
+
+        try {
+            projectService.create(p);
+            Assert.fail("invalid project");
+        } catch (RuntimeException e) {
+            // expected
+        }
+
+        p.setIdentifier(null);
+
+        try {
+            projectService.create(p);
+            Assert.fail("invalid project");
+        } catch (RuntimeException e) {
+            // expected
+        }
+
+    }
+
 }
