@@ -34,7 +34,6 @@ import java.util.UUID;
 /**
  * Default implementation for the BookingService.
  */
-@Logging
 @Stateless
 public class BookingServiceImpl implements BookingService {
 

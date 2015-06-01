@@ -23,7 +23,6 @@ import javax.validation.constraints.NotNull;
 /**
  * Default implementation for the AuthenticationService.
  */
-@Logging
 @Stateless
 public class AuthenticationServiceImpl implements AuthenticationService {
 

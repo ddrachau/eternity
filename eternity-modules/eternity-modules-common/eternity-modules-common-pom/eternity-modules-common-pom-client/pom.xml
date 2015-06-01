@@ -25,6 +25,11 @@
 
         <dependency>
             <groupId>com.prodyna.pac.eternity</groupId>
+            <artifactId>eternity-modules-common-logging</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.prodyna.pac.eternity</groupId>
             <artifactId>eternity-modules-common-model</artifactId>
         </dependency>
 

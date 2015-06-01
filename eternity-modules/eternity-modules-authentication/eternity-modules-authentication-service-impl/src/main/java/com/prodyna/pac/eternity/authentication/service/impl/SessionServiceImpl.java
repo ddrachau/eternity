@@ -19,7 +19,6 @@ import java.util.UUID;
 /**
  * Default implementation for the SessionService.
  */
-@Logging
 @Stateless
 public class SessionServiceImpl implements SessionService {
 

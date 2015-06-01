@@ -23,7 +23,6 @@ import java.util.Map;
 /**
  * Default implementation for the CypherService.
  */
-@Logging
 @Profiling
 @Stateless
 public class CypherServiceImpl implements CypherService {

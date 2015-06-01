@@ -20,7 +20,6 @@ import java.util.UUID;
 /**
  * Default implementation for the RememberMeService.
  */
-@Logging
 @Stateless
 public class RememberMeServiceImpl implements RememberMeService {
 

@@ -23,45 +23,6 @@ public class RememberMe extends AbstractNode {
     private Calendar createdTime;
 
     /**
-     * Empty default constructor *
-     */
-    public RememberMe() {
-
-    }
-
-    /**
-     * Creates a rememberMe and initialize the following properties:
-     *
-     * @param id          the technical identifier
-     * @param hashedToken the hashed token from the database
-     * @param token       the last accessed time
-     */
-    public RememberMe(final String id, final String hashedToken, final String token) {
-        super(id);
-        this.token = token;
-        this.hashedToken = hashedToken;
-    }
-
-    /**
-     * Creates a rememberMe and initialize the following properties:
-     *
-     * @param hashedToken the hashed token from the database
-     * @param token       the last accessed time
-     */
-    public RememberMe(final String hashedToken, final String token) {
-        this(null, hashedToken, token);
-    }
-
-    /**
-     * Creates a rememberMe and initialize the following properties:
-     *
-     * @param token the last accessed time
-     */
-    public RememberMe(final String token) {
-        this(null, token);
-    }
-
-    /**
      * Basic Getter
      *
      * @return the token

@@ -1,6 +1,7 @@
 package com.prodyna.pac.eternity.test.common.model.authentication;
 
 import com.prodyna.pac.eternity.common.model.authentication.Login;
+import com.prodyna.pac.eternity.common.model.user.User;
 import junit.framework.Assert;
 import org.junit.Test;
 
@@ -16,6 +17,9 @@ public class LoginTest {
         String password = "password";
         String newUsername = "nuser";
         String newPassword = "npassword";
+        String xsrf = "abc";
+        String rToken = "123";
+        User u = new User("id", "for", "sur", "pw");
 
         Login login1 = new Login();
         Login login2 = new Login(username, password);
@@ -32,6 +36,18 @@ public class LoginTest {
 
         Assert.assertEquals(newUsername, login3.getUsername());
         Assert.assertEquals(newPassword, login3.getPassword());
+
+        Assert.assertNull(login1.getRememberMeToken());
+        Assert.assertNull(login1.getXsrfToken());
+        Assert.assertNull(login1.getUser());
+
+        login1.setRememberMeToken(rToken);
+        login1.setXsrfToken(xsrf);
+        login1.setUser(u);
+
+        Assert.assertEquals(rToken, login1.getRememberMeToken());
+        Assert.assertEquals(xsrf, login1.getXsrfToken());
+        Assert.assertEquals(u, login1.getUser());
 
     }
 

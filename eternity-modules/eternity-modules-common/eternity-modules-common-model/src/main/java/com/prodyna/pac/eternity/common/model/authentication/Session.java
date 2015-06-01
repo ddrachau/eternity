@@ -21,48 +21,14 @@ public class Session extends AbstractNode {
     private Calendar createdTime;
 
     /**
-     * Empty default constructor *
-     */
-    public Session() {
-
-    }
-
-    /**
-     * Creates a session and initialize the following properties:
-     *
-     * @param id               the technical identifier
-     * @param lastAccessedTime the last accessed time
-     * @param createdTime      the creation time
-     */
-    public Session(final String id, final Calendar lastAccessedTime, final Calendar createdTime) {
-
-        super(id);
-        this.lastAccessedTime = lastAccessedTime;
-        this.createdTime = createdTime;
-    }
-
-    /**
-     * Creates a session and initialize the following properties:
-     *
-     * @param lastAccessedTime the last accessed time
-     * @param createdTime      the creation time
-     */
-    public Session(final Calendar lastAccessedTime, final Calendar createdTime) {
-
-        super(null);
-        this.lastAccessedTime = lastAccessedTime;
-        this.createdTime = createdTime;
-    }
-
-
-    /**
      * Basic Getter
      *
      * @return the lastAccessedTime
      */
     public Calendar getLastAccessedTime() {
 
-        return lastAccessedTime;
+        return this.lastAccessedTime;
+
     }
 
     /**
@@ -73,6 +39,7 @@ public class Session extends AbstractNode {
     public void setLastAccessedTime(final Calendar lastAccessedTime) {
 
         this.lastAccessedTime = lastAccessedTime;
+
     }
 
     /**
@@ -82,7 +49,8 @@ public class Session extends AbstractNode {
      */
     public Calendar getCreatedTime() {
 
-        return createdTime;
+        return this.createdTime;
+
     }
 
     /**
@@ -93,6 +61,7 @@ public class Session extends AbstractNode {
     public void setCreatedTime(final Calendar createdTime) {
 
         this.createdTime = createdTime;
+
     }
 
     @Override
@@ -103,12 +72,14 @@ public class Session extends AbstractNode {
         Session session = (Session) o;
         return Objects.equals(lastAccessedTime, session.lastAccessedTime) &&
                 Objects.equals(createdTime, session.createdTime);
+
     }
 
     @Override
     public int hashCode() {
 
         return Objects.hash(lastAccessedTime, createdTime);
+
     }
 
     @Override
@@ -118,6 +89,7 @@ public class Session extends AbstractNode {
                 "lastAccessedTime=" + lastAccessedTime +
                 ", createdTime=" + createdTime +
                 '}';
+
     }
 
 }

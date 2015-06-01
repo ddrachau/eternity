@@ -12,7 +12,6 @@ import javax.interceptor.InvocationContext;
 /**
  * Logging interceptor which wraps around method calls on classes marked for @Logging.
  */
-@Logging
 @Interceptor
 @Priority(Interceptor.Priority.APPLICATION)
 public class LoggingInterceptor {

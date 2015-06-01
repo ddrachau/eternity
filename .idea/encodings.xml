@@ -29,9 +29,6 @@
     <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-logging" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-logging-impl" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-model" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-model/src/main/java/com/prodyna/pac/eternity/server/exception/functional" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-model/src/main/java/com/prodyna/pac/eternity/server/exception/technical" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-model/src/main/java/com/prodyna/pac/eternity/server/model" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-pom" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-pom/eternity-modules-common-pom-client" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-pom/eternity-modules-common-pom-client-impl" charset="UTF-8" />
