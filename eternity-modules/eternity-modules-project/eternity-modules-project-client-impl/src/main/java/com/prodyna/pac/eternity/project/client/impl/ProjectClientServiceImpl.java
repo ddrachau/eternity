@@ -2,12 +2,14 @@ package com.prodyna.pac.eternity.project.client.impl;
 
 import com.prodyna.pac.eternity.common.client.Authenticated;
 import com.prodyna.pac.eternity.common.helper.RestCookieBuilder;
-import com.prodyna.pac.eternity.project.client.ProjectClientService;
-import com.prodyna.pac.eternity.project.service.ProjectService;
-import com.prodyna.pac.eternity.common.model.exception.functional.ElementAlreadyExistsException;
+import com.prodyna.pac.eternity.common.logging.Logging;
 import com.prodyna.pac.eternity.common.model.FilterRequest;
 import com.prodyna.pac.eternity.common.model.FilterResponse;
+import com.prodyna.pac.eternity.common.model.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.common.model.project.Project;
+import com.prodyna.pac.eternity.common.profiling.Profiling;
+import com.prodyna.pac.eternity.project.client.ProjectClientService;
+import com.prodyna.pac.eternity.project.service.ProjectService;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -26,6 +28,8 @@ import javax.ws.rs.core.Response;
 /**
  * Default implementation for the ProjectClientService.
  */
+@Logging
+@Profiling
 @Authenticated
 @Path("/projects")
 public class ProjectClientServiceImpl implements ProjectClientService {

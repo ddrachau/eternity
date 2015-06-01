@@ -3,6 +3,8 @@ package com.prodyna.pac.eternity.user.client.impl;
 import com.prodyna.pac.eternity.booking.service.BookingService;
 import com.prodyna.pac.eternity.common.client.Authenticated;
 import com.prodyna.pac.eternity.common.helper.RestCookieBuilder;
+import com.prodyna.pac.eternity.common.logging.Logging;
+import com.prodyna.pac.eternity.common.profiling.Profiling;
 import com.prodyna.pac.eternity.project.service.ProjectService;
 import com.prodyna.pac.eternity.common.model.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.common.model.exception.functional.InvalidPasswordException;
@@ -37,6 +39,8 @@ import java.util.List;
 /**
  * Default implementation for the UserClientService.
  */
+@Logging
+@Profiling
 @Authenticated
 @Path("/users")
 public class UserClientServiceImpl implements UserClientService {

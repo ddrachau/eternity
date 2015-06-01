@@ -1,9 +1,7 @@
 package com.prodyna.pac.eternity.common.service.impl;
 
-import com.prodyna.pac.eternity.common.logging.Logging;
-import com.prodyna.pac.eternity.common.profiling.Profiling;
-import com.prodyna.pac.eternity.common.service.CypherService;
 import com.prodyna.pac.eternity.common.model.FilterRequest;
+import com.prodyna.pac.eternity.common.service.CypherService;
 import org.slf4j.Logger;
 
 import javax.ejb.Stateless;
@@ -23,7 +21,6 @@ import java.util.Map;
 /**
  * Default implementation for the CypherService.
  */
-@Profiling
 @Stateless
 public class CypherServiceImpl implements CypherService {
 

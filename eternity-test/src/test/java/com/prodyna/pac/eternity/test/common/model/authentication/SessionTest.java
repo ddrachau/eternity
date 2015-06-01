@@ -4,6 +4,7 @@ import com.prodyna.pac.eternity.common.model.authentication.Session;
 import junit.framework.Assert;
 import org.junit.Test;
 
+import javax.validation.constraints.AssertFalse;
 import java.util.Calendar;
 
 /**
@@ -29,6 +30,8 @@ public class SessionTest {
         Assert.assertEquals(cal2, session.getLastAccessedTime());
 
         Assert.assertNotNull(session.toString());
+        Assert.assertTrue(session.hashCode() != 0);
+        Assert.assertFalse(session.equals(null));
 
     }
 

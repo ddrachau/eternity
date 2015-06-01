@@ -2,17 +2,17 @@ package com.prodyna.pac.eternity.project.service.impl;
 
 import com.prodyna.pac.eternity.common.helper.QueryMapBuilder;
 import com.prodyna.pac.eternity.common.logging.Logging;
-import com.prodyna.pac.eternity.common.service.CypherService;
-import com.prodyna.pac.eternity.project.service.ProjectService;
+import com.prodyna.pac.eternity.common.model.FilterRequest;
+import com.prodyna.pac.eternity.common.model.FilterResponse;
+import com.prodyna.pac.eternity.common.model.booking.Booking;
 import com.prodyna.pac.eternity.common.model.event.EternityEvent;
 import com.prodyna.pac.eternity.common.model.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.common.model.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.common.model.exception.technical.NotCreatedRuntimeException;
-import com.prodyna.pac.eternity.common.model.FilterRequest;
-import com.prodyna.pac.eternity.common.model.FilterResponse;
-import com.prodyna.pac.eternity.common.model.booking.Booking;
 import com.prodyna.pac.eternity.common.model.project.Project;
 import com.prodyna.pac.eternity.common.model.user.User;
+import com.prodyna.pac.eternity.common.service.CypherService;
+import com.prodyna.pac.eternity.project.service.ProjectService;
 
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;

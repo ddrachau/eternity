@@ -4,19 +4,19 @@ import com.prodyna.pac.eternity.booking.service.BookingService;
 import com.prodyna.pac.eternity.common.helper.CalendarBuilder;
 import com.prodyna.pac.eternity.common.helper.QueryMapBuilder;
 import com.prodyna.pac.eternity.common.logging.Logging;
-import com.prodyna.pac.eternity.common.service.CypherService;
-import com.prodyna.pac.eternity.project.service.ProjectService;
+import com.prodyna.pac.eternity.common.model.FilterRequest;
+import com.prodyna.pac.eternity.common.model.FilterResponse;
+import com.prodyna.pac.eternity.common.model.booking.Booking;
 import com.prodyna.pac.eternity.common.model.event.EternityEvent;
 import com.prodyna.pac.eternity.common.model.exception.functional.DuplicateTimeBookingException;
 import com.prodyna.pac.eternity.common.model.exception.functional.InvalidBookingException;
 import com.prodyna.pac.eternity.common.model.exception.functional.UserNotAssignedToProjectException;
 import com.prodyna.pac.eternity.common.model.exception.technical.NoSuchElementRuntimeException;
 import com.prodyna.pac.eternity.common.model.exception.technical.NotCreatedRuntimeException;
-import com.prodyna.pac.eternity.common.model.FilterRequest;
-import com.prodyna.pac.eternity.common.model.FilterResponse;
-import com.prodyna.pac.eternity.common.model.booking.Booking;
 import com.prodyna.pac.eternity.common.model.project.Project;
 import com.prodyna.pac.eternity.common.model.user.User;
+import com.prodyna.pac.eternity.common.service.CypherService;
+import com.prodyna.pac.eternity.project.service.ProjectService;
 import com.prodyna.pac.eternity.user.service.UserService;
 
 import javax.ejb.Stateless;
@@ -34,6 +34,7 @@ import java.util.UUID;
 /**
  * Default implementation for the BookingService.
  */
+@Logging
 @Stateless
 public class BookingServiceImpl implements BookingService {
 

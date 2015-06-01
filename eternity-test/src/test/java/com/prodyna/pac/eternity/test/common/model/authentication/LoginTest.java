@@ -33,9 +33,11 @@ public class LoginTest {
 
         login3.setPassword(newPassword);
         login3.setUsername(newUsername);
+        login3.setRemember(true);
 
         Assert.assertEquals(newUsername, login3.getUsername());
         Assert.assertEquals(newPassword, login3.getPassword());
+        Assert.assertTrue(login3.isRemember());
 
         Assert.assertNull(login1.getRememberMeToken());
         Assert.assertNull(login1.getXsrfToken());
@@ -48,6 +50,9 @@ public class LoginTest {
         Assert.assertEquals(rToken, login1.getRememberMeToken());
         Assert.assertEquals(xsrf, login1.getXsrfToken());
         Assert.assertEquals(u, login1.getUser());
+
+        Assert.assertFalse(login1.equals(login2));
+        Assert.assertTrue(login3.equals(login3));
 
     }
 

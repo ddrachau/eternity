@@ -1,6 +1,5 @@
 package com.prodyna.pac.eternity.common.logging.impl;
 
-import com.prodyna.pac.eternity.common.logging.Logging;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

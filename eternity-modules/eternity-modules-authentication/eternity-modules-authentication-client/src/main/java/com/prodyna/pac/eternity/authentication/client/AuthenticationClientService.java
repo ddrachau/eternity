@@ -1,6 +1,5 @@
 package com.prodyna.pac.eternity.authentication.client;
 
-import com.prodyna.pac.eternity.common.logging.Logging;
 import com.prodyna.pac.eternity.common.model.authentication.Login;
 
 import javax.validation.Valid;
@@ -13,7 +12,6 @@ import javax.ws.rs.core.UriInfo;
 /**
  * Client service for authentication.
  */
-@Logging
 public interface AuthenticationClientService {
 
     /**

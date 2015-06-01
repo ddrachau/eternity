@@ -4,15 +4,17 @@ import com.prodyna.pac.eternity.booking.client.BookingClientService;
 import com.prodyna.pac.eternity.booking.service.BookingService;
 import com.prodyna.pac.eternity.common.client.Authenticated;
 import com.prodyna.pac.eternity.common.helper.RestCookieBuilder;
-import com.prodyna.pac.eternity.project.service.ProjectService;
-import com.prodyna.pac.eternity.common.model.exception.functional.DuplicateTimeBookingException;
-import com.prodyna.pac.eternity.common.model.exception.functional.InvalidBookingException;
-import com.prodyna.pac.eternity.common.model.exception.functional.UserNotAssignedToProjectException;
+import com.prodyna.pac.eternity.common.logging.Logging;
 import com.prodyna.pac.eternity.common.model.FilterRequest;
 import com.prodyna.pac.eternity.common.model.FilterResponse;
 import com.prodyna.pac.eternity.common.model.booking.Booking;
+import com.prodyna.pac.eternity.common.model.exception.functional.DuplicateTimeBookingException;
+import com.prodyna.pac.eternity.common.model.exception.functional.InvalidBookingException;
+import com.prodyna.pac.eternity.common.model.exception.functional.UserNotAssignedToProjectException;
 import com.prodyna.pac.eternity.common.model.project.Project;
 import com.prodyna.pac.eternity.common.model.user.User;
+import com.prodyna.pac.eternity.common.profiling.Profiling;
+import com.prodyna.pac.eternity.project.service.ProjectService;
 import com.prodyna.pac.eternity.user.service.UserService;
 
 import javax.annotation.security.PermitAll;
@@ -32,6 +34,8 @@ import javax.ws.rs.core.Response;
 /**
  * Default implementation for the UserClientService.
  */
+@Logging
+@Profiling
 @Authenticated
 @Path("/bookings")
 public class BookingClientServiceImpl implements BookingClientService {

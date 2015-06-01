@@ -4,9 +4,9 @@ import com.prodyna.pac.eternity.authentication.service.SessionService;
 import com.prodyna.pac.eternity.common.helper.CalendarBuilder;
 import com.prodyna.pac.eternity.common.helper.QueryMapBuilder;
 import com.prodyna.pac.eternity.common.logging.Logging;
-import com.prodyna.pac.eternity.common.service.CypherService;
-import com.prodyna.pac.eternity.common.model.exception.technical.NotCreatedRuntimeException;
 import com.prodyna.pac.eternity.common.model.authentication.Session;
+import com.prodyna.pac.eternity.common.model.exception.technical.NotCreatedRuntimeException;
+import com.prodyna.pac.eternity.common.service.CypherService;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -19,6 +19,7 @@ import java.util.UUID;
 /**
  * Default implementation for the SessionService.
  */
+@Logging
 @Stateless
 public class SessionServiceImpl implements SessionService {
 

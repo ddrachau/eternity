@@ -6,13 +6,13 @@ import com.prodyna.pac.eternity.authentication.service.SessionService;
 import com.prodyna.pac.eternity.common.helper.PasswordHashBuilder;
 import com.prodyna.pac.eternity.common.helper.RememberMeAccessor;
 import com.prodyna.pac.eternity.common.logging.Logging;
-import com.prodyna.pac.eternity.common.service.CypherService;
-import com.prodyna.pac.eternity.common.model.exception.functional.InvalidLoginException;
-import com.prodyna.pac.eternity.common.model.exception.functional.InvalidTokenException;
 import com.prodyna.pac.eternity.common.model.authentication.Login;
 import com.prodyna.pac.eternity.common.model.authentication.RememberMe;
 import com.prodyna.pac.eternity.common.model.authentication.Session;
+import com.prodyna.pac.eternity.common.model.exception.functional.InvalidLoginException;
+import com.prodyna.pac.eternity.common.model.exception.functional.InvalidTokenException;
 import com.prodyna.pac.eternity.common.model.user.User;
+import com.prodyna.pac.eternity.common.service.CypherService;
 import com.prodyna.pac.eternity.user.service.UserService;
 
 import javax.ejb.Stateless;
@@ -23,6 +23,7 @@ import javax.validation.constraints.NotNull;
 /**
  * Default implementation for the AuthenticationService.
  */
+@Logging
 @Stateless
 public class AuthenticationServiceImpl implements AuthenticationService {
 
