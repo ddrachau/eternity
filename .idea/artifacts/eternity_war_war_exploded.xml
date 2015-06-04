@@ -7,88 +7,88 @@
           <element id="module-output" name="eternity-war" />
         </element>
         <element id="directory" name="lib">
-          <element id="archive" name="eternity-modules-authentication-client-impl-1.0.jar">
+          <element id="archive" name="eternity-modules-authentication-client-impl-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-authentication-client-impl" />
           </element>
-          <element id="archive" name="eternity-modules-authentication-client-1.0.jar">
+          <element id="archive" name="eternity-modules-authentication-client-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-authentication-client" />
           </element>
-          <element id="archive" name="eternity-modules-common-client-1.0.jar">
+          <element id="archive" name="eternity-modules-common-client-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-common-client" />
           </element>
-          <element id="archive" name="eternity-modules-authentication-service-1.0.jar">
+          <element id="archive" name="eternity-modules-authentication-service-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-authentication-service" />
           </element>
-          <element id="archive" name="eternity-modules-user-service-1.0.jar">
+          <element id="archive" name="eternity-modules-user-service-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-user-service" />
           </element>
-          <element id="archive" name="eternity-modules-common-helper-1.0.jar">
+          <element id="archive" name="eternity-modules-common-helper-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-common-helper" />
           </element>
-          <element id="archive" name="eternity-modules-common-logging-1.0.jar">
+          <element id="archive" name="eternity-modules-common-logging-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-common-logging" />
           </element>
-          <element id="archive" name="eternity-modules-common-model-1.0.jar">
+          <element id="archive" name="eternity-modules-common-model-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-common-model" />
           </element>
-          <element id="archive" name="eternity-modules-common-profiling-1.0.jar">
+          <element id="archive" name="eternity-modules-common-profiling-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-common-profiling" />
           </element>
-          <element id="archive" name="eternity-modules-booking-client-impl-1.0.jar">
+          <element id="archive" name="eternity-modules-booking-client-impl-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-booking-client-impl" />
           </element>
-          <element id="archive" name="eternity-modules-booking-client-1.0.jar">
+          <element id="archive" name="eternity-modules-booking-client-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-booking-client" />
           </element>
-          <element id="archive" name="eternity-modules-booking-service-1.0.jar">
+          <element id="archive" name="eternity-modules-booking-service-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-booking-service" />
           </element>
-          <element id="archive" name="eternity-modules-project-service-1.0.jar">
+          <element id="archive" name="eternity-modules-project-service-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-project-service" />
           </element>
-          <element id="archive" name="eternity-modules-common-client-impl-1.0.jar">
+          <element id="archive" name="eternity-modules-common-client-impl-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-common-client-impl" />
           </element>
-          <element id="archive" name="eternity-modules-common-helper-impl-1.0.jar">
+          <element id="archive" name="eternity-modules-common-helper-impl-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-common-helper-impl" />
           </element>
-          <element id="archive" name="eternity-modules-common-logging-impl-1.0.jar">
+          <element id="archive" name="eternity-modules-common-logging-impl-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-common-logging-impl" />
           </element>
-          <element id="archive" name="eternity-modules-common-profiling-impl-1.0.jar">
+          <element id="archive" name="eternity-modules-common-profiling-impl-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-common-profiling-impl" />
           </element>
-          <element id="archive" name="eternity-modules-project-client-impl-1.0.jar">
+          <element id="archive" name="eternity-modules-project-client-impl-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-project-client-impl" />
           </element>
-          <element id="archive" name="eternity-modules-project-client-1.0.jar">
+          <element id="archive" name="eternity-modules-project-client-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-project-client" />
           </element>
-          <element id="archive" name="eternity-modules-user-client-impl-1.0.jar">
+          <element id="archive" name="eternity-modules-user-client-impl-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-user-client-impl" />
           </element>
-          <element id="archive" name="eternity-modules-user-client-1.0.jar">
+          <element id="archive" name="eternity-modules-user-client-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-user-client" />
           </element>
-          <element id="archive" name="eternity-ejb-1.0.jar">
+          <element id="archive" name="eternity-ejb-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-ejb" />
           </element>
-          <element id="archive" name="eternity-modules-authentication-service-impl-1.0.jar">
+          <element id="archive" name="eternity-modules-authentication-service-impl-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-authentication-service-impl" />
           </element>
-          <element id="archive" name="eternity-modules-common-service-1.0.jar">
+          <element id="archive" name="eternity-modules-common-service-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-common-service" />
           </element>
-          <element id="archive" name="eternity-modules-booking-service-impl-1.0.jar">
+          <element id="archive" name="eternity-modules-booking-service-impl-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-booking-service-impl" />
           </element>
-          <element id="archive" name="eternity-modules-common-service-impl-1.0.jar">
+          <element id="archive" name="eternity-modules-common-service-impl-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-common-service-impl" />
           </element>
-          <element id="archive" name="eternity-modules-project-service-impl-1.0.jar">
+          <element id="archive" name="eternity-modules-project-service-impl-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-project-service-impl" />
           </element>
-          <element id="archive" name="eternity-modules-user-service-impl-1.0.jar">
+          <element id="archive" name="eternity-modules-user-service-impl-0-SNAPSHOT.jar">
             <element id="module-output" name="eternity-modules-user-service-impl" />
           </element>
         </element>

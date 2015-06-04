@@ -7,7 +7,7 @@
 
     <groupId>com.prodyna.pac.eternity</groupId>
     <artifactId>eternity</artifactId>
-    <version>1.0</version>
+    <version>0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Root Eternity Project</name>
@@ -50,6 +50,8 @@
         <version.javadoc.plugin>2.10.3</version.javadoc.plugin>
         <version.checkstyle.plugin>2.15</version.checkstyle.plugin>
         <version.findbugs.plugin>3.0.1</version.findbugs.plugin>
+        <version.versions.plugin>2.2</version.versions.plugin>
+        <version.scm.plugin>1.9.4</version.scm.plugin>
 
         <!-- maven-compiler-plugin -->
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -69,18 +71,9 @@
 
     </properties>
 
-    <!--<repositories>
-
-        <repository>
-            <id>neo4j-public</id>
-            <url>http://m2.neo4j.org/content/groups/public</url>
-            <releases>
-                <enabled>true</enabled>
-                <checksumPolicy>warn</checksumPolicy>
-            </releases>
-        </repository>
-
-    </repositories>-->
+    <scm>
+        <connection>scm:git:ssh://prodyna@nozdormu.ffm.drachau.de:/home/prodyna/git/eternity</connection>
+    </scm>
 
     <dependencyManagement>
 
@@ -395,6 +388,18 @@
                     </executions>
                 </plugin>
 
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>${version.versions.plugin}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-scm-plugin</artifactId>
+                    <version>${version.scm.plugin}</version>
+                </plugin>
+
             </plugins>
 
         </pluginManagement>
@@ -423,6 +428,19 @@
                     <effort>Max</effort>
                     <threshold>Low</threshold>
                     <xmlOutput>true</xmlOutput>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-plugin</artifactId>
+                <configuration>
+                    <tag>${project.artifactId}-${project.version}</tag>
                 </configuration>
             </plugin>
 

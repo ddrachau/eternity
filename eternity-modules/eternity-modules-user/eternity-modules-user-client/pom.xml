@@ -14,7 +14,7 @@
         <groupId>com.prodyna.pac.eternity</groupId>
         <artifactId>eternity-modules-common-pom-client</artifactId>
         <relativePath>../../eternity-modules-common/eternity-modules-common-pom/eternity-modules-common-pom-client</relativePath>
-        <version>1.0</version>
+        <version>0-SNAPSHOT</version>
     </parent>
 
 </project>
