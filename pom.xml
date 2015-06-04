@@ -413,7 +413,7 @@
                     <dependency>
                         <groupId>com.prodyna.pac.eternity.ci</groupId>
                         <artifactId>eternity-build-tools</artifactId>
-                        <version>${project.version}</version>
+                        <version>1.0</version>
                     </dependency>
                 </dependencies>
                 <configuration>
