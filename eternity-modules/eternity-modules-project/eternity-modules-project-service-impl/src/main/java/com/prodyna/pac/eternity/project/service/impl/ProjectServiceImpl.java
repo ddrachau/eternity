@@ -11,6 +11,7 @@ import com.prodyna.pac.eternity.common.model.exception.technical.NoSuchElementRu
 import com.prodyna.pac.eternity.common.model.exception.technical.NotCreatedRuntimeException;
 import com.prodyna.pac.eternity.common.model.project.Project;
 import com.prodyna.pac.eternity.common.model.user.User;
+import com.prodyna.pac.eternity.common.profiling.Profiling;
 import com.prodyna.pac.eternity.common.service.CypherService;
 import com.prodyna.pac.eternity.project.service.ProjectService;
 
@@ -29,6 +30,7 @@ import java.util.UUID;
  * Default implementation for the ProjectService.
  */
 @Logging
+@Profiling
 @Stateless
 public class ProjectServiceImpl implements ProjectService {
 

@@ -1,5 +1,6 @@
 package com.prodyna.pac.eternity.common.logging.impl;
 
+import com.prodyna.pac.eternity.common.logging.Logging;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,6 +13,7 @@ import javax.interceptor.InvocationContext;
  * Logging interceptor which wraps around method calls on classes marked for @Logging.
  */
 @Interceptor
+@Logging
 @Priority(Interceptor.Priority.APPLICATION)
 public class LoggingInterceptor {
 
@@ -25,11 +27,13 @@ public class LoggingInterceptor {
     @AroundInvoke
     public Object intercept(final InvocationContext ic) throws Exception {
 
-        Logger log = LoggerFactory.getLogger(ic.getTarget().getClass().getName() + "<LoggingInterceptor>");
+        Class<?> targetClass = ic.getTarget().getClass();
+        Logger log = LoggerFactory.getLogger(targetClass.getName() + "<LoggingInterceptor>");
 
-        log.info(">>> " + ic.getMethod().getName());
+        String loggingName = targetClass.getName() + "." + ic.getMethod().getName();
+        log.debug(">>> " + loggingName);
         Object ret = ic.proceed();
-        log.info("<<< " + ic.getMethod().getName());
+        log.debug("<<< " + loggingName);
 
         return ret;
 

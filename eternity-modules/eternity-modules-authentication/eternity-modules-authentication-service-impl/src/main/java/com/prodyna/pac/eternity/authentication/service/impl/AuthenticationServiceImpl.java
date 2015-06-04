@@ -12,6 +12,7 @@ import com.prodyna.pac.eternity.common.model.authentication.Session;
 import com.prodyna.pac.eternity.common.model.exception.functional.InvalidLoginException;
 import com.prodyna.pac.eternity.common.model.exception.functional.InvalidTokenException;
 import com.prodyna.pac.eternity.common.model.user.User;
+import com.prodyna.pac.eternity.common.profiling.Profiling;
 import com.prodyna.pac.eternity.common.service.CypherService;
 import com.prodyna.pac.eternity.user.service.UserService;
 
@@ -24,6 +25,7 @@ import javax.validation.constraints.NotNull;
  * Default implementation for the AuthenticationService.
  */
 @Logging
+@Profiling
 @Stateless
 public class AuthenticationServiceImpl implements AuthenticationService {
 

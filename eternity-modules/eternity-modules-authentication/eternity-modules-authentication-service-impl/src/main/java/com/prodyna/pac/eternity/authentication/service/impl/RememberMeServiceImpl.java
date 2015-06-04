@@ -7,6 +7,7 @@ import com.prodyna.pac.eternity.common.helper.QueryMapBuilder;
 import com.prodyna.pac.eternity.common.logging.Logging;
 import com.prodyna.pac.eternity.common.model.authentication.RememberMe;
 import com.prodyna.pac.eternity.common.model.exception.technical.NotCreatedRuntimeException;
+import com.prodyna.pac.eternity.common.profiling.Profiling;
 import com.prodyna.pac.eternity.common.service.CypherService;
 
 import javax.ejb.Stateless;
@@ -21,6 +22,7 @@ import java.util.UUID;
  * Default implementation for the RememberMeService.
  */
 @Logging
+@Profiling
 @Stateless
 public class RememberMeServiceImpl implements RememberMeService {
 

@@ -15,6 +15,7 @@ import com.prodyna.pac.eternity.common.model.exception.technical.NotCreatedRunti
 import com.prodyna.pac.eternity.common.model.project.Project;
 import com.prodyna.pac.eternity.common.model.user.User;
 import com.prodyna.pac.eternity.common.model.user.UserRole;
+import com.prodyna.pac.eternity.common.profiling.Profiling;
 import com.prodyna.pac.eternity.common.service.CypherService;
 import com.prodyna.pac.eternity.project.service.ProjectService;
 import com.prodyna.pac.eternity.user.service.UserService;
@@ -34,6 +35,7 @@ import java.util.UUID;
  * Default implementation for the UserService.
  */
 @Logging
+@Profiling
 @Stateless
 public class UserServiceImpl implements UserService {
 
