@@ -27,7 +27,7 @@ import org.slf4j.Logger;
 import javax.inject.Inject;
 import java.util.ArrayList;
 
-@RunWith(Arquillian.class)
+//@RunWith(Arquillian.class)
 public class StressTest extends AbstractArquillianTest {
 
     @Inject
@@ -60,7 +60,7 @@ public class StressTest extends AbstractArquillianTest {
     @Inject
     private ProfilingMXBean profilingMXBean;
 
-    @Test
+//    @Test
     @InSequence(1)
     public void createDemoData() throws InvalidBookingException, DuplicateTimeBookingException, UserNotAssignedToProjectException, ElementAlreadyExistsException {
 

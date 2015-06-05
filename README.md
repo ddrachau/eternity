@@ -9,10 +9,10 @@ This solution offers you the possibility to manage user and projects and let the
 The following files describe the architectural decisions made, which information are important for developers,
  release manager and operations.
 
-[Architecture](./additional-files/documents/architecture.md)
+[Architecture](./additional-files/documents/architecture.md)  
 [Development](./additional-files/documents/development.md)
 
-[Release](./additional-files/documents/release.md)
+[Release](./additional-files/documents/release.md)  
 [Deployment and environment](./additional-files/documents/deployment.md)
 
 
