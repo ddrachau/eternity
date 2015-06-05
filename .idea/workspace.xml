@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d657f7b-8d97-4b3a-bd42-2472c9edf69f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/java/com/prodyna/pac/eternity/common/service/impl/MBeanRegistrar.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/java/com/prodyna/pac/eternity/common/service/impl/MBeanServerProducer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling/src/main/java/com/prodyna/pac/eternity/common/profiling/MethodProfiling.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling/src/main/java/com/prodyna/pac/eternity/common/profiling/ProfilingMXBean.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling-impl/src/main/java/com/prodyna/pac/eternity/common/profiling/impl/ProfilingMXBeanImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/helper/MBeanRegistrarTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/helper/AbstractArquillianTest.java" afterPath="$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/helper/AbstractArquillianTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-service-impl/src/main/java/com/prodyna/pac/eternity/authentication/service/impl/AuthenticationServiceImpl.java" afterPath="$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-service-impl/src/main/java/com/prodyna/pac/eternity/authentication/service/impl/AuthenticationServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-modules/eternity-modules-booking/eternity-modules-booking-service-impl/src/main/java/com/prodyna/pac/eternity/booking/service/impl/BookingServiceImpl.java" afterPath="$PROJECT_DIR$/eternity-modules/eternity-modules-booking/eternity-modules-booking-service-impl/src/main/java/com/prodyna/pac/eternity/booking/service/impl/BookingServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-logging-impl/src/main/java/com/prodyna/pac/eternity/common/logging/impl/LoggingInterceptor.java" afterPath="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-logging-impl/src/main/java/com/prodyna/pac/eternity/common/logging/impl/LoggingInterceptor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling-impl/src/main/java/com/prodyna/pac/eternity/common/profiling/impl/ProfilingInterceptor.java" afterPath="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling-impl/src/main/java/com/prodyna/pac/eternity/common/profiling/impl/ProfilingInterceptor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-modules/eternity-modules-project/eternity-modules-project-service-impl/src/main/java/com/prodyna/pac/eternity/project/service/impl/ProjectServiceImpl.java" afterPath="$PROJECT_DIR$/eternity-modules/eternity-modules-project/eternity-modules-project-service-impl/src/main/java/com/prodyna/pac/eternity/project/service/impl/ProjectServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-service-impl/src/main/java/com/prodyna/pac/eternity/authentication/service/impl/RememberMeServiceImpl.java" afterPath="$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-service-impl/src/main/java/com/prodyna/pac/eternity/authentication/service/impl/RememberMeServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-service-impl/src/main/java/com/prodyna/pac/eternity/authentication/service/impl/SessionServiceImpl.java" afterPath="$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-service-impl/src/main/java/com/prodyna/pac/eternity/authentication/service/impl/SessionServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-modules/eternity-modules-user/eternity-modules-user-service-impl/src/main/java/com/prodyna/pac/eternity/user/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/eternity-modules/eternity-modules-user/eternity-modules-user-service-impl/src/main/java/com/prodyna/pac/eternity/user/service/impl/UserServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/daniel.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/daniel.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="eternity-server.iws" />
@@ -125,75 +112,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Profiling.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling/src/main/java/com/prodyna/pac/eternity/common/profiling/Profiling.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MethodProfiling.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling/src/main/java/com/prodyna/pac/eternity/common/profiling/MethodProfiling.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractArquillianTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/helper/AbstractArquillianTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfilingMXBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling/src/main/java/com/prodyna/pac/eternity/common/profiling/ProfilingMXBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="44" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfilingInterceptor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling-impl/src/main/java/com/prodyna/pac/eternity/common/profiling/impl/ProfilingInterceptor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfilingMXBeanImpl.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling-impl/src/main/java/com/prodyna/pac/eternity/common/profiling/impl/ProfilingMXBeanImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="64" column="36" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MBeanServerProducer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/java/com/prodyna/pac/eternity/common/service/impl/MBeanServerProducer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -204,6 +127,50 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MBeanRegistrarTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/helper/MBeanRegistrarTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3532182">
+              <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProfilingMXBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling/src/main/java/com/prodyna/pac/eternity/common/profiling/ProfilingMXBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProfilingMXBeanImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling-impl/src/main/java/com/prodyna/pac/eternity/common/profiling/impl/ProfilingMXBeanImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="36" column="116" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="116" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractArquillianTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/helper/AbstractArquillianTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -233,7 +200,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/eternity-build-tools/src/main/resources/checkstyle/eternity_checks.xml" />
         <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/pom.xml" />
         <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-client-impl/pom.xml" />
         <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service/pom.xml" />
@@ -279,11 +245,12 @@
         <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-user/eternity-modules-user-service-impl/src/main/java/com/prodyna/pac/eternity/user/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling/src/main/java/com/prodyna/pac/eternity/common/profiling/ProfilingMXBean.java" />
         <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/java/com/prodyna/pac/eternity/common/service/impl/MBeanRegistrator.java" />
-        <option value="$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/helper/AbstractArquillianTest.java" />
         <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/java/com/prodyna/pac/eternity/common/service/impl/MBeanServerProducer.java" />
         <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/java/com/prodyna/pac/eternity/common/service/impl/MBeanRegistrar.java" />
         <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling/src/main/java/com/prodyna/pac/eternity/common/profiling/MethodProfiling.java" />
         <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling-impl/src/main/java/com/prodyna/pac/eternity/common/profiling/impl/ProfilingMXBeanImpl.java" />
+        <option value="$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/helper/AbstractArquillianTest.java" />
+        <option value="$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/helper/MBeanRegistrarTest.java" />
       </list>
     </option>
   </component>
@@ -333,6 +300,16 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Assembly Eternity Module Common Profiling" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
         </PATH_ELEMENT>
       </PATH>
     </treeState>
@@ -586,6 +563,106 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="helper" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1075,7 +1152,7 @@
     <property name="js.buildTools.gulp.gulp_package_dir" value="" />
     <property name="LayoutCode.rearrangeEntriesJava" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-helper/src/main/java/com/prodyna/pac/eternity/common/helper" />
-    <property name="SearchEverywhereHistoryKey" value="beans.xml&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-modules/eternity-modules-common/eternity-modules-common-logging-impl/src/main/resources/META-INF/beans.xml&#10;beans.&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/resources/META-INF/beans.xml&#10;beans&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-modules/eternity-modules-common/eternity-modules-common-helper-impl/src/main/resources/META-INF/beans.xml&#10;Dataso&#9;PSI&#9;JAVA://com.prodyna.pac.eternity.server.service.impl.DatasourceProducer&#10;password&#9;PSI&#9;JAVA://com.prodyna.pac.eternity.components.common.PasswordHash&#10;login&#9;PSI&#9;JAVA://com.prodyna.pac.eternity.server.model.authentication.Login&#10;filterr&#9;FILE&#9;file://C:/PAC/workspace/eternity/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/model/FilterRequest.java&#10;userse&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/user/impl/UserServiceImpl.java&#10;projectserv&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/project/impl/ProjectServiceImpl.java&#10;userclie&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/service/user/impl/UserClientServiceImpl.java&#10;userser&#9;PSI&#9;JAVA://com.prodyna.pac.eternity.server.service.user.UserService&#10;userserv&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/user/impl/UserServiceImpl.java&#10;projectse&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/project/impl/ProjectServiceImpl.java&#10;book&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/booking/impl/BookingServiceImpl.java&#10;pushs&#9;PSI&#9;JAVA://com.prodyna.pac.eternity.client.rest.push.PushServer&#10;passwordh&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-common/eternity-common-utils/src/main/java/com/prodyna/pac/eternity/components/common/PasswordHash.java&#10;eternity-client&#9;null&#9;null&#10;arquillianser&#9;PSI&#9;JAVA://org.jboss.as.arquillian.protocol.jmx.ArquillianServiceDeployer" />
+    <property name="SearchEverywhereHistoryKey" value="ProfilingMX&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-modules/eternity-modules-common/eternity-modules-common-profiling-impl/src/main/java/com/prodyna/pac/eternity/common/profiling/impl/ProfilingMXBeanImpl.java&#10;beans.xml&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-modules/eternity-modules-common/eternity-modules-common-logging-impl/src/main/resources/META-INF/beans.xml&#10;beans.&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/resources/META-INF/beans.xml&#10;beans&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-modules/eternity-modules-common/eternity-modules-common-helper-impl/src/main/resources/META-INF/beans.xml&#10;Dataso&#9;PSI&#9;JAVA://com.prodyna.pac.eternity.server.service.impl.DatasourceProducer&#10;password&#9;PSI&#9;JAVA://com.prodyna.pac.eternity.components.common.PasswordHash&#10;login&#9;PSI&#9;JAVA://com.prodyna.pac.eternity.server.model.authentication.Login&#10;filterr&#9;FILE&#9;file://C:/PAC/workspace/eternity/eternity-common/eternity-common-model/src/main/java/com/prodyna/pac/eternity/server/model/FilterRequest.java&#10;userse&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/user/impl/UserServiceImpl.java&#10;projectserv&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/project/impl/ProjectServiceImpl.java&#10;userclie&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-client-impl/src/main/java/com/prodyna/pac/eternity/client/rest/service/user/impl/UserClientServiceImpl.java&#10;userser&#9;PSI&#9;JAVA://com.prodyna.pac.eternity.server.service.user.UserService&#10;userserv&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/user/impl/UserServiceImpl.java&#10;projectse&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/project/impl/ProjectServiceImpl.java&#10;book&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-ejb/src/main/java/com/prodyna/pac/eternity/server/service/booking/impl/BookingServiceImpl.java&#10;pushs&#9;PSI&#9;JAVA://com.prodyna.pac.eternity.client.rest.push.PushServer&#10;passwordh&#9;FILE&#9;file:///Users/daniel/IdeaProjects/eternity/eternity-common/eternity-common-utils/src/main/java/com/prodyna/pac/eternity/components/common/PasswordHash.java&#10;eternity-client&#9;null&#9;null&#10;arquillianser&#9;PSI&#9;JAVA://org.jboss.as.arquillian.protocol.jmx.ArquillianServiceDeployer" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="168" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="185" />
@@ -1120,11 +1197,11 @@
       <recent name="com.prodyna.pac.eternity.authentication.client" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.prodyna.pac.eternity.test.helper" />
       <recent name="com.prodyna.pac.eternity.common.service.impl" />
       <recent name="com.prodyna.pac.eternity.common.profiling.impl" />
       <recent name="com.prodyna.pac.eternity.common.profiling" />
       <recent name="com.prodyna.pac.eternity.test.common" />
-      <recent name="com.prodyna.pac.eternity.server.model.authentication" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -1173,7 +1250,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JBoss Server.Hot">
+  <component name="RunManager" selected="JUnit.All in eternity-test">
     <configuration default="false" name="BookingServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -2239,12 +2316,12 @@
       <workItem from="1432986382913" duration="26400000" />
       <workItem from="1433144898001" duration="3661000" />
       <workItem from="1433182042129" duration="4758000" />
-      <workItem from="1433273114252" duration="15431000" />
+      <workItem from="1433273114252" duration="17117000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="787269000" />
+    <option name="totallyTimeSpent" value="788955000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2263,7 +2340,7 @@
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.326" sideWeight="0.49544802" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27" sideWeight="0.52611405" order="15" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.493565" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23622425" sideWeight="0.49453977" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23622425" sideWeight="0.49453977" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299458" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2299,6 +2376,47 @@
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2312296" sideWeight="0.5054602" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.326" sideWeight="0.49544802" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27" sideWeight="0.52611405" order="15" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.493565" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23622425" sideWeight="0.49453977" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299458" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2498621" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24724485" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="JSF" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24958587" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.333" sideWeight="0.48421052" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.258" sideWeight="0.4879081" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32968238" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3272727" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.335" sideWeight="0.47388595" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2312296" sideWeight="0.5054602" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.323" sideWeight="0.48634404" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2688069" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294621" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="EJB" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="JavaEE:App" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -2347,16 +2465,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-logging/src/main/java/com/prodyna/pac/eternity/common/logging/Logging.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-client-impl/src/main/java/com/prodyna/pac/eternity/authentication/client/impl/AuthorizationRequestFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2715,40 +2823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/helper/AbstractArquillianTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/java/com/prodyna/pac/eternity/common/service/impl/MBeanServerProducer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/java/com/prodyna/pac/eternity/common/service/impl/MBeanRegistrar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling/src/main/java/com/prodyna/pac/eternity/common/profiling/ProfilingMXBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="44" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling/src/main/java/com/prodyna/pac/eternity/common/profiling/MethodProfiling.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2765,13 +2839,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling-impl/src/main/java/com/prodyna/pac/eternity/common/profiling/impl/ProfilingMXBeanImpl.java">
+    <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/java/com/prodyna/pac/eternity/common/service/impl/MBeanServerProducer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="36" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/java/com/prodyna/pac/eternity/common/service/impl/MBeanRegistrar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling/src/main/java/com/prodyna/pac/eternity/common/profiling/ProfilingMXBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-profiling-impl/src/main/java/com/prodyna/pac/eternity/common/profiling/impl/ProfilingMXBeanImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="116" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="116" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/helper/AbstractArquillianTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/helper/MBeanRegistrarTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3532182">
+          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
