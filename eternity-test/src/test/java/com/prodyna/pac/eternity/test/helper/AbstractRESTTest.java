@@ -1,4 +1,4 @@
-package com.prodyna.pac.eternity.test.client.helper;
+package com.prodyna.pac.eternity.test.helper;
 
 import com.prodyna.pac.eternity.test.helper.AbstractArquillianTest;
 import org.jboss.arquillian.test.api.ArquillianResource;

@@ -1,4 +1,4 @@
-package com.prodyna.pac.eternity.test.client.proxy;
+package com.prodyna.pac.eternity.test.authentication.client.impl;
 
 import com.prodyna.pac.eternity.common.helper.impl.RestCookieBuilderImpl;
 import com.prodyna.pac.eternity.common.model.authentication.Login;

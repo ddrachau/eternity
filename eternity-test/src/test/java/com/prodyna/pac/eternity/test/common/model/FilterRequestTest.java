@@ -1,4 +1,4 @@
-package com.prodyna.pac.eternity.test.common;
+package com.prodyna.pac.eternity.test.common.model;
 
 import com.prodyna.pac.eternity.common.model.FilterRequest;
 import junit.framework.Assert;

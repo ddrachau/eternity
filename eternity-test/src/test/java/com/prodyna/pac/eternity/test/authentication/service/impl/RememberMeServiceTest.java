@@ -1,4 +1,4 @@
-package com.prodyna.pac.eternity.test.server.service;
+package com.prodyna.pac.eternity.test.authentication.service.impl;
 
 import com.prodyna.pac.eternity.authentication.service.AuthenticationService;
 import com.prodyna.pac.eternity.authentication.service.RememberMeService;

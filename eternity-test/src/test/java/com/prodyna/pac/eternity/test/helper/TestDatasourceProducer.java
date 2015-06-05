@@ -1,4 +1,4 @@
-package com.prodyna.pac.eternity.test.server.helper;
+package com.prodyna.pac.eternity.test.helper;
 
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;

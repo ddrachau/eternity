@@ -1,10 +1,9 @@
-package com.prodyna.pac.eternity.test.client.service;
+package com.prodyna.pac.eternity.test.authentication.client.impl;
 
 import com.prodyna.pac.eternity.common.model.authentication.Login;
 import com.prodyna.pac.eternity.common.model.exception.functional.ElementAlreadyExistsException;
 import com.prodyna.pac.eternity.common.model.user.User;
-import com.prodyna.pac.eternity.test.client.helper.AbstractRESTTest;
-import com.prodyna.pac.eternity.test.client.proxy.AuthenticationClientServiceProxy;
+import com.prodyna.pac.eternity.test.helper.AbstractRESTTest;
 import com.prodyna.pac.eternity.test.helper.DatabaseCleaner;
 import com.prodyna.pac.eternity.user.service.UserService;
 import junit.framework.Assert;
