@@ -1,4 +1,4 @@
-package com.prodyna.pac.eternity.test.server.service;
+package com.prodyna.pac.eternity.test.project.service.impl;
 
 import com.prodyna.pac.eternity.booking.service.BookingService;
 import com.prodyna.pac.eternity.common.helper.CalendarBuilder;

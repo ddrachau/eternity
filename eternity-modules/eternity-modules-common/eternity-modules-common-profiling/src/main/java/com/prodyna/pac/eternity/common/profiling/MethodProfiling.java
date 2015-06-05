@@ -123,4 +123,17 @@ public class MethodProfiling {
 
     }
 
+    @Override
+    public String toString() {
+
+        return "MethodProfiling{" +
+                "methodName='" + methodName + '\'' +
+                ", invocationCount=" + invocationCount +
+                ", durationAverage=" + getDurationAverage() +
+                ", durationTotal=" + durationTotal +
+                ", durationMinimum=" + durationMinimum +
+                ", durationMaximum=" + durationMaximum +
+                '}';
+    }
+
 }
