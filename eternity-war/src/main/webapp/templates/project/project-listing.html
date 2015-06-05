@@ -26,9 +26,8 @@
                 </th>
             </tr>
             <tr>
-                <th>Id</th>
                 <th st-skip-natural="true" st-sort="identifier" st-sort-default="true">Identifier</th>
-                <th st-skip-natural="true" st-sort="description">Beschreibung</th>
+                <th colspan="2" st-skip-natural="true" st-sort="description">Beschreibung</th>
                 <th class="text-center"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></th>
             </tr>
             </thead>
@@ -36,9 +35,8 @@
             <tbody ng-show="!plCtrl.isLoading">
 
             <tr ng-repeat="project in plCtrl.displayed">
-                <td>{{project.id}}</td>
                 <td>{{project.identifier}}</td>
-                <td>{{project.description}}</td>
+                <td colspan="2">{{project.description}}</td>
                 <td class="text-center">
                     <button type="button" ng-click="editProject(project)" class="btn btn-xs btn-warning"
                             title="Projekt editieren">
