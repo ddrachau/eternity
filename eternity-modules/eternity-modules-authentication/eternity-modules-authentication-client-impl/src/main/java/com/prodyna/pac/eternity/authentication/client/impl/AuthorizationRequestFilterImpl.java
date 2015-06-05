@@ -24,7 +24,7 @@ import java.util.List;
  */
 @Provider
 @Priority(Priorities.AUTHORIZATION)
-public class AuthorizationRequestFilter implements ContainerRequestFilter {
+public class AuthorizationRequestFilterImpl implements ContainerRequestFilter {
 
     @Inject
     private Logger logger;

@@ -2,6 +2,8 @@
 
 This chapter describes the architecture and some important architecture decisions.
 
+Das Projekt besteht aus einer Serveranwendung mit einer REST-Schnittstelle und einem Web-Client der diese aufruft.
+
 ## Which technologies are used?
 
 * Java 8
@@ -16,4 +18,4 @@ This chapter describes the architecture and some important architecture decision
 ## Architectural overview
 picture
 
-## Wie funktioniert die Security?
+## How does the security work?

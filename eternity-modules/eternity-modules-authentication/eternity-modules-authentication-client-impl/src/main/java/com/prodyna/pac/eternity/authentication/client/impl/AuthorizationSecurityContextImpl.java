@@ -10,7 +10,7 @@ import java.security.Principal;
 /**
  * Implementation for checking rules for the given user.
  */
-public class AuthorizationSecurityContext implements SecurityContext {
+public class AuthorizationSecurityContextImpl implements SecurityContext {
 
     /**
      * the user this context represents
@@ -28,8 +28,8 @@ public class AuthorizationSecurityContext implements SecurityContext {
      * @param newUser    the user this context represents
      * @param newContext the request context
      */
-    public AuthorizationSecurityContext(@NotNull final User newUser,
-                                        @NotNull final ContainerRequestContext newContext) {
+    public AuthorizationSecurityContextImpl(@NotNull final User newUser,
+                                            @NotNull final ContainerRequestContext newContext) {
 
         this.user = newUser;
         this.context = newContext;

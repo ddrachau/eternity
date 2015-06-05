@@ -22,7 +22,7 @@ import java.io.IOException;
 @Provider
 @Authenticated
 @Priority(Priorities.AUTHENTICATION)
-public class AuthenticationRequestFilter implements ContainerRequestFilter {
+public class AuthenticationRequestFilterImpl implements ContainerRequestFilter {
 
     @Inject
     private SessionService sessionService;
@@ -45,7 +45,7 @@ public class AuthenticationRequestFilter implements ContainerRequestFilter {
 
         User user = userService.getBySessionId(session.getId());
 
-        containerRequestContext.setSecurityContext(new AuthorizationSecurityContext(user, containerRequestContext));
+        containerRequestContext.setSecurityContext(new AuthorizationSecurityContextImpl(user, containerRequestContext));
 
     }
 
