@@ -8,12 +8,15 @@ Das Projekt besteht aus einer Serveranwendung mit einer REST-Schnittstelle und e
 
 * Java 8
 * JavaEE 7 
+* Arquillian
+* JaCoCo
 * JavaScript
 * Bootstrap + JQuery
 * AngularJS
 * Neo4J
 * Apache
 * WildFly
+
 
 ## Architectural overview
 picture

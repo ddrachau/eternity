@@ -26,6 +26,7 @@ For setting up your development/test/production environment see
 
 * You can use a development environment of your choice.
     * the base development was performed with IntelliJ
+* GIT
 * Java 8 (1.8.0_40)
 * Maven (3.2.5)
 * Neo4J (2.2.0) 
@@ -165,8 +166,13 @@ These projects just wrap other libraries and in case of the war project also pro
     * Nodes are named after their use case, e.g. a user -> User, booking -> Booking.
     * Associations are written in upper cases and may consists of underscores. They are verbs like, `ASSIGNED_TO` or 
      `PERFORMED_BY`
-* encodin: `UTF-8`
-
+* encoding: `UTF-8`
+* method names:
+    * Service methods have the following patterns
+    * CRUD methods are plain: **create, update, delete**
+    * reading methods are called get if they return just on instance and consists of an additional description for the
+    filter, if it is not the id (e.g. get a User for a Booking -> User getByBooking(Booking booking)
+    * if the getter might return more than one instance, the method is called find respectively findByBooking
 
 ## Defaults for tests
 
