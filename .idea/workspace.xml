@@ -152,8 +152,8 @@
       <file leaf-file-name="architecture.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/additional-files/documents/architecture.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6825397">
-              <caret line="73" column="94" selection-start-line="73" selection-start-column="94" selection-end-line="73" selection-end-column="94" />
+            <state vertical-scroll-proportion="0.7619048">
+              <caret line="78" column="41" selection-start-line="78" selection-start-column="41" selection-end-line="78" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -1981,12 +1981,12 @@
       <workItem from="1433273114252" duration="23486000" />
       <workItem from="1433509127233" duration="25431000" />
       <workItem from="1433604454433" duration="774000" />
-      <workItem from="1433605265819" duration="4535000" />
+      <workItem from="1433605265819" duration="4767000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="826064000" />
+    <option name="totallyTimeSpent" value="826296000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2499,8 +2499,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/additional-files/documents/architecture.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6825397">
-          <caret line="73" column="94" selection-start-line="73" selection-start-column="94" selection-end-line="73" selection-end-column="94" />
+        <state vertical-scroll-proportion="0.7619048">
+          <caret line="78" column="41" selection-start-line="78" selection-start-column="41" selection-end-line="78" selection-end-column="41" />
           <folding />
         </state>
       </provider>

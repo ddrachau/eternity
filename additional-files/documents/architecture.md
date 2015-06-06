@@ -61,17 +61,22 @@ The access to functional operations is also protected through an authorization s
 | MANAGER          |                  | x                  | x               |
 | USER             |                  |                    | x               |
 
-### How does logging work?
+### How does the logging component work?
 
 The logging component provides a provider for injecting a logger in your components. Additional an annotation Logging
  is provided. You can annotate classes or methods with `Logging` and an interceptor logs in debug mode the call in 
  and out of the method(s).  
 
-### How does profiling work?
+### How does the profiling component work?
 
 The profiling component provides an annotation for marking classes or methods for being monitored. An interceptor 
 monitors the annotated methods and stores the execution duration in a profiling JMX Bean. This bean can be integrated
  in an monitoring server. The bean provides duration minimum, maximum and the average as well.
+ 
+### Writing Neo4j services
+
+Services accessing the database call the CypherService to issue the cypher query. The jdbc driver implementation is a
+ wrapper around the Neo4j REST-interface.
 
 ## Database nodes
 
