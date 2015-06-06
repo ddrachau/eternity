@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d657f7b-8d97-4b3a-bd42-2472c9edf69f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/additional-files/database/clear-constraints.cyp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/additional-files/database/clear.cyp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/additional-files/database/constraints.cyp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/additional-files/database/init-database.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/additional-files/database/nodes.cyp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/additional-files/documents/images/neo-model.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/additional-files/documents/images/neo-model.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/additional-files/documents/architecture.md" afterPath="$PROJECT_DIR$/additional-files/documents/architecture.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/additional-files/documents/deployment.md" afterPath="$PROJECT_DIR$/additional-files/documents/deployment.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/additional-files/documents/development.md" afterPath="$PROJECT_DIR$/additional-files/documents/development.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/additional-files/documents/release.md" afterPath="$PROJECT_DIR$/additional-files/documents/release.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="eternity-server.iws" />
@@ -174,12 +168,19 @@
       <file leaf-file-name="architecture.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/additional-files/documents/architecture.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1724138">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.9507389">
+              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding />
             </state>
           </provider>
           <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="neo-model.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/additional-files/documents/images/neo-model.png">
+          <provider selected="true" editor-type-id="images">
             <state />
           </provider>
         </entry>
@@ -249,7 +250,6 @@
         <option value="$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/booking/service/impl/BookingServiceTest.java" />
         <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-client-impl/src/main/java/com/prodyna/pac/eternity/authentication/client/impl/AuthorizationSecurityContext.java" />
         <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-client-impl/src/main/java/com/prodyna/pac/eternity/authentication/client/impl/AuthorizationSecurityContextImpl.java" />
-        <option value="$PROJECT_DIR$/additional-files/documents/architecture.md" />
         <option value="$PROJECT_DIR$/additional-files/documents/development.md" />
         <option value="$PROJECT_DIR$/additional-files/database/neo4j-ini.cql" />
         <option value="$PROJECT_DIR$/additional-files/database/clear.cyp" />
@@ -259,6 +259,7 @@
         <option value="$PROJECT_DIR$/additional-files/database/clear-constraints.cyp" />
         <option value="$PROJECT_DIR$/additional-files/documents/deployment.md" />
         <option value="$PROJECT_DIR$/additional-files/documents/release.md" />
+        <option value="$PROJECT_DIR$/additional-files/documents/architecture.md" />
       </list>
     </option>
   </component>
@@ -826,6 +827,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="documents" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="additional-files" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="database" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -882,11 +905,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/additional-files/documents/images" />
       <recent name="$PROJECT_DIR$/additional-files/database" />
       <recent name="$PROJECT_DIR$/additional-files/documents" />
       <recent name="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/resources" />
       <recent name="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-helper-impl/src/main/resources" />
-      <recent name="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-logging-impl/src/main/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/eternity-modules/eternity-modules-common" />
@@ -2027,12 +2050,12 @@
       <workItem from="1433144898001" duration="3661000" />
       <workItem from="1433182042129" duration="4758000" />
       <workItem from="1433273114252" duration="23486000" />
-      <workItem from="1433509127233" duration="23905000" />
+      <workItem from="1433509127233" duration="25151000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="819229000" />
+    <option name="totallyTimeSpent" value="820475000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2176,20 +2199,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/java/com/prodyna/pac/eternity/common/service/impl/DatasourceProducer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/java/com/prodyna/pac/eternity/common/service/impl/CypherServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16483517">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-project/eternity-modules-project-service-impl/src/main/java/com/prodyna/pac/eternity/project/service/impl/ProjectServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.30926216">
@@ -2571,10 +2580,23 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/additional-files/documents/images/neo-model.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/additional-files/documents/images/neo-model.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4649266">
+          <caret line="0" column="2100" selection-start-line="0" selection-start-column="2100" selection-end-line="0" selection-end-column="2100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/additional-files/documents/architecture.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1724138">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.9507389">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding />
         </state>
       </provider>
