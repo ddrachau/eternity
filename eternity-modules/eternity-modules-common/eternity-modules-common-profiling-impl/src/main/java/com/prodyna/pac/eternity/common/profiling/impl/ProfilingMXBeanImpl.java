@@ -5,7 +5,6 @@ import com.prodyna.pac.eternity.common.profiling.ProfilingMXBean;
 
 import javax.ejb.Singleton;
 import javax.management.MalformedObjectNameException;
-import javax.management.ObjectName;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,11 +15,6 @@ import java.util.Map;
  */
 @Singleton
 public class ProfilingMXBeanImpl implements ProfilingMXBean {
-
-    /**
-     * the object name to use to register this MBean to the MBeanServer
-     */
-    private final ObjectName objectName;
 
     /**
      * map containing the collected profiling values for each method.
@@ -34,15 +28,7 @@ public class ProfilingMXBeanImpl implements ProfilingMXBean {
      */
     public ProfilingMXBeanImpl() throws MalformedObjectNameException {
 
-        this.objectName = new ObjectName("com.prodyna.pac.eternity.common.profiling.impl:type=ProfilingMXBeanImpl");
         this.methodProfilingHashMap = new HashMap<>();
-
-    }
-
-    @Override
-    public ObjectName getObjectName() {
-
-        return this.objectName;
 
     }
 

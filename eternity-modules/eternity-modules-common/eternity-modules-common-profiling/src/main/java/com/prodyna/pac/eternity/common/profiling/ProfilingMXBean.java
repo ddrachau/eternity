@@ -1,19 +1,11 @@
 package com.prodyna.pac.eternity.common.profiling;
 
-import javax.management.ObjectName;
 import java.util.List;
 
 /**
  * MXBean to collect profiling data method executions.
  */
 public interface ProfilingMXBean {
-
-    /**
-     * Default getter
-     *
-     * @return the object name of the MXBean
-     */
-    ObjectName getObjectName();
 
     /**
      * Adds a new method execution duration to the profiling data

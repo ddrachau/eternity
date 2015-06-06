@@ -39,8 +39,9 @@ public class MBeanRegistrarTest {
     public void registerInJMX() {
 
         try {
-            objectName = new ObjectName("com.prodyna.pac.eternity.common.profiling.impl:type=ProfilingMXBeanImpl.test");
-            this.mBeanServer.registerMBean(profilingMXBean, objectName);
+            this.objectName = new ObjectName("com.prodyna.pac.eternity.common.profiling.impl:type=ProfilingMXBeanImpl" +
+                    ".test");
+            this.mBeanServer.registerMBean(profilingMXBean, this.objectName);
 
         } catch (final JMException e) {
             throw new IllegalStateException("Problem during registration of the profiling MBean", e);
@@ -56,7 +57,7 @@ public class MBeanRegistrarTest {
 
         try {
 
-            this.mBeanServer.unregisterMBean(objectName);
+            this.mBeanServer.unregisterMBean(this.objectName);
 
         } catch (final JMException e) {
             throw new IllegalStateException("Problem during unregistration of the profiling MBean", e);

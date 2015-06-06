@@ -9,6 +9,7 @@ import javax.ejb.Startup;
 import javax.inject.Inject;
 import javax.management.JMException;
 import javax.management.MBeanServer;
+import javax.management.ObjectName;
 
 /**
  * Register MBeans at the MBeanServer
@@ -30,14 +31,20 @@ public class MBeanRegistrar {
     private ProfilingMXBean profilingMXBean;
 
     /**
+     * the object name to use to register the ProfilingMXBean to the MBeanServer. The bean cannot store the name since
+     * its already destroyed when this PreDestroy is called
+     */
+    private ObjectName profilingMXBeanObjectName;
+
+    /**
      * registers this MBean to JMX
      */
     @PostConstruct
     public void registerInJMX() {
 
         try {
-
-            this.mBeanServer.registerMBean(profilingMXBean, profilingMXBean.getObjectName());
+            this.profilingMXBeanObjectName = new ObjectName("com.prodyna.pac.eternity.common.profiling.impl:type=ProfilingMXBeanImpl");
+            this.mBeanServer.registerMBean(profilingMXBean, this.profilingMXBeanObjectName);
 
         } catch (final JMException e) {
             throw new IllegalStateException("Problem during registration of the profiling MBean", e);
@@ -53,7 +60,7 @@ public class MBeanRegistrar {
 
         try {
 
-            this.mBeanServer.unregisterMBean(profilingMXBean.getObjectName());
+            this.mBeanServer.unregisterMBean(this.profilingMXBeanObjectName);
 
         } catch (final JMException e) {
             throw new IllegalStateException("Problem during unregistration of the profiling MBean", e);
