@@ -145,7 +145,7 @@ These projects just wrap other libraries and in case of the war project also pro
         │       └── resources (optional)
         └── target
 
-## Default names and namespaces, encoding
+## Default names and namespaces, encoding, formatting
 
 * packages:
     * the default package name is `com.prodyna.pac.eternity`
@@ -173,6 +173,9 @@ These projects just wrap other libraries and in case of the war project also pro
     * reading methods are called get if they return just on instance and consists of an additional description for the
     filter, if it is not the id (e.g. get a User for a Booking -> User getByBooking(Booking booking)
     * if the getter might return more than one instance, the method is called find respectively findByBooking
+* formatting:
+    * IntelliJ settings are stored at `eternity/additional-files/intellij-settings.jar`
+    * If you want to use a different IDE you have to create a matching settings set and commit it in the same folder
 
 ## Defaults for tests
 

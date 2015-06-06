@@ -9,6 +9,7 @@ public class NoSuchElementRuntimeException extends RuntimeException {
      * Default constructor.
      */
     public NoSuchElementRuntimeException() {
+
     }
 
     /**
@@ -17,6 +18,7 @@ public class NoSuchElementRuntimeException extends RuntimeException {
      * @param cause the root cause
      */
     public NoSuchElementRuntimeException(final Throwable cause) {
+
         super(cause);
     }
 
@@ -26,6 +28,7 @@ public class NoSuchElementRuntimeException extends RuntimeException {
      * @param message the exception message
      */
     public NoSuchElementRuntimeException(final String message) {
+
         super(message);
     }
 
@@ -36,6 +39,7 @@ public class NoSuchElementRuntimeException extends RuntimeException {
      * @param cause   the root cause
      */
     public NoSuchElementRuntimeException(final String message, final Throwable cause) {
+
         super(message, cause);
     }
 

@@ -1,11 +1,11 @@
 package com.prodyna.pac.eternity.user.service;
 
-import com.prodyna.pac.eternity.common.model.exception.functional.ElementAlreadyExistsException;
-import com.prodyna.pac.eternity.common.model.exception.functional.InvalidPasswordException;
-import com.prodyna.pac.eternity.common.model.exception.functional.InvalidUserException;
 import com.prodyna.pac.eternity.common.model.FilterRequest;
 import com.prodyna.pac.eternity.common.model.FilterResponse;
 import com.prodyna.pac.eternity.common.model.booking.Booking;
+import com.prodyna.pac.eternity.common.model.exception.functional.ElementAlreadyExistsException;
+import com.prodyna.pac.eternity.common.model.exception.functional.InvalidPasswordException;
+import com.prodyna.pac.eternity.common.model.exception.functional.InvalidUserException;
 import com.prodyna.pac.eternity.common.model.project.Project;
 import com.prodyna.pac.eternity.common.model.user.User;
 

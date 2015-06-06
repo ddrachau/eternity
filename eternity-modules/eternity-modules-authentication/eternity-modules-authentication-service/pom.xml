@@ -13,7 +13,8 @@
     <parent>
         <groupId>com.prodyna.pac.eternity</groupId>
         <artifactId>eternity-modules-common-pom-service</artifactId>
-        <relativePath>../../eternity-modules-common/eternity-modules-common-pom/eternity-modules-common-pom-service</relativePath>
+        <relativePath>../../eternity-modules-common/eternity-modules-common-pom/eternity-modules-common-pom-service
+        </relativePath>
         <version>0-SNAPSHOT</version>
     </parent>
 

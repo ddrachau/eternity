@@ -1,7 +1,7 @@
 package com.prodyna.pac.eternity.authentication.service;
 
-import com.prodyna.pac.eternity.common.model.exception.functional.InvalidLoginException;
 import com.prodyna.pac.eternity.common.model.authentication.Login;
+import com.prodyna.pac.eternity.common.model.exception.functional.InvalidLoginException;
 
 import javax.ejb.Local;
 import javax.validation.Valid;

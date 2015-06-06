@@ -7,11 +7,11 @@ import com.prodyna.pac.eternity.common.client.Authenticated;
 import com.prodyna.pac.eternity.common.helper.RememberMeAccessor;
 import com.prodyna.pac.eternity.common.helper.RestCookieBuilder;
 import com.prodyna.pac.eternity.common.logging.Logging;
+import com.prodyna.pac.eternity.common.model.authentication.Login;
 import com.prodyna.pac.eternity.common.model.exception.functional.InvalidLoginException;
 import com.prodyna.pac.eternity.common.model.exception.functional.InvalidPasswordException;
 import com.prodyna.pac.eternity.common.model.exception.functional.InvalidTokenException;
 import com.prodyna.pac.eternity.common.model.exception.functional.InvalidUserException;
-import com.prodyna.pac.eternity.common.model.authentication.Login;
 import com.prodyna.pac.eternity.common.profiling.Profiling;
 import org.slf4j.Logger;
 

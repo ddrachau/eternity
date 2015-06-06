@@ -19,6 +19,7 @@ public class LoggerProducer {
      */
     @Produces
     public Logger loggerProducer(final InjectionPoint ip) {
+
         return LoggerFactory.getLogger(ip.getMember().getDeclaringClass());
     }
 
