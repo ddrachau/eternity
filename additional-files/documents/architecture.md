@@ -61,6 +61,11 @@ The access to functional operations is also protected through an authorization s
 | MANAGER          |                  | x                  | x               |
 | USER             |                  |                    | x               |
 
+### Password usage
+
+The password handling uses an advanced hashing and salting for every password of every user. Base implementation is 
+used from: (https://crackstation.net/hashing-security.htm#normalhashing)
+
 ### How does the logging component work?
 
 The logging component provides a provider for injecting a logger in your components. Additional an annotation Logging
@@ -73,12 +78,19 @@ The profiling component provides an annotation for marking classes or methods fo
 monitors the annotated methods and stores the execution duration in a profiling JMX Bean. This bean can be integrated
  in an monitoring server. The bean provides duration minimum, maximum and the average as well.
  
-### Writing Neo4j services
+### Persistence
 
-Services accessing the database call the CypherService to issue the cypher query. The jdbc driver implementation is a
- wrapper around the Neo4j REST-interface.
+All nodes have a technical `id` (UUID) and an optional functional identifier.
 
-## Database nodes
+* get methods return the searched object or null if the search was empty
+* delete methods throw an exception if the instance to be deleted does not exists. Currently if you delete a node, 
+all relations and otherwise inconsistent objects are deleted as well. E.g. if you delete an User, all Sessions, 
+RememberMes, Bookings for this user and relations are delete as well. This might be dangerous and delete more than 
+you intended. You might want to change the deletion to an deactivation in the future.
+      
+## Database 
+
+### Nodes
 
 There are five nodes:
 * User - a concrete user which can log in the system
@@ -89,4 +101,92 @@ There are five nodes:
 
 ![Neo4j Model](./images/neo-model.png)
 
+### Writing Neo4j services
 
+Services accessing the database call the CypherService to issue the cypher query. The jdbc driver implementation is a
+ wrapper around the Neo4j REST-interface.
+
+### Multilevel Booking Index Tree
+
+In the current model we skipped the idea of introducing a multi level indexing structure for booking entries.
+
+To keep the complexity low at the moment we have to monitor the performance for booking operations for many bookings 
+over time. After several thousands of booking for an user, the creation time (most time consuming with the 
+overlapping checks) in creases from about 16 ms to about 30).
+
+If the overall performance should suffer the following construct could be introduced. The booking service would have 
+to be adjusted:
+
+```
+CREATE    
+    (BRoot:BookingRoot {name:'root'}),
+    (BY2014:BookingYear {name: 'Y2014'}),
+    (BY2015:BookingYear {name: 'Y2015'}),
+    (BYM201412:BookingMonth {name:'Y14M01'}),
+    (BYM201501:BookingMonth {name:'Y15M12'}),
+    (BYMD20141231:BookingDay {name:'Y14M12D31'}),
+    (BYMD20150101:BookingDay {name:'Y15M01D01'}),
+    (BYMD20150102:BookingDay {name:'Y15M01D02'}),
+    (BYMD20150103:BookingDay {name:'Y15M01D03'}),
+    (BRoot)-[:Y2014]->(BY2014),
+    (BY2014)-[:M12]->(BYM201412),
+    (BYM201412)-[:D31]->(BYMD20141231),
+    (BRoot)-[:Y2015]->(BY2015),
+    (BY2015)-[:M01]->(BYM201501),
+    (BYM201501)-[:D01]->(BYMD20150101),
+    (BYM201501)-[:D02]->(BYMD20150102),
+    (BYM201501)-[:D03]->(BYMD20150103),
+    (BYMD20141231)-[:NEXT]->(BYMD20150101),
+    (BYMD20150101)-[:NEXT]->(BYMD20150102),
+    (BYMD20150102)-[:NEXT]->(BYMD20150103),
+    (BYMD20141231)-[:VALUE]->(Booking1),
+    (BYMD20141231)-[:VALUE]->(Booking2),
+    (BYMD20141231)-[:VALUE]->(Booking3),
+    (BYMD20141231)-[:VALUE]->(Booking4),
+    (BYMD20141231)-[:VALUE]->(Booking5),
+    (BYMD20141231)-[:VALUE]->(Booking6),
+    (BYMD20141231)-[:VALUE]->(Booking7),
+    (BYMD20141231)-[:VALUE]->(Booking8),
+    (BYMD20141231)-[:VALUE]->(Booking9),
+    (BYMD20141231)-[:VALUE]->(Booking10),
+    (BYMD20150101)-[:VALUE]->(Booking11),
+    (BYMD20150101)-[:VALUE]->(Booking12),
+    (BYMD20150101)-[:VALUE]->(Booking13),
+    (BYMD20150101)-[:VALUE]->(Booking14),
+    (BYMD20150101)-[:VALUE]->(Booking15),
+    (BYMD20150102)-[:VALUE]->(Booking15),
+    (BYMD20150102)-[:VALUE]->(Booking16),
+    (BYMD20150102)-[:VALUE]->(Booking17),
+    (BYMD20150102)-[:VALUE]->(Booking18),
+    (BYMD20150102)-[:VALUE]->(Booking19),
+    (BYMD20150102)-[:VALUE]->(Booking20),
+    (BYMD20150102)-[:VALUE]->(Booking21),
+    (BYMD20150102)-[:VALUE]->(Booking22),
+    (BYMD20150102)-[:VALUE]->(Booking23),
+    (BYMD20150102)-[:VALUE]->(Booking24),
+    (BYMD20150102)-[:VALUE]->(Booking25),
+    (BYMD20150103)-[:VALUE]->(Booking26),
+    (BYMD20150103)-[:VALUE]->(Booking27)
+    
+// whole Range for a specific user
+MATCH (root:BookingRoot), (u:User {id:'uuser'})
+MATCH startPath=root-[:Y2014]->()-[:M12]->()-[:D31]->startLeaf,
+      endPath=root-[:Y2015]->()-[:M01]->()-[:D03]->endLeaf,
+      valuePath=startLeaf-[:NEXT*0..]->middle-[:NEXT*0..]->endLeaf,
+      values=middle-[:VALUE]->booking-[:PERFORMED_BY]->(u)
+RETURN booking,u 
+
+MATCH (root:BookingRoot), (u:User {id:'uuser'})
+MATCH commonPath=root-[:Y2015]->()-[:M01]->commonRootEnd,
+      startPath=commonRootEnd-[:D01]->startLeaf,
+      endPath=commonRootEnd-[:D02]->endLeaf,
+      valuePath=startLeaf-[:NEXT*0..]->middle-[:NEXT*0..]->endLeaf,
+      values=middle-[:VALUE]->booking-[:PERFORMED_BY]->(u)
+RETURN booking,u 
+
+MATCH commonPath=root-[:`2011`]->()-[:`01`]->commonRootEnd,
+      startPath=commonRootEnd-[:`01`]->startLeaf,
+      endPath=commonRootEnd-[:`03`]->endLeaf,
+      valuePath=startLeaf-[:NEXT*0..]->middle-[:NEXT*0..]->endLeaf,
+      values=middle-[:VALUE]->event
+```

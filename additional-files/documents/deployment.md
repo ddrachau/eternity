@@ -22,6 +22,11 @@ starting. Therefore you have to setup your database and WildFly. The following c
 password for the user neo4j
 * Retrieve the Neo4j JDBC driver from `https://github.com/neo4j-contrib/neo4j-jdbc` - you might use 
 `http://dist.neo4j.org/neo4j-jdbc/neo4j-jdbc-2.0.1-SNAPSHOT-jar-with-dependencies.jar`
+* If you want to run the integration tests the application server have to provide an additional datasource 
+`Neo4jDSTest`. You should create an additional database (extract a second instance of neo4j) and configure it for a 
+different port (`NEO4J_HOME/conf/neo4j-server.properties` e.g. change 7474 to 7476 and 7473 to 7475). Remember to 
+change the user password as well
+* You can use the same database for dev and tests but please remember to execute the init script after running the tests
 
 ### Application server
 
@@ -34,7 +39,7 @@ password for the user neo4j
 * Create a datasource to your Neo4j database 
 `{name:'Neo4jDS', jndi-name:'java:jboss/datasources/Neo4jDS', connectionUrl:'jdbc:neo4j://localhost:7474/'}`
 * Create a test datasource to your Neo4j database, used for the integration tests 
-`{name:'Neo4jDSTest', jndi-name:'java:jboss/datasources/Neo4jDS', connectionUrl:'jdbc:neo4j://localhost:7474/'}`
+`{name:'Neo4jDSTest', jndi-name:'java:jboss/datasources/Neo4jDSTest', connectionUrl:'jdbc:neo4j://localhost:7476/'}`
 
 ## Deployment
 

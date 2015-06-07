@@ -173,9 +173,13 @@ These projects just wrap other libraries and in case of the war project also pro
     * reading methods are called get if they return just on instance and consists of an additional description for the
     filter, if it is not the id (e.g. get a User for a Booking -> User getByBooking(Booking booking)
     * if the getter might return more than one instance, the method is called find respectively findByBooking
+* findbugs: use the FindBugs Plugin in its hardest scan level, this should also be ensured by a CI server.
 * formatting:
     * IntelliJ settings are stored at `eternity/additional-files/intellij-settings.jar`
     * If you want to use a different IDE you have to create a matching settings set and commit it in the same folder
+    * to ensure a common code style, you should use the 
+    `eternity/eternity-build-tools/src/main/resources/checkstyle/ertnity_checks.xml` checkstyle configuration. This 
+    should also be ensured by a CI server.
 
 ## Defaults for tests
 
