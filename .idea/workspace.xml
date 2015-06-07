@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d657f7b-8d97-4b3a-bd42-2472c9edf69f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-modules/eternity-modules-user/eternity-modules-user-service-impl/src/main/java/com/prodyna/pac/eternity/user/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/eternity-modules/eternity-modules-user/eternity-modules-user-service-impl/src/main/java/com/prodyna/pac/eternity/user/service/impl/UserServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/additional-files/documents/architecture.md" afterPath="$PROJECT_DIR$/additional-files/documents/architecture.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/additional-files/eternity.jks" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/additional-files/documents/deployment.md" afterPath="$PROJECT_DIR$/additional-files/documents/deployment.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/additional-files/documents/development.md" afterPath="$PROJECT_DIR$/additional-files/documents/development.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="eternity-server.iws" />
@@ -113,7 +111,21 @@
     <favorites_list name="eternity-server" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="deployment.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/additional-files/documents/deployment.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.21182266">
+              <caret line="44" column="98" selection-start-line="44" selection-start-column="98" selection-end-line="44" selection-end-column="98" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -184,10 +196,10 @@
         <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/java/com/prodyna/pac/eternity/common/service/impl/MBeanRegistrar.java" />
         <option value="$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/helper/MBeanRegistrarTest.java" />
         <option value="$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/helper/AbstractArquillianTest.java" />
-        <option value="$PROJECT_DIR$/additional-files/documents/deployment.md" />
         <option value="$PROJECT_DIR$/additional-files/documents/development.md" />
         <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-user/eternity-modules-user-service-impl/src/main/java/com/prodyna/pac/eternity/user/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/additional-files/documents/architecture.md" />
+        <option value="$PROJECT_DIR$/additional-files/documents/deployment.md" />
       </list>
     </option>
   </component>
@@ -255,8 +267,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="345" />
-    <option name="y" value="275" />
+    <option name="x" value="306" />
+    <option name="y" value="194" />
     <option name="width" value="2129" />
     <option name="height" value="1092" />
   </component>
@@ -1283,11 +1295,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/additional-files" />
       <recent name="$PROJECT_DIR$/additional-files/documents/images" />
       <recent name="$PROJECT_DIR$/additional-files/database" />
       <recent name="$PROJECT_DIR$/additional-files/documents" />
       <recent name="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/resources" />
-      <recent name="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-helper-impl/src/main/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/eternity-modules/eternity-modules-common" />
@@ -1361,7 +1373,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.All in eternity-test">
+  <component name="RunManager" selected="JBoss Server.Hot">
     <configuration default="false" name="LoginTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -2431,12 +2443,12 @@
       <workItem from="1433509127233" duration="25431000" />
       <workItem from="1433604454433" duration="774000" />
       <workItem from="1433605265819" duration="7210000" />
-      <workItem from="1433661062684" duration="1899000" />
+      <workItem from="1433661062684" duration="5677000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="830638000" />
+    <option name="totallyTimeSpent" value="834416000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2448,8 +2460,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="345" y="275" width="2129" height="1092" extended-state="0" />
-    <editor active="false" />
+    <frame x="306" y="194" width="2129" height="1092" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.326" sideWeight="0.49544802" order="7" side_tool="false" content_ui="tabs" />
@@ -2469,7 +2481,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3272727" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.334" sideWeight="0.47388595" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.334" sideWeight="0.47388595" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3223553" sideWeight="0.48634404" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
@@ -2911,17 +2923,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/additional-files/documents/deployment.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.2413793">
-          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/additional-files/documents/development.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.666667">
@@ -2953,6 +2954,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16304348">
           <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/additional-files/documents/deployment.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21182266">
+          <caret line="44" column="98" selection-start-line="44" selection-start-column="98" selection-end-line="44" selection-end-column="98" />
           <folding />
         </state>
       </provider>

@@ -41,6 +41,31 @@ change the user password as well
 * Create a test datasource to your Neo4j database, used for the integration tests 
 `{name:'Neo4jDSTest', jndi-name:'java:jboss/datasources/Neo4jDSTest', connectionUrl:'jdbc:neo4j://localhost:7476/'}`
 
+* If you want to use a SSL connection you have to use certificates and modify the WildFly configuration.
+* A keystore generated as described below can be found at `eternity/additional-files/eternity.jks` 
+* A possible setup can be found here: (http://blog.eisele.net/2015/01/ssl-with-wildfly-8-and-undertow.html)
+    * `keytool -genkey -alias mycert -keyalg RSA -sigalg MD5withRSA -keystore eternity.jks -storepass secret  -keypass 
+    secret -validity 9999`
+    * ` <management>
+               <security-realms>
+               <!-- ... -->
+                  <security-realm name="UndertowRealm">
+                       <server-identities>
+                           <ssl>
+                               <keystore path="eternity.jks" relative-to="jboss.server.config.dir" 
+                               keystore-password="secret" alias="mycert" key-password="secret"/>
+                           </ssl>
+                       </server-identities>
+                   </security-realm>`
+    * `<subsystem xmlns="urn:jboss:domain:undertow:1.2">
+           <!-- ... -->
+           <server name="default-server">
+                <!-- ... -->
+                <https-listener name="https" socket-binding="https" security-realm="UndertowRealm"/>`
+* This enables you to use a https connection with a self signed certificate. **NOTE** at lest Safari has problems 
+with server push if you use such a certificate. Firefox is more tolerant. Certificates with a trusted root CA should 
+work.
+
 ## Deployment
 
 You have to create the `ear` with maven. You can use a build server, your IDE working with exploded versions, or just
@@ -92,4 +117,5 @@ creates a tag in the source code management system
 After a successful deployment you can access the application at:  
 
 * http://localhost:8080/eternity
+* https://localhost:8443/eternity (if you configured the WildFly to use SSL)
 * If you installed the initial data, you can login as admin via `admin:pw`
