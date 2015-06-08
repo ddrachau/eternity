@@ -6,11 +6,11 @@ This chapter describes the necessary steps to prepare an environment and a deplo
 ## Environment test/quality/prod
 
 * **JAVA**: Java 1.8.0_40
-* **Application server**:	WildFly-8.2.0.Final, 
+* **Application server**:	WildFly-8.2.0.Final
 * **Database**:	Neo4j 2.2.0
 
 The Eternity application is deployed to the WildFly server and requests a Datasource to the Neo4j database while 
-starting. Therefore you have to setup your database and WildFly. The following configuration **a** possible solution:
+starting. Therefore you have to setup your database and WildFly. The following configuration is **a** possible solution:
 
 ### Java
 
@@ -22,19 +22,27 @@ starting. Therefore you have to setup your database and WildFly. The following c
 password for the user neo4j
 * Retrieve the Neo4j JDBC driver from `https://github.com/neo4j-contrib/neo4j-jdbc` - you might use 
 `http://dist.neo4j.org/neo4j-jdbc/neo4j-jdbc-2.0.1-SNAPSHOT-jar-with-dependencies.jar`
-* If you want to run the integration tests the application server have to provide an additional datasource 
+* If you want to run the integration tests the application server has to provide an additional datasource 
 `Neo4jDSTest`. You should create an additional database (extract a second instance of neo4j) and configure it for a 
 different port (`NEO4J_HOME/conf/neo4j-server.properties` e.g. change 7474 to 7476 and 7473 to 7475). Remember to 
 change the user password as well
 * You can use the same database for dev and tests but please remember to execute the init script after running the tests
 
+### Install base data
+
+* Set `NEO4J_HOME` to your Neo4j database directory
+* Run the [Initial Neo4j data script](../database/init-database.sh)  
+* Please note, you want to delete constraints see [clear-constraints](../database/clear-constraints.cyp). If a 
+constraint is not present the script fails, so uncomment the drops only if the constraint is available or run the 
+commands manually in the web ui.
+  
 ### Application server
 
 * If you run a local WildFly / JDK set these parameters to ensure the same behavior
  `-Dfile.encoding=UTF8 -Duser.language=de -Duser.country=DE`
-* Extract the WildFly to a directory of your choce
+* Extract the WildFly to a directory of your choice
 * Start the server with the standalone configuration
-* Create user for administration and deployment, e.g. user:pw **admin:admin** with `wildfly-8.2.0.Final/bin/add-ser.sh`
+* Create user for administration and deployment, e.g. user:pw **admin:admin** with `wildfly-8.2.0.Final/bin/add-user.sh`
 * Deploy the JDBC driver, you might use the `http://localhost:9990/console/App.html#deployments`
 * Create a datasource to your Neo4j database 
 `{name:'Neo4jDS', jndi-name:'java:jboss/datasources/Neo4jDS', connectionUrl:'jdbc:neo4j://localhost:7474/'}`
@@ -104,13 +112,7 @@ creates a tag in the source code management system
 
 * see also [Release](./release.md)  
 
-### Install base data
 
-* Set `NEO4J_HOME` to your Neo4j database directory
-* Run the [Initial Neo4j data script](../database/init-database.sh)  
-* Please note, you want to delete constraints see [clear-constraints](../database/clear-constraints.sh). If a constraint
-  ist not present the script fails, so uncomment the drops only if the constraint is available or run the commands
-  manually in the web ui.
 
 ### Accessing the application
 

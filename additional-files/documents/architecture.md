@@ -11,7 +11,7 @@ This chapter describes the architecture and some important architectural decisio
 * JavaScript
 * Bootstrap + JQuery
 * AngularJS
-* Neo4J
+* Neo4j
 * Apache
 * WildFly
 
@@ -26,7 +26,7 @@ technical core components as well as functional modules. This strict separation 
 new functional as well as technical modules.
  
 On top of the business services exist a REST interface which handles authentication and authorization by using 
-provides business methods. 
+provided business methods. 
 
 ### Client
 
@@ -110,11 +110,11 @@ Services accessing the database call the CypherService to issue the cypher query
 
 In the current model we skipped the idea of introducing a multi level indexing structure for booking entries.
 
-To keep the complexity low at the moment we have to monitor the performance for booking operations for many bookings 
-over time. After several thousands of booking for an user, the creation time (most time consuming with the 
-overlapping checks) in creases from about 16 ms to about 30).
+To keep the complexity low for the moment we have to monitor the performance for booking operations for many bookings 
+over time. After creating several thousands of bookings for an user, the creation time (most time consuming with the 
+overlapping checks) increases from about 16 ms to about 30.
 
-If the overall performance should suffer the following construct could be introduced. The booking service would have 
+If the overall performance should suffer, the following construct could be introduced. The booking service would have 
 to be adjusted:
 
 ```

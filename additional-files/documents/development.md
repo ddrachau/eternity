@@ -1,6 +1,6 @@
 # Development
 
-This chapter describes which steps are necessary and which rules apply for continue developing in Eternity.
+This chapter describes which steps are necessary and which rules apply for continuing development in Eternity.
 
 ## Source Code Repository - Where are the sources located?
 
@@ -45,7 +45,7 @@ Your change to the project is **done** if you comply with the following rules:
 ## How are the sources organized?
 
 We use a Maven multi project layout with several function/technical modules and concrete wrapper projects for the jars, 
-ejb, ear and war. In general there are api (without impl at the end) and implementations with and 'impl' at the end of
+ejb, ear and war. In general there are api (without impl at the end) and implementations with an 'impl' at the end of
 the name.
 
 **common pom module (eternity-modules-common-pom):**  
@@ -56,10 +56,11 @@ libraries which should be available in the kind of child projects.
 
 **common base module:**
 These are the base projects with code which is technical and available for all modules of this kind.
-* eternity-modules-common-client
-* eternity-modules-common-client-impl
-* eternity-modules-common-service
-* eternity-modules-common-service-impl
+
+* eternity-modules-common-client 
+* eternity-modules-common-client-impl 
+* eternity-modules-common-service 
+* eternity-modules-common-service-impl 
 
         ├── pom.xml
         ├── src
@@ -96,11 +97,12 @@ to reference the API projects.
         └── target
         
 **functional module (e.g. eternity-modules-authentication):**  
-These modules consists of client/server api and implementation projects. 
-* eternity-modules-authentication-client
-* eternity-modules-authentication-client-impl
-* eternity-modules-authentication-service
-* eternity-modules-authentication-service-impl
+These modules consists of client/server api and implementation projects.
+ 
+* eternity-modules-authentication-client 
+* eternity-modules-authentication-client-impl 
+* eternity-modules-authentication-service 
+* eternity-modules-authentication-service-impl 
 
         ├── pom.xml
         ├── src
@@ -164,13 +166,13 @@ These projects just wrap other libraries and in case of the war project also pro
      handled.
 * nodes / associations
     * Nodes are named after their use case, e.g. a user -> User, booking -> Booking.
-    * Associations are written in upper cases and may consists of underscores. They are verbs like, `ASSIGNED_TO` or 
+    * Associations are written in upper case and may consist of underscores. They are verbs like, `ASSIGNED_TO` or 
      `PERFORMED_BY`
 * encoding: `UTF-8`
 * method names:
     * Service methods have the following patterns
     * CRUD methods are plain: **create, update, delete**
-    * reading methods are called get if they return just on instance and consists of an additional description for the
+    * reading methods are called get if they return just one instance and consists of an additional description for the
     filter, if it is not the id (e.g. get a User for a Booking -> User getByBooking(Booking booking)
     * if the getter might return more than one instance, the method is called find respectively findByBooking
 * findbugs: use the FindBugs Plugin in its hardest scan level, this should also be ensured by a CI server.
@@ -178,15 +180,15 @@ These projects just wrap other libraries and in case of the war project also pro
     * IntelliJ settings are stored at `eternity/additional-files/intellij-settings.jar`
     * If you want to use a different IDE you have to create a matching settings set and commit it in the same folder
     * to ensure a common code style, you should use the 
-    `eternity/eternity-build-tools/src/main/resources/checkstyle/ertnity_checks.xml` checkstyle configuration. This 
+    `eternity/eternity-build-tools/src/main/resources/checkstyle/eternity_checks.xml` checkstyle configuration. This 
     should also be ensured by a CI server.
 
 ## Defaults for tests
 
 Tests are located in the `eternity-test` project. This project has no restrictions for the dependencies.
 
-* Integration tests use Arquillian and require a running WildFly at localhost:8080 and an admin user `dmin:admin`
-* Tests have the same package structure like the class under test but with the folowing prefix: 
+* Integration tests use Arquillian and require a running WildFly at localhost:8080 and an admin user `admin:admin`
+* Tests have the same package structure like the class under test but with the following prefix: 
 `com.prodyna.pac.eternity.test`.
 * Client tests require an own proxy definition like 
 `com.prodyna.pac.eternity.test.authentication.client.impl.AuthenticationClientServiceProxy`
