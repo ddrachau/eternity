@@ -142,7 +142,7 @@ These projects just wrap other libraries and in case of the war project also pro
 
         ├── pom.xml
         ├── src
-        │   └── main (optinal)
+        │   └── main (optional)
         │       ├── webapp (optional)
         │       └── resources (optional)
         └── target
