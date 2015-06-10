@@ -149,6 +149,44 @@ These projects just wrap other libraries and in case of the war project also pro
 
 ## Default names and namespaces, encoding, formatting
 
+### General
+
+* encoding: `UTF-8`
+* findbugs: use the FindBugs Plugin in its hardest scan level, this should also be ensured by a CI server.
+* formatting:
+    * IntelliJ settings are stored at `eternity/additional-files/intellij-settings.jar`
+    * If you want to use a different IDE you have to create a matching settings set and commit it in the same folder
+    * to ensure a common code style, you should use the 
+    `eternity/eternity-build-tools/src/main/resources/checkstyle/eternity_checks.xml` checkstyle configuration. This 
+    should also be ensured by a CI server.
+    
+### Client
+
+Use the following structure for the web application (eternity-war):
+
+        └── webapp
+            ├── css
+            │    ├── bootstrap <-- bootstrap framework
+            │    ├── fonts <- bootstrap fonts
+            │    └── ... <- application css files
+            ├── images
+            │    ├── apple <- files for iOS webapp
+            │    └── ... <- application image files
+            ├── js
+            │    ├── controllers <- application controllers
+            │    ├── directives <- application directives
+            │    ├── services <- application services used across the application *-service.js
+            │    ├── vendor <- external js libraries
+            │    └── ... <- application js and routes
+            ├── templates
+            │    ├── authentication|booking|project|user <- templates for current components 
+            │    └── ... <- application wide templates
+            ├── WEB-INF
+            │   └── web.xml
+            └── index.html <- root single page application 
+
+### Server
+
 * packages:
     * the default package name is `com.prodyna.pac.eternity`
     * the default package name for the test classes is `com.prodyna.pac.eternity.test`
@@ -164,24 +202,19 @@ These projects just wrap other libraries and in case of the war project also pro
     `com.prodyna.pac.eternity.common.model.exception.functional.DuplicateTimeBookingException`. Functional exceptions 
      should be caught by the callers, while technical exceptions are runtime exceptions and usually do not have to be
      handled.
-* nodes / associations
-    * Nodes are named after their use case, e.g. a user -> User, booking -> Booking.
-    * Associations are written in upper case and may consist of underscores. They are verbs like, `ASSIGNED_TO` or 
-     `PERFORMED_BY`
-* encoding: `UTF-8`
 * method names:
     * Service methods have the following patterns
     * CRUD methods are plain: **create, update, delete**
     * reading methods are called get if they return just one instance and consists of an additional description for the
     filter, if it is not the id (e.g. get a User for a Booking -> User getByBooking(Booking booking)
     * if the getter might return more than one instance, the method is called find respectively findByBooking
-* findbugs: use the FindBugs Plugin in its hardest scan level, this should also be ensured by a CI server.
-* formatting:
-    * IntelliJ settings are stored at `eternity/additional-files/intellij-settings.jar`
-    * If you want to use a different IDE you have to create a matching settings set and commit it in the same folder
-    * to ensure a common code style, you should use the 
-    `eternity/eternity-build-tools/src/main/resources/checkstyle/eternity_checks.xml` checkstyle configuration. This 
-    should also be ensured by a CI server.
+
+### Database
+
+* nodes / associations
+    * Nodes are named after their use case, e.g. a user -> User, booking -> Booking.
+    * Associations are written in upper case and may consist of underscores. They are verbs like, `ASSIGNED_TO` or 
+     `PERFORMED_BY`
 
 ## Defaults for tests
 

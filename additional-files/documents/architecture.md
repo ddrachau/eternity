@@ -54,7 +54,6 @@ The access to functional operations is also protected through an authorization s
  system (USER, MANAGER or ADMINISTRATOR). If an user is authenticated, the system checks if the user is also 
  authorized to call the requested operation and gets rejected if it is not. 
  
-
 |                  | ADMIN OPERATIONS | MANAGER OPERATIONS | USER OPERATIONS |
 -------------------|------------------|--------------------|-----------------|
 | ADMINISTRATOR    | x                | x                  | x               |
@@ -65,6 +64,27 @@ The access to functional operations is also protected through an authorization s
 
 The password handling uses an advanced hashing and salting for every password of every user. Base implementation is 
 used from: (https://crackstation.net/hashing-security.htm#normalhashing)
+
+### Additional external authentication (e.g. LDAP)
+
+The current authentication system uses Neo4j to store users and their passwords. 
+
+If you have to integrate additional systems like LDAP, you have to perform the following tasks:
+
+* configure a naming subsystem entry in the WildFly configuration for your LDAP 
+[see](https://docs.jboss.org/author/display/WFLY8/Naming+Subsystem+Configuration)
+* create a new service implementation for handling the LDAP
+    * this implementation will provide the same behavior as the Neo4j database implementation but with LDAP operations
+* database enhancements
+    * import the user ids and names (depending on the requirements) in your database as new users
+    * create a new node for the LDAP :ExternalAuthentication {type:'LDAP', jndi:'nameAsDefinedInWildFly'}
+    * link the external users `(u:User)-[:ASSIGNED_TO]->(:ExternalAuthentication)`
+* modify the UserServiceImpl to chose an appropriate implementation if an user has an association to 
+`:ExternalAuthentication`.
+    * use the type to chose a correct service and provide the jndi name to the service.
+    * methods which handle logic in Eternity like assignment of users to projects or searching for assigned project or 
+    bookings must not be handled by the external authentication implementation (the UserService should be split in 
+    methods regarding the authentication system and application logic like assignment)
 
 ### How does the logging component work?
 
@@ -90,16 +110,22 @@ you intended. You might want to change the deletion to an deactivation in the fu
       
 ## Database 
 
+![Neo4j Model](./images/neo-model.png)
+
 ### Nodes
 
 There are five nodes:
-* User - a concrete user which can log in the system
-* Project - a project users can book time for
-* Booking - a concrete booking of an user for a project
+* User - a concrete user which can log in the system with a password
+* Project - a project users can book time for with an identifier and a description
+* Booking - a concrete booking of an user for a project, with start, end, break and a description
 * Session - a session for a logged in user
 * RememberMe - a remember me token for a user
 
-![Neo4j Model](./images/neo-model.png)
+### Associations
+There are three associations:
+* ASSIGNED_TO - is used for linking two nodes like a Session to a user, or an user to a project
+* PERFORMED_FOR - is used for bookings which are linked to a project
+* PERFORMED_BY - is used for bookings to link them to user how performed the booking
 
 ### Writing Neo4j services
 
