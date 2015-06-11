@@ -7,7 +7,7 @@
 
     <groupId>com.prodyna.pac.eternity</groupId>
     <artifactId>eternity</artifactId>
-    <version>0-SNAPSHOT</version>
+    <version>1.0.0.0</version>
     <packaging>pom</packaging>
 
     <name>Root Eternity Project</name>

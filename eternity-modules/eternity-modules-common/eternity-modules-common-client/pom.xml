@@ -13,7 +13,7 @@
     <parent>
         <groupId>com.prodyna.pac.eternity</groupId>
         <artifactId>eternity-modules-common</artifactId>
-        <version>0-SNAPSHOT</version>
+        <version>1.0.0.0</version>
     </parent>
 
     <dependencies>
