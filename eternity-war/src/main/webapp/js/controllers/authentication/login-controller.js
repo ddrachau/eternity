@@ -2,8 +2,8 @@ angular.module('Eternity').controller('LoginCtrl',
     function ($scope, $rootScope, $q, $location, ServerPushService, SessionService) {
 
         $scope.login = {
-            username: 'admin',
-            password: 'pw',
+            username: '',
+            password: '',
             remember: false
         };
 

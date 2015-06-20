@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d657f7b-8d97-4b3a-bd42-2472c9edf69f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-war/src/main/webapp/js/vendor/smart-table-2.0.3.js" afterPath="$PROJECT_DIR$/eternity-war/src/main/webapp/js/vendor/smart-table-2.0.3.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-war/src/main/webapp/js/vendor/smart-table-2.0.3.min.js" afterPath="$PROJECT_DIR$/eternity-war/src/main/webapp/js/vendor/smart-table-2.0.3.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/authentication/login-controller.js" afterPath="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/authentication/login-controller.js" />
     </list>
     <ignored path="eternity-server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -112,38 +110,8 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="all-booking-listing.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/booking/all-booking-listing.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="booking-controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/booking/booking-controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="booking-listing.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/booking/booking-listing.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bookings.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/booking/bookings.html">
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/authentication/login.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -152,41 +120,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="booking-listing.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/booking/booking-listing.html">
+      <file leaf-file-name="login-controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/authentication/login-controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.125">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="smart-table-2.0.3.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/vendor/smart-table-2.0.3.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.65789473">
-              <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="smart-table-2.0.3.min.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/vendor/smart-table-2.0.3.min.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.4">
-              <caret line="4" column="476" selection-start-line="4" selection-start-column="476" selection-end-line="4" selection-end-column="476" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="all-booking-listing.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/booking/all-booking-listing.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.12605043">
+              <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -216,7 +154,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-user/eternity-modules-user-client-impl/src/main/java/com/prodyna/pac/eternity/user/client/impl/UserClientServiceImpl.java" />
         <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-service-impl/src/main/java/com/prodyna/pac/eternity/common/service/impl/CypherServiceImpl.java" />
         <option value="$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-client-impl/src/main/java/com/prodyna/pac/eternity/authentication/client/impl/AuthenticationRequestFilter.java" />
         <option value="$PROJECT_DIR$/eternity-test/src/test/java/com/prodyna/pac/eternity/test/common/model/authentication/SessionTest.java" />
@@ -267,6 +204,7 @@
         <option value="$PROJECT_DIR$/additional-files/documents/development.md" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/vendor/smart-table-2.0.3.min.js" />
         <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/vendor/smart-table-2.0.3.js" />
+        <option value="$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/authentication/login-controller.js" />
       </list>
     </option>
   </component>
@@ -524,7 +462,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="booking" />
+              <option name="myItemId" value="authentication" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -661,6 +599,44 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="booking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eternity-war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="authentication" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2147,12 +2123,12 @@
       <workItem from="1433937980468" duration="5713000" />
       <workItem from="1433960465055" duration="227000" />
       <workItem from="1434048003823" duration="17000" />
-      <workItem from="1434831348177" duration="238000" />
+      <workItem from="1434831348177" duration="462000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="844097000" />
+    <option name="totallyTimeSpent" value="844321000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2296,20 +2272,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-authentication/eternity-modules-authentication-client/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-client/src/main/java/com/prodyna/pac/eternity/common/client/Authenticated.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23510972">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eternity-modules/eternity-modules-common/eternity-modules-common-pom/eternity-modules-common-pom-client/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2651,7 +2613,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/vendor/smart-table-2.0.3.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.4">
+        <state vertical-scroll-proportion="0.18421052">
           <caret line="4" column="476" selection-start-line="4" selection-start-column="476" selection-end-line="4" selection-end-column="476" />
           <folding />
         </state>
@@ -2661,6 +2623,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.65789473">
           <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/templates/authentication/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eternity-war/src/main/webapp/js/controllers/authentication/login-controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12605043">
+          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
           <folding />
         </state>
       </provider>
