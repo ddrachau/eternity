@@ -21,7 +21,7 @@
                 displayedPages: 5
             },
             search: {
-                delay: 400 // ms
+                delay: 800 // ms
             },
             select: {
                 mode: 'single',
