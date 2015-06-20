@@ -19,6 +19,7 @@ import com.prodyna.pac.eternity.common.profiling.Profiling;
 import com.prodyna.pac.eternity.common.service.CypherService;
 import com.prodyna.pac.eternity.project.service.ProjectService;
 import com.prodyna.pac.eternity.user.service.UserService;
+import org.slf4j.Logger;
 
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
@@ -51,6 +52,9 @@ public class BookingServiceImpl implements BookingService {
      */
     @Inject
     private Event<EternityEvent> events;
+
+    @Inject
+    private Logger logger;
 
     @Inject
     private CypherService cypherService;
@@ -101,6 +105,8 @@ public class BookingServiceImpl implements BookingService {
         }
 
         events.fire(EternityEvent.createBookingEvent());
+
+        logger.info("Booking for user {} created", user.getIdentifier());
 
         return booking;
 
@@ -287,7 +293,11 @@ public class BookingServiceImpl implements BookingService {
 
             events.fire(EternityEvent.createBookingEvent());
 
-            return this.getBooking(queryResult);
+            Booking result = this.getBooking(queryResult);
+            logger.info("Booking for user {} updated", user.getIdentifier());
+
+            return result;
+
         }
 
     }
@@ -305,6 +315,7 @@ public class BookingServiceImpl implements BookingService {
                 queryMapBuilder.map(1, id));
 
         events.fire(EternityEvent.createBookingEvent());
+        logger.info("Booking wid id {} deleted", id);
 
     }
 

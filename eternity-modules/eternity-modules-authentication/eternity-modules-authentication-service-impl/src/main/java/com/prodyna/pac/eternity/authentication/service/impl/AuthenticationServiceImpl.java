@@ -15,6 +15,7 @@ import com.prodyna.pac.eternity.common.model.user.User;
 import com.prodyna.pac.eternity.common.profiling.Profiling;
 import com.prodyna.pac.eternity.common.service.CypherService;
 import com.prodyna.pac.eternity.user.service.UserService;
+import org.slf4j.Logger;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -28,6 +29,9 @@ import javax.validation.constraints.NotNull;
 @Profiling
 @Stateless
 public class AuthenticationServiceImpl implements AuthenticationService {
+
+    @Inject
+    private Logger logger;
 
     @Inject
     private CypherService cypherService;
@@ -54,6 +58,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         String plainPassword = login.getPassword();
 
         userService.checkIfPasswordIsValid(userIdentifier, plainPassword);
+
+        logger.info("User {} successfully logged in", userIdentifier);
 
         return this.createLogin(login);
 
@@ -82,7 +88,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         if (valid) {
 
-            return this.createLogin(new Login(u.getIdentifier(), null, true));
+            Login login = this.createLogin(new Login(u.getIdentifier(), null, true));
+            logger.info("User {} successfully logged in via rememberMe", u.getIdentifier());
+
+            return login;
 
         } else {
             throw new InvalidTokenException();
@@ -98,6 +107,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         if (rememberMeToken != null && rememberMeToken.contains(RememberMeAccessor.TOKEN_DELIMITER)) {
             rememberMeService.delete(rememberMeAccessor.getRememberMeId(rememberMeToken));
         }
+
+        logger.info("Session {} successfully logged out", sessionId);
 
     }
 

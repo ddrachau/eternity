@@ -19,6 +19,7 @@ import com.prodyna.pac.eternity.common.profiling.Profiling;
 import com.prodyna.pac.eternity.common.service.CypherService;
 import com.prodyna.pac.eternity.project.service.ProjectService;
 import com.prodyna.pac.eternity.user.service.UserService;
+import org.slf4j.Logger;
 
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
@@ -50,6 +51,9 @@ public class UserServiceImpl implements UserService {
      */
     @Inject
     private Event<EternityEvent> events;
+
+    @Inject
+    private Logger logger;
 
     @Inject
     private CypherService cypherService;
@@ -96,6 +100,7 @@ public class UserServiceImpl implements UserService {
         }
 
         events.fire(EternityEvent.createUserEvent());
+        logger.info("User {} created", user.getIdentifier());
 
         return result;
     }
@@ -249,8 +254,12 @@ public class UserServiceImpl implements UserService {
         if (queryResult == null) {
             throw new NoSuchElementRuntimeException();
         } else {
+
             events.fire(EternityEvent.createUserEvent());
-            return this.getUser(queryResult);
+            User result = this.getUser(queryResult);
+            logger.info("User {} updated", user.getIdentifier());
+
+            return result;
         }
 
 
@@ -273,6 +282,7 @@ public class UserServiceImpl implements UserService {
                 queryMapBuilder.map(1, identifier));
 
         events.fire(EternityEvent.createUserEvent());
+        logger.info("User {} deleted", identifier);
 
     }
 
