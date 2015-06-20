@@ -14,7 +14,7 @@
     <parent>
         <groupId>com.prodyna.pac.eternity</groupId>
         <artifactId>eternity</artifactId>
-        <version>1.0.0.0</version>
+        <version>PAC_1.0.0.1</version>
     </parent>
 
     <dependencies>

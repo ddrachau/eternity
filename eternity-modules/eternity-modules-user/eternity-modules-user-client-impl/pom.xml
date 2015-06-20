@@ -16,7 +16,7 @@
         <relativePath>
             ../../eternity-modules-common/eternity-modules-common-pom/eternity-modules-common-pom-client-impl
         </relativePath>
-        <version>1.0.0.0</version>
+        <version>PAC_1.0.0.1</version>
     </parent>
 
     <dependencies>
