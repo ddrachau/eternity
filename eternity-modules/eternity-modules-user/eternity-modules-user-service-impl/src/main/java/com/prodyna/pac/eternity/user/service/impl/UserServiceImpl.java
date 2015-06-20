@@ -377,7 +377,8 @@ public class UserServiceImpl implements UserService {
 
         String currentPasswordHash = (String) oldPasswordQueryResult.get("u.password");
 
-        if (!passwordHashBuilder.validatePassword(plainPassword, currentPasswordHash)) {
+        if (currentPasswordHash == null || currentPasswordHash.isEmpty() ||
+                !passwordHashBuilder.validatePassword(plainPassword, currentPasswordHash)) {
             throw new InvalidPasswordException();
         }
 
