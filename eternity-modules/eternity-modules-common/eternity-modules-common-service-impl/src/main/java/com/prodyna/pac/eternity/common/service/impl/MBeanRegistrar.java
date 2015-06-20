@@ -43,7 +43,8 @@ public class MBeanRegistrar {
     public void registerInJMX() {
 
         try {
-            this.profilingMXBeanObjectName = new ObjectName("com.prodyna.pac.eternity.common.profiling.impl:type=ProfilingMXBeanImpl");
+            this.profilingMXBeanObjectName =
+                    new ObjectName("com.prodyna.pac.eternity.common.profiling.impl:type=ProfilingMXBeanImpl");
             this.mBeanServer.registerMBean(profilingMXBean, this.profilingMXBeanObjectName);
 
         } catch (final JMException e) {

@@ -88,7 +88,7 @@ public class BookingServiceImpl implements BookingService {
 
         booking.setId(UUID.randomUUID().toString());
 
-        this.checkForOverlapping(booking, user, project);
+        this.checkForOverlapping(booking, user);
 
         final Map<String, Object> queryResult = cypherService.querySingle(
                 "MATCH (u:User {id:{1}}), (p:Project {id:{2}}) " +
@@ -277,7 +277,7 @@ public class BookingServiceImpl implements BookingService {
         User user = userService.getByBooking(booking);
         Project project = projectService.get(booking);
 
-        this.checkForOverlapping(booking, user, project);
+        this.checkForOverlapping(booking, user);
 
         final Map<String, Object> queryResult = cypherService.querySingle(
                 "MATCH (u:User)<-[:PERFORMED_BY]-(b:Booking {id:{1}})-[:PERFORMED_FOR]->(p:Project) " +
@@ -351,25 +351,24 @@ public class BookingServiceImpl implements BookingService {
     }
 
     /**
-     * Checks if the booking range overlaps with bookings found for the user project combination
+     * Checks if the booking range overlaps with bookings found for the user
      *
      * @param booking the times to check against
      * @param user    the source user
-     * @param project the target user
      * @throws DuplicateTimeBookingException if there is an overlapping
      */
-    private void checkForOverlapping(@NotNull final Booking booking, @NotNull final User user,
-                                     @NotNull final Project project) throws DuplicateTimeBookingException {
+    private void checkForOverlapping(@NotNull final Booking booking, @NotNull final User user)
+            throws DuplicateTimeBookingException {
 
         final List<Map<String, Object>> queryResult = cypherService.query(
-                "MATCH (u:User {id:{1}})<-[:PERFORMED_BY]-(b:Booking)-[:PERFORMED_FOR]->(p:Project {id:{2}}) " +
+                "MATCH (u:User {id:{1}})<-[:PERFORMED_BY]-(b:Booking) " +
                         "WHERE " +
                         "b.id <> {5} AND " +
                         "((b.startTime >= {3} AND b.startTime < {4}) OR" +
                         "(b.endTime > {3} AND b.endTime <= {4}) OR" +
                         "(b.startTime <= {3} AND b.endTime >= {4})) " +
-                        "RETURN " + BOOKING_RETURN_PROPERTIES,
-                queryMapBuilder.map(1, user.getId(), 2, project.getId(), 3, booking.getStartTime().getTimeInMillis(),
+                        "RETURN b.id",
+                queryMapBuilder.map(1, user.getId(), 3, booking.getStartTime().getTimeInMillis(),
                         4, booking.getEndTime().getTimeInMillis(), 5, booking.getId()));
         if (queryResult.size() > 0) {
             throw new DuplicateTimeBookingException();

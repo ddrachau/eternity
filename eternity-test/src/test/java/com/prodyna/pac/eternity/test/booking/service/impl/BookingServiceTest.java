@@ -222,9 +222,12 @@ public class BookingServiceTest extends AbstractArquillianTest {
     public void testCreateDuplicateBooking() throws InvalidBookingException, DuplicateTimeBookingException, UserNotAssignedToProjectException {
 
         Project project4 = projectService.get("P01110");
+        Project project5 = projectService.get("P01244");
         User user4 = userService.get("bborg");
 
         userService.assignUserToProject(user4, project4);
+        userService.assignUserToProject(user4, project5);
+
         Booking b = new Booking(calendarBuilder.getCalendar(2015, 3, 10, 10, 0), calendarBuilder.getCalendar(2015, 3, 10, 16, 0), 45);
         bookingService.create(b, user4, project4);
 
@@ -286,6 +289,16 @@ public class BookingServiceTest extends AbstractArquillianTest {
         //good
         bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 8, 0), calendarBuilder.getCalendar(2015, 3, 10, 10, 0), 0), user4, project4);
         bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 3, 10, 16, 0), calendarBuilder.getCalendar(2015, 3, 10, 17, 0), 0), user4, project4);
+
+        try {
+            bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 6, 10, 9, 0), calendarBuilder
+                    .getCalendar(2015, 6, 10, 16, 0), 0), user4, project4);
+            bookingService.create(new Booking(calendarBuilder.getCalendar(2015, 6, 10, 15, 0), calendarBuilder
+                    .getCalendar(2015, 6, 10, 17, 0), 0), user4, project5);
+            Assert.fail("Booking with overlapping time is not allowed");
+        } catch (DuplicateTimeBookingException e) {
+            // expected
+        }
 
     }
 
